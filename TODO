@@ -1,0 +1,45 @@
+= Realm List server =
+The realm list server handles the accounts, and all account-related data like
+authentication configuration, client settings for parental control, account
+status, etc.
+
+== Features ==
+The following list describes missing or in-complete features which need work
+in order to comply with the latest realm list protocol specifications as used
+in client 2.3.0 (build 7561).
+
+* Account administration from console
+* Realm administration from console
+
+== Bugs ==
+The following list describes bugs in implemented features, which need to be
+fixed, in order to comply with the latest realm list protocol specification
+as used in client 2.4.3 (build 8606).
+
+* Fix SMSG_LOGON_CHALLENGE.
+* Fix CMSG_LOGON_PROOF.
+* Fix SMSG_LOGON_PROOF.
+* Fix CMSG_REALMLIST.
+* Fix SMSG_REALMLIST.
+* Fix SMSG_UPDATE_INITIATE.
+* Fix CMSG_UPDATE_ACCEPT.
+* Fix CMSG_UPDATE_RESUME.
+* Fix SMSG_UPDATE_TRANSFER.
+* Fix CMSG_UPDATE_CANCEL.
+
+= World server =
+The world server handles the actual game world, and provides all necessary
+features like account handling, character storage, as well as storing and
+handling all world data like objects, units, area triggers, spells, transports,
+and more.
+
+== Features ==
+The following list describes missing or in-complete features which need work
+in order to comply with the latest world server protocol specifications as used
+in client 2.4.3 (build 8606).
+
+== Bugs ==
+The following list describes bugs in implemented features, which need to be
+fixed, in order to comply with the latest world server protocol specification
+as used in client 2.4.3 (build 8606).
+

@@ -1,0 +1,20 @@
+# World server configuration file
+# This is rather an automatically executed script, it contains normal commands
+# that can be invoked on server command-line (you can get a short description
+# on commands and their arguments by using the 'help' command).
+
+# Database to connect to: type address:port,user,password,database
+wdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-world
+# Realm Server database
+rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realm
+
+# Enable/disable world server requests logging to a file
+log SFDCI
+
+# Set realm name (MUST BE IN DATABASE)
+realm "Aerie Peak"
+# And the Message Of The Day
+motd "Welcome to the official MaNGOS2 server."
+
+# Now start the server
+start

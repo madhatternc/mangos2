@@ -1,0 +1,215 @@
+YAML (see http://yaml4r.sourceforge.net/cookbook/) is used for describing
+the structure of the network packets. After that the file is used to build a
+header file (that contains the definitions of the C++ classes corresponding to
+every packet) and a .inc file (that contains a big switch(opcode) that is used
+to parse all the incoming packets).
+
+Every packet has a description like this:
+-
+  name: MSG_STATIC_NAME     // will be used as OPCODE name, member of opcodes
+			    // enum
+  opcode: 0x00000           // opcode in hex value
+  type: packet              // important, needed to determ type of description
+  structure:                // if the packet contains anything else except op
+			    // headers, this is the description
+  - test:                   // name of value. this will be the struct name
+      type: uint64          // type of the value
+      init: 0               // value for struct init, optional
+  - if test & 0x1332:       // you can refer to every value name in the packet. You may use consts. Allowed opterators are &,/,+,-,&&,||,(,),!
+    - value:                // this value will only exist if the rule matches
+        type: uint16
+    - flag:                 // this block may contain other if clauses or values
+        ...
+    - test2:                // this value will always exist
+      ...
+
+There are several kinds of top-level entities. One describes a packet structure,
+other a constant, third could contain some code snippets to be used by the code
+generator. Every entity is described below in a separate section.
+
+-----------
+ Constants
+-----------
+
+These kinds of entities can be used to define constants that can be used in
+packet contents. There can be independent constants and constants embedded into
+a enum. The format of a constant definition is:
+
+-
+    name: THIS_IS_MY_CONSTANT
+    type: const
+    value: 0x00000001
+    format: 0x%0.8X
+    enum: MyEnum
+
+The 'format' and 'enum' fields are optional. If the 'format' field is missing,
+a default format of %s is used (this is a Python format, not C). If the 'enum'
+field is missing, the constant is #define'd; otherwise it is embedded into an
+enum definition with the given name.
+
+---------------
+ Code snippets
+---------------
+
+Code snippets are used by code generator when it needs to insert a specific
+portion of code into one or another place. They are identified by their name.
+A code snippet definition looks like this:
+
+-
+    name: headers
+    type: c++code
+    code: |+
+        //////////////////////////////////////////////////////////////////////
+        //  RealmList Opcodes
+        //
+        //  Definition of the opcodes used by the Realm List network protocol
+        //////////////////////////////////////////////////////////////////////
+
+        #ifndef __REALMPROTO_H__
+        #define __REALMPROTO_H__
+
+        #include "ProtoPacket.h"
+
+The above defines the 'headers' code snippet which is inserted at the beginning
+of the file. The following code snippets are required by code generator:
+
+header_start, header_end:
+    These two snippets are inserted at the beginning and at the end of the
+    generated header file.
+
+parser_start, parser_end:
+    These snippets are inserted at the beginning and at the end of the parser
+    code. Usually parser_start is something like "switch (opcode) {" and
+    parser_end is something like "default: printf (... unknown opcode ...);
+    break; }"
+
+opcodes_start, opcodes_end:
+    These snippets are used to open and close opcode definition. Usually
+    opcodes_start is something like "enum MyOpcodes {" and opcodes_end looks
+    like "};".
+
+pkthdr_size:
+    This snippet is used when the code generator needs to emit an native
+    expression  whose result is the size of the packet header. Can be either a
+    direct number (2, 4 etc) or any legal C expression ("sizeof (uint32) +
+    sizeof (uint16)").
+
+pkthdr_assemble:
+    This snippet must produce code that will generate the packet header.
+
+parser_XXXX:
+    This code snippet, if defined, will be inserted instead of the case
+    statement when generating the parser (see Packets below). This is a really
+    low-level override, and I even doubt it's useful.
+
+parser_default:
+    This is an optional snippet that is emited when there's no handler defined
+    for a specific opcode that's marked with 'direction' as 'in' or 'both'.
+    If not defined, generator will emit a comment saying that a specific opcode
+    is not handled. Example:
+
+-
+    name: parser_default
+    type: c++code
+    code: |
+        printf ("WARNING: Unhandled packet %(name)s\n");
+
+
+---------
+ Packets
+---------
+
+Packet entities are denoted by the "type: packet" entry in their description.
+Other fields in a packet definition:
+
+name:
+    This defines the symbolic name for the opcode of this packet. The packet
+    name is used both to name the opcode constant, and to name the class that
+    can parse and/or generate packets of this type. The name of the class will
+    be %(name)s_t, e.g. if name is MSG_HELLO, the class will be named
+    MSG_HELLO_t.
+
+opcode:
+    This defines the value of the opcode.
+
+direction:
+    can have one of the values "in", "out" or "both". Depending on this field
+    generator emits some of the member functions for this packet. If this packet
+    can be received (e.g. it's "in" or "both"), it gets the Parse() function
+    and the associated Create (uint8 *data, uint length) methods. If it can
+    be sent, the packet gets the Assemble () function and the associated
+    Create () and Init () methods.
+
+parser-c++-function:
+    If this field is defined, it is the name of a function that is called
+    when a packet of this type arrives. The function will receive a reference
+    to an already initialized and parsed object of type %(name)s_t
+
+parser-c++-code:
+    This field, if used, defines a piece of C++ code that will be inserted once
+    a packet of given type is received. The code is inserted right between the
+    brackets in the case statement: "case %(name)s: { ... }". This is really
+    a low-level override, and allows you to do anything you wish once a packet
+    of specific type has been received.
+
+structure:
+    This is the most complex field. It is a list of packet fields along with
+    definitions of their types, their possible content and so on. Every packet
+    field has a number of attributes:
+
+    init:
+        This field, if present, defines the initial value of a field. Ths field
+        is initialized to this value before the packet is assembled for sending.
+
+    array:
+        This field, if present, defines an array of N values.
+
+    type:
+        This is the main attribute of a field. The following types are available,
+        additional fields may or may not be available depending on field type:
+
+        uint8, uint16, uint32, uint64, int16, int32, int64:
+            Unsigned/Signed integers of different bit sizes.
+        string:
+            This is a zero-terminated string.
+        cstring:
+            This is a counted string, the first uint8 is the string length,
+            after that it is followed by the string itself (without zero
+	    terminator).
+
+Here's a example packet definition:
+
+-
+    name: SMSG_LOGON_CHALLENGE
+    opcode: 0x00
+    type: packet
+    direction: out
+    structure:
+      - unused1:
+            type: uint8
+            init: 0
+      - unused2:
+            type: uint8
+            init: 0
+      - BR:
+            type: uint8
+            array: 32
+      - unused3:
+            type: uint8
+            init: 1
+      - unused4:
+            type: uint8
+            init: 7
+      - unused5:
+            type: uint8
+            init: 32
+      - N:
+            type: uint8
+            array: 32
+      - salt:
+            type: uint8
+            array: 32
+      - unused6:
+            type: uint8
+            array: 16
+            init: 0

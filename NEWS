@@ -1,0 +1,22 @@
+= MaNGOS2 -- History of visible changes =
+
+Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
+Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+
+See the COPYING file for copying conditions.
+
+Visit our project website for documentation, and more:
+http://www.getmangos.com/
+
+Please submit bug reports at:
+http://www.getmangos.com/
+
+Version 0.5.0.02
+* OpenWoW continued has been renamed to MaNGOS2, and a few hundred changes
+  have been made to introduce client 2.4.3 support, and completely document
+  all sources, and other interesting stuff. You will surely love this one.
+
+Version 0.5.0.01
+* Hell, it's been a long time, and OpenWoW is back. Now serving an updated
+  core which features full support for World of Warcraft clients of version
+  2.3.0 (build 7561).

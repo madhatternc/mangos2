@@ -1,0 +1,71 @@
+$#include "WorldServer.h"
+$#include "GameClient.h"
+$#include "Object.h"
+$#include "Common.h"
+$#include "WorldServer.h"
+$#include "Database.h"
+$#include "Console.h"
+$#include "CommandInterpreter.h"
+$#include "StringFun.h"
+$#include "version.h"
+$#include "Player.h"
+$#include "Affect.h"
+$#include "Vector.h"
+
+// Debug function to print the Lua stack
+
+#if COMPILER == COMPILER_MICROSOFT && _MSC_VER < 1300
+  typedef __int64 int64;
+  typedef unsigned __int64 uint64;
+#else
+  typedef long long int64;
+  typedef unsigned long long uint64;
+#endif
+typedef int int32;
+typedef unsigned int uint32;
+typedef short int16;
+typedef unsigned short uint16;
+typedef char int8;
+typedef unsigned char uint8;
+//typedef unsigned char* uint8*;
+
+// This is an integer type that has the same size as pointers
+typedef long intptr;
+typedef unsigned long uintptr;
+
+// Short for unsigned long
+typedef unsigned long ulong;
+// Short for 'unsigned int'
+typedef unsigned int uint;
+// Short for 'unsigned short'
+typedef unsigned short ushort;
+// Short for 'unsigned char'
+typedef unsigned char uchar;
+
+//$cfile "../shared/Vector.h"
+
+$ifile "../shared/Base.h"
+
+$ifile "../shared/Sockets.h"
+//$ifile "Opcodes.h"
+//$ifile "../shared/Vector.h"
+//$ifile "ProtocolVectors.h"
+$ifile "../shared/Database.h"
+$ifile "Object.h"
+$ifile "../shared/Client.h"
+$ifile "GameClient.h"
+$ifile "Affect.h"
+$ifile "Unit.h"
+$ifile "Item.h"
+$ifile "../shared/Server.h"
+$ifile "WorldServer.h"
+
+//$ifile "Quadtree.h"
+
+// doesn't work yet. $pfile "WorldServer.h"
+//#define CONSOLE (Console::getSingleton ())
+
+// Defines
+
+//#define VERSION 1.3
+

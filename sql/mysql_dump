@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Dump structure and data for realms
+mysqldump \
+    -umangos2 \
+    -hlocalhost \
+    -pmangos2 -Q \
+    --add-drop-table mangos2-realm realms > realmlist/realms.sql
+
+# Dump structure and data for accounts
+mysqldump \
+    -umangos2 \
+    -hlocalhost \
+    -pmangos2 -Q \
+    --add-drop-table mangos2-realm accounts > realmlist/accounts.sql
+
+# Dump structure for character per account count
+mysqldump \
+    -umangos2 \
+    -hlocalhost \
+    -pmangos2 -Q \
+    --add-drop-table \
+    --no-data mangos2-realm accountchars > realmlist/accountchars.sql
+
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table mangos2-world access_levels > worldserver/access_levels.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world characters > worldserver/characters.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world guid_pool > worldserver/guid_pool.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table mangos2-world protochar > worldserver/protochar.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table mangos2-world protoitem > worldserver/protoitem.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world items > worldserver/items.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world quest_status > worldserver/quest_status.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world inventory > worldserver/inventory.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world char_spells > worldserver/char_spells.sql
+mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world mail > worldserver/mail.sql
+

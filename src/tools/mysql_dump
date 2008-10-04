@@ -1,0 +1,37 @@
+#!/bin/sh
+#
+# This script will dump the contents of the MySQL database to files.
+#
+
+. mysql_info
+
+# Dump everything to a temporary directory
+[ ! -d sql_dump ] && mkdir sql_dump
+
+function dump_data ()
+{
+	echo -n "Dumping contents of $1:$2 ..."
+    mysqldump$OPTS -Q --add-drop-table $1 $2 >sql_dump/$2.sql
+	echo " done"
+}
+
+function dump_struc ()
+{
+	echo -n "Dumping structure of $1:$2 ..."
+    mysqldump$OPTS -Q --add-drop-table --no-data $1 $2 >sql_dump/$2.sql
+	echo " done"
+}
+
+dump_data  wow_rs realms && \
+dump_data  wow_rs accounts && \
+dump_struc wow_rs accountchars && \
+dump_data  wow access_levels && \
+dump_struc wow characters
+dump_struc wow guid_pool
+dump_data  wow protochar
+dump_data  wow protoitem
+dump_struc wow items
+dump_struc wow quest_status
+dump_struc wow inventory
+dump_struc wow char_spells
+dump_struc wow mail

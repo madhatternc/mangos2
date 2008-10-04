@@ -1,0 +1,96 @@
+= MaNGOS2 -- Installation =
+
+Copyright (c) 2005 Team OpenWoW <http://openwow.quamquam.org/>
+Copyright (c) 2008 MaNGOS foundation <http://www.getmangos.com/>
+
+See the COPYING file for copying conditions.
+
+== Installation Instructions ==
+This documents describes the installation process for MaNGOS2 on Windows
+using Visual C++. This includes Visual C++ 2005 (Express Edition working).
+
+=== Configuring ===
+MaNGOS2 uses the Visual C++ compiler to build the binaries. If you do not
+have Visual C++, a free Express Edition of Visual C++ 2005 is available at
+http://msdn.microsoft.com/vstudio/express/visualc/.
+
+Visual C++ 2003 Toolkit provides an alternative command line environment,
+but as of writing this document, the toolkit has been replaced by the VC++
+2005 Express Edition and only is available from some download mirrors.
+
+There are several programs and libraries required in order to compile MaNGOS2
+successfully:
+
+ * zlib development package (headers) are required, as we use them for data
+   compression.
+ * MySQL development package (headers) are required, because we are using
+   this backend for storing all data.
+ * OpenSSL development package (headers) are required, because we are using
+   them for authenticating the game client.
+
+If you do not have all these dependencies installed, you may download a huge
+dependency package from the MaNGOS2 website.
+
+There are four build configurations available for MaNGOS2.
+
+ Release (Win32)
+   
+   This will build MaNGOS2 and all its' dependencies in Release mode, thus all
+   information output useful to developers will be removed as well as debug
+   data will not be included in the resulting binaries.
+
+ Debug (Win32)
+   If you use this option, the DEBUG_PRINTF macro and some other debugging
+   macros will be enabled. This means you will get much more information about
+   what goes on, so use this option if something doesn't work and you don't
+   understand what happens.
+
+ Release (Win64)
+   
+   This will build MaNGOS2 and all its' dependencies in Release mode, thus all
+   information output useful to developers will be removed as well as debug
+   data will not be included in the resulting binaries.
+   This build will create binaries useable only under 64-bit versions of
+   Windows.
+
+ Debug (Win64)
+   If you use this option, the DEBUG_PRINTF macro and some other debugging
+   macros will be enabled. This means you will get much more information about
+   what goes on, so use this option if something doesn't work and you don't
+   understand what happens.
+   This build will create binaries useable only under 64-bit versions of
+   Windows.
+
+=== Compiling ===
+Well, it should be fairly simple if you got all the pre-requisites. Open the
+"Build" menu and select "Batch Build". In the dialog, either select all
+build configurations for "Release (Win32)" to build binaries for running
+MaNGOS2 or select all build configurations for "Debug (Win32) to build
+binaries suitable for running debug sessions.
+
+If you have a problem during compilation, we can't tell you what to do.
+Figure it out yourself. If we would know in advance what problems you would
+encounter, we would fix it in advance, or put a warning message in configure
+at least.
+
+Until this development branch will be merged into the trunk of our
+SubVersion repository, no support will be provided.
+
+Thank you for understanding.
+
+=== Installing ===
+The build configuration will create an installation directory at the top level
+tree of your source directory upon finishing the compilation process. E.g. if
+you just have built Debug (Win32), you top level tree will contain the following
+generated directory structure:
+
+ * bin
+   * Debug
+     * Win32
+       - mangos2-realmlist
+       - mangos2-worldserver
+       - realmserver.conf
+       - worldserver.conf
+       - libeay32.dll
+       - libmySQL.dll
+

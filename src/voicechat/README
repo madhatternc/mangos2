@@ -1,0 +1,21 @@
+== Introduction ==
+The Voice Chat server is a UDP server, which listens on an UDP socket on port
+3724 for connections from the game client.
+
+The server provides audio channels for the various in-game chat channels which
+are served by the world server. Thus upon startup, the voice chat server will
+open a TCP socket on which world servers can connect and maintain their voice
+chat sessions for the various chat channels.
+
+== Supported audo protocol ==
+The audio protocol for the voice chat server yet has to be defined. Further
+investigation on optimal protocols with a good balance in terms of quality and
+speed is required.
+
+== Supported opcodes ==
+The list of opcodes for voice chat is currently unknown and needs to be defined.
+
+== Notice ==
+This is Captain Placeholder speaking: a minimal framework for an UDP based voice
+chat server is coming soon.
+

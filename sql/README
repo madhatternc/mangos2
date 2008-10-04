@@ -1,0 +1,19 @@
+These are the SQL schema for creating the MaNGOS2 databases. The SQL files are
+mostly empty as this is NOT meant to be a complete database, but rather a
+skeleton on which everybody can grow his own meat. However, the goal is to
+have at least something with which MaNGOS2 will at least run.
+
+The idea is to have four separate databases:
+* character: one for character data storage,
+* data: one for basic world data,
+* realmlist: one for authentication and realm data storage,
+* worldserver: and one for world state storage.
+
+However, for simple configurations they can be merged into one, as the table
+names do not clash.
+
+To import these SQL databases easily, there's a script in src/tools called
+mysql_import, which will do the dirty work for you.
+
+Make sure, you do edit the mysql_info file to enter your local MySQL account
+data.

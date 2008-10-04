@@ -1,0 +1,20 @@
+= Tasks -- README =
+This directory contains SQL scripts which perform various checks on the
+world server database in order to retain integrity, and keep clean off
+all test data.
+
+== A few guidelines ==
+All SQL scripts are named by combining the plural name of the object
+types it deals with, followed by the action it performs.
+
+== Script descriptions ==
+* items-remove-non-protoitems.sql: This script will delete any item
+  prototype from the `protoitem` table, which is not used by the
+  default character templates defined in the `protochar` table.
+
+  Currently we do use the names for armor, weapons, usable and consum-
+  able items to delete all items that have different names. Of course,
+  you could change the script to delete items not needed by items
+  stats in order to get rid of using item names.
+
+== Wanted scripts ==

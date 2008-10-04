@@ -1,0 +1,5138 @@
+--- #YAML:1.0
+# World server protocol definition, version 2.4.3
+# This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
+-
+    name: header_start
+    type: c++code
+    code: |
+        #ifndef __OPCODES_H__
+        #define __OPCODES_H__
+
+        #include "Sockets.h"
+        #include "ProtocolVectors.h"
+
+        const char *GetPacketName (uint Opcode);
+
+-
+    name: header_end
+    type: c++code
+    code: |
+        #endif // __OPCODES_H__
+
+-
+    name: opcodes_start
+    type: c++code
+    code: |
+        enum Opcodes
+        {
+
+-
+    name: opcodes_end
+    type: c++code
+    code: |
+        };
+
+-
+    name: pktnames_start
+    type: c++code
+    code: |
+        struct
+        {
+            uint32 Opcode;
+            const char *Name;
+        } PacketNames [] =
+        {
+
+-
+    name: pktnames_end
+    type: c++code
+    code: |
+        };
+
+        const char *GetPacketName (uint Opcode)
+        {
+        	for (uint i = 0; i < ARRAY_LEN (PacketNames); i++)
+        		if (PacketNames [i].Opcode == Opcode)
+        			return PacketNames [i].Name;
+        	return NULL;
+        }
+
+
+-
+    name: code_start
+    type: c++code
+    code: |
+        #include "Opcodes.h"
+
+-
+    name: code_end
+    type: c++code
+    code: |
+        // --- THE END ---
+
+-
+    name: pkthdr_size
+    type: c++code
+    code: sizeof(uint16)+sizeof(uint16)
+
+-
+    name: pkthdr_assemble
+    type: c++code
+    code: |
+        PUT_BE16 (cur, length - 2); cur += sizeof (uint16);
+        PUT_LE16 (cur, %(name)s); cur += sizeof (uint16);
+
+# --- World server errors ---
+-
+    name: WSE_OK
+    type: const
+    value: 0x00
+    enum: WorldServerError
+    info: Success
+-
+    name: WSE_FAILURE
+    type: const
+    value: 0x01
+    enum: WorldServerError
+    info: Failure
+-
+    name: WSE_CANCELED
+    type: const
+    value: 0x02
+    enum: WorldServerError
+    info: Canceled
+-
+    name: WSE_DISCONNECT_FROM_SERVER
+    type: const
+    value: 0x03
+    enum: WorldServerError
+    info: Disconnect from server
+-
+    name: WSE_FAILED_TO_CONNECT
+    type: const
+    value: 0x04
+    enum: WorldServerError
+    info: Failed to connect
+-
+    name: WSE_CONNECTED
+    type: const
+    value: 0x05
+    enum: WorldServerError
+    info: Connected
+-
+    name: WSE_WRONG_CLIENT_VERSION_1
+    type: const
+    value: 0x06
+    enum: WorldServerError
+    info: Wrong client version
+-
+    name: WSE_CONNECTING_TO_SERVER
+    type: const
+    value: 0x07
+    enum: WorldServerError
+    info: Connecting to server
+-
+    name: WSE_NEGOTIATING_SECURITY
+    type: const
+    value: 0x08
+    enum: WorldServerError
+    info: Negotiating security
+-
+    name: WSE_NEGOTIATING_SECURITY_COMPLETE_1
+    type: const
+    value: 0x09
+    enum: WorldServerError
+    info: Negotiating security complete
+-
+    name: WSE_NEGOTIATING_SECURITY_COMPLETE_2
+    type: const
+    value: 0x0A
+    enum: WorldServerError
+    info: Negotiating security complete
+-
+    name: WSE_AUTHENTICATING
+    type: const
+    value: 0x0B
+    enum: WorldServerError
+    info: Authenticating
+-
+    name: WSE_AUTHENTICATION_SUCCESSFUL
+    type: const
+    value: 0x0C
+    enum: WorldServerError
+    info: Authentication successful
+-
+    name: WSE_AUTHENTICATION_FAILED
+    type: const
+    value: 0x0D
+    enum: WorldServerError
+    info: Authentication failed
+-
+    name: WSE_LOGIN_UNAVAILABLE
+    type: const
+    value: 0x0E
+    enum: WorldServerError
+    info: Login unavailable - Please contact Tech Support
+-
+    name: WSE_SERVER_IS_NOT_VALID
+    type: const
+    value: 0x0F
+    enum: WorldServerError
+    info: Server is not valid
+-
+    name: WSE_SYSTEM_UNAVAILABLE
+    type: const
+    value: 0x10
+    enum: WorldServerError
+    info: System unavailable
+-
+    name: WSE_SYSTEM_ERROR
+    type: const
+    value: 0x11
+    enum: WorldServerError
+    info: System error
+-
+    name: WSE_BILLING_SYSTEM_ERROR
+    type: const
+    value: 0x12
+    enum: WorldServerError
+    info: Billing system error
+-
+    name: WSE_ACCOUNT_BILLING_HAS_EXPIRED
+    type: const
+    value: 0x13
+    enum: WorldServerError
+    info: Account billing has expired
+-
+    name: WSE_WRONG_CLIENT_VERSION_2
+    type: const
+    value: 0x14
+    enum: WorldServerError
+    info: Wrong client version
+-
+    name: WSE_UNKNOWN_ACCOUNT
+    type: const
+    value: 0x15
+    enum: WorldServerError
+    info: Unknown account
+-
+    name: WSE_INCORRECT_PASSWORD
+    type: const
+    value: 0x16
+    enum: WorldServerError
+    info: Incorrect password
+-
+    name: WSE_SESSION_EXPIRED
+    type: const
+    value: 0x17
+    enum: WorldServerError
+    info: Session expired
+-
+    name: WSE_SERVER_SHUTTING_DOWN
+    type: const
+    value: 0x18
+    enum: WorldServerError
+    info: Server Shutting Down
+-
+    name: WSE_ALREADY_LOGGED_IN
+    type: const
+    value: 0x19
+    enum: WorldServerError
+    info: Already logged in
+-
+    name: WSE_INVALID_LOGIN_SERVER
+    type: const
+    value: 0x1A
+    enum: WorldServerError
+    info: Invalid login server
+-
+    name: WSE_POSITION_IN_QUEUE_0
+    type: const
+    value: 0x1B
+    enum: WorldServerError
+    info: Position in Queue: 0
+-
+    name: WSE_THIS_ACCOUNT_HAS_BEEN_BANNED
+    type: const
+    value: 0x1C
+    enum: WorldServerError
+    info: This account has been banned
+-
+    name: WSE_THIS_CHARACTER_IS_STILL_LOGGED_ON
+    type: const
+    value: 0x1D
+    enum: WorldServerError
+    info: This character is still logged on
+-
+    name: WSE_YOUR_WOW_SUBSCRIPTION_HAS_EXPIRED
+    type: const
+    value: 0x1E
+    enum: WorldServerError
+    info: Your WoW subscription has expired
+-
+    name: WSE_THIS_SESSION_HAS_TIMED_OUT
+    type: const
+    value: 0x1F
+    enum: WorldServerError
+    info: This session has timed out
+-
+    name: WSE_THIS_ACCOUNT_HAS_BEEN_TEMPORARILY_SUSPENDED
+    type: const
+    value: 0x20
+    enum: WorldServerError
+    info: This account has been temporarily suspended
+-
+    name: WSE_RETRIEVING_REALMLIST
+    type: const
+    value: 0x21
+    enum: WorldServerError
+    info: Retrieving realmlist
+-
+    name: WSE_REALMLIST_RETRIEVED
+    type: const
+    value: 0x22
+    enum: WorldServerError
+    info: Realmlist retrieved
+-
+    name: WSE_UNABLE_TO_CONNECT_TO_REALMLIST_SERVER
+    type: const
+    value: 0x23
+    enum: WorldServerError
+    info: Unable to connect to realmlist server
+-
+    name: WSE_INVALID_REALMLIST
+    type: const
+    value: 0x24
+    enum: WorldServerError
+    info: Invalid realmlist
+-
+    name: WSE_THE_GAME_SERVER_IS_CURRENTLY_DOWN
+    type: const
+    value: 0x25
+    enum: WorldServerError
+    info: The game server is currently down
+-
+    name: WSE_CREATING_ACCOUNT
+    type: const
+    value: 0x26
+    enum: WorldServerError
+    info: Creating account
+-
+    name: WSE_ACCOUNT_CREATED
+    type: const
+    value: 0x27
+    enum: WorldServerError
+    info: Account created
+-
+    name: WSE_ACCOUNT_CREATION_FAILED
+    type: const
+    value: 0x28
+    enum: WorldServerError
+    info: Account creation failed
+-
+    name: WSE_RETRIEVING_CHARACTER_LIST
+    type: const
+    value: 0x29
+    enum: WorldServerError
+    info: Retrieving character list
+-
+    name: WSE_CHARACTER_LIST_RETRIEVED
+    type: const
+    value: 0x2A
+    enum: WorldServerError
+    info: Character list retrieved
+-
+    name: WSE_ERROR_RETRIEVING_CHARACTER_LIST
+    type: const
+    value: 0x2B
+    enum: WorldServerError
+    info: Error retrieving character list
+-
+    name: WSE_CREATING_CHARACTER
+    type: const
+    value: 0x2C
+    enum: WorldServerError
+    info: Creating character
+-
+    name: WSE_CHARACTER_CREATED
+    type: const
+    value: 0x2D
+    enum: WorldServerError
+    info: Character created
+-
+    name: WSE_ERROR_CREATING_CHARACTER
+    type: const
+    value: 0x2E
+    enum: WorldServerError
+    info: Error creating character
+-
+    name: WSE_CHARACTER_CREATION_FAILED
+    type: const
+    value: 0x2F
+    enum: WorldServerError
+    info: Character creation failed
+-
+    name: WSE_NAME_ALREADY_IN_USE
+    type: const
+    value: 0x30
+    enum: WorldServerError
+    info: Name already in use
+-
+    name: WSE_CREATION_OF_THAT_RACECLASS_IS_DISABLED
+    type: const
+    value: 0x31
+    enum: WorldServerError
+    info: Creation of that race/class is disabled
+-
+    name: WSE_ALL_CHARACTERS_ON_A_PVP_REALM_MUST_BE_ON_THE_SAME_TEAM
+    type: const
+    value: 0x32
+    enum: WorldServerError
+    info: All characters on a PVP realm must be on the same team
+-
+    name: WSE_DELETING_CHARACTER
+    type: const
+    value: 0x33
+    enum: WorldServerError
+    info: Deleting character
+-
+    name: WSE_CHARACTER_DELETED
+    type: const
+    value: 0x34
+    enum: WorldServerError
+    info: Character deleted
+-
+    name: WSE_CHARACTER_DELETION_FAILED
+    type: const
+    value: 0x35
+    enum: WorldServerError
+    info: Character deletion failed
+-
+    name: WSE_ENTERING_THE_WOW
+    type: const
+    value: 0x36
+    enum: WorldServerError
+    info: Entering the WoW
+-
+    name: WSE_LOGIN_SUCCESSFUL
+    type: const
+    value: 0x37
+    enum: WorldServerError
+    info: Login successful
+-
+    name: WSE_WORLD_SERVER_DOWN
+    type: const
+    value: 0x38
+    enum: WorldServerError
+    info: World server down
+-
+    name: WSE_A_CHARACTER_WITH_THAT_NAME_ALREADY_EXISTS
+    type: const
+    value: 0x39
+    enum: WorldServerError
+    info: A character with that name already exists
+-
+    name: WSE_NO_INSTANCE_SERVER_AVAILABLE
+    type: const
+    value: 0x3A
+    enum: WorldServerError
+    info: No instance server available
+-
+    name: WSE_LOGIN_FAILED
+    type: const
+    value: 0x3B
+    enum: WorldServerError
+    info: Login failed
+-
+    name: WSE_LOGIN_FOR_THAT_RACECLASS_IS_DISABLED
+    type: const
+    value: 0x3C
+    enum: WorldServerError
+    info: Login for that race/class is disabled
+-
+    name: WSE_ENTER_A_NAME_FOR_YOUR_CHARACTER
+    type: const
+    value: 0x3D
+    enum: WorldServerError
+    info: Enter a name for your character
+-
+    name: WSE_NAMES_MUST_BE_ATLEAST_2_CHARACTERS_LONG
+    type: const
+    value: 0x3E
+    enum: WorldServerError
+    info: Names must be atleast 2 characters long
+-
+    name: WSE_NAMES_MUST_BE_NO_MORE_THEN_12_CHARACTERS
+    type: const
+    value: 0x3F
+    enum: WorldServerError
+    info: Names must be no more then 12 characters
+-
+    name: WSE_NAMES_CAN_ONLY_CONTAIN_LETTERS
+    type: const
+    value: 0x40
+    enum: WorldServerError
+    info: Names can only contain letters
+-
+    name: WSE_NAMES_MUST_CONTAIN_ONLY_ONE_LANGUAGE
+    type: const
+    value: 0x41
+    enum: WorldServerError
+    info: Names must contain only one language
+-
+    name: WSE_THAT_NAME_CONTAINS_PROFANITY
+    type: const
+    value: 0x42
+    enum: WorldServerError
+    info: That name contains profanity
+-
+    name: WSE_THAT_NAME_IS_RESERVED
+    type: const
+    value: 0x43
+    enum: WorldServerError
+    info: That name is reserved
+-
+    name: WSE_YOU_CANNOT_USE_AN_APOSTROPHE
+    type: const
+    value: 0x44
+    enum: WorldServerError
+    info: You cannot use an apostrophe
+-
+    name: WSE_YOU_CAN_ONLY_HAVE_ONE_APOSTROPHE
+    type: const
+    value: 0x45
+    enum: WorldServerError
+    info: You can only have one apostrophe
+-
+    name: WSE_YOU_CANNOT_USE_THE_SAME_LETTER_THREE_TIMES_CONSECUTIVELY
+    type: const
+    value: 0x46
+    enum: WorldServerError
+    info: You cannot use the same letter three times consecutively
+-
+    name: WSE_INVALID_CHARACTER_NAME
+    type: const
+    value: 0x47
+    enum: WorldServerError
+    info: Invalid character name
+-
+    name: WSE_BLANK
+    type: const
+    value: 0x48
+    enum: WorldServerError
+    info: <Blank>
+
+##########################################################################################
+###                                     Packet opcodes                                 ###
+##########################################################################################
+-
+    name: MSG_NULL_ACTION
+    opcode: 0x0000
+    type: packet
+
+-
+    name: CMSG_BOOTME
+    opcode: 0x0001
+    type: packet
+
+-
+    name: CMSG_DBLOOKUP
+    opcode: 0x0002
+    type: packet
+
+-
+    name: SMSG_DBLOOKUP
+    opcode: 0x0003
+    type: packet
+
+-
+    name: CMSG_QUERY_OBJECT_POSITION
+    opcode: 0x0004
+    type: packet
+
+-
+    name: SMSG_QUERY_OBJECT_POSITION
+    opcode: 0x0005
+    type: packet
+
+-
+    name: CMSG_QUERY_OBJECT_ROTATION
+    opcode: 0x0006
+    type: packet
+
+-
+    name: SMSG_QUERY_OBJECT_ROTATION
+    opcode: 0x0007
+    type: packet
+
+-
+    name: CMSG_WORLD_TELEPORT
+    opcode: 0x0008
+    type: packet
+
+-
+    name: CMSG_TELEPORT_TO_UNIT
+    opcode: 0x0009
+    type: packet
+
+-
+    name: CMSG_ZONE_MAP
+    opcode: 0x000A
+    type: packet
+
+-
+    name: SMSG_ZONE_MAP
+    opcode: 0x000B
+    type: packet
+
+-
+    name: CMSG_DEBUG_CHANGECELLZONE
+    opcode: 0x000C
+    type: packet
+
+-
+    name: CMSG_EMBLAZON_TABARD_OBSOLETE
+    opcode: 0x000D
+    type: packet
+
+-
+    name: CMSG_UNEMBLAZON_TABARD_OBSOLETE
+    opcode: 0x000E
+    type: packet
+
+-
+    name: CMSG_RECHARGE
+    opcode: 0x000F
+    type: packet
+
+-
+    name: CMSG_LEARN_SPELL
+    opcode: 0x0010
+    type: packet
+
+-
+    name: CMSG_CREATEMONSTER
+    opcode: 0x0011
+    type: packet
+
+-
+    name: CMSG_DESTROYMONSTER
+    opcode: 0x0012
+    type: packet
+
+-
+    name: CMSG_CREATEITEM
+    opcode: 0x0013
+    type: packet
+
+-
+    name: CMSG_CREATEGAMEOBJECT
+    opcode: 0x0014
+    type: packet
+
+-
+    name: CMSG_MAKEMONSTERATTACKME
+    opcode: 0x0015
+    type: packet
+
+-
+    name: CMSG_MAKEMONSTERATTACKGUID
+    opcode: 0x0016
+    type: packet
+
+-
+    name: CMSG_ENABLEDEBUGCOMBATLOGGING_OBSOLETE
+    opcode: 0x0017
+    type: packet
+
+-
+    name: CMSG_FORCEACTION
+    opcode: 0x0018
+    type: packet
+
+-
+    name: CMSG_FORCEACTIONONOTHER
+    opcode: 0x0019
+    type: packet
+
+-
+    name: CMSG_FORCEACTIONSHOW
+    opcode: 0x001A
+    type: packet
+
+-
+    name: SMSG_FORCEACTIONSHOW
+    opcode: 0x001B
+    type: packet
+
+-
+    name: SMSG_ATTACKERSTATEUPDATEDEBUGINFO_OBSOLETE
+    opcode: 0x001C
+    type: packet
+
+-
+    name: SMSG_DEBUGINFOSPELL_OBSOLETE
+    opcode: 0x001D
+    type: packet
+
+-
+    name: SMSG_DEBUGINFOSPELLMISS_OBSOLETE
+    opcode: 0x001E
+    type: packet
+
+-
+    name: SMSG_DEBUG_PLAYER_RANGE_OBSOLETE
+    opcode: 0x001F
+    type: packet
+
+-
+    name: CMSG_UNDRESSPLAYER
+    opcode: 0x0020
+    type: packet
+
+-
+    name: CMSG_BEASTMASTER
+    opcode: 0x0021
+    type: packet
+
+-
+    name: CMSG_GODMODE
+    opcode: 0x0022
+    type: packet
+
+-
+    name: SMSG_GODMODE
+    opcode: 0x0023
+    type: packet
+
+-
+    name: CMSG_CHEAT_SETMONEY
+    opcode: 0x0024
+    type: packet
+
+-
+    name: CMSG_LEVEL_CHEAT
+    opcode: 0x0025
+    type: packet
+
+-
+    name: CMSG_PET_LEVEL_CHEAT
+    opcode: 0x0026
+    type: packet
+
+-
+    name: CMSG_LEVELUP_CHEAT_OBSOLETE
+    opcode: 0x0027
+    type: packet
+
+-
+    name: CMSG_COOLDOWN_CHEAT
+    opcode: 0x0028
+    type: packet
+
+-
+    name: CMSG_USE_SKILL_CHEAT
+    opcode: 0x0029
+    type: packet
+
+-
+    name: CMSG_FLAG_QUEST
+    opcode: 0x002A
+    type: packet
+
+-
+    name: CMSG_FLAG_QUEST_FINISH
+    opcode: 0x002B
+    type: packet
+
+-
+    name: CMSG_CLEAR_QUEST
+    opcode: 0x002C
+    type: packet
+
+-
+    name: CMSG_SEND_EVENT
+    opcode: 0x002D
+    type: packet
+
+-
+    name: CMSG_DEBUG_AISTATE
+    opcode: 0x002E
+    type: packet
+
+-
+    name: SMSG_DEBUG_AISTATE
+    opcode: 0x002F
+    type: packet
+
+-
+    name: CMSG_DISABLE_PVP_CHEAT
+    opcode: 0x0030
+    type: packet
+
+-
+    name: CMSG_ADVANCE_SPAWN_TIME
+    opcode: 0x0031
+    type: packet
+
+-
+    name: CMSG_PVP_PORT_OBSOLETE
+    opcode: 0x0032
+    type: packet
+
+-
+    name: CMSG_AUTH_SRP6_BEGIN
+    opcode: 0x0033
+    type: packet
+
+-
+    name: CMSG_AUTH_SRP6_PROOF
+    opcode: 0x0034
+    type: packet
+
+-
+    name: CMSG_AUTH_SRP6_RECODE
+    opcode: 0x0035
+    type: packet
+
+-
+    name: CMSG_CHAR_CREATE
+    opcode: 0x0036
+    type: packet
+    direction: in
+    c++handler: HandleCharCreate
+    structure:
+      - Name:
+            type: string
+      - Race:
+            type: uint8
+      - Class:
+            type: uint8
+      - Gender:
+            type: uint8
+      - Skin:
+            type: uint8
+      - Face:
+            type: uint8
+      - HairStyle:
+            type: uint8
+      - HairColor:
+            type: uint8
+      - FacialHair:
+            type: uint8
+      - OutfitId:
+            type: uint8
+
+-
+    name: CMSG_CHAR_ENUM
+    opcode: 0x0037
+    type: packet
+    direction: in
+    c++handler: HandleCharEnum
+
+-
+    name: CMSG_CHAR_DELETE
+    opcode: 0x0038
+    type: packet
+    direction: in
+    c++handler: HandleCharDelete
+    structure:
+      - Guid:
+            type: guid
+
+-
+    name: SMSG_AUTH_SRP6_RESPONSE
+    opcode: 0x0039
+    type: packet
+
+-
+    name: SMSG_CHAR_CREATE
+    opcode: 0x003A
+    type: packet
+    direction: out
+    structure:
+      - ErrorCode:
+            type: uint8
+
+-
+    name: SMSG_CHAR_ENUM
+    opcode: 0x003B
+    type: packet
+    direction: out
+    info: |
+        This message carries the whole list of player's characters
+        along with basic character info such as sex, race, level etc.
+    structure:
+      - Count:
+            type: uint8
+      - List:
+            type: vector
+            vtype: CharsVector
+            structure:
+              - GUID:
+                    type: guid
+              - Name:
+                    type: string
+              - Race:
+                    type: uint8
+              - Class:
+                    type: uint8
+              - Gender:
+                    type: uint8
+              - Skin:
+                    type: uint8
+              - Face:
+                    type: uint8
+              - HairStyle:
+                    type: uint8
+              - HairColor:
+                    type: uint8
+              - FacialHair:
+                    type: uint8
+              - Level:
+                    type: uint8
+              - ZoneId:
+                    type: uint32
+              - MapId:
+                    type: uint32
+              - PositionX:
+                    type: float
+              - PositionY:
+                    type: float
+              - PositionZ:
+                    type: float
+              - Guild:
+                    type: uint32
+                    const: 0
+              - Unknown:
+                    type: uint32
+                    const: 64
+              - RestState:
+                    type: uint8
+                    const: 1
+              - PetInfoId:
+                    type: uint32
+              - PetLevel:
+                    type: uint32
+              - PetFamilyId:
+                    type: uint32
+              - SlotItems:
+                    type: vector
+                    vtype: SlotItemsVector
+                    count: 20
+                    info: |
+                        There are 19 slots EQUIPMENT_SLOT_START(0) to EQUIPMENT_SLOT_END(19),
+                        no idea what for is the 20th slot.
+                    structure:
+                      - DisplayId:
+                            type: uint32
+                      - InventoryType:
+                            type: uint8
+
+-
+    name: SMSG_CHAR_DELETE
+    opcode: 0x003C
+    type: packet
+
+-
+    name: CMSG_PLAYER_LOGIN
+    opcode: 0x003D
+    type: packet
+    info: Login attempt
+    direction: in
+    c++handler: HandlePlayerLogin
+    structure:
+      - Guid:
+          type: guid
+
+-
+    name: SMSG_NEW_WORLD
+    opcode: 0x003E
+    type: packet
+    info: Transfers character to a different place
+    direction: out
+    structure:
+      - Mapid:
+          type: uint32
+      - X:
+          type: float
+      - Y:
+          type: float
+      - Z:
+          type: float
+      - O:
+          type: float
+
+-
+    name: SMSG_TRANSFER_PENDING
+    opcode: 0x003F
+    type: packet
+    info: Send after area trigger is was send by CMSG_AREATRIGGER
+    direction: out
+    structure:
+      - Type:
+          type: uint32
+
+-
+    name: SMSG_TRANSFER_ABORTED
+    opcode: 0x0040
+    type: packet
+
+-
+    name: SMSG_CHARACTER_LOGIN_FAILED
+    opcode: 0x0041
+    type: packet
+    direction: out
+    structure:
+      - ErrorCode:
+          type: uint32
+
+-
+    name: SMSG_LOGIN_SETTIMESPEED
+    opcode: 0x0042
+    type: packet
+    info: Sets the gametime and speed on the client
+    direction: out
+    structure:
+      - Time:
+          type: uint32
+      - Speed:
+          type: float
+
+-
+    name: SMSG_GAMETIME_UPDATE
+    opcode: 0x0043
+    type: packet
+
+-
+    name: CMSG_GAMETIME_SET
+    opcode: 0x0044
+    type: packet
+
+-
+    name: SMSG_GAMETIME_SET
+    opcode: 0x0045
+    type: packet
+
+-
+    name: CMSG_GAMESPEED_SET
+    opcode: 0x0046
+    type: packet
+
+-
+    name: SMSG_GAMESPEED_SET
+    opcode: 0x0047
+    type: packet
+
+-
+    name: CMSG_SERVERTIME
+    opcode: 0x0048
+    type: packet
+
+-
+    name: SMSG_SERVERTIME
+    opcode: 0x0049
+    type: packet
+
+-
+    name: CMSG_PLAYER_LOGOUT
+    opcode: 0x004A
+    type: packet
+    info: Player wants to logout
+    direction: in
+#   c++handler:
+
+-
+    name: CMSG_LOGOUT_REQUEST
+    opcode: 0x004B
+    type: packet
+    info: client requests for logout
+    direction: in
+#   c++handler:
+
+-
+    name: SMSG_LOGOUT_RESPONSE
+    opcode: 0x004C
+    type: packet
+    direction: out
+    info: Allowes the client to logout
+    structure:
+      - Filler:
+          type: uint32
+          const: 0
+      - Ok:
+          type: uint8
+
+-
+    name: SMSG_LOGOUT_COMPLETE
+    opcode: 0x004D
+    type: packet
+
+-
+    name: CMSG_LOGOUT_CANCEL
+    opcode: 0x004E
+    type: packet
+    info: User wan't to cancel logout
+    direction: in
+#   c++handler:
+
+-
+    name: SMSG_LOGOUT_CANCEL_ACK
+    opcode: 0x004F
+    type: packet
+    direction: out
+    info: Logout procedure canceled
+
+-
+    name: CMSG_NAME_QUERY
+    opcode: 0x0050
+    type: packet
+    info: Requests a name information for a guid
+    direction: in
+#   c++handler:
+    structure:
+      - Guid:
+         type: guid
+
+-
+    name: SMSG_NAME_QUERY_RESPONSE
+    opcode: 0x0051
+    type: packet
+
+-
+    name: CMSG_PET_NAME_QUERY
+    opcode: 0x0052
+    type: packet
+
+-
+    name: SMSG_PET_NAME_QUERY_RESPONSE
+    opcode: 0x0053
+    type: packet
+
+-
+    name: CMSG_GUILD_QUERY
+    opcode: 0x0054
+    type: packet
+
+-
+    name: SMSG_GUILD_QUERY_RESPONSE
+    opcode: 0x0055
+    type: packet
+
+-
+    name: CMSG_ITEM_QUERY_SINGLE
+    opcode: 0x0056
+    type: packet
+
+-
+    name: CMSG_ITEM_QUERY_MULTIPLE
+    opcode: 0x0057
+    type: packet
+
+-
+    name: SMSG_ITEM_QUERY_SINGLE_RESPONSE
+    opcode: 0x0058
+    type: packet
+
+-
+    name: SMSG_ITEM_QUERY_MULTIPLE_RESPONSE
+    opcode: 0x0059
+    type: packet
+
+-
+    name: CMSG_PAGE_TEXT_QUERY
+    opcode: 0x005A
+    type: packet
+
+-
+    name: SMSG_PAGE_TEXT_QUERY_RESPONSE
+    opcode: 0x005B
+    type: packet
+
+-
+    name: CMSG_QUEST_QUERY
+    opcode: 0x005C
+    type: packet
+
+-
+    name: SMSG_QUEST_QUERY_RESPONSE
+    opcode: 0x005D
+    type: packet
+
+-
+    name: CMSG_GAMEOBJECT_QUERY
+    opcode: 0x005E
+    type: packet
+
+-
+    name: SMSG_GAMEOBJECT_QUERY_RESPONSE
+    opcode: 0x005F
+    type: packet
+
+-
+    name: CMSG_CREATURE_QUERY
+    opcode: 0x0060
+    type: packet
+
+-
+    name: SMSG_CREATURE_QUERY_RESPONSE
+    opcode: 0x0061
+    type: packet
+
+-
+    name: CMSG_WHO
+    opcode: 0x0062
+    type: packet
+    info: Requests list of all chars online
+    direction: in
+#   c++handler:
+
+-
+    name: SMSG_WHO
+    opcode: 0x0063
+    type: packet
+
+-
+    name: CMSG_WHOIS
+    opcode: 0x0064
+    type: packet
+
+-
+    name: SMSG_WHOIS
+    opcode: 0x0065
+    type: packet
+
+-
+    name: CMSG_FRIEND_LIST
+    opcode: 0x0066
+    type: packet
+
+-
+    name: SMSG_FRIEND_LIST
+    opcode: 0x0067
+    type: packet
+    info: Sends a list with all friends
+    direction: out
+    structure:
+      - Count:
+            type: uint8
+      - Friends:
+            type: vector
+            counter: Count
+            vtype: FriendsVector
+            structure:
+              - PlayerGUID:
+                    type: guid
+              - Status:
+                    type: uint8
+              - if Status != 0:
+                  - Area:
+                        type: uint32
+                  - Level:
+                        type: uint32
+                  - Class:
+                        type: uint32
+
+-
+    name: SMSG_FRIEND_STATUS
+    opcode: 0x0068
+    type: packet
+    info: Sends status of a friend
+    direction: out
+    structure:
+      - Result:
+          type: uint8
+      - Guid:
+          type: guid
+      - if Result == FRIEND_ADDED_ONLINE || Result == FRIEND_ONLINE || Result ==  FRIEND_OFFLINE:
+          - Area:
+              type: uint32
+          - Level:
+              type: uint32
+          - Class:
+              type: uint32
+
+-
+    name: CMSG_ADD_FRIEND
+    opcode: 0x0069
+    type: packet
+    info: Client wan't to add a friend
+    direction: in
+#   c++handler:
+    structure:
+      - Name:
+          type: string
+
+-
+    name: CMSG_DEL_FRIEND
+    opcode: 0x006A
+    type: packet
+    info: Deletes a friend from friendslist
+    direction: in
+#   c++handler:
+    fixme: should it be guid type ?
+    stucture:
+      - Guidsno:
+         type: uint32
+
+-
+    name: SMSG_IGNORE_LIST
+    opcode: 0x006B
+    type: packet
+
+-
+    name: CMSG_ADD_IGNORE
+    opcode: 0x006C
+    type: packet
+
+-
+    name: CMSG_DEL_IGNORE
+    opcode: 0x006D
+    type: packet
+
+-
+    name: CMSG_GROUP_INVITE
+    opcode: 0x006E
+    type: packet
+
+-
+    name: SMSG_GROUP_INVITE
+    opcode: 0x006F
+    type: packet
+
+-
+    name: CMSG_GROUP_CANCEL
+    opcode: 0x0070
+    type: packet
+
+-
+    name: SMSG_GROUP_CANCEL
+    opcode: 0x0071
+    type: packet
+
+-
+    name: CMSG_GROUP_ACCEPT
+    opcode: 0x0072
+    type: packet
+
+-
+    name: CMSG_GROUP_DECLINE
+    opcode: 0x0073
+    type: packet
+
+-
+    name: SMSG_GROUP_DECLINE
+    opcode: 0x0074
+    type: packet
+
+-
+    name: CMSG_GROUP_UNINVITE
+    opcode: 0x0075
+    type: packet
+
+-
+    name: CMSG_GROUP_UNINVITE_GUID
+    opcode: 0x0076
+    type: packet
+
+-
+    name: SMSG_GROUP_UNINVITE
+    opcode: 0x0077
+    type: packet
+
+-
+    name: CMSG_GROUP_SET_LEADER
+    opcode: 0x0078
+    type: packet
+
+-
+    name: SMSG_GROUP_SET_LEADER
+    opcode: 0x0079
+    type: packet
+
+-
+    name: CMSG_LOOT_METHOD
+    opcode: 0x007A
+    type: packet
+
+-
+    name: CMSG_GROUP_DISBAND
+    opcode: 0x007B
+    type: packet
+
+-
+    name: SMSG_GROUP_DESTROYED
+    opcode: 0x007C
+    type: packet
+
+-
+    name: SMSG_GROUP_LIST
+    opcode: 0x007D
+    info: Sends a list with all members except the current member
+    type: packet
+    direction: out
+    structure:
+      - spacer
+      - Memberscount:
+          type: uint8
+          info: Number of members in the group: Members.Length () + 1
+      - spacer
+      - Members:
+          type: vector
+          vtype: MembersVector
+          counter: Memberscount
+          info: For every member but the one getting sent the msg: Members.Length () = Memberscount - 1
+          structure:
+            - Slotid:
+                type: uint8
+                info: starts at 0
+            - spacer
+            - Membername:
+                type: string
+            - spacer
+            - Guidsno:
+                type: uint32
+            - spacer
+      - unknown1:
+          type: uint8
+          const: 1
+          info: no idea but always 1
+      - spacer
+      - Leaderguid:
+          type: uint32
+      - spacer
+      - Lootmethord:
+          type: uint8
+      - Lootmaster:
+          type: uint32
+      - spacer
+      - Lootthreshold:
+          type: uint8
+
+
+-
+    name: SMSG_PARTY_MEMBER_STATS
+    opcode: 0x007E
+    type: packet
+
+
+-
+    name: SMSG_PARTY_COMMAND_RESULT
+    opcode: 0x007F
+    type: packet
+
+-
+    name: UMSG_UPDATE_GROUP_MEMBERS
+    opcode: 0x0080
+    type: packet
+
+-
+    name: CMSG_GUILD_CREATE
+    opcode: 0x0081
+    type: packet
+
+-
+    name: CMSG_GUILD_INVITE
+    opcode: 0x0082
+    type: packet
+
+-
+    name: SMSG_GUILD_INVITE
+    opcode: 0x0083
+    type: packet
+
+-
+    name: CMSG_GUILD_ACCEPT
+    opcode: 0x0084
+    type: packet
+
+-
+    name: CMSG_GUILD_DECLINE
+    opcode: 0x0085
+    type: packet
+
+-
+    name: SMSG_GUILD_DECLINE
+    opcode: 0x0086
+    type: packet
+
+-
+    name: CMSG_GUILD_INFO
+    opcode: 0x0087
+    type: packet
+
+-
+    name: SMSG_GUILD_INFO
+    opcode: 0x0088
+    type: packet
+
+-
+    name: CMSG_GUILD_ROSTER
+    opcode: 0x0089
+    type: packet
+
+-
+    name: SMSG_GUILD_ROSTER
+    opcode: 0x008A
+    type: packet
+
+-
+    name: CMSG_GUILD_PROMOTE
+    opcode: 0x008B
+    type: packet
+
+-
+    name: CMSG_GUILD_DEMOTE
+    opcode: 0x008C
+    type: packet
+
+-
+    name: CMSG_GUILD_LEAVE
+    opcode: 0x008D
+    type: packet
+
+-
+    name: CMSG_GUILD_REMOVE
+    opcode: 0x008E
+    type: packet
+
+-
+    name: CMSG_GUILD_DISBAND
+    opcode: 0x008F
+    type: packet
+
+-
+    name: CMSG_GUILD_LEADER
+    opcode: 0x0090
+    type: packet
+
+-
+    name: CMSG_GUILD_MOTD
+    opcode: 0x0091
+    type: packet
+
+-
+    name: SMSG_GUILD_EVENT
+    opcode: 0x0092
+    type: packet
+
+-
+    name: SMSG_GUILD_COMMAND_RESULT
+    opcode: 0x0093
+    type: packet
+
+-
+    name: UMSG_UPDATE_GUILD
+    opcode: 0x0094
+    type: packet
+
+-
+    name: CMSG_MESSAGECHAT
+    opcode: 0x0095
+    type: packet
+    direction: in
+#   c++handler:
+    structure:
+          -Type:
+             type: uint8
+          -Language:
+             type: uint32
+          -Guid:
+             type: guid
+          -Msglength:
+             type: uint32
+          -If Type == CHAT_MSG_WHISPER:
+             -Whisperto:
+                 type: string
+          -If Type == CHAT_MSG_CHANNEL:
+             -Channel:
+                 type: string
+
+          -Msg:
+             type: string
+          -Afktoggle:
+             type: uint8
+
+
+
+-
+    name: SMSG_MESSAGECHAT
+    opcode: 0x0096
+    type: packet
+    direction: out
+    info: Sends a chat message
+    structure:
+          - Type:
+             type: uint8
+          - spacer:
+             length: 4
+          - Senderguid:
+             type: guid
+          - spacer:
+             length: 3
+          - Msglength:
+             type: uint32
+          #- if Type == CHAT_MSG_WHISPER:
+          #     - Sendername:
+          #        type: string
+          - Msg:
+               type: string
+          - Afktoggle:
+               type: uint8
+
+-
+    name: CMSG_JOIN_CHANNEL
+    opcode: 0x0097
+    type: packet
+    info: User joined channel
+    direction: in
+#   c++handler:
+    fixme: Move to ChatHandler class
+    structure:
+      - Name:
+          type: string
+
+
+-
+    name: CMSG_LEAVE_CHANNEL
+    opcode: 0x0098
+    type: packet
+
+-
+    name: SMSG_CHANNEL_NOTIFY
+    opcode: 0x0099
+    type: packet
+    info: Confimation for channel changes
+    direction: out
+    fixme: Fix field names
+    structure:
+      - Unknown1:
+          type: uint8
+      - Channel:
+          type: string
+      - Unknown2:
+          type: uint8
+      - Unknown3:
+          type: uint32
+
+-
+    name: CMSG_CHANNEL_LIST
+    opcode: 0x009A
+    type: packet
+
+-
+    name: SMSG_CHANNEL_LIST
+    opcode: 0x009B
+    type: packet
+
+-
+    name: CMSG_CHANNEL_PASSWORD
+    opcode: 0x009C
+    type: packet
+
+-
+    name: CMSG_CHANNEL_SET_OWNER
+    opcode: 0x009D
+    type: packet
+
+-
+    name: CMSG_CHANNEL_OWNER
+    opcode: 0x009E
+    type: packet
+
+-
+    name: CMSG_CHANNEL_MODERATOR
+    opcode: 0x009F
+    type: packet
+
+-
+    name: CMSG_CHANNEL_UNMODERATOR
+    opcode: 0x00A0
+    type: packet
+
+-
+    name: CMSG_CHANNEL_MUTE
+    opcode: 0x00A1
+    type: packet
+
+-
+    name: CMSG_CHANNEL_UNMUTE
+    opcode: 0x00A2
+    type: packet
+
+-
+    name: CMSG_CHANNEL_INVITE
+    opcode: 0x00A3
+    type: packet
+
+-
+    name: CMSG_CHANNEL_KICK
+    opcode: 0x00A4
+    type: packet
+
+-
+    name: CMSG_CHANNEL_BAN
+    opcode: 0x00A5
+    type: packet
+
+-
+    name: CMSG_CHANNEL_UNBAN
+    opcode: 0x00A6
+    type: packet
+
+-
+    name: CMSG_CHANNEL_ANNOUNCEMENTS
+    opcode: 0x00A7
+    type: packet
+
+-
+    name: CMSG_CHANNEL_MODERATE
+    opcode: 0x00A8
+    type: packet
+
+-
+    name: SMSG_UPDATE_OBJECT
+    opcode: 0x00A9
+    type: packet
+    direction: out
+    info: The most complex packet type
+    structure:
+      - Count:
+            type: uint32
+      - unknown:
+            type: uint8
+            const: 0
+      - Values:
+            type: vector
+            vtype: ObjectVector
+            structure:
+              - TypeFlag:
+                    type: uint8
+                    const: UPDATE_VALUES
+              - GetGUID ():
+                    type: uint64
+      - Movement:
+            type: vector
+            vtype: ObjectVector
+            structure:
+              - TypeFlag:
+                    type: uint8
+                    const: UPDATE_MOVEMENT
+              - GetGUID ():
+                    type: uint64
+      - CreateObject:
+            type: vector
+            vtype: ObjectVector
+            structure:
+              - TypeFlag:
+                    type: uint8
+                    const: UPDATE_CREATE_OBJECT
+              - GetGUID ():
+                    type: uint64
+              - GetType ():
+                    type: uint8
+      - if OutOfRange.Length ():
+          - TypeFlag:
+                type: uint8
+                const: UPDATE_OUT_OF_RANGE_OBJECTS
+          - OutOfRangeCount:
+                type: uint32
+      - OutOfRange:
+            type: vector
+            counter: OutOfRangeCount
+            vtype: ObjectVector
+            structure:
+              - GetGUID ():
+                    type: uint64
+# UPDATE_NEAR_OBJECTS ???
+#@@@@@@@@todo: add subblock definitions
+
+-
+    name: SMSG_DESTROY_OBJECT
+    opcode: 0x00AA
+    type: packet
+    info: Destroys a guid on the client
+    direction: out
+    structure:
+      - Guid:
+          type: guid
+
+-
+    name: CMSG_USE_ITEM
+    opcode: 0x00AB
+    type: packet
+
+-
+    name: CMSG_OPEN_ITEM
+    opcode: 0x00AC
+    type: packet
+
+-
+    name: CMSG_READ_ITEM
+    opcode: 0x00AD
+    type: packet
+
+-
+    name: SMSG_READ_ITEM_OK
+    opcode: 0x00AE
+    type: packet
+
+-
+    name: SMSG_READ_ITEM_FAILED
+    opcode: 0x00AF
+    type: packet
+
+-
+    name: SMSG_ITEM_COOLDOWN
+    opcode: 0x00B0
+    type: packet
+
+-
+    name: CMSG_GAMEOBJ_USE
+    opcode: 0x00B1
+    type: packet
+
+-
+    name: CMSG_GAMEOBJ_CHAIR_USE_OBSOLETE
+    opcode: 0x00B2
+    type: packet
+
+-
+    name: SMSG_GAMEOBJECT_CUSTOM_ANIM
+    opcode: 0x00B3
+    type: packet
+
+-
+    name: CMSG_AREATRIGGER
+    opcode: 0x00B4
+    type: packet
+    info: Client activated a areatrigger
+    direction: in
+#   c++handler:
+    structure:
+      - Id:
+          type: uint32
+
+-
+    name: MSG_MOVE_START_FORWARD
+    opcode: 0x00B5
+    type: packet
+
+-
+    name: MSG_MOVE_START_BACKWARD
+    opcode: 0x00B6
+    type: packet
+
+-
+    name: MSG_MOVE_STOP
+    opcode: 0x00B7
+    type: packet
+
+-
+    name: MSG_MOVE_START_STRAFE_LEFT
+    opcode: 0x00B8
+    type: packet
+
+-
+    name: MSG_MOVE_START_STRAFE_RIGHT
+    opcode: 0x00B9
+    type: packet
+
+-
+    name: MSG_MOVE_STOP_STRAFE
+    opcode: 0x00BA
+    type: packet
+
+-
+    name: MSG_MOVE_JUMP
+    opcode: 0x00BB
+    type: packet
+
+-
+    name: MSG_MOVE_START_TURN_LEFT
+    opcode: 0x00BC
+    type: packet
+
+-
+    name: MSG_MOVE_START_TURN_RIGHT
+    opcode: 0x00BD
+    type: packet
+
+-
+    name: MSG_MOVE_STOP_TURN
+    opcode: 0x00BE
+    type: packet
+
+-
+    name: MSG_MOVE_START_PITCH_UP
+    opcode: 0x00BF
+    type: packet
+
+-
+    name: MSG_MOVE_START_PITCH_DOWN
+    opcode: 0x00C0
+    type: packet
+
+-
+    name: MSG_MOVE_STOP_PITCH
+    opcode: 0x00C1
+    type: packet
+
+-
+    name: MSG_MOVE_SET_RUN_MODE
+    opcode: 0x00C2
+    type: packet
+
+-
+    name: MSG_MOVE_SET_WALK_MODE
+    opcode: 0x00C3
+    type: packet
+
+-
+    name: MSG_MOVE_TOGGLE_LOGGING
+    opcode: 0x00C4
+    type: packet
+
+-
+    name: MSG_MOVE_TELEPORT
+    opcode: 0x00C5
+    type: packet
+
+-
+    name: MSG_MOVE_TELEPORT_CHEAT
+    opcode: 0x00C6
+    type: packet
+
+-
+    name: MSG_MOVE_TELEPORT_ACK
+    opcode: 0x00C7
+    type: packet
+
+-
+    name: MSG_MOVE_TOGGLE_FALL_LOGGING
+    opcode: 0x00C8
+    type: packet
+
+-
+    name: MSG_MOVE_FALL_LAND
+    opcode: 0x00C9
+    type: packet
+
+-
+    name: MSG_MOVE_START_SWIM
+    opcode: 0x00CA
+    type: packet
+
+-
+    name: MSG_MOVE_STOP_SWIM
+    opcode: 0x00CB
+    type: packet
+
+-
+    name: MSG_MOVE_SET_RUN_SPEED_CHEAT
+    opcode: 0x00CC
+    type: packet
+
+-
+    name: MSG_MOVE_SET_RUN_SPEED
+    opcode: 0x00CD
+    type: packet
+
+-
+    name: MSG_MOVE_SET_RUN_BACK_SPEED_CHEAT
+    opcode: 0x00CE
+    type: packet
+
+-
+    name: MSG_MOVE_SET_RUN_BACK_SPEED
+    opcode: 0x00CF
+    type: packet
+
+-
+    name: MSG_MOVE_SET_WALK_SPEED_CHEAT
+    opcode: 0x00D0
+    type: packet
+
+-
+    name: MSG_MOVE_SET_WALK_SPEED
+    opcode: 0x00D1
+    type: packet
+
+-
+    name: MSG_MOVE_SET_SWIM_SPEED_CHEAT
+    opcode: 0x00D2
+    type: packet
+
+-
+    name: MSG_MOVE_SET_SWIM_SPEED
+    opcode: 0x00D3
+    type: packet
+
+-
+    name: MSG_MOVE_SET_SWIM_BACK_SPEED_CHEAT
+    opcode: 0x00D4
+    type: packet
+
+-
+    name: MSG_MOVE_SET_SWIM_BACK_SPEED
+    opcode: 0x00D5
+    type: packet
+
+-
+    name: MSG_MOVE_SET_ALL_SPEED_CHEAT
+    opcode: 0x00D6
+    type: packet
+
+-
+    name: MSG_MOVE_SET_TURN_RATE_CHEAT
+    opcode: 0x00D7
+    type: packet
+
+-
+    name: MSG_MOVE_SET_TURN_RATE
+    opcode: 0x00D8
+    type: packet
+
+-
+    name: MSG_MOVE_TOGGLE_COLLISION_CHEAT
+    opcode: 0x00D9
+    type: packet
+
+-
+    name: MSG_MOVE_SET_FACING
+    opcode: 0x00DA
+    type: packet
+
+-
+    name: MSG_MOVE_SET_PITCH
+    opcode: 0x00DB
+    type: packet
+
+-
+    name: MSG_MOVE_WORLDPORT_ACK
+    opcode: 0x00DC
+    type: packet
+
+-
+    name: SMSG_MONSTER_MOVE
+    opcode: 0x00DD
+    type: packet
+
+-
+    name: SMSG_MOVE_WATER_WALK
+    opcode: 0x00DE
+    type: packet
+
+-
+    name: SMSG_MOVE_LAND_WALK
+    opcode: 0x00DF
+    type: packet
+
+-
+    name: MSG_MOVE_SET_RAW_POSITION_ACK
+    opcode: 0x00E0
+    type: packet
+
+-
+    name: CMSG_MOVE_SET_RAW_POSITION
+    opcode: 0x00E1
+    type: packet
+
+-
+    name: SMSG_FORCE_RUN_SPEED_CHANGE
+    opcode: 0x00E2
+    type: packet
+
+-
+    name: CMSG_FORCE_RUN_SPEED_CHANGE_ACK
+    opcode: 0x00E3
+    type: packet
+
+-
+    name: SMSG_FORCE_RUN_BACK_SPEED_CHANGE
+    opcode: 0x00E4
+    type: packet
+
+-
+    name: CMSG_FORCE_RUN_BACK_SPEED_CHANGE_ACK
+    opcode: 0x00E5
+    type: packet
+
+-
+    name: SMSG_FORCE_SWIM_SPEED_CHANGE
+    opcode: 0x00E6
+    type: packet
+
+-
+    name: CMSG_FORCE_SWIM_SPEED_CHANGE_ACK
+    opcode: 0x00E7
+    type: packet
+
+-
+    name: SMSG_FORCE_MOVE_ROOT
+    opcode: 0x00E8
+    type: packet
+
+-
+    name: CMSG_FORCE_MOVE_ROOT_ACK
+    opcode: 0x00E9
+    type: packet
+
+-
+    name: SMSG_FORCE_MOVE_UNROOT
+    opcode: 0x00EA
+    type: packet
+
+-
+    name: CMSG_FORCE_MOVE_UNROOT_ACK
+    opcode: 0x00EB
+    type: packet
+
+-
+    name: MSG_MOVE_ROOT
+    opcode: 0x00EC
+    type: packet
+
+-
+    name: MSG_MOVE_UNROOT
+    opcode: 0x00ED
+    type: packet
+
+-
+    name: MSG_MOVE_HEARTBEAT
+    opcode: 0x00EE
+    type: packet
+    info: Updates Position of Object
+    direction: out
+    structure:
+        - Guid:
+            type: guid
+        - Flag:
+            type: uint32
+        - Unknown1:
+            type: uint32
+        - X:
+            type: float
+        - Y:
+            type: float
+        - Z:
+            type: float
+        - O:
+            type: float
+
+-
+    name: SMSG_MOVE_KNOCK_BACK
+    opcode: 0x00EF
+    type: packet
+
+-
+    name: CMSG_MOVE_KNOCK_BACK_ACK
+    opcode: 0x00F0
+    type: packet
+
+-
+    name: MSG_MOVE_KNOCK_BACK
+    opcode: 0x00F1
+    type: packet
+
+-
+    name: SMSG_MOVE_FEATHER_FALL
+    opcode: 0x00F2
+    type: packet
+
+-
+    name: SMSG_MOVE_NORMAL_FALL
+    opcode: 0x00F3
+    type: packet
+
+-
+    name: SMSG_MOVE_SET_HOVER
+    opcode: 0x00F4
+    type: packet
+
+-
+    name: SMSG_MOVE_UNSET_HOVER
+    opcode: 0x00F5
+    type: packet
+
+-
+    name: CMSG_MOVE_HOVER_ACK
+    opcode: 0x00F6
+    type: packet
+
+-
+    name: MSG_MOVE_HOVER
+    opcode: 0x00F7
+    type: packet
+
+-
+    name: CMSG_TRIGGER_CINEMATIC_CHEAT
+    opcode: 0x00F8
+    type: packet
+
+-
+    name: CMSG_OPENING_CINEMATIC
+    opcode: 0x00F9
+    type: packet
+
+-
+    name: SMSG_TRIGGER_CINEMATIC
+    opcode: 0x00FA
+    type: packet
+    direction: out
+    structure:
+      - Video:
+            type: uint32
+
+-
+    name: CMSG_NEXT_CINEMATIC_CAMERA
+    opcode: 0x00FB
+    type: packet
+
+-
+    name: CMSG_COMPLETE_CINEMATIC
+    opcode: 0x00FC
+    type: packet
+
+-
+    name: SMSG_TUTORIAL_FLAGS
+    opcode: 0x00FD
+    type: packet
+    info: Sets tutorial flags on client. Send while login
+    direction: out
+    structure:
+      - TutMask:
+          type: uint8
+          array: 32
+
+-
+    name: CMSG_TUTORIAL_FLAG
+    opcode: 0x00FE
+    type: packet
+
+-
+    name: CMSG_TUTORIAL_CLEAR
+    opcode: 0x00FF
+    type: packet
+
+-
+    name: CMSG_TUTORIAL_RESET
+    opcode: 0x0100
+    type: packet
+
+-
+    name: CMSG_STANDSTATECHANGE
+    opcode: 0x0101
+    type: packet
+    info: Player changed stand, also while going afk
+    direction: in
+    fixme: not sure if state is a uint8 array 4
+#   c++handler:
+    structure:
+      - Guid:
+          type: guid
+      - State:
+          type: uint32
+      - Animstate:
+          type: uint8
+
+-
+    name: CMSG_EMOTE
+    opcode: 0x0102
+    type: packet
+
+-
+    name: SMSG_EMOTE
+    opcode: 0x0103
+    type: packet
+    direction: out
+    info: Notify client to display an emote
+    structure:
+      - Emote:
+          type: uint32
+      - Guid:
+          type: guid
+
+-
+    name: CMSG_TEXT_EMOTE
+    opcode: 0x0104
+    type: packet
+    direction: in
+    info: User did an emote
+    parser-cxx-function: mChatHandler.TextEmote
+    structure:
+      - Emote:
+         type: uint32
+      - Guid:
+         type: guid
+
+-
+    name: SMSG_TEXT_EMOTE
+    opcode: 0x0105
+    type: packet
+    direction: out
+    info: Notify to display an emote. It also contains the name of the create
+    structure:
+      - Guid:
+         type: guid
+      - Emote:
+         type: uint32
+      - Name:
+         type: pstring
+         ltype: uint32
+      - spacer
+
+-
+    name: CMSG_AUTOEQUIP_GROUND_ITEM
+    opcode: 0x0106
+    type: packet
+
+-
+    name: CMSG_AUTOSTORE_GROUND_ITEM
+    opcode: 0x0107
+    type: packet
+
+-
+    name: CMSG_AUTOSTORE_LOOT_ITEM
+    opcode: 0x0108
+    type: packet
+    info: Transfers loot automaticly into the bag
+    keywords: loot, bag
+    direction: in
+#   c++handler:
+    structure:
+      - Lootslot:
+          type: uint8
+
+-
+    name: CMSG_STORE_LOOT_IN_SLOT
+    opcode: 0x0109
+    type: packet
+
+-
+    name: CMSG_AUTOEQUIP_ITEM
+    opcode: 0x010A
+    type: packet
+
+-
+    name: CMSG_AUTOSTORE_BAG_ITEM
+    opcode: 0x010B
+    type: packet
+
+-
+    name: CMSG_SWAP_ITEM
+    opcode: 0x010C
+    type: packet
+
+-
+    name: CMSG_SWAP_INV_ITEM
+    opcode: 0x010D
+    type: packet
+
+-
+    name: CMSG_SPLIT_ITEM
+    opcode: 0x010E
+    type: packet
+
+-
+    name: CMSG_PICKUP_ITEM
+    opcode: 0x010F
+    type: packet
+
+-
+    name: CMSG_DROP_ITEM
+    opcode: 0x0110
+    type: packet
+
+-
+    name: CMSG_DESTROYITEM
+    opcode: 0x0111
+    type: packet
+
+-
+    name: SMSG_INVENTORY_CHANGE_FAILURE
+    opcode: 0x0112
+    type: packet
+
+-
+    name: SMSG_OPEN_CONTAINER
+    opcode: 0x0113
+    type: packet
+
+-
+    name: CMSG_INSPECT
+    opcode: 0x0114
+    type: packet
+
+-
+    name: SMSG_INSPECT
+    opcode: 0x0115
+    type: packet
+
+-
+    name: CMSG_INITIATE_TRADE
+    opcode: 0x0116
+    type: packet
+
+-
+    name: CMSG_BEGIN_TRADE
+    opcode: 0x0117
+    type: packet
+
+-
+    name: CMSG_BUSY_TRADE
+    opcode: 0x0118
+    type: packet
+
+-
+    name: CMSG_IGNORE_TRADE
+    opcode: 0x0119
+    type: packet
+
+-
+    name: CMSG_ACCEPT_TRADE
+    opcode: 0x011A
+    type: packet
+
+-
+    name: CMSG_UNACCEPT_TRADE
+    opcode: 0x011B
+    type: packet
+
+-
+    name: CMSG_CANCEL_TRADE
+    opcode: 0x011C
+    type: packet
+
+-
+    name: CMSG_SET_TRADE_ITEM
+    opcode: 0x011D
+    type: packet
+
+-
+    name: CMSG_CLEAR_TRADE_ITEM
+    opcode: 0x011E
+    type: packet
+
+-
+    name: CMSG_SET_TRADE_GOLD
+    opcode: 0x011F
+    type: packet
+
+-
+    name: SMSG_TRADE_STATUS
+    opcode: 0x0120
+    type: packet
+
+-
+    name: SMSG_TRADE_STATUS_EXTENDED
+    opcode: 0x0121
+    type: packet
+
+-
+    name: SMSG_INITIALIZE_FACTIONS
+    opcode: 0x0122
+    type: packet
+
+-
+    name: SMSG_SET_FACTION_VISIBLE
+    opcode: 0x0123
+    type: packet
+
+-
+    name: SMSG_SET_FACTION_STANDING
+    opcode: 0x0124
+    type: packet
+
+-
+    name: CMSG_SET_FACTION_ATWAR
+    opcode: 0x0125
+    type: packet
+
+-
+    name: CMSG_SET_FACTION_CHEAT
+    opcode: 0x0126
+    type: packet
+
+-
+    name: SMSG_SET_PROFICIENCY
+    opcode: 0x0127
+    type: packet
+
+-
+    name: CMSG_SET_ACTION_BUTTON
+    opcode: 0x0128
+    type: packet
+    info: Client set or deletes a action button
+    direction: in
+#   c++handler:
+    structure:
+      - Button:
+          type: uint8
+      - Action:
+          type: uint32
+          info: |
+              In reality this contains three fields: uint16 Action,
+              uint8 Misc and uint8 Type. but who cares ...
+
+-
+    name: SMSG_ACTION_BUTTONS
+    opcode: 0x0129
+    type: packet
+    direction: out
+    structure:
+      - Actions:
+          type: uint32
+          array: 120
+          info: This is really (Action,Misc,Type) like in SET_ACTION_BUTTON
+
+-
+    name: SMSG_INITIAL_SPELLS
+    opcode: 0x012A
+    type: packet
+    direction: out
+
+-
+    name: SMSG_LEARNED_SPELL
+    opcode: 0x012B
+    type: packet
+
+-
+    name: SMSG_SUPERCEDED_SPELL
+    opcode: 0x012C
+    type: packet
+
+-
+    name: CMSG_NEW_SPELL_SLOT
+    opcode: 0x012D
+    type: packet
+
+-
+    name: STRL_SPELL_TARGET
+    type: structlet
+    struct-name: SPELL_TARGET
+    info: this is used at spell target messages
+    structure:
+        - Targetmask:
+             type: uint16
+        - if Targetmask & TARGET_FLAG_UNIT || Targetmask & TARGET_FLAG_OBJECT:
+             - Targetunit:
+                 type: guid
+        - if Targetmask & TARGET_FLAG_ITEM:
+             - Targetitem:
+                 type: guid
+        - if Targetmask & TARGET_FLAG_SOURCE_LOCATION:
+             - SrcX:
+                 type: float
+             - SrcY:
+                 type: float
+             - SrcZ:
+                 type: float
+        - if Targetmask & TARGET_FLAG_DEST_LOCATION:
+             - DestX:
+                 type: float
+             - DestY:
+                 type: float
+             - DestZ:
+                 type: float
+        - if Targetmask & TARGET_FLAG_STRING:
+             - Targetstring:
+                 type: string
+
+-
+    name: CMSG_CAST_SPELL
+    opcode: 0x012E
+    type: packet
+    direction: in
+    info: User casts a spell
+    parser-cxx-function: mSpellHandler.CastSpell
+    structure:
+        - Spellid:
+             type: uint32
+        - structlet STRL_SPELL_TARGET
+
+
+
+-
+    name: CMSG_CANCEL_CAST
+    opcode: 0x012F
+    type: packet
+
+-
+    name: SMSG_CAST_RESULT
+    opcode: 0x0130
+    type: packet
+
+-
+    name: SMSG_SPELL_START
+    opcode: 0x0131
+    type: packet
+
+-
+    name: SMSG_SPELL_GO
+    opcode: 0x0132
+    type: packet
+
+-
+    name: SMSG_SPELL_FAILURE
+    opcode: 0x0133
+    type: packet
+
+-
+    name: SMSG_SPELL_COOLDOWN
+    opcode: 0x0134
+    type: packet
+
+-
+    name: SMSG_COOLDOWN_EVENT
+    opcode: 0x0135
+    type: packet
+
+-
+    name: CMSG_CANCEL_AURA
+    opcode: 0x0136
+    type: packet
+
+-
+    name: SMSG_UPDATE_AURA_DURATION
+    opcode: 0x0137
+    type: packet
+
+-
+    name: SMSG_PET_CAST_FAILED
+    opcode: 0x0138
+    type: packet
+
+-
+    name: MSG_CHANNEL_START
+    opcode: 0x0139
+    type: packet
+
+-
+    name: MSG_CHANNEL_UPDATE
+    opcode: 0x013A
+    type: packet
+
+-
+    name: CMSG_CANCEL_CHANNELLING
+    opcode: 0x013B
+    type: packet
+
+-
+    name: SMSG_AI_REACTION
+    opcode: 0x013C
+    type: packet
+
+-
+    name: CMSG_SET_SELECTION
+    opcode: 0x013D
+    type: packet
+    info: Player has selected NPC
+    direction: in
+#   c++handler:
+    structure:
+      - Gui:
+          type: guid
+
+
+-
+    name: CMSG_SET_TARGET
+    opcode: 0x013E
+    type: packet
+    info: Client has selected a target
+    direction: in
+#   c++handler:
+    structure:
+      - Guid:
+          type: guid
+
+-
+    name: CMSG_UNUSED
+    opcode: 0x013F
+    type: packet
+
+-
+    name: CMSG_UNUSED2
+    opcode: 0x0140
+    type: packet
+
+-
+    name: CMSG_ATTACKSWING
+    opcode: 0x0141
+    type: packet
+
+-
+    name: CMSG_ATTACKSTOP
+    opcode: 0x0142
+    type: packet
+
+-
+    name: SMSG_ATTACKSTART
+    opcode: 0x0143
+    type: packet
+    direction: out
+    structure:
+      - Attacker:
+            type: guid
+      - Victim:
+            type: guid
+
+-
+    name: SMSG_ATTACKSTOP
+    opcode: 0x0144
+    type: packet
+    direction: out
+    structure:
+      - Attacker:
+            type: guid
+      - Victim:
+            type: guid
+      - Unknown:
+            type: uint32
+            const: 0
+
+-
+    name: SMSG_ATTACKSWING_NOTINRANGE
+    opcode: 0x0145
+    type: packet
+
+-
+    name: SMSG_ATTACKSWING_BADFACING
+    opcode: 0x0146
+    type: packet
+
+-
+    name: SMSG_ATTACKSWING_NOTSTANDING
+    opcode: 0x0147
+    type: packet
+
+-
+    name: SMSG_ATTACKSWING_DEADTARGET
+    opcode: 0x0148
+    type: packet
+
+-
+    name: SMSG_ATTACKSWING_CANT_ATTACK
+    opcode: 0x0149
+    type: packet
+
+-
+    name: SMSG_ATTACKERSTATEUPDATE
+    opcode: 0x014A
+    type: packet
+    direction: out
+    structure:
+      - AttackFlags:
+            type: uint32
+      - Attacker:
+            type: guid
+      - Victim:
+            type: guid
+      - TotalDamage:
+            type: uint32
+      - Count:
+            type: uint8
+      - DamageList:
+            type: vector
+            counter: Count
+            vtype: DamageVector
+            structure:
+              - Type:
+                    type: uint32
+              - Float:
+                    type: uint32
+              - Damage:
+                    type: uint32
+              - Absorbed:
+                    type: uint32
+              - VictimState:
+                    type: uint32
+              - RoundDuration:
+                    type: uint32
+              - AdditionalSpellDamage:
+                    type: uint32
+              - AdditionalSpellId:
+                    type: uint32
+              - AdditionalSpellAbsorbed:
+                    type: uint32
+
+-
+    name: SMSG_VICTIMSTATEUPDATE_OBSOLETE
+    opcode: 0x014B
+    type: packet
+
+-
+    name: SMSG_DAMAGE_DONE_OBSOLETE
+    opcode: 0x014C
+    type: packet
+
+-
+    name: SMSG_DAMAGE_TAKEN_OBSOLETE
+    opcode: 0x014D
+    type: packet
+
+-
+    name: SMSG_CANCEL_COMBAT
+    opcode: 0x014E
+    type: packet
+
+-
+    name: SMSG_PLAYER_COMBAT_XP_GAIN_OBSOLETE
+    opcode: 0x014F
+    type: packet
+
+-
+    name: SMSG_HEALSPELL_ON_PLAYER_OBSOLETE
+    opcode: 0x0150
+    type: packet
+
+-
+    name: SMSG_HEALSPELL_ON_PLAYERS_PET_OBSOLETE
+    opcode: 0x0151
+    type: packet
+
+-
+    name: CMSG_SHEATHE_OBSOLETE
+    opcode: 0x0152
+    type: packet
+
+-
+    name: CMSG_SAVE_PLAYER
+    opcode: 0x0153
+    type: packet
+
+-
+    name: CMSG_SETDEATHBINDPOINT
+    opcode: 0x0154
+    type: packet
+
+-
+    name: SMSG_BINDPOINTUPDATE
+    opcode: 0x0155
+    type: packet
+
+-
+    name: CMSG_GETDEATHBINDZONE
+    opcode: 0x0156
+    type: packet
+
+-
+    name: SMSG_BINDZONEREPLY
+    opcode: 0x0157
+    type: packet
+
+-
+    name: SMSG_PLAYERBOUND
+    opcode: 0x0158
+    type: packet
+
+-
+    name: SMSG_DEATH_NOTIFY_OBSOLETE
+    opcode: 0x0159
+    type: packet
+
+-
+    name: CMSG_REPOP_REQUEST
+    opcode: 0x015A
+    type: packet
+    info: Teleports dead player back to live after talk with spirithealer
+    keywords: spirithealer, dead, teleport
+    fixme: We don't use any information in this packet. Needs control
+    direction: in
+#   c++handler:
+
+-
+    name: SMSG_RESURRECT_REQUEST
+    opcode: 0x015B
+    type: packet
+
+-
+    name: CMSG_RESURRECT_RESPONSE
+    opcode: 0x015C
+    type: packet
+
+-
+    name: CMSG_LOOT
+    opcode: 0x015D
+    type: packet
+    info: Selects creature to get looted
+    keywords: loot, selection
+    fixme: Send functionality needs review. GUID broken
+#   c++handler:
+    structure:
+      - Guid:
+          type: guid
+
+-
+    name: CMSG_LOOT_MONEY
+    opcode: 0x015E
+    type: packet
+    info: Loots money
+    keywords: loot, money
+    fixme: No data fields in this packet ?
+#   c++handler:
+
+-
+    name: CMSG_LOOT_RELEASE
+    opcode: 0x015F
+    type: packet
+    info: Sent when looting is finished
+    keywords: loot
+    direction: in
+    structure:
+      - Guid:
+          type: guid
+
+-
+    name: SMSG_LOOT_RESPONSE
+    opcode: 0x0160
+    type: packet
+    info: Contains all lootable items
+    fixme: Structure needs review
+    keywords: loot, create
+    direction: out
+    structure:
+      - Guid:
+          type: guid
+      - Type:
+          type: uint8
+      - Money:
+          type: uint32
+      - Itemcount:
+          type: uint8
+      - Items:
+          type: vector
+          counter: Itemcount
+          vtype: LootResponseVector
+          structure:
+            - Slot:
+                type: uint8
+            - Guidsno:
+                type: uint32
+            - Quantity:
+                type: uint32
+            - Displayid:
+                type: uint32
+            - spacer:
+                length: 9
+
+-
+    name: SMSG_LOOT_RELEASE_RESPONSE
+    opcode: 0x0161
+    type: packet
+    info: Response to release loot
+    direction: out
+    fixme: is ok right ?
+#   c++handler:
+    structure:
+      - Guid:
+          type: guid
+      - Ok:
+          type: uint8
+
+-
+    name: SMSG_LOOT_REMOVED
+    opcode: 0x0162
+    type: packet
+    info: Removes slot from loot window
+    direction: out
+    structure:
+      - Slot:
+          type: uint8
+
+-
+    name: SMSG_LOOT_MONEY_NOTIFY
+    opcode: 0x0163
+    type: packet
+
+-
+    name: SMSG_LOOT_ITEM_NOTIFY
+    opcode: 0x0164
+    type: packet
+
+-
+    name: SMSG_LOOT_CLEAR_MONEY
+    opcode: 0x0165
+    type: packet
+
+-
+    name: SMSG_ITEM_PUSH_RESULT
+    opcode: 0x0166
+    type: packet
+
+-
+    name: SMSG_DUEL_REQUESTED
+    opcode: 0x0167
+    type: packet
+
+-
+    name: SMSG_DUEL_OUTOFBOUNDS
+    opcode: 0x0168
+    type: packet
+
+-
+    name: SMSG_DUEL_INBOUNDS
+    opcode: 0x0169
+    type: packet
+
+-
+    name: SMSG_DUEL_COMPLETE
+    opcode: 0x016A
+    type: packet
+
+-
+    name: SMSG_DUEL_WINNER
+    opcode: 0x016B
+    type: packet
+
+-
+    name: CMSG_DUEL_ACCEPTED
+    opcode: 0x016C
+    type: packet
+
+-
+    name: CMSG_DUEL_CANCELLED
+    opcode: 0x016D
+    type: packet
+
+-
+    name: SMSG_MOUNTRESULT
+    opcode: 0x016E
+    type: packet
+
+-
+    name: SMSG_DISMOUNTRESULT
+    opcode: 0x016F
+    type: packet
+
+-
+    name: SMSG_PUREMOUNT_CANCELLED_OBSOLETE
+    opcode: 0x0170
+    type: packet
+
+-
+    name: CMSG_MOUNTSPECIAL_ANIM
+    opcode: 0x0171
+    type: packet
+
+-
+    name: SMSG_MOUNTSPECIAL_ANIM
+    opcode: 0x0172
+    type: packet
+
+-
+    name: SMSG_PET_TAME_FAILURE
+    opcode: 0x0173
+    type: packet
+
+-
+    name: CMSG_PET_SET_ACTION
+    opcode: 0x0174
+    type: packet
+
+-
+    name: CMSG_PET_ACTION
+    opcode: 0x0175
+    type: packet
+
+-
+    name: CMSG_PET_ABANDON
+    opcode: 0x0176
+    type: packet
+
+-
+    name: CMSG_PET_RENAME
+    opcode: 0x0177
+    type: packet
+
+-
+    name: SMSG_PET_NAME_INVALID
+    opcode: 0x0178
+    type: packet
+
+-
+    name: SMSG_PET_SPELLS
+    opcode: 0x0179
+    type: packet
+
+-
+    name: CMSG_PET_CAST_SPELL_OBSOLETE
+    opcode: 0x017A
+    type: packet
+
+-
+    name: CMSG_GOSSIP_HELLO
+    opcode: 0x017B
+    type: packet
+
+-
+    name: CMSG_GOSSIP_SELECT_OPTION
+    opcode: 0x017C
+    type: packet
+
+-
+    name: SMSG_GOSSIP_MESSAGE
+    opcode: 0x017D
+    type: packet
+    fixme: Well this info is wrong need to update it to the way it's done in gossiphandler.cpp/h
+    info: Creates a display box on the client
+    direction: out
+    structure:
+      - Guid:
+          type: guid
+      - Textid:
+          type: uint32
+      - Bpcount:
+          type: uint32
+      - Option:
+          type: uint32
+      - Icon:
+          type: uint32
+      - Text:
+          type: string
+      - Space:
+          type: uint32
+          const: 0
+
+-
+    name: SMSG_GOSSIP_COMPLETE
+    opcode: 0x017E
+    type: packet
+
+-
+    name: CMSG_NPC_TEXT_QUERY
+    opcode: 0x017F
+    type: packet
+
+-
+    name: SMSG_NPC_TEXT_UPDATE
+    opcode: 0x0180
+    type: packet
+
+-
+    name: SMSG_NPC_WONT_TALK
+    opcode: 0x0181
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_STATUS_QUERY
+    opcode: 0x0182
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_STATUS
+    opcode: 0x0183
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_HELLO
+    opcode: 0x0184
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_QUEST_LIST
+    opcode: 0x0185
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_QUERY_QUEST
+    opcode: 0x0186
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_QUEST_AUTOLAUNCH
+    opcode: 0x0187
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_QUEST_DETAILS
+    opcode: 0x0188
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_ACCEPT_QUEST
+    opcode: 0x0189
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_COMPLETE_QUEST
+    opcode: 0x018A
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_REQUEST_ITEMS
+    opcode: 0x018B
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_REQUEST_REWARD
+    opcode: 0x018C
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_OFFER_REWARD
+    opcode: 0x018D
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_CHOOSE_REWARD
+    opcode: 0x018E
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_QUEST_INVALID
+    opcode: 0x018F
+    type: packet
+
+-
+    name: CMSG_QUESTGIVER_CANCEL
+    opcode: 0x0190
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_QUEST_COMPLETE
+    opcode: 0x0191
+    type: packet
+
+-
+    name: SMSG_QUESTGIVER_QUEST_FAILED
+    opcode: 0x0192
+    type: packet
+
+-
+    name: CMSG_QUESTLOG_SWAP_QUEST
+    opcode: 0x0193
+    type: packet
+
+-
+    name: CMSG_QUESTLOG_REMOVE_QUEST
+    opcode: 0x0194
+    type: packet
+
+-
+    name: SMSG_QUESTLOG_FULL
+    opcode: 0x0195
+    type: packet
+
+-
+    name: SMSG_QUESTUPDATE_FAILED
+    opcode: 0x0196
+    type: packet
+
+-
+    name: SMSG_QUESTUPDATE_FAILEDTIMER
+    opcode: 0x0197
+    type: packet
+
+-
+    name: SMSG_QUESTUPDATE_COMPLETE
+    opcode: 0x0198
+    type: packet
+
+-
+    name: SMSG_QUESTUPDATE_ADD_KILL
+    opcode: 0x0199
+    type: packet
+
+-
+    name: SMSG_QUESTUPDATE_ADD_ITEM
+    opcode: 0x019A
+    type: packet
+
+-
+    name: CMSG_QUEST_CONFIRM_ACCEPT
+    opcode: 0x019B
+    type: packet
+
+-
+    name: SMSG_QUEST_CONFIRM_ACCEPT
+    opcode: 0x019C
+    type: packet
+
+-
+    name: CMSG_PUSHQUESTTOPARTY
+    opcode: 0x019D
+    type: packet
+
+-
+    name: CMSG_LIST_INVENTORY
+    opcode: 0x019E
+    type: packet
+
+-
+    name: SMSG_LIST_INVENTORY
+    opcode: 0x019F
+    type: packet
+
+-
+    name: CMSG_SELL_ITEM
+    opcode: 0x01A0
+    type: packet
+
+-
+    name: SMSG_SELL_ITEM
+    opcode: 0x01A1
+    type: packet
+
+-
+    name: CMSG_BUY_ITEM
+    opcode: 0x01A2
+    type: packet
+
+-
+    name: CMSG_BUY_ITEM_IN_SLOT
+    opcode: 0x01A3
+    type: packet
+
+-
+    name: SMSG_BUY_ITEM
+    opcode: 0x01A4
+    type: packet
+
+-
+    name: SMSG_BUY_FAILED
+    opcode: 0x01A5
+    type: packet
+
+-
+    name: CMSG_TAXICLEARALLNODES
+    opcode: 0x01A6
+    type: packet
+
+-
+    name: CMSG_TAXIENABLEALLNODES
+    opcode: 0x01A7
+    type: packet
+
+-
+    name: CMSG_TAXISHOWNODES
+    opcode: 0x01A8
+    type: packet
+
+-
+    name: SMSG_SHOWTAXINODES
+    opcode: 0x01A9
+    type: packet
+
+-
+    name: CMSG_TAXINODE_STATUS_QUERY
+    opcode: 0x01AA
+    type: packet
+
+-
+    name: SMSG_TAXINODE_STATUS
+    opcode: 0x01AB
+    type: packet
+
+-
+    name: CMSG_TAXIQUERYAVAILABLENODES
+    opcode: 0x01AC
+    type: packet
+
+-
+    name: CMSG_ACTIVATETAXI
+    opcode: 0x01AD
+    type: packet
+
+-
+    name: SMSG_ACTIVATETAXIREPLY
+    opcode: 0x01AE
+    type: packet
+
+-
+    name: SMSG_NEW_TAXI_PATH
+    opcode: 0x01AF
+    type: packet
+
+-
+    name: CMSG_TRAINER_LIST
+    opcode: 0x01B0
+    type: packet
+
+-
+    name: SMSG_TRAINER_LIST
+    opcode: 0x01B1
+    type: packet
+
+-
+    name: CMSG_TRAINER_BUY_SPELL
+    opcode: 0x01B2
+    type: packet
+
+-
+    name: SMSG_TRAINER_BUY_SUCCEEDED
+    opcode: 0x01B3
+    type: packet
+
+-
+    name: SMSG_TRAINER_BUY_FAILED
+    opcode: 0x01B4
+    type: packet
+
+-
+    name: CMSG_BINDER_ACTIVATE
+    opcode: 0x01B5
+    type: packet
+
+-
+    name: SMSG_PLAYERBINDERROR
+    opcode: 0x01B6
+    type: packet
+
+-
+    name: CMSG_BANKER_ACTIVATE
+    opcode: 0x01B7
+    type: packet
+
+-
+    name: SMSG_SHOW_BANK
+    opcode: 0x01B8
+    type: packet
+
+-
+    name: CMSG_BUY_BANK_SLOT
+    opcode: 0x01B9
+    type: packet
+
+-
+    name: SMSG_BUY_BANK_SLOT_RESULT
+    opcode: 0x01BA
+    type: packet
+
+-
+    name: CMSG_PETITION_SHOWLIST
+    opcode: 0x01BB
+    type: packet
+
+-
+    name: SMSG_PETITION_SHOWLIST
+    opcode: 0x01BC
+    type: packet
+
+-
+    name: CMSG_PETITION_BUY
+    opcode: 0x01BD
+    type: packet
+
+-
+    name: CMSG_PETITION_SHOW_SIGNATURES
+    opcode: 0x01BE
+    type: packet
+
+-
+    name: SMSG_PETITION_SHOW_SIGNATURES
+    opcode: 0x01BF
+    type: packet
+
+-
+    name: CMSG_PETITION_SIGN
+    opcode: 0x01C0
+    type: packet
+
+-
+    name: SMSG_PETITION_SIGN_RESULTS
+    opcode: 0x01C1
+    type: packet
+
+-
+    name: MSG_PETITION_DECLINE
+    opcode: 0x01C2
+    type: packet
+
+-
+    name: CMSG_OFFER_PETITION
+    opcode: 0x01C3
+    type: packet
+
+-
+    name: CMSG_TURN_IN_PETITION
+    opcode: 0x01C4
+    type: packet
+
+-
+    name: SMSG_TURN_IN_PETITION_RESULTS
+    opcode: 0x01C5
+    type: packet
+
+-
+    name: CMSG_PETITION_QUERY
+    opcode: 0x01C6
+    type: packet
+
+-
+    name: SMSG_PETITION_QUERY_RESPONSE
+    opcode: 0x01C7
+    type: packet
+
+-
+    name: SMSG_FISH_NOT_HOOKED
+    opcode: 0x01C8
+    type: packet
+
+-
+    name: SMSG_FISH_ESCAPED
+    opcode: 0x01C9
+    type: packet
+
+-
+    name: CMSG_BUG
+    opcode: 0x01CA
+    type: packet
+    info: User sent a Bugreport
+    direction: in
+#   c++handler:
+    structure:
+      - Suggestion:
+          type: uint32
+      - Contentlen:
+          type: uint32
+      - Content:
+          type: string
+      - Typelen:
+          type: uint32
+      - Type:
+          type: string
+
+-
+    name: SMSG_NOTIFICATION
+    opcode: 0x01CB
+    type: packet
+
+-
+    name: CMSG_PLAYED_TIME
+    opcode: 0x01CC
+    type: packet
+
+-
+    name: SMSG_PLAYED_TIME
+    opcode: 0x01CD
+    type: packet
+
+-
+    name: CMSG_QUERY_TIME
+    opcode: 0x01CE
+    type: packet
+
+-
+    name: SMSG_QUERY_TIME_RESPONSE
+    opcode: 0x01CF
+    type: packet
+
+-
+    name: SMSG_LOG_XPGAIN
+    opcode: 0x01D0
+    type: packet
+
+-
+    name: MSG_SPLIT_MONEY
+    opcode: 0x01D1
+    type: packet
+
+-
+    name: CMSG_RECLAIM_CORPSE
+    opcode: 0x01D2
+    type: packet
+
+-
+    name: CMSG_WRAP_ITEM
+    opcode: 0x01D3
+    type: packet
+
+-
+    name: SMSG_LEVELUP_INFO
+    opcode: 0x01D4
+    type: packet
+
+-
+    name: MSG_MINIMAP_PING
+    opcode: 0x01D5
+    type: packet
+
+-
+    name: SMSG_RESISTLOG
+    opcode: 0x01D6
+    type: packet
+
+-
+    name: SMSG_ENCHANTMENTLOG
+    opcode: 0x01D7
+    type: packet
+
+-
+    name: CMSG_SET_SKILL_CHEAT
+    opcode: 0x01D8
+    type: packet
+
+-
+    name: SMSG_START_MIRROR_TIMER
+    opcode: 0x01D9
+    type: packet
+
+-
+    name: SMSG_PAUSE_MIRROR_TIMER
+    opcode: 0x01DA
+    type: packet
+
+-
+    name: SMSG_STOP_MIRROR_TIMER
+    opcode: 0x01DB
+    type: packet
+
+-
+    name: CMSG_PING
+    opcode: 0x01DC
+    type: packet
+    info: Check if connection is alive
+    direction: in
+    c++handler: HandlePing
+    structure:
+      - Ordinal:
+          type: uint32
+
+-
+    name: SMSG_PONG
+    opcode: 0x01DD
+    type: packet
+    info: Acknowledge for the CMSG_PING message
+    direction: out
+    structure:
+      - Acknowledge:
+          type: uint32
+
+-
+    name: SMSG_CLEAR_COOLDOWN
+    opcode: 0x01DE
+    type: packet
+
+-
+    name: SMSG_GAMEOBJECT_PAGETEXT
+    opcode: 0x01DF
+    type: packet
+
+-
+    name: CMSG_SETSHEATHED
+    opcode: 0x01E0
+    type: packet
+
+-
+    name: SMSG_COOLDOWN_CHEAT
+    opcode: 0x01E1
+    type: packet
+
+-
+    name: SMSG_SPELL_DELAYED
+    opcode: 0x01E2
+    type: packet
+
+-
+    name: CMSG_PLAYER_MACRO
+    opcode: 0x01E3
+    type: packet
+
+-
+    name: SMSG_PLAYER_MACRO
+    opcode: 0x01E4
+    type: packet
+
+-
+    name: CMSG_GHOST
+    opcode: 0x01E5
+    type: packet
+
+-
+    name: CMSG_GM_INVIS
+    opcode: 0x01E6
+    type: packet
+
+-
+    name: CMSG_SCREENSHOT
+    opcode: 0x01E7
+    type: packet
+
+-
+    name: MSG_GM_BIND_OTHER
+    opcode: 0x01E8
+    type: packet
+
+-
+    name: MSG_GM_SUMMON
+    opcode: 0x01E9
+    type: packet
+
+-
+    name: SMSG_ITEM_TIME_UPDATE
+    opcode: 0x01EA
+    type: packet
+
+-
+    name: SMSG_ITEM_ENCHANT_TIME_UPDATE
+    opcode: 0x01EB
+    type: packet
+
+-
+    name: SMSG_AUTH_CHALLENGE
+    opcode: 0x01EC
+    type: packet
+    direction: out
+    structure:
+      - Seed:
+            type: uint32
+
+-
+    name: CMSG_AUTH_SESSION
+    opcode: 0x01ED
+    type: packet
+    direction: in
+    c++handler: HandleAuthSession
+    structure:
+      - Unknown1:
+            type: uint32
+      - Unknown2:
+            type: uint32
+      - Login:
+            type: string
+      - Seed:
+            type: uint32
+      - Digest:
+            type: uint8
+            array: 20
+
+-
+    name: SMSG_AUTH_RESPONSE
+    opcode: 0x01EE
+    type: packet
+    direction: out
+    structure:
+      - ErrorCode:
+            type: uint8
+      - if ErrorCode == WSE_AUTHENTICATION_SUCCESSFUL:
+          - Counter:
+                type: uint8
+          - SomeYear:
+                type: uint32
+                const: 2002
+
+-
+    name: MSG_GM_SHOWLABEL
+    opcode: 0x01EF
+    type: packet
+
+-
+    name: MSG_ADD_DYNAMIC_TARGET
+    opcode: 0x01F0
+    type: packet
+
+-
+    name: MSG_SAVE_GUILD_EMBLEM
+    opcode: 0x01F1
+    type: packet
+
+-
+    name: MSG_TABARDVENDOR_ACTIVATE
+    opcode: 0x01F2
+    type: packet
+
+-
+    name: SMSG_PLAY_SPELL_VISUAL
+    opcode: 0x01F3
+    type: packet
+
+-
+    name: CMSG_ZONEUPDATE
+    opcode: 0x01F4
+    type: packet
+    info: Client has changed zone
+    direction: in
+#   c++handler:
+    structure:
+      - Zone:
+          type: uint32
+
+-
+    name: SMSG_PARTYKILLLOG
+    opcode: 0x01F5
+    type: packet
+
+-
+    name: SMSG_COMPRESSED_UPDATE_OBJECT
+    opcode: 0x01F6
+    type: packet
+
+-
+    name: SMSG_OBSOLETE
+    opcode: 0x01F7
+    type: packet
+
+-
+    name: SMSG_EXPLORATION_EXPERIENCE
+    opcode: 0x01F8
+    type: packet
+
+-
+    name: CMSG_GM_SET_SECURITY_GROUP
+    opcode: 0x01F9
+    type: packet
+
+-
+    name: CMSG_GM_NUKE
+    opcode: 0x01FA
+    type: packet
+
+-
+    name: MSG_RANDOM_ROLL
+    opcode: 0x01FB
+    type: packet
+
+-
+    name: SMSG_ENVIRONMENTALDAMAGELOG
+    opcode: 0x01FC
+    type: packet
+
+-
+    name: CMSG_RWHOIS
+    opcode: 0x01FD
+    type: packet
+
+-
+    name: SMSG_RWHOIS
+    opcode: 0x01FE
+    type: packet
+
+-
+    name: MSG_LOOKING_FOR_GROUP
+    opcode: 0x01FF
+    type: packet
+
+-
+    name: CMSG_SET_LOOKING_FOR_GROUP
+    opcode: 0x0200
+    type: packet
+
+-
+    name: CMSG_UNLEARN_SPELL
+    opcode: 0x0201
+    type: packet
+
+-
+    name: CMSG_UNLEARN_SKILL
+    opcode: 0x0202
+    type: packet
+
+-
+    name: SMSG_REMOVED_SPELL
+    opcode: 0x0203
+    type: packet
+
+-
+    name: CMSG_DECHARGE
+    opcode: 0x0204
+    type: packet
+
+-
+    name: CMSG_GMTICKET_CREATE
+    opcode: 0x0205
+    type: packet
+    info: User created a GM tickets
+    fixme: Analyze fields
+    direction: in
+#   c++handler:
+
+
+-
+    name: SMSG_GMTICKET_CREATE
+    opcode: 0x0206
+    type: packet
+    info: Response to CMSG_GMTICKET_CREATE
+    fixme: fields needs to be analyzed
+    direction: out
+    structure:
+      - Id:
+          type: uint32
+
+-
+    name: CMSG_GMTICKET_UPDATETEXT
+    opcode: 0x0207
+    type: packet
+
+-
+    name: SMSG_GMTICKET_UPDATETEXT
+    opcode: 0x0208
+    type: packet
+
+-
+    name: SMSG_ACCOUNT_DATA_MD5
+    opcode: 0x0209
+    type: packet
+    direction: out
+    structure:
+      - MD5:
+          type: uint8
+          array: 80
+
+-
+    name: CMSG_REQUEST_ACCOUNT_DATA
+    opcode: 0x020A
+    type: packet
+    direction: in
+    c++handler: HandleRequestAccountData
+    structure:
+      - FileIndex:
+            type: uint32
+
+-
+    name: CMSG_UPDATE_ACCOUNT_DATA
+    opcode: 0x020B
+    type: packet
+    direction: in
+    c++handler: HandleUpdateAccountData
+    structure:
+      - FileIndex:
+            type: uint32
+      - UncompressedSize:
+            type: uint32
+      - CompressedData:
+            type: uint8
+            array: ?
+
+-
+    name: SMSG_UPDATE_ACCOUNT_DATA
+    opcode: 0x020C
+    type: packet
+    direction: out
+    structure:
+      - FileIndex:
+            type: uint32
+      - UncompressedSize:
+            type: uint32
+      - CompressedData:
+            type: uint8
+            array: ?
+
+-
+    name: SMSG_CLEAR_FAR_SIGHT_IMMEDIATE
+    opcode: 0x020D
+    type: packet
+
+-
+    name: SMSG_POWERGAINLOG_OBSOLETE
+    opcode: 0x020E
+    type: packet
+
+-
+    name: CMSG_GM_TEACH
+    opcode: 0x020F
+    type: packet
+
+-
+    name: CMSG_GM_CREATE_ITEM_TARGET
+    opcode: 0x0210
+    type: packet
+
+-
+    name: CMSG_GMTICKET_GETTICKET
+    opcode: 0x0211
+    type: packet
+    info: Client requests open GM tickets
+    direction: in
+#   c++handler:
+
+-
+    name: SMSG_GMTICKET_GETTICKET
+    opcode: 0x0212
+    type: packet
+    direction: out
+    fixme: Name packetfields correctly
+    info: Ticket information of current GM Ticket
+    structure:
+      - Unknown1:
+          type: uint32
+      - Unknown2:
+          type: uint32
+      - Unknown3:
+          type: uint8
+      - Unknown4:
+          type: uint8
+
+-
+    name: CMSG_UNLEARN_TALENTS
+    opcode: 0x0213
+    type: packet
+
+-
+    name: SMSG_GAMEOBJECT_SPAWN_ANIM
+    opcode: 0x0214
+    type: packet
+
+-
+    name: SMSG_GAMEOBJECT_DESPAWN_ANIM
+    opcode: 0x0215
+    type: packet
+
+-
+    name: MSG_CORPSE_QUERY
+    opcode: 0x0216
+    type: packet
+
+-
+    name: CMSG_GMTICKET_DELETETICKET
+    opcode: 0x0217
+    type: packet
+
+-
+    name: SMSG_GMTICKET_DELETETICKET
+    opcode: 0x0218
+    type: packet
+
+-
+    name: SMSG_CHAT_WRONG_FACTION
+    opcode: 0x0219
+    type: packet
+
+-
+    name: CMSG_GMTICKET_SYSTEMSTATUS
+    opcode: 0x021A
+    type: packet
+    info: Requests GM ticket status
+    fixme: analyze structure
+    direction: in
+#   c++handler:
+
+-
+    name: SMSG_GMTICKET_SYSTEMSTATUS
+    opcode: 0x021B
+    type: packet
+    info: Returns status of GM Ticket
+    fixme: analyze
+    direction: out
+    structure:
+      - Data:
+          type: uint32
+
+
+-
+    name: CMSG_SPIRIT_HEALER_ACTIVATE
+    opcode: 0x021C
+    type: packet
+
+-
+    name: CMSG_SET_STAT_CHEAT
+    opcode: 0x021D
+    type: packet
+
+-
+    name: SMSG_SET_REST_START
+    opcode: 0x021E
+    type: packet
+
+-
+    name: CMSG_SKILL_BUY_STEP
+    opcode: 0x021F
+    type: packet
+
+-
+    name: CMSG_SKILL_BUY_RANK
+    opcode: 0x0220
+    type: packet
+
+-
+    name: CMSG_XP_CHEAT
+    opcode: 0x0221
+    type: packet
+
+-
+    name: SMSG_SPIRIT_HEALER_CONFIRM
+    opcode: 0x0222
+    type: packet
+
+-
+    name: CMSG_CHARACTER_POINT_CHEAT
+    opcode: 0x0223
+    type: packet
+
+-
+    name: SMSG_GOSSIP_POI
+    opcode: 0x0224
+    type: packet
+
+-
+    name: CMSG_CHAT_IGNORED
+    opcode: 0x0225
+    type: packet
+
+-
+    name: CMSG_GM_VISION
+    opcode: 0x0226
+    type: packet
+
+-
+    name: CMSG_SERVER_COMMAND
+    opcode: 0x0227
+    type: packet
+
+-
+    name: CMSG_GM_SILENCE
+    opcode: 0x0228
+    type: packet
+
+-
+    name: CMSG_GM_REVEALTO
+    opcode: 0x0229
+    type: packet
+
+-
+    name: CMSG_GM_RESURRECT
+    opcode: 0x022A
+    type: packet
+
+-
+    name: CMSG_GM_SUMMONMOB
+    opcode: 0x022B
+    type: packet
+
+-
+    name: CMSG_GM_MOVECORPSE
+    opcode: 0x022C
+    type: packet
+
+-
+    name: CMSG_GM_FREEZE
+    opcode: 0x022D
+    type: packet
+
+-
+    name: CMSG_GM_UBERINVIS
+    opcode: 0x022E
+    type: packet
+
+-
+    name: CMSG_GM_REQUEST_PLAYER_INFO
+    opcode: 0x022F
+    type: packet
+
+-
+    name: SMSG_GM_PLAYER_INFO
+    opcode: 0x0230
+    type: packet
+
+-
+    name: CMSG_GUILD_RANK
+    opcode: 0x0231
+    type: packet
+
+-
+    name: CMSG_GUILD_ADD_RANK
+    opcode: 0x0232
+    type: packet
+
+-
+    name: CMSG_GUILD_DEL_RANK
+    opcode: 0x0233
+    type: packet
+
+-
+    name: CMSG_GUILD_SET_PUBLIC_NOTE
+    opcode: 0x0234
+    type: packet
+
+-
+    name: CMSG_GUILD_SET_OFFICER_NOTE
+    opcode: 0x0235
+    type: packet
+
+-
+    name: SMSG_LOGIN_VERIFY_WORLD
+    opcode: 0x0236
+    type: packet
+
+-
+    name: CMSG_CLEAR_EXPLORATION
+    opcode: 0x0237
+    type: packet
+
+-
+    name: CMSG_SEND_MAIL
+    opcode: 0x0238
+    type: packet
+
+-
+    name: SMSG_SEND_MAIL_RESULT
+    opcode: 0x0239
+    type: packet
+
+-
+    name: CMSG_GET_MAIL_LIST
+    opcode: 0x023A
+    type: packet
+
+-
+    name: SMSG_MAIL_LIST_RESULT
+    opcode: 0x023B
+    type: packet
+
+-
+    name: CMSG_BATTLEFIELD_LIST
+    opcode: 0x023C
+    type: packet
+
+-
+    name: SMSG_BATTLEFIELD_LIST
+    opcode: 0x023D
+    type: packet
+
+-
+    name: CMSG_BATTLEFIELD_JOIN
+    opcode: 0x023E
+    type: packet
+
+-
+    name: SMSG_BATTLEFIELD_WIN
+    opcode: 0x023F
+    type: packet
+
+-
+    name: SMSG_BATTLEFIELD_LOSE
+    opcode: 0x0240
+    type: packet
+
+-
+    name: CMSG_TAXICLEARNODE
+    opcode: 0x0241
+    type: packet
+
+-
+    name: CMSG_TAXIENABLENODE
+    opcode: 0x0242
+    type: packet
+
+-
+    name: CMSG_ITEM_TEXT_QUERY
+    opcode: 0x0243
+    type: packet
+
+-
+    name: SMSG_ITEM_TEXT_QUERY_RESPONSE
+    opcode: 0x0244
+    type: packet
+
+-
+    name: CMSG_MAIL_TAKE_MONEY
+    opcode: 0x0245
+    type: packet
+
+-
+    name: CMSG_MAIL_TAKE_ITEM
+    opcode: 0x0246
+    type: packet
+
+-
+    name: CMSG_MAIL_MARK_AS_READ
+    opcode: 0x0247
+    type: packet
+
+-
+    name: CMSG_MAIL_RETURN_TO_SENDER
+    opcode: 0x0248
+    type: packet
+
+-
+    name: CMSG_MAIL_DELETE
+    opcode: 0x0249
+    type: packet
+
+-
+    name: CMSG_MAIL_CREATE_TEXT_ITEM
+    opcode: 0x024A
+    type: packet
+
+-
+    name: SMSG_SPELLLOGMISS
+    opcode: 0x024B
+    type: packet
+
+-
+    name: SMSG_SPELLLOGEXECUTE
+    opcode: 0x024C
+    type: packet
+
+-
+    name: SMSG_DEBUGAURAPROC
+    opcode: 0x024D
+    type: packet
+
+-
+    name: SMSG_PERIODICAURALOG
+    opcode: 0x024E
+    type: packet
+    direction: out
+    structure:
+      - Victim:
+            type: guid
+      - Attacker:
+            type: guid
+      - SpellId:
+            type: uint32
+      - TargetCount:
+            type: uint32
+#     - DamageType:
+#           type: uint32
+      - Damage:
+            type: uint32
+      - Unknown1:
+            type: uint32
+            const: 5
+      - Unknown2:
+            type: uint32
+            const: 0
+
+-
+    name: SMSG_SPELLDAMAGESHIELD
+    opcode: 0x024F
+    type: packet
+
+-
+    name: SMSG_SPELLNONMELEEDAMAGELOG
+    opcode: 0x0250
+    type: packet
+    direction: out
+    structure:
+      - Victim:
+            type: guid
+      - Attacker:
+            type: guid
+      - SpellId:
+            type: uint32
+      - Damage:
+            type: uint32
+      - Unknown1:
+            type: uint32
+            const: 0
+      - Unknown2:
+            type: uint32
+            const: 0
+      - Unknown3:
+            type: uint32
+            const: 0
+      - Unknown4:
+            type: uint32
+            const: 0
+
+-
+    name: CMSG_LEARN_TALENT
+    opcode: 0x0251
+    type: packet
+
+-
+    name: SMSG_RESURRECT_FAILED
+    opcode: 0x0252
+    type: packet
+
+-
+    name: CMSG_ENABLE_PVP
+    opcode: 0x0253
+    type: packet
+
+-
+    name: SMSG_ZONE_UNDER_ATTACK
+    opcode: 0x0254
+    type: packet
+
+-
+    name: MSG_AUCTION_HELLO
+    opcode: 0x0255
+    type: packet
+
+-
+    name: CMSG_AUCTION_SELL_ITEM
+    opcode: 0x0256
+    type: packet
+
+-
+    name: CMSG_AUCTION_REMOVE_ITEM
+    opcode: 0x0257
+    type: packet
+
+-
+    name: CMSG_AUCTION_LIST_ITEMS
+    opcode: 0x0258
+    type: packet
+
+-
+    name: CMSG_AUCTION_LIST_OWNER_ITEMS
+    opcode: 0x0259
+    type: packet
+
+-
+    name: CMSG_AUCTION_PLACE_BID
+    opcode: 0x025A
+    type: packet
+
+-
+    name: SMSG_AUCTION_COMMAND_RESULT
+    opcode: 0x025B
+    type: packet
+
+-
+    name: SMSG_AUCTION_LIST_RESULT
+    opcode: 0x025C
+    type: packet
+
+-
+    name: SMSG_AUCTION_OWNER_LIST_RESULT
+    opcode: 0x025D
+    type: packet
+
+-
+    name: SMSG_AUCTION_BIDDER_NOTIFICATION
+    opcode: 0x025E
+    type: packet
+
+-
+    name: SMSG_AUCTION_OWNER_NOTIFICATION
+    opcode: 0x025F
+    type: packet
+
+-
+    name: SMSG_PROCRESIST
+    opcode: 0x0260
+    type: packet
+
+-
+    name: SMSG_STANDSTATE_CHANGE_FAILURE
+    opcode: 0x0261
+    type: packet
+
+-
+    name: SMSG_DISPEL_FAILED
+    opcode: 0x0262
+    type: packet
+
+-
+    name: SMSG_SPELLORDAMAGE_IMMUNE
+    opcode: 0x0263
+    type: packet
+
+-
+    name: CMSG_AUCTION_LIST_BIDDER_ITEMS
+    opcode: 0x0264
+    type: packet
+
+-
+    name: SMSG_AUCTION_BIDDER_LIST_RESULT
+    opcode: 0x0265
+    type: packet
+
+-
+    name: SMSG_SET_FLAT_SPELL_MODIFIER
+    opcode: 0x0266
+    type: packet
+
+-
+    name: SMSG_SET_PCT_SPELL_MODIFIER
+    opcode: 0x0267
+    type: packet
+
+-
+    name: CMSG_SET_AMMO
+    opcode: 0x0268
+    type: packet
+
+-
+    name: SMSG_CORPSE_RECLAIM_DELAY
+    opcode: 0x0269
+    type: packet
+
+-
+    name: CMSG_SET_ACTIVE_MOVER
+    opcode: 0x026A
+    type: packet
+
+-
+    name: CMSG_PET_CANCEL_AURA
+    opcode: 0x026B
+    type: packet
+
+-
+    name: CMSG_PLAYER_AI_CHEAT
+    opcode: 0x026C
+    type: packet
+
+-
+    name: CMSG_CANCEL_AUTO_REPEAT_SPELL
+    opcode: 0x026D
+    type: packet
+
+-
+    name: MSG_GM_ACCOUNT_ONLINE
+    opcode: 0x026E
+    type: packet
+
+-
+    name: MSG_LIST_STABLED_PETS
+    opcode: 0x026F
+    type: packet
+
+-
+    name: CMSG_STABLE_PET
+    opcode: 0x0270
+    type: packet
+
+-
+    name: CMSG_UNSTABLE_PET
+    opcode: 0x0271
+    type: packet
+
+-
+    name: CMSG_BUY_STABLE_SLOT
+    opcode: 0x0272
+    type: packet
+
+-
+    name: SMSG_STABLE_RESULT
+    opcode: 0x0273
+    type: packet
+
+-
+    name: CMSG_STABLE_REVIVE_PET
+    opcode: 0x0274
+    type: packet
+
+-
+    name: CMSG_STABLE_SWAP_PET
+    opcode: 0x0275
+    type: packet
+
+-
+    name: MSG_QUEST_PUSH_RESULT
+    opcode: 0x0276
+    type: packet
+
+-
+    name: SMSG_PLAY_MUSIC
+    opcode: 0x0277
+    type: packet
+
+-
+    name: SMSG_PLAY_OBJECT_SOUND
+    opcode: 0x0278
+    type: packet
+
+-
+    name: CMSG_REQUEST_PET_INFO
+    opcode: 0x0279
+    type: packet
+
+-
+    name: CMSG_FAR_SIGHT
+    opcode: 0x027A
+    type: packet
+
+-
+    name: SMSG_SPELLDISPELLOG
+    opcode: 0x027B
+    type: packet
+
+-
+    name: SMSG_DAMAGE_CALC_LOG
+    opcode: 0x027C
+    type: packet
+
+-
+    name: CMSG_ENABLE_DAMAGE_LOG
+    opcode: 0x027D
+    type: packet
+
+-
+    name: CMSG_GROUP_CHANGE_SUB_GROUP
+    opcode: 0x027E
+    type: packet
+
+-
+    name: SMSG_RAID_MEMBER_STATS
+    opcode: 0x027F
+    type: packet
+
+-
+    name: CMSG_GROUP_SWAP_SUB_GROUP
+    opcode: 0x0280
+    type: packet
+
+-
+    name: CMSG_RESET_FACTION_CHEAT
+    opcode: 0x0281
+    type: packet
+
+-
+    name: CMSG_AUTOSTORE_BANK_ITEM
+    opcode: 0x0282
+    type: packet
+
+-
+    name: CMSG_AUTOBANK_ITEM
+    opcode: 0x0283
+    type: packet
+
+-
+    name: MSG_QUERY_NEXT_MAIL_TIME
+    opcode: 0x0284
+    type: packet
+
+-
+    name: SMSG_RECEIVED_MAIL
+    opcode: 0x0285
+    type: packet
+
+-
+    name: SMSG_RAID_GROUP_ONLY
+    opcode: 0x0286
+    type: packet
+
+-
+    name: CMSG_SET_DURABILITY_CHEAT
+    opcode: 0x0287
+    type: packet
+
+-
+    name: CMSG_SET_PVP_RANK_CHEAT
+    opcode: 0x0288
+    type: packet
+
+-
+    name: CMSG_ADD_PVP_MEDAL_CHEAT
+    opcode: 0x0289
+    type: packet
+
+-
+    name: CMSG_DEL_PVP_MEDAL_CHEAT
+    opcode: 0x028A
+    type: packet
+
+-
+    name: CMSG_SET_PVP_TITLE
+    opcode: 0x028B
+    type: packet
+
+-
+    name: SMSG_PVP_CREDIT
+    opcode: 0x028C
+    type: packet
+
+-
+    name: SMSG_AUCTION_REMOVED_NOTIFICATION
+    opcode: 0x028D
+    type: packet
+
+-
+    name: CMSG_GROUP_RAID_CONVERT
+    opcode: 0x028E
+    type: packet
+
+-
+    name: CMSG_GROUP_ASSISTANT_LEADER
+    opcode: 0x028F
+    type: packet
+
+-
+    name: CMSG_BUYBACK_ITEM
+    opcode: 0x0290
+    type: packet
+
+-
+    name: SMSG_SERVER_MESSAGE
+    opcode: 0x0291
+    type: packet
+
+-
+    name: CMSG_GMTICKETSYSTEM_TOGGLE
+    opcode: 0x0292
+    type: packet
+
+-
+    name: CMSG_CANCEL_GROWTH_AURA
+    opcode: 0x0293
+    type: packet
+
+-
+    name: SMSG_CANCEL_AUTO_REPEAT
+    opcode: 0x0294
+    type: packet
+
+-
+    name: SMSG_STANDSTATE_CHANGE_ACK
+    opcode: 0x0295
+    type: packet
+
+-
+    name: SMSG_LOOT_ALL_PASSED
+    opcode: 0x0296
+    type: packet
+
+-
+    name: SMSG_LOOT_ROLL_WON
+    opcode: 0x0297
+    type: packet
+
+-
+    name: CMSG_LOOT_ROLL
+    opcode: 0x0298
+    type: packet
+
+-
+    name: SMSG_LOOT_START_ROLL
+    opcode: 0x0299
+    type: packet
+
+-
+    name: SMSG_LOOT_ROLL
+    opcode: 0x029A
+    type: packet
+
+-
+    name: CMSG_LOOT_MASTER_GIVE
+    opcode: 0x029B
+    type: packet
+
+-
+    name: SMSG_LOOT_MASTER_LIST
+    opcode: 0x029C
+    type: packet
+
+-
+    name: SMSG_SET_FORCED_REACTIONS
+    opcode: 0x029D
+    type: packet
+
+-
+    name: SMSG_SPELL_FAILED_OTHER
+    opcode: 0x029E
+    type: packet
+
+-
+    name: SMSG_GAMEOBJECT_RESET_STATE
+    opcode: 0x029F
+    type: packet
+
+-
+    name: CMSG_REPAIR_ITEM
+    opcode: 0x02A0
+    type: packet
+
+-
+    name: SMSG_CHAT_PLAYER_NOT_FOUND
+    opcode: 0x02A1
+    type: packet
+
+-
+    name: MSG_TALENT_WIPE_CONFIRM
+    opcode: 0x02A2
+    type: packet
+
+-
+    name: SMSG_SUMMON_REQUEST
+    opcode: 0x02A3
+    type: packet
+
+-
+    name: CMSG_SUMMON_RESPONSE
+    opcode: 0x02A4
+    type: packet
+
+-
+    name: MSG_MOVE_TOGGLE_GRAVITY_CHEAT
+    opcode: 0x02A5
+    type: packet
+
+-
+    name: SMSG_MONSTER_MOVE_TRANSPORT
+    opcode: 0x02A6
+    type: packet
+
+-
+    name: SMSG_PET_BROKEN
+    opcode: 0x02A7
+    type: packet
+
+-
+    name: MSG_MOVE_FEATHER_FALL
+    opcode: 0x02A8
+    type: packet
+
+-
+    name: MSG_MOVE_WATER_WALK
+    opcode: 0x02A9
+    type: packet
+
+-
+    name: CMSG_SERVER_BROADCAST
+    opcode: 0x02AA
+    type: packet
+
+-
+    name: CMSG_SELF_RES
+    opcode: 0x02AB
+    type: packet
+
+-
+    name: SMSG_FEIGN_DEATH_RESISTED
+    opcode: 0x02AC
+    type: packet
+
+-
+    name: CMSG_RUN_SCRIPT
+    opcode: 0x02AD
+    type: packet
+
+-
+    name: SMSG_SCRIPT_MESSAGE
+    opcode: 0x02AE
+    type: packet
+
+-
+    name: NUM_MSG_TYPES
+    opcode: 0x02AF
+    type: packet
+
+-
+    name: RLMSG_AUTH_SSHASH
+    opcode: 0xFF01
+    type: packet
+
+  # Chat consts
+
+  -
+    name: CHAT_MSG_SAY
+    value: 0x00000000
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_PARTY
+    value: 0x00000001
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_GUILD
+    value: 0x00000002
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_OFFICER
+    value: 0x00000003
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_YELL
+    value: 0x00000004
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_WHISPER
+    value: 0x00000005
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_WHISPER_INFORM
+    value: 0x00000006
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_EMOTE
+    value: 0x00000007
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_TEXT_EMOTE
+    value: 0x00000008
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_SYSTEM
+    value: 0x00000009
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_MONSTER_SAY
+    value: 0x0000000a
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_MONSTER_YELL
+    value: 0x0000000b
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_MONSTER_EMOTE
+    value: 0x0000000c
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_CHANNEL
+    value: 0x0000000d
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_CHANNEL_JOIN
+    value: 0x0000000e
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_CHANNEL_LEAVE
+    value: 0x0000000f
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_CHANNEL_LIST
+    value: 0x00000010
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_CHANNEL_NOTICE
+    value: 0x00000011
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_CHANNEL_NOTICE_USER
+    value: 0x00000012
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_AFK
+    value: 0x00000013
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_DND
+    value: 0x00000014
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_COMBAT_LOG
+    value: 0x00000015
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_IGNORED
+    value: 0x00000016
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_SKILL
+    value: 0x00000017
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+-
+    name: CHAT_MSG_LOOT
+    value: 0x00000018
+    type: const
+    format: 0x%0.8X
+    enum: CHAT
+
+  # Friend enum
+-
+    name: FRIEND_DB_ERROR
+    value: 0x0
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_LIST_FULL
+    value: 0x1
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_ONLINE
+    value: 0x2
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_OFFLINE
+    value: 0x3
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_NOT_FOUND
+    value: 0x4
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_REMOVED
+    value: 0x5
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_ADDED_ONLINE
+    value: 0x6
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_ADDED_OFFLINE
+    value: 0x7
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_ALREADY
+    value: 0x8
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_SELF
+    value: 0x9
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_ENEMY
+    value: 0xA
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_IGNORE_FULL
+    value: 0xB
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_IGNORE_SELF
+    value: 0xC
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_IGNORE_NOT_FOUND
+    value: 0xD
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_IGNORE_ALREADY
+    value: 0xE
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_IGNORE_ADDED
+    value: 0xF
+    type: const
+    enum: FriendsResult
+
+-
+    name: FRIEND_IGNORE_REMOVED
+    value: 0x10
+    type: const
+    enum: FriendsResult
+
+-
+    name: TARGET_FLAG_SELF
+    value: 0x0
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: TARGET_FLAG_UNIT
+    value: 0x0002
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: TARGET_FLAG_OBJECT
+    value: 0x0800
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: TARGET_FLAG_ITEM
+    value: 0x01010
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: TARGET_FLAG_SOURCE_LOCATION
+    value: 0x20
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: TARGET_FLAG_DEST_LOCATION
+    value: 0x40
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: TARGET_FLAG_STRING
+    value: 0x2000
+    type: const
+    enum: SpellCastTargetFlags
+
+-
+    name: CAST_FLAG_UNKNOWN1
+    value: 0x2
+    type: const
+    enum: SpellCastFlags
+
+-
+    name: CAST_FLAG_UNKNOWN2
+    value: 0x10
+    type: const
+    enum: SpellCastFlags
+
+-
+    name: CAST_FLAG_AMMO
+    value: 0x20
+    type: const
+    info: load ammo display id (uint32) and ammo inventory type (uint32)
+    enum: SpellCastFlags

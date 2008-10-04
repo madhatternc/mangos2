@@ -30,13 +30,6 @@ EXTRA_DIST += \
 	win/svn_revision.js
 
 EXTRA_DIST += \
-	win/VC8/MaNGOS2.sln \
-	win/VC8/lua.vcproj \
-	win/VC8/libmangos2.vcproj \
-	win/VC8/realmlist.vcproj \
-	win/VC8/worldserver.vcproj
-
-EXTRA_DIST += \
 	win/VC9/MaNGOS2.sln \
 	win/VC9/lua.vcproj \
 	win/VC9/libmangos2.vcproj \

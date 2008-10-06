@@ -22,8 +22,6 @@
 #ifndef __VERSION_H__
 #define __VERSION_H__
 
-#include "svn_revision.h"
-
 // Server Settings [ Connection ]
 #define COPYRIGHT           "2008 MaNGOS foundation <http://www.getmangos.com/"
 
@@ -41,9 +39,9 @@
 #define MAX_CHARS_PER_LOGIN 10
 
 #if PLATFORM == PLATFORM_WIN32
-# define FULLVERSION        VERSION "-win" " (Revision " SVN_REVISION " )"
+# define FULLVERSION        VERSION "-win"
 #else
-# define FULLVERSION        VERSION "-nix" " (Revision " SVN_REVISION " )"
+# define FULLVERSION        VERSION "-nix"
 #endif
 
 // Compatible client build range

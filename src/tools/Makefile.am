@@ -19,7 +19,6 @@ SUBDIRS = gencode tolua
 
 EXTRA_DIST = \
 	dbc_convert.py \
-	gensvnrevision \
 	mysql_dump \
 	mysql_import \
 	mysql_info

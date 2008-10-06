@@ -83,7 +83,6 @@ libmangos2_la_SOURCES = \
 	UTF8Fun.cpp \
 	Vector.cpp \
 	Vector.h \
-	svn_revision.h \
 	version.h \
 	posix/ConsoleSysDep.cpp \
 	posix/ThreadFun.cpp \
@@ -115,7 +114,6 @@ libmangos2_la_HEADERS = \
 	ThreadFun.h \
 	Timer.h \
 	Vector.h \
-	svn_revision.h \
 	version.h
 
 #  And the headers go to ...
@@ -137,8 +135,3 @@ EXTRA_DIST = \
 	win/ThreadFun.cpp \
 	win/TimeFun.cpp \
 	win/WaitSockets.cpp
-
-## Custom rules for generated sources
-svn_revision.h: $(srcdir)/../tools/gensvnrevision
-	@echo "Generating " $@
-	$(srcdir)/../tools/gensvnrevision $@

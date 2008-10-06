@@ -496,10 +496,6 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\src\shared\svn_revision.h"
-			>
-		</File>
-		<File
 			RelativePath="..\..\src\shared\version.h"
 			>
 		</File>

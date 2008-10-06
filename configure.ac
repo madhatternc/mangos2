@@ -190,7 +190,6 @@ AC_CONFIG_FILES([Makefile
 		 src/worldserver/todo/Makefile])
 
 ## Additional processing
-AC_CONFIG_COMMANDS([svn_revision], [src/tools/gensvnrevision src/shared/svn_revision.h])
 
 ## Output files.
 AC_OUTPUT

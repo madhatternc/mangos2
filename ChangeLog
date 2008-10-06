@@ -1,5 +1,9 @@
 2008-09-22  Daniel  <theluda@googlemail.com>
 
+	Extraction of SVN revision is gone. Need the same for GIT now.
+
+2008-09-22  Daniel  <theluda@googlemail.com>
+
 	Configuration files will no longer be overwritten on make install
 	execution.
 

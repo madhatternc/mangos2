@@ -26,8 +26,7 @@ EXTRA_DIST = \
 EXTRA_DIST += \
 	win/beforerealm.bat \
 	win/beforeworld.bat \
-	win/config.win.h \
-	win/svn_revision.js
+	win/config.win.h
 
 EXTRA_DIST += \
 	win/VC9/MaNGOS2.sln \

@@ -41,6 +41,7 @@ AM_MAINTAINER_MODE
 #  - a working linker for creating static and shared libraries.
 #  - a working make environment
 #  - and a working python interpreter for code generation
+AC_LANG_CPLUSPLUS
 AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_MAKE_SET
@@ -92,8 +93,8 @@ fi
 
 ## Development settings
 #  Default compiler flags
-CFLAGS=${CFLAGS:--O2 -Wall}
-CXXFLAGS=${CXXFLAGS:--O2 -Wall}
+CFLAGS=${CFLAGS:--O2 -Wall -Weffc++}
+CXXFLAGS=${CXXFLAGS:--O2 -Wall -Weffc++}
 
 AC_ARG_ENABLE(debug,
     [  --enable-debug          Turn on debugging],
@@ -105,8 +106,8 @@ AC_ARG_ENABLE(debug,
 #AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 if test x$debug = xtrue; then
 	AC_DEFINE(DEBUG, 1, Enable this to include additional debugging code in executable)
-	CFLAGS=${CFLAGS:--O2 -g -Wall}
-	CXXFLAGS=${CXXFLAGS:--O2 -g -Wall}
+	CFLAGS=${CFLAGS:--O2 -g -Wall -Weffc++}
+	CXXFLAGS=${CXXFLAGS:--O2 -g -Wall -Weffc++}
 fi
 AM_CONDITIONAL([DEBUG], [test "_$debug" != _])
 

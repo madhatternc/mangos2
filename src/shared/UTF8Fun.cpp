@@ -24,59 +24,59 @@
 
 int u8strlen (const char *iString)
 {
-	// Ignore characters in range 0x80 - 0xBF
-	int len = 0;
-	while (*iString)
-	{
-		if ((*iString & 0xc0) != 0x80)
-			len++;
-		iString++;
-	}
-	return len;
+    // Ignore characters in range 0x80 - 0xBF
+    int len = 0;
+    while (*iString)
+    {
+        if ((*iString & 0xc0) != 0x80)
+            len++;
+        iString++;
+    }
+    return len;
 }
 
 const char *u8strforw (const char *iString, int iChars)
 {
-	if (!*iString && iChars)
-		return NULL;
-	while (iChars--)
-	{
-		if (!*++iString)
-			return NULL;
-		while ((*iString & 0xc0) == 0x80)
-			if (!*++iString)
-				return NULL;
-	}
-	return iString;
+    if (!*iString && iChars)
+        return NULL;
+    while (iChars--)
+    {
+        if (!*++iString)
+            return NULL;
+        while ((*iString & 0xc0) == 0x80)
+            if (!*++iString)
+                return NULL;
+    }
+    return iString;
 }
 
 const char *u8strback (const char *iString, int iChars, const char *iStart)
 {
-	if (iString <= iStart && iChars)
-		return NULL;
-	while (iChars--)
-	{
-		if (--iString < iStart)
-			return NULL;
-		while ((*iString & 0xc0) != 0x80)
-			if (--iString < iStart)
-				return NULL;
-	}
-	return iString;
+    if (iString <= iStart && iChars)
+        return NULL;
+    while (iChars--)
+    {
+        if (--iString < iStart)
+            return NULL;
+        while ((*iString & 0xc0) != 0x80)
+            if (--iString < iStart)
+                return NULL;
+    }
+    return iString;
 }
 
 void u8strupr (char *oDestString, const char *iSrcString)
 {
-	// For now we ignore non-ASCII characters :(
-	while (*iSrcString)
-		*oDestString++ = toupper (*iSrcString++);
-	*oDestString = 0;
+    // For now we ignore non-ASCII characters :(
+    while (*iSrcString)
+        *oDestString++ = toupper (*iSrcString++);
+    *oDestString = 0;
 }
 
 void u8strlwr (char *oDestString, const char *iSrcString)
 {
-	// For now we ignore non-ASCII characters :(
-	while (*iSrcString)
-		*oDestString++ = tolower (*iSrcString++);
-	*oDestString = 0;
+    // For now we ignore non-ASCII characters :(
+    while (*iSrcString)
+        *oDestString++ = tolower (*iSrcString++);
+    *oDestString = 0;
 }

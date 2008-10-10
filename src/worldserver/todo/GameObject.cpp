@@ -24,27 +24,27 @@
 
 GameObject::GameObject() : Object()
 {
-	m_objectType |= TYPE_GAMEOBJECT;
-	m_objectTypeId = 5;
+    m_objectType |= TYPE_GAMEOBJECT;
+    m_objectTypeId = 5;
 }
 
 void GameObject::Create (uint32 guidlow, uint32 display_id, uint8 state, float scale, uint16 type, uint16 faction,
 float x, float y, float z, float ang)
 {
-	(void)state;
-	(void)scale;
-	(void)type;
-	(void)faction;
-	setUpdateValue( GAMEOBJECT_DISPLAYID, display_id );
-	setUpdateFloatValue( GAMEOBJECT_POS_X, 100 );			// This shouldnt work...
-	setUpdateFloatValue( GAMEOBJECT_POS_Y, 100 );			// This shouldnt work...
-	setUpdateFloatValue( GAMEOBJECT_POS_Z, 100 );			// This shouldnt work...
-	setUpdateFloatValue( GAMEOBJECT_FACING, 1 );			// This shouldnt work...
-	setUpdateValue( GAMEOBJECT_STATE, 1  );
-	setUpdateValue( OBJECT_FIELD_TYPE, 0x21000000 );
-	setUpdateFloatValue( OBJECT_FIELD_SCALE_X, 0x0000803f );
-	setUpdateValue( OBJECT_FIELD_PADDING, 0xeeeeeeee );
-	setUpdateValue( OBJECT_FIELD_ENTRY, 0x00000787 );
-	setUpdateValue( OBJECT_FIELD_GUID+1, 0xf0001000 );
-	Object::Create(guidlow, x,y,z,ang);
+    (void)state;
+    (void)scale;
+    (void)type;
+    (void)faction;
+    setUpdateValue( GAMEOBJECT_DISPLAYID, display_id );
+    setUpdateFloatValue( GAMEOBJECT_POS_X, 100 );           // This shouldnt work...
+    setUpdateFloatValue( GAMEOBJECT_POS_Y, 100 );           // This shouldnt work...
+    setUpdateFloatValue( GAMEOBJECT_POS_Z, 100 );           // This shouldnt work...
+    setUpdateFloatValue( GAMEOBJECT_FACING, 1 );            // This shouldnt work...
+    setUpdateValue( GAMEOBJECT_STATE, 1  );
+    setUpdateValue( OBJECT_FIELD_TYPE, 0x21000000 );
+    setUpdateFloatValue( OBJECT_FIELD_SCALE_X, 0x0000803f );
+    setUpdateValue( OBJECT_FIELD_PADDING, 0xeeeeeeee );
+    setUpdateValue( OBJECT_FIELD_ENTRY, 0x00000787 );
+    setUpdateValue( OBJECT_FIELD_GUID+1, 0xf0001000 );
+    Object::Create(guidlow, x,y,z,ang);
 }

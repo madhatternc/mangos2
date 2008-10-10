@@ -37,87 +37,87 @@ IMPLEMENT_VECTOR (, DamageVector, DamageInfo *);
 
 bool CharacterData::Load (DatabaseExecutor *dbex, uint32 iLowGuid)
 {
-	// We can safely ignore top 32 bits of the GUID since HIGHGUID_PLAYER == 0
-	if ((dbex->ExecuteF ("SELECT name,PositionX,PositionY,PositionZ,mapId,zoneId,data "
-		"FROM characters WHERE guid=%d", iLowGuid) != dbeOk)
-		|| !dbex->NextRow ())
-		return false;
+    // We can safely ignore top 32 bits of the GUID since HIGHGUID_PLAYER == 0
+    if ((dbex->ExecuteF ("SELECT name,PositionX,PositionY,PositionZ,mapId,zoneId,data "
+        "FROM characters WHERE guid=%d", iLowGuid) != dbeOk)
+        || !dbex->NextRow ())
+        return false;
 
-	GUID = MAKEGUID (HIGHGUID_PLAYER, iLowGuid);
-	Name = strnew (dbex->Get (0));
-	PositionX = dbex->GetFloat (1);
-	PositionY = dbex->GetFloat (2);
-	PositionZ = dbex->GetFloat (3);
-	MapId = dbex->GetU32 (4);
-	ZoneId = dbex->GetU32 (5);
+    GUID = MAKEGUID (HIGHGUID_PLAYER, iLowGuid);
+    Name = strnew (dbex->Get (0));
+    PositionX = dbex->GetFloat (1);
+    PositionY = dbex->GetFloat (2);
+    PositionZ = dbex->GetFloat (3);
+    MapId = dbex->GetU32 (4);
+    ZoneId = dbex->GetU32 (5);
 
-	uint32 data [PLAYER_END];
-	if (DecodeSQL (dbex->Get (6), &data, sizeof (data)) < sizeof (data))
-		return false;
+    uint32 data [PLAYER_END];
+    if (DecodeSQL (dbex->Get (6), &data, sizeof (data)) < sizeof (data))
+        return false;
 
-	uint32 bytes = data [UNIT_FIELD_BYTES_0];
-	Race = bytes;
-	Class = bytes >> 8;
-	Gender = bytes >> 16;
+    uint32 bytes = data [UNIT_FIELD_BYTES_0];
+    Race = bytes;
+    Class = bytes >> 8;
+    Gender = bytes >> 16;
 
-	bytes = data [PLAYER_BYTES];
-	Skin = bytes;
-	Face = bytes >> 8;
-	HairStyle = bytes >> 16;
-	HairColor = bytes >> 24;
+    bytes = data [PLAYER_BYTES];
+    Skin = bytes;
+    Face = bytes >> 8;
+    HairStyle = bytes >> 16;
+    HairColor = bytes >> 24;
 
-	bytes = data [PLAYER_BYTES_2];
-	FacialHair = bytes;
+    bytes = data [PLAYER_BYTES_2];
+    FacialHair = bytes;
 
-	Level = data [UNIT_FIELD_LEVEL];
+    Level = data [UNIT_FIELD_LEVEL];
 
-	//Guild;
-	//Unknown;
-	//RestState;
-	PetInfoId = 0;
-	PetLevel = 0;
-	PetFamilyId = 0;
+    //Guild;
+    //Unknown;
+    //RestState;
+    PetInfoId = 0;
+    PetLevel = 0;
+    PetFamilyId = 0;
 
-	// Now handle the inventory: I don't know what last slot is for (???)
-	for (int i = 0; i <= EQUIPMENT_SLOT_END; i++)
-	{
-		SlotItemData *sid = new SlotItemData;
-		memset (sid, 0, sizeof (SlotItemData));
-		SlotItems.Push (sid);
-	}
+    // Now handle the inventory: I don't know what last slot is for (???)
+    for (int i = 0; i <= EQUIPMENT_SLOT_END; i++)
+    {
+        SlotItemData *sid = new SlotItemData;
+        memset (sid, 0, sizeof (SlotItemData));
+        SlotItems.Push (sid);
+    }
 
-	if (dbex->ExecuteF ("SELECT itemGuid,slot FROM inventory WHERE charGuid=%d "
-		"AND slot<" STRINGIZE(EQUIPMENT_SLOT_END), iLowGuid) != dbeOk)
-		return true;
+    if (dbex->ExecuteF ("SELECT itemGuid,slot FROM inventory WHERE charGuid=%d "
+        "AND slot<" STRINGIZE(EQUIPMENT_SLOT_END), iLowGuid) != dbeOk)
+        return true;
 
-	while (dbex->NextRow ())
-	{
-		uint32 item_guid = dbex->GetU32 (0);
-		int slot = dbex->GetU32 (1);
-		DEBUG_BREAK_IF (slot >= EQUIPMENT_SLOT_END);
+    while (dbex->NextRow ())
+    {
+        uint32 item_guid = dbex->GetU32 (0);
+        int slot = dbex->GetU32 (1);
+        DEBUG_BREAK_IF (slot >= EQUIPMENT_SLOT_END);
 
-		// Load just the first few fields of the item so that
-		DatabaseExecutor *ndbex = dbex->GetParent ()->GetExecutor ();
-		if ((ndbex->ExecuteF ("SELECT data FROM items WHERE guid=%lu", item_guid) != dbeOk)
-			|| !ndbex->NextRow ())
-		{
-			dbex->GetParent ()->PutExecutor (ndbex);
-			continue;
-		}
+        // Load just the first few fields of the item so that
+        DatabaseExecutor *ndbex = dbex->GetParent ()->GetExecutor ();
+        if ((ndbex->ExecuteF ("SELECT data FROM items WHERE guid=%lu", item_guid) != dbeOk)
+            || !ndbex->NextRow ())
+        {
+            dbex->GetParent ()->PutExecutor (ndbex);
+            continue;
+        }
 
-		uint32 part_fields [OBJECT_FIELD_ENTRY + 1];
-		DecodeSQL (ndbex->Get (0), &part_fields, sizeof (part_fields));
-		dbex->GetParent ()->PutExecutor (ndbex);
+        uint32 part_fields [OBJECT_FIELD_ENTRY + 1];
+        DecodeSQL (ndbex->Get (0), &part_fields, sizeof (part_fields));
+        dbex->GetParent ()->PutExecutor (ndbex);
 
-		// Find out the prototype of this item
-		ItemPrototype *ip = Item::FindProto (part_fields [OBJECT_FIELD_ENTRY]);
-		if (!ip)
-			continue;
+        // Find out the prototype of this item
+        ItemPrototype *ip = Item::FindProto (part_fields [OBJECT_FIELD_ENTRY]);
+        if (!ip)
+            continue;
 
-		SlotItemData *sid = SlotItems [slot];
-		sid->DisplayId = ip->DisplayId;
-		sid->InventoryType = ip->InventoryType;
-	}
+        SlotItemData *sid = SlotItems [slot];
+        sid->DisplayId = ip->DisplayId;
+        sid->InventoryType = ip->InventoryType;
+    }
 
-	return true;
+    return true;
 }

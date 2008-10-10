@@ -43,72 +43,72 @@ class Unit;
  */
 class ObjectManager
 {
-	private:
+    private:
 
-		// Stroage instrances. We store every type in an own Vector to keep them reasonable small
-		ObjectVector m_areatrigger;
+        // Stroage instrances. We store every type in an own Vector to keep them reasonable small
+        ObjectVector m_areatrigger;
 
-	public:
-		ObjectManager () {}
-		~ObjectManager () {}
+    public:
+        ObjectManager () {}
+        ~ObjectManager () {}
 
-		/**
-		 * Request a Vector of all Objects in distance.
-		 * If the Object is up to date it will return the Objects nearest vector if the distance is the same
-		 * @arg Object
-		 *   Object for which the list is requested
-		 * @arg distance
-		 *   Distance to other Objects to request
-		 */
+        /**
+         * Request a Vector of all Objects in distance.
+         * If the Object is up to date it will return the Objects nearest vector if the distance is the same
+         * @arg Object
+         *   Object for which the list is requested
+         * @arg distance
+         *   Distance to other Objects to request
+         */
 
-		ObjectVector* GetDistantObjects(Object *, uint32 distance=UPDATE_DISTANCE);
+        ObjectVector* GetDistantObjects(Object *, uint32 distance=UPDATE_DISTANCE);
 
-		/**
-		 * Request a Object
-		 * @guid guid
-		 *   Guid of the Object to return
-		 */
-		Object* GetObject(guid guid);
-		/**
-		 * Request a Object
-		 * @arg guidsno
-		 *   Sno of the Object
-		 * @arg type
-		 *   Type of the Object
-		 */
-		Object* GetObject(uint32 guidsno, uint32 type);
+        /**
+         * Request a Object
+         * @guid guid
+         *   Guid of the Object to return
+         */
+        Object* GetObject(guid guid);
+        /**
+         * Request a Object
+         * @arg guidsno
+         *   Sno of the Object
+         * @arg type
+         *   Type of the Object
+         */
+        Object* GetObject(uint32 guidsno, uint32 type);
 
-		/**
-		 * Add a visible Object in the World.
-		 * @arg Object
-		 *   Object to add to the World
-		 * @arg skipNearestUpdate
-		 *   Does not update the nearest Vector of the Objects
-		 */
-		bool AddObject(Object *, bool skipNearestUpdate = false);
+        /**
+         * Add a visible Object in the World.
+         * @arg Object
+         *   Object to add to the World
+         * @arg skipNearestUpdate
+         *   Does not update the nearest Vector of the Objects
+         */
+        bool AddObject(Object *, bool skipNearestUpdate = false);
 
-		/**
-		 * Updates the Quadtree of the ObjectMgr to reflect position changes
-		 * @arg Object
-		 *   Object to update
-		 * @arg skipNearestUpdate
-		 *   Does not update the nearest Vector of the Objects
-		 * @arg skipNetworkPackets
-		 *   Don't send update packet to all Players is visible range
-		 */
-		bool Update(Object *, bool skipNearestUpdate = false, bool skipNetworkPackets = false);
+        /**
+         * Updates the Quadtree of the ObjectMgr to reflect position changes
+         * @arg Object
+         *   Object to update
+         * @arg skipNearestUpdate
+         *   Does not update the nearest Vector of the Objects
+         * @arg skipNetworkPackets
+         *   Don't send update packet to all Players is visible range
+         */
+        bool Update(Object *, bool skipNearestUpdate = false, bool skipNetworkPackets = false);
 
-		//@@FIXME: update this functions
-		void BuildAndSendCreatePlayer (Character *pNewChar, uint32 createflag, Character *pReceiver);
-		void BuildCreatePlayerMsg (Character *pNewChar, std::list<NetworkPacket*>* msglist, uint32 createflag = 0);
-		void SetCreatePlayerBits (UpdateMask *updateMask);
+        //@@FIXME: update this functions
+        void BuildAndSendCreatePlayer (Character *pNewChar, uint32 createflag, Character *pReceiver);
+        void BuildCreatePlayerMsg (Character *pNewChar, std::list<NetworkPacket*>* msglist, uint32 createflag = 0);
+        void SetCreatePlayerBits (UpdateMask *updateMask);
 
-		void BuildCreateUnitMsg (Unit *pNewUnit, NetworkPacket* data, Character *pPlayer);
-		void SetCreateUnitBits (UpdateMask &updateMask);
+        void BuildCreateUnitMsg (Unit *pNewUnit, NetworkPacket* data, Character *pPlayer);
+        void SetCreateUnitBits (UpdateMask &updateMask);
 
-	private:
+    private:
 
-	protected:
+    protected:
 
 };
-#endif														// __OBJECT_MGR_H__
+#endif                                                      // __OBJECT_MGR_H__

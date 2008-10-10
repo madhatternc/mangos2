@@ -26,12 +26,12 @@
 
 class ItemHandler : public MsgHandler
 {
-	public:
-		ItemHandler();
-		~ItemHandler();
-		void createItemUpdate( NetworkPacket *data, GameClient *pClient, int invcount);
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-	protected:
-		char curopcodebuf[256]; uint32 debugcounter;
+    public:
+        ItemHandler();
+        ~ItemHandler();
+        void createItemUpdate( NetworkPacket *data, GameClient *pClient, int invcount);
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+    protected:
+        char curopcodebuf[256]; uint32 debugcounter;
 };
-#endif														// __ITEM_HANDLER_H__
+#endif                                                      // __ITEM_HANDLER_H__

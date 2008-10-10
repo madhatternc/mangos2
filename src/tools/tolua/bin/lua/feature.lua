@@ -55,13 +55,13 @@ function classFeature:buildnames ()
   self.lname = clean_template(self.lname)
  end
  if not self.is_parameter then
-	 self.name = getonlynamespace() .. self.name
+     self.name = getonlynamespace() .. self.name
  end
 end
 
 function clean_template(t)
 
-	return string.gsub(t, "[<>:, %*]", "_")
+    return string.gsub(t, "[<>:, %*]", "_")
 end
 
 -- check if feature is inside a container definition
@@ -103,4 +103,3 @@ function classFeature:cfuncname (n)
 
   return n
 end
-

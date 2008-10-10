@@ -27,7 +27,7 @@
 ** macro to allow the inclusion of user information in Lua state
 */
 #ifndef LUA_USERSTATE
-#define EXTRASPACE	0
+#define EXTRASPACE  0
 #else
 union UEXTRASPACE {L_Umaxalign a; LUA_USERSTATE b;};
 #define EXTRASPACE (sizeof(union UEXTRASPACE))
@@ -217,4 +217,3 @@ LUA_API void lua_close (lua_State *L) {
   lua_assert(G(L)->tmudata == NULL);
   close_state(L);
 }
-

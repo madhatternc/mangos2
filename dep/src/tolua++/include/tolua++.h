@@ -26,8 +26,8 @@
 extern "C" {
 #endif
 
-#define tolua_pushcppstring(x,y)	tolua_pushstring(x,y.c_str())
-#define tolua_iscppstring	tolua_isstring
+#define tolua_pushcppstring(x,y)    tolua_pushstring(x,y.c_str())
+#define tolua_iscppstring   tolua_isstring
 
 #define tolua_iscppstringarray tolua_isstringarray
 #define tolua_pushfieldcppstring(L,lo,idx,s) tolua_pushfieldstring(L, lo, idx, s.c_str())
@@ -44,13 +44,13 @@ typedef int lua_Object;
 
 struct tolua_Error
 {
-	int index;
-	int array;
-	const char* type;
+    int index;
+    int array;
+    const char* type;
 };
 typedef struct tolua_Error tolua_Error;
 
-#define TOLUA_NOPEER	LUA_REGISTRYINDEX /* for lua 5.1 */
+#define TOLUA_NOPEER    LUA_REGISTRYINDEX /* for lua 5.1 */
 
 TOLUA_API const char* tolua_typename (lua_State* L, int lo);
 TOLUA_API void tolua_error (lua_State* L, char* msg, tolua_Error* err);
@@ -133,14 +133,14 @@ TOLUA_API int class_gc_event (lua_State* L);
 #ifdef __cplusplus
 static inline const char* tolua_tocppstring (lua_State* L, int narg, const char* def) {
 
-	const char* s = tolua_tostring(L, narg, def);
-	return s?s:"";
+    const char* s = tolua_tostring(L, narg, def);
+    return s?s:"";
 };
 
 static inline const char* tolua_tofieldcppstring (lua_State* L, int lo, int index, const char* def) {
 
-	const char* s = tolua_tofieldstring(L, lo, index, def);
-	return s?s:"";
+    const char* s = tolua_tofieldstring(L, lo, index, def);
+    return s?s:"";
 };
 
 #else

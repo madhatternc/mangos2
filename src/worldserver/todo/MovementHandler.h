@@ -26,13 +26,13 @@
 
 class MovementHandler : public MsgHandler
 {
-	public:
-		MovementHandler();
-		~MovementHandler();
+    public:
+        MovementHandler();
+        ~MovementHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
 
-	protected:
+    protected:
 
 };
-#endif														// __MOVEMENT_HANDLER_H__
+#endif                                                      // __MOVEMENT_HANDLER_H__

@@ -42,41 +42,41 @@
  */
 class StrVector : public Vector
 {
-	public:
-		/**
-		 *  \brief Constructor just passes control to Vector's
-		 */
-		StrVector (int ilimit = 64, int ithreshold = 64) :
-		Vector (ilimit, ithreshold) {}
+    public:
+        /**
+         *  \brief Constructor just passes control to Vector's
+         */
+        StrVector (int ilimit = 64, int ithreshold = 64) :
+        Vector (ilimit, ithreshold) {}
 
-		/**
-		 *  \brief Delete all inserted strings before deleting the object itself
-		 */
-		virtual ~StrVector ();
+        /**
+         *  \brief Delete all inserted strings before deleting the object itself
+         */
+        virtual ~StrVector ();
 
-		/**
-		 *  \brief FreeItem deletes Item as if it was allocated by 'new char *[]'
-		 */
-		virtual void FreeItem (Some Item) const;
+        /**
+         *  \brief FreeItem deletes Item as if it was allocated by 'new char *[]'
+         */
+        virtual void FreeItem (Some Item) const;
 
-		/**
-		 *  \brief Compare two array elements in given Mode
-		 */
-		virtual int Compare (Some Item1, Some Item2, int Mode) const;
+        /**
+         *  \brief Compare two array elements in given Mode
+         */
+        virtual int Compare (Some Item1, Some Item2, int Mode) const;
 
-		/**
-		 *  \brief Compare two strings for equality (case-sensitive)
-		 */
-		virtual int CompareKey (Some Item, ConstSome Key, int Mode) const;
+        /**
+         *  \brief Compare two strings for equality (case-sensitive)
+         */
+        virtual int CompareKey (Some Item, ConstSome Key, int Mode) const;
 
-		/**
-		 *  \brief Override Get() to avoid explicit typecasting
-		 */
-		inline char *Get (int iIndex) const
-			{ return (char *)Vector::Get (iIndex); }
+        /**
+         *  \brief Override Get() to avoid explicit typecasting
+         */
+        inline char *Get (int iIndex) const
+            { return (char *)Vector::Get (iIndex); }
 };
 
 /**
  *  @}
  */
-#endif														// __STR_VEC_H__
+#endif                                                      // __STR_VEC_H__

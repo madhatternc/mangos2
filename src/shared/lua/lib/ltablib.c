@@ -15,7 +15,7 @@
 #include "lualib.h"
 
 
-#define aux_getn(L,n)	(luaL_checktype(L, n, LUA_TTABLE), luaL_getn(L, n))
+#define aux_getn(L,n)   (luaL_checktype(L, n, LUA_TTABLE), luaL_getn(L, n))
 
 
 static int luaB_foreachi (lua_State *L) {
@@ -247,4 +247,3 @@ LUALIB_API int luaopen_table (lua_State *L) {
   luaL_openlib(L, LUA_TABLIBNAME, tab_funcs, 0);
   return 1;
 }
-

@@ -23,13 +23,13 @@
 
 Client::Client (Socket *sock)
 {
-	socket = sock;
-	if (socket)
-		socket->IncRef ();
+    socket = sock;
+    if (socket)
+        socket->IncRef ();
 }
 
 Client::~Client ()
 {
-	if (socket)
-		socket->DecRef ();
+    if (socket)
+        socket->DecRef ();
 }

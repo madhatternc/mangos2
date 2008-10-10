@@ -51,10 +51,10 @@
 
         const char *GetPacketName (uint Opcode)
         {
-        	for (uint i = 0; i < ARRAY_LEN (PacketNames); i++)
-        		if (PacketNames [i].Opcode == Opcode)
-        			return PacketNames [i].Name;
-        	return NULL;
+            for (uint i = 0; i < ARRAY_LEN (PacketNames); i++)
+                if (PacketNames [i].Opcode == Opcode)
+                    return PacketNames [i].Name;
+            return NULL;
         }
 
 

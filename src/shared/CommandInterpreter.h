@@ -93,38 +93,38 @@
  */
 struct CommandDesc
 {
-	/**
-	 *  \brief The command
-	 */
-	const char *Name;
+    /**
+     *  \brief The command
+     */
+    const char *Name;
 
-	/**
-	 *  \brief Number of command arguments
-	 */
-	int NumArgs;
+    /**
+     *  \brief Number of command arguments
+     */
+    int NumArgs;
 
-	/**
-	 *  \brief An array of command argument types (OPTional arguments may be missing)
-	 */
-	uint8 Type [MAX_COMMAND_ARGS];
+    /**
+     *  \brief An array of command argument types (OPTional arguments may be missing)
+     */
+    uint8 Type [MAX_COMMAND_ARGS];
 
-	/**
-	 *  \typedef typedef int (*ExecuteFunc)
-	 *  \brief The command callback
-	 *
-	 *  \details
-	 *  The command callback; if it returns non-zero, interpreter quits.
-	 *  Every parameter specified in the Type array is passed either
-	 *  as a char *pointer (ARG_STR) or a uintptr (ARG_INT and ARG_BOOL).
-	 */
-	typedef int (*ExecuteFunc) (void *, ...);
-	ExecuteFunc Execute;
-	#define CMDFUNC(x) ((CommandDesc::ExecuteFunc)x)
+    /**
+     *  \typedef typedef int (*ExecuteFunc)
+     *  \brief The command callback
+     *
+     *  \details
+     *  The command callback; if it returns non-zero, interpreter quits.
+     *  Every parameter specified in the Type array is passed either
+     *  as a char *pointer (ARG_STR) or a uintptr (ARG_INT and ARG_BOOL).
+     */
+    typedef int (*ExecuteFunc) (void *, ...);
+    ExecuteFunc Execute;
+    #define CMDFUNC(x) ((CommandDesc::ExecuteFunc)x)
 
-	/**
-	 *  \brief Command description
-	 */
-	const char *Description;
+    /**
+     *  \brief Command description
+     */
+    const char *Description;
 };
 
 /**
@@ -147,4 +147,4 @@ struct CommandDesc
 extern void CommandInterpreter (const char *ConfigFile, void *UserData,
 CommandDesc *Commands, int NumCommands,
 const char *Prompt);
-#endif														// __COMMAND_INTERPRETER_H__
+#endif                                                      // __COMMAND_INTERPRETER_H__

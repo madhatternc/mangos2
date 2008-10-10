@@ -7,7 +7,7 @@
 -- This code is free software; you can redistribute it and/or modify it.
 -- The software provided hereunder is on an "as is" basis, and
 -- the author has no obligation to provide maintenance, support, updates,
--- enhancements, or modifications. 
+-- enhancements, or modifications.
 
 -- global
 code_n = 1
@@ -28,17 +28,17 @@ function classCode:register ()
  -- clean Lua code
  local s = clean(self.text)
  if not s then
-  error("parser error in embedded code")  
+  error("parser error in embedded code")
  end
- 
+
  -- convert to C
  output('\n { /* begin embedded lua code */\n')
  output('  static unsigned char B[] = {\n   ')
  local t={n=0}
- local b = gsub(s,'(.)',function (c) 
-                         local e = '' 
-                         t.n=t.n+1 if t.n==15 then t.n=0 e='\n   ' end 
-                         return format('%3u,%s',strbyte(c),e) 
+ local b = gsub(s,'(.)',function (c)
+                         local e = ''
+                         t.n=t.n+1 if t.n==15 then t.n=0 e='\n   ' end
+                         return format('%3u,%s',strbyte(c),e)
                         end
                )
  output(b..strbyte(" "))
@@ -47,7 +47,7 @@ function classCode:register ()
  output(' } /* end of embedded lua code */\n\n')
  code_n = code_n +1
 end
- 
+
 
 -- Print method
 function classCode:print (ident,close)
@@ -71,5 +71,3 @@ function Code (l)
   text = l
  }
 end
-
-

@@ -30,10 +30,10 @@ class Character;
 
 class World : public Singleton <World>
 {
-	public:
-		World () { }
-		~World () { }
-	protected:
-		//  std::set < Character * > mCharacters;
+    public:
+        World () { }
+        ~World () { }
+    protected:
+        //  std::set < Character * > mCharacters;
 };
-#endif														// __WORLD_H__
+#endif                                                      // __WORLD_H__

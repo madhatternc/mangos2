@@ -23,35 +23,35 @@
 
 void SrpWorld::decode( unsigned char *data )
 {
-	if(firstRecv && encrypt)
-	{
-		unsigned char* K = (unsigned char*)SS_Hash;
-		for(int i = 0; i < 6; i++ )
-		{
-			unsigned char a = prevbyte;
-			prevbyte = data[i];
-			data[i] = K[keypos] ^ (data[i] - a);
-			keypos++;
-			keypos %= 40;
-		}
-	}
-	else
-		firstRecv = true;
+    if(firstRecv && encrypt)
+    {
+        unsigned char* K = (unsigned char*)SS_Hash;
+        for(int i = 0; i < 6; i++ )
+        {
+            unsigned char a = prevbyte;
+            prevbyte = data[i];
+            data[i] = K[keypos] ^ (data[i] - a);
+            keypos++;
+            keypos %= 40;
+        }
+    }
+    else
+        firstRecv = true;
 }
 
 void SrpWorld::encode( unsigned char *data )
 {
-	if(firstSent && encrypt)
-	{
-		unsigned char* K = (unsigned char*)SS_Hash;
-		for(int i = 0;i < 4; i++ )
-		{
-			data[i] = (K[keypos2] ^ data[i]) + prevbyte2;
-			prevbyte2 = data[i];
-			keypos2++;
-			keypos2 %= 40;
-		}
-	}
-	else
-		firstSent = true;
+    if(firstSent && encrypt)
+    {
+        unsigned char* K = (unsigned char*)SS_Hash;
+        for(int i = 0;i < 4; i++ )
+        {
+            data[i] = (K[keypos2] ^ data[i]) + prevbyte2;
+            prevbyte2 = data[i];
+            keypos2++;
+            keypos2 %= 40;
+        }
+    }
+    else
+        firstSent = true;
 }

@@ -34,7 +34,7 @@ dependency package from the MaNGOS2 website.
 There are four build configurations available for MaNGOS2.
 
  Release (Win32)
-   
+
    This will build MaNGOS2 and all its' dependencies in Release mode, thus all
    information output useful to developers will be removed as well as debug
    data will not be included in the resulting binaries.
@@ -46,7 +46,7 @@ There are four build configurations available for MaNGOS2.
    understand what happens.
 
  Release (Win64)
-   
+
    This will build MaNGOS2 and all its' dependencies in Release mode, thus all
    information output useful to developers will be removed as well as debug
    data will not be included in the resulting binaries.
@@ -93,4 +93,3 @@ generated directory structure:
        - worldserver.conf
        - libeay32.dll
        - libmySQL.dll
-

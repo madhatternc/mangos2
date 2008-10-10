@@ -27,13 +27,13 @@
 class DatabaseInterface;
 class TradeHandler : public MsgHandler
 {
-	public:
-		TradeHandler();
-		~TradeHandler();
+    public:
+        TradeHandler();
+        ~TradeHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
 
-	protected:
+    protected:
 
 };
-#endif														// __TRADE_HANDLER_H__
+#endif                                                      // __TRADE_HANDLER_H__

@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: mangos2-world
 -- ------------------------------------------------------
--- Server version	5.0.45-Debian_1ubuntu3-log
+-- Server version   5.0.45-Debian_1ubuntu3-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

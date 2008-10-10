@@ -51,69 +51,69 @@
  */
 class Base
 {
-	private:
-		/**
-		 *  \brief Object reference count
-		 *
-		 *  \details
-		 *  Stores the number of references to an object.
-		 */
-		int RefCount;
+    private:
+        /**
+         *  \brief Object reference count
+         *
+         *  \details
+         *  Stores the number of references to an object.
+         */
+        int RefCount;
 
-	protected:
-		/**
-		 *  \brief Destroy this object.
-		 *
-		 *  \details
-		 *  Destructor is virtual, because class contains virtual methods; also it
-		 *  is private because it is never intended to be called directly;
-		 *  use DecRef() instead: when reference counter reaches zero, the object
-		 *  will be destroyed.
-		 */
-		virtual ~Base ();
+    protected:
+        /**
+         *  \brief Destroy this object.
+         *
+         *  \details
+         *  Destructor is virtual, because class contains virtual methods; also it
+         *  is private because it is never intended to be called directly;
+         *  use DecRef() instead: when reference counter reaches zero, the object
+         *  will be destroyed.
+         */
+        virtual ~Base ();
 
-	public:
-		/**
-		 *  \brief Object initialization.
-		 *
-		 *  \details
-		 *  The initial reference count is set to one; this means if you call
-		 *  DecRef() immediately after creating the object, it will be destroyed.
-		 */
-		Base ()
-			{ RefCount = 1; }
+    public:
+        /**
+         *  \brief Object initialization.
+         *
+         *  \details
+         *  The initial reference count is set to one; this means if you call
+         *  DecRef() immediately after creating the object, it will be destroyed.
+         */
+        Base ()
+            { RefCount = 1; }
 
-		/**
-		 *  \brief Increment reference count.
-		 *
-		 *  \details
-		 *  Every time when you copy a pointer to a object and store it for
-		 *  later use you MUST call IncRef() on it; this will allow to keep
-		 *  objects as long as they are referenced by some entity.
-		 */
-		void IncRef ()
-			{ RefCount++; }
+        /**
+         *  \brief Increment reference count.
+         *
+         *  \details
+         *  Every time when you copy a pointer to a object and store it for
+         *  later use you MUST call IncRef() on it; this will allow to keep
+         *  objects as long as they are referenced by some entity.
+         */
+        void IncRef ()
+            { RefCount++; }
 
-		/**
-		 *  \brief Decrement object's reference count.
-		 *
-		 *  \details
-		 *  As soon as the last reference to the object is removed, it is destroyed.
-		 */
-		void DecRef ();
+        /**
+         *  \brief Decrement object's reference count.
+         *
+         *  \details
+         *  As soon as the last reference to the object is removed, it is destroyed.
+         */
+        void DecRef ();
 
-		/**
-		 *  \brief Query number of references to this object.
-		 *
-		 *  \details
-		 *  I would rather prefer to have the reference counter strictly private,
-		 *  but sometimes, mostly for debugging, such a function can help.
-		 */
-		int GetRefCount ()
-			{ return RefCount; }
+        /**
+         *  \brief Query number of references to this object.
+         *
+         *  \details
+         *  I would rather prefer to have the reference counter strictly private,
+         *  but sometimes, mostly for debugging, such a function can help.
+         */
+        int GetRefCount ()
+            { return RefCount; }
 };
 
 /**
  *  @}
  */
-#endif														// __BASE_H__
+#endif                                                      // __BASE_H__

@@ -29,205 +29,205 @@
 
 bool ChatHandler::HandleSecurityCommand(uint8* args)
 {
-	char* pName = strtok((char*)args, " ");
-	if (!pName)
-		return false;
+    char* pName = strtok((char*)args, " ");
+    if (!pName)
+        return false;
 
-	char* pgm = strtok(NULL, " ");
-	if (!pgm)
-		return false;
+    char* pgm = strtok(NULL, " ");
+    if (!pgm)
+        return false;
 
-	uint32 gm = atoi(pgm);
-	if (!TestValue (gm, 5, 0))
-		return true;
+    uint32 gm = atoi(pgm);
+    if (!TestValue (gm, 5, 0))
+        return true;
 
-	Character *pChar = getCurrentCharByName((uint8*)pName);
-	if (pChar)
-	{
-		if(m_pClient->getAccountLvl() < int (gm))
-		{
-			Message(pChar, "try to lvl account");
-			return true;
-		}
+    Character *pChar = getCurrentCharByName((uint8*)pName);
+    if (pChar)
+    {
+        if(m_pClient->getAccountLvl() < int (gm))
+        {
+            Message(pChar, "try to lvl account");
+            return true;
+        }
 
-		Message(pChar, "lvl account", gm);
+        Message(pChar, "lvl account", gm);
 
-		pChar->pClient->setAccountLvl(gm);
+        pChar->pClient->setAccountLvl(gm);
 
-		DatabaseInterface *dbi = DATABASE.createDatabaseInterface( );
-		char sql[512];
-		sprintf(sql, "update accounts set gm = '%i' where acct = '%u'", gm, pChar->pClient->getAccountID());
-		dbi->doQuery(sql);
-		DATABASE.removeDatabaseInterface(dbi);
-	}
+        DatabaseInterface *dbi = DATABASE.createDatabaseInterface( );
+        char sql[512];
+        sprintf(sql, "update accounts set gm = '%i' where acct = '%u'", gm, pChar->pClient->getAccountID());
+        dbi->doQuery(sql);
+        DATABASE.removeDatabaseInterface(dbi);
+    }
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleWorldPortCommand(uint8* args)
 {
-	char* pContinent = strtok((char*)args, " ");
-	if (!pContinent)
-		return false;
+    char* pContinent = strtok((char*)args, " ");
+    if (!pContinent)
+        return false;
 
-	char* px = strtok(NULL, " ");
-	char* py = strtok(NULL, " ");
-	char* pz = strtok(NULL, " ");
+    char* px = strtok(NULL, " ");
+    char* py = strtok(NULL, " ");
+    char* pz = strtok(NULL, " ");
 
-	if (!px || !py || !pz)
-		return false;
+    if (!px || !py || !pz)
+        return false;
 
-															//LINA
-	smsg_NewWorld(m_pClient, atoi(pContinent), (float)atof(px), (float)atof(py), (float)atof(pz));
+                                                            //LINA
+    smsg_NewWorld(m_pClient, atoi(pContinent), (float)atof(px), (float)atof(py), (float)atof(pz));
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleAddSpiritCommand(uint8* args)
 {
-	(void)args;
-	printf("Spawning Spirit Healers\n");
-	WorldServer::getSingletonPtr()->dbi->spawnSpiritHealers();
+    (void)args;
+    printf("Spawning Spirit Healers\n");
+    WorldServer::getSingletonPtr()->dbi->spawnSpiritHealers();
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleMoveCommand(uint8* args)
 {
-	char* px = strtok((char*)args, " ");
-	char* py = strtok(NULL, " ");
-	char* pz = strtok(NULL, " ");
+    char* px = strtok((char*)args, " ");
+    char* py = strtok(NULL, " ");
+    char* pz = strtok(NULL, " ");
 
-	if (!px || !py || !pz)
-		return false;
+    if (!px || !py || !pz)
+        return false;
 
-	float x = (float)atof(px);
-	float y = (float)atof(py);
-	float z = (float)atof(pz);
+    float x = (float)atof(px);
+    float y = (float)atof(py);
+    float z = (float)atof(pz);
 
-	MovePlayer(m_pClient, x, y, z);
+    MovePlayer(m_pClient, x, y, z);
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleLearnCommand(uint8* args)
 {
-	NetworkPacket data;
+    NetworkPacket data;
 
-	if (!*args)
-		return false;
+    if (!*args)
+        return false;
 
-	uint32 Spell = atol((char*)args);
+    uint32 Spell = atol((char*)args);
 
-	Character * pChar = getSelectedChar();
-	if(pChar)
-	{
-		data.Clear();
-		data.Initialize( 4, SMSG_LEARNED_SPELL );
-		data << Spell;
-		pChar->pClient->SendMsg( &data );
-		pChar->pClient->getCurrentChar()->addSpell((uint16)Spell);
-	}
+    Character * pChar = getSelectedChar();
+    if(pChar)
+    {
+        data.Clear();
+        data.Initialize( 4, SMSG_LEARNED_SPELL );
+        data << Spell;
+        pChar->pClient->SendMsg( &data );
+        pChar->pClient->getCurrentChar()->addSpell((uint16)Spell);
+    }
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleAnimFreqCommand(uint8* args)
 {
-	char* pAnimId = strtok((char*)args, " ");
-	if (!pAnimId)
-		return false;
+    char* pAnimId = strtok((char*)args, " ");
+    if (!pAnimId)
+        return false;
 
-	char* pFreq = strtok(NULL, " ");
-	if (!pFreq)
-		return false;
+    char* pFreq = strtok(NULL, " ");
+    if (!pFreq)
+        return false;
 
-	uint32 anim_id = atoi(pAnimId);
-	float freq = (float)atof(pFreq);
+    uint32 anim_id = atoi(pAnimId);
+    float freq = (float)atof(pFreq);
 
-	Unit * pUnit = getSelectedNPC();
-	if(pUnit) pUnit->setAnimFrequency( anim_id, freq );
+    Unit * pUnit = getSelectedNPC();
+    if(pUnit) pUnit->setAnimFrequency( anim_id, freq );
 
-	NetworkPacket data;
-	uint8 buf[256];
-	sprintf((char *)buf, "NPC UPDATED [%s]", args);
-	FillMessageData(&data, 0x09, m_pClient, buf);
-	m_pClient->SendMsg( &data );
+    NetworkPacket data;
+    uint8 buf[256];
+    sprintf((char *)buf, "NPC UPDATED [%s]", args);
+    FillMessageData(&data, 0x09, m_pClient, buf);
+    m_pClient->SendMsg( &data );
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleStandStateCommand(uint8* args)
 {
-	if (!*args)
-		return false;
+    if (!*args)
+        return false;
 
-	uint32 anim_id = atoi((char*)args);
-	m_pClient->getCurrentChar( )->setUpdateValue( UNIT_NPC_EMOTESTATE , anim_id );
+    uint32 anim_id = atoi((char*)args);
+    m_pClient->getCurrentChar( )->setUpdateValue( UNIT_NPC_EMOTESTATE , anim_id );
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleDieCommand(uint8* args)
 {
-	(void)args;
-	// TODO: update other stats as well
+    (void)args;
+    // TODO: update other stats as well
 
-	m_pClient->getCurrentChar( )->setUpdateValue( UNIT_FIELD_HEALTH, 0 );
-	m_pClient->getCurrentChar( )->setUpdateValue( PLAYER_BYTES_2, 0x10 );
-															// Ignatich: MAXHEALTH?
-	m_pClient->getCurrentChar( )->setUpdateMaskBit( UNIT_FIELD_MAXHEALTH );
-	m_pClient->getCurrentChar()->setDeathState(JUST_DIED);
+    m_pClient->getCurrentChar( )->setUpdateValue( UNIT_FIELD_HEALTH, 0 );
+    m_pClient->getCurrentChar( )->setUpdateValue( PLAYER_BYTES_2, 0x10 );
+                                                            // Ignatich: MAXHEALTH?
+    m_pClient->getCurrentChar( )->setUpdateMaskBit( UNIT_FIELD_MAXHEALTH );
+    m_pClient->getCurrentChar()->setDeathState(JUST_DIED);
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleMorphCommand(uint8* args)
 {
-	if (!*args)
-		return false;
+    if (!*args)
+        return false;
 
-	uint32 display_id = atoi((char*)args);
+    uint32 display_id = atoi((char*)args);
 
-	// build mask
-	UpdateMask updateMask;
-	updateMask.SetLength (PLAYER_FIELDS);
-	updateMask.SetBit (UNIT_FIELD_DISPLAYID);
+    // build mask
+    UpdateMask updateMask;
+    updateMask.SetLength (PLAYER_FIELDS);
+    updateMask.SetBit (UNIT_FIELD_DISPLAYID);
 
-	Character * pChar = getSelectedChar();
-	if(pChar)
-	{
-		pChar->setUpdateValue(UNIT_FIELD_DISPLAYID, display_id);
-		pChar->UpdateObject( );
-		Message(pChar,"DISPLAY",display_id);
-		//m_pClient->getCurrentChar()->SendMessageToSet(&data, true);
-	}
+    Character * pChar = getSelectedChar();
+    if(pChar)
+    {
+        pChar->setUpdateValue(UNIT_FIELD_DISPLAYID, display_id);
+        pChar->UpdateObject( );
+        Message(pChar,"DISPLAY",display_id);
+        //m_pClient->getCurrentChar()->SendMessageToSet(&data, true);
+    }
 
-	return true;
+    return true;
 }
 
 bool ChatHandler::HandleAuraCommand(uint8* args)
 {
-	if (!*args)
-		return false;
+    if (!*args)
+        return false;
 
-	uint32 aura_id = atoi((char*)args);
+    uint32 aura_id = atoi((char*)args);
 
-	Character * pChar = getSelectedChar();
-	if(pChar)
-	{
-		pChar->setUpdateValue( UNIT_FIELD_AURA, aura_id );
-		pChar->setUpdateValue( UNIT_FIELD_AURAFLAGS, 0x0000000d );
-		pChar->setUpdateValue( UNIT_FIELD_AURA+32, aura_id );
-		pChar->setUpdateValue( UNIT_FIELD_AURALEVELS+8, 0xeeeeee00 );
-		pChar->setUpdateValue( UNIT_FIELD_AURAAPPLICATIONS+8, 0xeeeeee00 );
-		pChar->setUpdateValue( UNIT_FIELD_AURAFLAGS+4, 0x0000000d );
-		pChar->setUpdateValue( UNIT_FIELD_AURASTATE, 0x00000002 );
-		pChar->UpdateObject( );
-		Message(pChar,"AURA",aura_id);
-	}
+    Character * pChar = getSelectedChar();
+    if(pChar)
+    {
+        pChar->setUpdateValue( UNIT_FIELD_AURA, aura_id );
+        pChar->setUpdateValue( UNIT_FIELD_AURAFLAGS, 0x0000000d );
+        pChar->setUpdateValue( UNIT_FIELD_AURA+32, aura_id );
+        pChar->setUpdateValue( UNIT_FIELD_AURALEVELS+8, 0xeeeeee00 );
+        pChar->setUpdateValue( UNIT_FIELD_AURAAPPLICATIONS+8, 0xeeeeee00 );
+        pChar->setUpdateValue( UNIT_FIELD_AURAFLAGS+4, 0x0000000d );
+        pChar->setUpdateValue( UNIT_FIELD_AURASTATE, 0x00000002 );
+        pChar->UpdateObject( );
+        Message(pChar,"AURA",aura_id);
+    }
 
-	return true;
+    return true;
 }
 
 /*
@@ -289,23 +289,23 @@ bool ChatHandler::HandleAuraCommand(uint8* args)
 
 bool ChatHandler::HandleIsleCommand(uint8* args)
 {
-	(void)args;
-															//LINA
-	smsg_NewWorld(m_pClient, 1, 16220.154297f, 16283.899414f, 13.174583f);
-	return true;
+    (void)args;
+                                                            //LINA
+    smsg_NewWorld(m_pClient, 1, 16220.154297f, 16283.899414f, 13.174583f);
+    return true;
 }
 
 bool ChatHandler::HandleUpdateCommand(uint8* args)
 {
 
-	NetworkPacket data;
+    NetworkPacket data;
 
-	char* Opcode = strtok((char*)args, " ");
-	char* value = strtok(NULL, " ");
-	uint32 uOpcode = atoi(Opcode);
-	uint32 uValue = atoi(value);
+    char* Opcode = strtok((char*)args, " ");
+    char* value = strtok(NULL, " ");
+    uint32 uOpcode = atoi(Opcode);
+    uint32 uValue = atoi(value);
 
-	m_pClient->getCurrentChar()->setUpdateValue(uOpcode,uValue);
+    m_pClient->getCurrentChar()->setUpdateValue(uOpcode,uValue);
 
-	return true;
+    return true;
 }

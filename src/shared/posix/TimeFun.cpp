@@ -28,16 +28,16 @@
 
 uint32 GetMilliseconds ()
 {
-	uint32 time_in_ms = 0;
-	struct timeb tp;
-	ftime(&tp);												// must be switched to gettimeofday()
+    uint32 time_in_ms = 0;
+    struct timeb tp;
+    ftime(&tp);                                             // must be switched to gettimeofday()
 
-	time_in_ms = tp.time * 1000 + tp.millitm;
+    time_in_ms = tp.time * 1000 + tp.millitm;
 
-	return time_in_ms;
+    return time_in_ms;
 }
 
 void SleepMs (int ms)
 {
-	usleep (ms * 1000);
+    usleep (ms * 1000);
 }

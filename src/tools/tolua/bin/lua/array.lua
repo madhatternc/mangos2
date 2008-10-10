@@ -77,29 +77,29 @@ function classArray:supcode ()
  end
 
  -- check index
-	output('#ifndef TOLUA_RELEASE\n')
-	output(' {')
-	output('  tolua_Error tolua_err;')
+    output('#ifndef TOLUA_RELEASE\n')
+    output(' {')
+    output('  tolua_Error tolua_err;')
  output('  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))')
  output('   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);')
-	output(' }')
-	output('#endif\n')
-	if flags['1'] then -- for compatibility with tolua5 ?
-		output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0)-1;')
-	else
-		output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0);')
-	end
-	output('#ifndef TOLUA_RELEASE\n')
+    output(' }')
+    output('#endif\n')
+    if flags['1'] then -- for compatibility with tolua5 ?
+        output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0)-1;')
+    else
+        output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0);')
+    end
+    output('#ifndef TOLUA_RELEASE\n')
  output(' if (tolua_index<0 || tolua_index>='..self.dim..')')
  output('  tolua_error(tolua_S,"array indexing out of range.",NULL);')
-	output('#endif\n')
+    output('#endif\n')
 
  -- return value
  local t,ct = isbasic(self.type)
  if t then
   output(' tolua_push'..t..'(tolua_S,(',ct,')'..self:getvalue(class,static)..');')
  else
-		t = self.type
+        t = self.type
   if self.ptr == '&' or self.ptr == '' then
    output(' tolua_pushusertype(tolua_S,(void*)&'..self:getvalue(class,static)..',"',t,'");')
   else
@@ -138,24 +138,24 @@ function classArray:supcode ()
   end
 
   -- check index
-	 output('#ifndef TOLUA_RELEASE\n')
-	 output(' {')
-	 output('  tolua_Error tolua_err;')
+     output('#ifndef TOLUA_RELEASE\n')
+     output(' {')
+     output('  tolua_Error tolua_err;')
   output('  if (!tolua_isnumber(tolua_S,2,0,&tolua_err))')
   output('   tolua_error(tolua_S,"#vinvalid type in array indexing.",&tolua_err);')
-		output(' }')
-		output('#endif\n')
+        output(' }')
+        output('#endif\n')
 
-	if flags['1'] then -- for compatibility with tolua5 ?
-		output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0)-1;')
-	else
-		output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0);')
-	end
+    if flags['1'] then -- for compatibility with tolua5 ?
+        output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0)-1;')
+    else
+        output(' tolua_index = (int)tolua_tonumber(tolua_S,2,0);')
+    end
 
-	 output('#ifndef TOLUA_RELEASE\n')
+     output('#ifndef TOLUA_RELEASE\n')
   output(' if (tolua_index<0 || tolua_index>='..self.dim..')')
   output('  tolua_error(tolua_S,"array indexing out of range.",NULL);')
-		output('#endif\n')
+        output('#endif\n')
 
   -- assign value
   local ptr = ''
@@ -210,5 +210,3 @@ end
 function Array (s)
  return _Array (Declaration(s,'var'))
 end
-
-

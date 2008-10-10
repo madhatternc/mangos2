@@ -24,33 +24,33 @@
 
 ObjectVector::~ObjectVector ()
 {
-	DeleteAll ();
+    DeleteAll ();
 }
 
 int ObjectVector::Compare (Some Item1, Some Item2, int Mode)
 {
-	Object *o1 = (Object *)Item1, *o2 = (Object *)Item2;
-	switch (Mode)
-	{
-		case OVSORT_GUID:
-			return SignCompare <uint64> (o1->GetGUID (), o2->GetGUID ());
-		case OVSORT_SNO:
-		default:
-			return SignCompare <uint32> (o1->GetLowGUID (), o2->GetLowGUID ());
-	}
+    Object *o1 = (Object *)Item1, *o2 = (Object *)Item2;
+    switch (Mode)
+    {
+        case OVSORT_GUID:
+            return SignCompare <uint64> (o1->GetGUID (), o2->GetGUID ());
+        case OVSORT_SNO:
+        default:
+            return SignCompare <uint32> (o1->GetLowGUID (), o2->GetLowGUID ());
+    }
 }
 
 int ObjectVector::CompareKey (Some Item, ConstSome Key, int Mode)
 {
-	Object *o = (Object *)Item;
-	switch (Mode)
-	{
-		case OVSORT_GUID:
-			return SignCompare <uint64> (o->GetGUID (), *(uint64 *)Key);
-		case OVSORT_SNO:
-		default:
-			return SignCompare <uint32> (o->GetLowGUID (), uint32 (Key));
-	}
+    Object *o = (Object *)Item;
+    switch (Mode)
+    {
+        case OVSORT_GUID:
+            return SignCompare <uint64> (o->GetGUID (), *(uint64 *)Key);
+        case OVSORT_SNO:
+        default:
+            return SignCompare <uint32> (o->GetLowGUID (), uint32 (Key));
+    }
 }
 
 //---------------------------------------------------------------------------//
@@ -59,26 +59,26 @@ int ObjectVector::CompareKey (Some Item, ConstSome Key, int Mode)
 
 ObjectHashVector::~ObjectHashVector ()
 {
-	DeleteAll ();
+    DeleteAll ();
 }
 
 void ObjectHashVector::FreeItem (Some Item) const
 {
-	((Object *)Item)->DecRef();
+    ((Object *)Item)->DecRef();
 }
 
 HashKey_t ObjectHashVector::GetKey (Some Item) const
 {
-	return HashKey_t (((Object *)Item)->GetLowGUID ());
+    return HashKey_t (((Object *)Item)->GetLowGUID ());
 }
 
 int ObjectHashVector::Compare (HashKey_t Key1, HashKey_t Key2) const
 {
-	return SignCompare <uint32> (uint32 (Key1), uint32 (Key2));
+    return SignCompare <uint32> (uint32 (Key1), uint32 (Key2));
 }
 
 void ObjectHashVector::Insert (Object *Item)
 {
-	Item->IncRef ();
-	HashVector::Insert (Item);
+    Item->IncRef ();
+    HashVector::Insert (Item);
 }

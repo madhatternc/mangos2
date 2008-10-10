@@ -31,24 +31,24 @@ class NetworkPacket;
 struct UpdateMask;
 class CombatHandler
 {
-	public:
-		CombatHandler() {};
-		virtual ~CombatHandler() {};
+    public:
+        CombatHandler() {};
+        virtual ~CombatHandler() {};
 
-		void HandleMsg (NetworkPacket & recv_data, GameClient *pClient);
+        void HandleMsg (NetworkPacket & recv_data, GameClient *pClient);
 
-		/////////////////////////////////////////////////////////////////////////
-		//  Deals damage from pAttacker to pVictim
-		//  Does checks for death and lots of other keen things
-		void DealDamage (Unit *pAttacker, Unit *pVictim, uint32 damage);
+        /////////////////////////////////////////////////////////////////////////
+        //  Deals damage from pAttacker to pVictim
+        //  Does checks for death and lots of other keen things
+        void DealDamage (Unit *pAttacker, Unit *pVictim, uint32 damage);
 
-		void smsg_AttackStart (Unit* pAttacker, Unit* pVictim);
-		void smsg_AttackStop (Unit* pAttacker, guid victim_guid);
+        void smsg_AttackStart (Unit* pAttacker, Unit* pVictim);
+        void smsg_AttackStop (Unit* pAttacker, guid victim_guid);
 
-		void AttackerStateUpdate (Unit *pAttacker, Unit *pVictim, uint32 damage);
-		void Heal (Unit *pAttacker, Unit *pVictim, uint32 damage);
+        void AttackerStateUpdate (Unit *pAttacker, Unit *pVictim, uint32 damage);
+        void Heal (Unit *pAttacker, Unit *pVictim, uint32 damage);
 
-		uint32 petGUID;
+        uint32 petGUID;
 
 };
-#endif														// __COMBAT_H__
+#endif                                                      // __COMBAT_H__

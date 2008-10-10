@@ -241,7 +241,7 @@
 #  define strtoull _strtoui64
 typedef int mode_t;
 # endif
-#endif														// defined(_WIN32) || defined(_WIN64)
+#endif                                                      // defined(_WIN32) || defined(_WIN64)
 
 #ifdef interface
 #undef interface
@@ -250,4 +250,4 @@ typedef int mode_t;
 #ifndef SIGHUP
 #define SIGHUP  1
 #endif
-#endif														// _WIN_CONFIG_H
+#endif                                                      // _WIN_CONFIG_H

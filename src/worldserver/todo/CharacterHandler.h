@@ -27,13 +27,13 @@
 class DatabaseInterface;
 class CharacterHandler : public MsgHandler
 {
-	public:
-		CharacterHandler();
-		~CharacterHandler();
+    public:
+        CharacterHandler();
+        ~CharacterHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
 
-	protected:
+    protected:
 
 };
-#endif														// __CHARACTER_HANDLER_H__
+#endif                                                      // __CHARACTER_HANDLER_H__

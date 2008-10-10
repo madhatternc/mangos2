@@ -25,30 +25,30 @@
 #include "MsgHandler.h"
 struct TALENT_RANK_BYTES
 {
-	uint8 Byte1;											//SPELL ID LOWID -> Changed based on rank
-	uint8 Byte2;											//SPELL ID HIGHID -> Constant
-	uint8 Byte3;											//UNKNOWN
-	uint8 Byte4;											//UNKNOWN
+    uint8 Byte1;                                            //SPELL ID LOWID -> Changed based on rank
+    uint8 Byte2;                                            //SPELL ID HIGHID -> Constant
+    uint8 Byte3;                                            //UNKNOWN
+    uint8 Byte4;                                            //UNKNOWN
 };
 
 struct TALENT
 {
-	uint32 TalentId;
-	uint32 Class;
-	uint32 MaxRank;
-	TALENT_RANK_BYTES Ranks[4];
+    uint32 TalentId;
+    uint32 Class;
+    uint32 MaxRank;
+    TALENT_RANK_BYTES Ranks[4];
 };
 
 class DatabaseInterface;
 class SkillHandler : public MsgHandler
 {
-	public:
-		SkillHandler();
-		~SkillHandler();
+    public:
+        SkillHandler();
+        ~SkillHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
 
-	protected:
+    protected:
 
 };
-#endif														// __SKILL_HANDLER_H__
+#endif                                                      // __SKILL_HANDLER_H__

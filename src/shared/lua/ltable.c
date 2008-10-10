@@ -40,23 +40,23 @@
 ** max size of array part is 2^MAXBITS
 */
 #if BITS_INT > 26
-#define MAXBITS		24
+#define MAXBITS     24
 #else
-#define MAXBITS		(BITS_INT-2)
+#define MAXBITS     (BITS_INT-2)
 #endif
 
 /* check whether `x' < 2^MAXBITS */
-#define toobig(x)	((((x)-1) >> MAXBITS) != 0)
+#define toobig(x)   ((((x)-1) >> MAXBITS) != 0)
 
 
 /* function to convert a lua_Number to int (with any rounding method) */
 #ifndef lua_number2int
-#define lua_number2int(i,n)	((i)=(int)(n))
+#define lua_number2int(i,n) ((i)=(int)(n))
 #endif
 
 
 #define hashpow2(t,n)      (gnode(t, lmod((n), sizenode(t))))
-  
+
 #define hashstr(t,str)  hashpow2(t, (str)->tsv.hash)
 #define hashboolean(t,p)        hashpow2(t, p)
 
@@ -65,16 +65,16 @@
 ** for some types, it is better to avoid modulus by power of 2, as
 ** they tend to have many 2 factors.
 */
-#define hashmod(t,n)	(gnode(t, ((n) % ((sizenode(t)-1)|1))))
+#define hashmod(t,n)    (gnode(t, ((n) % ((sizenode(t)-1)|1))))
 
 
-#define hashpointer(t,p)	hashmod(t, IntPoint(p))
+#define hashpointer(t,p)    hashmod(t, IntPoint(p))
 
 
 /*
 ** number of ints inside a lua_Number
 */
-#define numints		cast(int, sizeof(lua_Number)/sizeof(int))
+#define numints     cast(int, sizeof(lua_Number)/sizeof(int))
 
 
 /*
@@ -288,7 +288,7 @@ static void resize (lua_State *L, Table *t, int nasize, int nhsize) {
   if (nasize > oldasize)  /* array part must grow? */
     setarrayvector(L, t, nasize);
   /* create new hash part with appropriate size */
-  setnodevector(L, t, nhsize);  
+  setnodevector(L, t, nhsize);
   /* re-insert elements */
   if (nasize < oldasize) {  /* array part must shrink? */
     t->sizearray = nasize;
@@ -370,11 +370,11 @@ void luaH_remove (Table *t, Node *e) {
 
 
 /*
-** inserts a new key into a hash table; first, check whether key's main 
-** position is free. If not, check whether colliding node is in its main 
-** position or not: if it is not, move colliding node to an empty place and 
-** put new key in its main position; otherwise (colliding node is in its main 
-** position), new key goes to an empty position. 
+** inserts a new key into a hash table; first, check whether key's main
+** position is free. If not, check whether colliding node is in its main
+** position or not: if it is not, move colliding node to an empty place and
+** put new key in its main position; otherwise (colliding node is in its main
+** position), new key goes to an empty position.
 */
 static TObject *newkey (lua_State *L, Table *t, const TObject *key) {
   TObject *val;
@@ -506,4 +506,3 @@ TObject *luaH_setnum (lua_State *L, Table *t, int key) {
     return newkey(L, t, &k);
   }
 }
-

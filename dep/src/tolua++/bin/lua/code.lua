@@ -36,14 +36,14 @@ function classCode:register (pre)
  -- get first line
  local _, _, first_line=string.find(self.text, "^([^\n\r]*)")
  if string.find(first_line, "^%s*%-%-") then
-	 if string.find(first_line, "^%-%-##") then
-		first_line = string.gsub(first_line, "^%-%-##", "")
-		if flags['C'] then
-			s = string.gsub(s, "^%-%-##[^\n\r]*\n", "")
-		end
-	 end
+     if string.find(first_line, "^%-%-##") then
+        first_line = string.gsub(first_line, "^%-%-##", "")
+        if flags['C'] then
+            s = string.gsub(s, "^%-%-##[^\n\r]*\n", "")
+        end
+     end
  else
- 	first_line = ""
+    first_line = ""
  end
 
  -- convert to C
@@ -60,9 +60,9 @@ function classCode:register (pre)
  output(b..strbyte(" "))
  output('\n'..pre..' };\n')
  if first_line and first_line ~= "" then
- 	output(pre..' tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua embedded: '..first_line..'");')
+    output(pre..' tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua embedded: '..first_line..'");')
  else
- 	output(pre..' tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua: embedded Lua code '..code_n..'");')
+    output(pre..' tolua_dobuffer(tolua_S,(char*)B,sizeof(B),"tolua: embedded Lua code '..code_n..'");')
  end
  output(pre..' lua_settop(tolua_S, top);')
  output(pre..'} /* end of embedded lua code */\n\n')
@@ -92,5 +92,3 @@ function Code (l)
   text = l
  }
 end
-
-

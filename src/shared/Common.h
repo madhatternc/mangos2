@@ -44,11 +44,11 @@
 #if defined (__WIN32__) || defined (WIN32) || defined (_WIN32)
 #  define PLATFORM      PLATFORM_WIN32
 #  define __i386__
-#  pragma warning(disable : 4996)							// added to stop warnings
+#  pragma warning(disable : 4996)                           // added to stop warnings
 #elif defined (__WIN64__) || defined (WIN64) || defined (_WIN64)
 #  define PLATFORM      PLATFORM_WIN64
 #  define __x86_64__
-#  pragma warning(disable : 4996)							// added to stop warnings
+#  pragma warning(disable : 4996)                           // added to stop warnings
 #elif defined (__APPLE_CC__)
 #  define PLATFORM      PLATFORM_APPLE
 #else
@@ -146,38 +146,38 @@ typedef unsigned char uchar;
 // Optimized routines for x86{_64}
 static inline const uint16 swap16 (const uint16 x)
 {
-	uint16 ret;
-	__asm ("xchgb %%al,%%ah" : "=a" (ret) : "a" (x));
-	return ret;
+    uint16 ret;
+    __asm ("xchgb %%al,%%ah" : "=a" (ret) : "a" (x));
+    return ret;
 }
 
 static inline const uint32 swap32 (const uint32 x)
 {
-	uint32 ret;
-	__asm ("bswapl %%eax" : "=a" (ret) : "a" (x));
-	return ret;
+    uint32 ret;
+    __asm ("bswapl %%eax" : "=a" (ret) : "a" (x));
+    return ret;
 }
 
 #if defined (CPU_x86)
 static inline const uint64 swap64 (const uint64 x)
 {
-	uint64 ret;
-	__asm ("bswapl %%eax\nbswapl %%edx\nxchgl %%eax,%%edx" : "=A" (ret) : "A" (x));
-	return ret;
+    uint64 ret;
+    __asm ("bswapl %%eax\nbswapl %%edx\nxchgl %%eax,%%edx" : "=A" (ret) : "A" (x));
+    return ret;
 }
 
 #else
 static inline const uint64 swap64 (const uint64 x)
 {
-	uint64 ret;
-	__asm ("bswapq %%rax" : "=A" (ret) : "A" (x));
-	return ret;
+    uint64 ret;
+    __asm ("bswapq %%rax" : "=A" (ret) : "A" (x));
+    return ret;
 }
 #endif
 static inline void xchg32 (void *a, void *b)
 {
-	__asm ("movl (%0),%%eax\nxchgl (%1),%%eax\nmovl %%eax,(%0)"
-		:: "r" (a), "r" (b) : "eax");
+    __asm ("movl (%0),%%eax\nxchgl (%1),%%eax\nmovl %%eax,(%0)"
+        :: "r" (a), "r" (b) : "eax");
 }
 
 #else
@@ -187,14 +187,14 @@ static inline const uint32 swap32 (const uint32 x)
 { return (x >> 24) | ((x >> 8) & 0xff00) | ((x << 8) & 0xff0000) | (x << 24); }
 static inline const uint64 swap64 (const uint64 x)
 { return ((x >> 56) /*& 0x00000000000000ffULL*/) | ((x >> 40) & 0x000000000000ff00ULL) |
-	((x >> 24) & 0x0000000000ff0000ULL) | ((x >> 8 ) & 0x00000000ff000000ULL) |
-	((x << 8 ) & 0x000000ff00000000ULL) | ((x << 24) & 0x0000ff0000000000ULL) |
-	((x << 40) & 0x00ff000000000000ULL) | ((x << 56) /*& 0xff00000000000000ULL*/); }
+    ((x >> 24) & 0x0000000000ff0000ULL) | ((x >> 8 ) & 0x00000000ff000000ULL) |
+    ((x << 8 ) & 0x000000ff00000000ULL) | ((x << 24) & 0x0000ff0000000000ULL) |
+    ((x << 40) & 0x00ff000000000000ULL) | ((x << 56) /*& 0xff00000000000000ULL*/); }
 static inline void xchg32 (void *a, void *b)
 {
-	uint32 tmp = *(uint32 *)a;
-	*(uint32 *)a = *(uint32 *)b;
-	*(uint32 *)b = tmp;
+    uint32 tmp = *(uint32 *)a;
+    *(uint32 *)a = *(uint32 *)b;
+    *(uint32 *)b = tmp;
 }
 #endif
 
@@ -290,4 +290,4 @@ static inline float GET_BEF32 (void *x)
 template <typename T>
 static T Square (T a)
 { return a * a; }
-#endif														// __COMMON_H__
+#endif                                                      // __COMMON_H__

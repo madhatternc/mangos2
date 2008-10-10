@@ -26,11 +26,11 @@
 
 class TaxiHandler : public MsgHandler
 {
-	public:
-		TaxiHandler();
-		~TaxiHandler();
+    public:
+        TaxiHandler();
+        ~TaxiHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-	protected:
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+    protected:
 };
-#endif														// __TAXI_HANDLER_H__
+#endif                                                      // __TAXI_HANDLER_H__

@@ -27,17 +27,17 @@
 class Quest;
 class QuestHandler : public MsgHandler
 {
-	public:
-		QuestHandler();
-		~QuestHandler();
+    public:
+        QuestHandler();
+        ~QuestHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-		void addQuest(Quest *pQuest);
-		Quest* getQuest(uint32 quest_id);
-		void SetNpcFlagsForTalkToQuest(GameClient* pClient, uint32 guid1, uint32 targetGuid);
-	protected:
-		// Quest data
-		typedef std::map<uint32, Quest*> QuestMap;
-		QuestMap mQuests;
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void addQuest(Quest *pQuest);
+        Quest* getQuest(uint32 quest_id);
+        void SetNpcFlagsForTalkToQuest(GameClient* pClient, uint32 guid1, uint32 targetGuid);
+    protected:
+        // Quest data
+        typedef std::map<uint32, Quest*> QuestMap;
+        QuestMap mQuests;
 };
-#endif														// __QUEST_HANDLER_H__
+#endif                                                      // __QUEST_HANDLER_H__

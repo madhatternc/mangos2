@@ -20,8 +20,8 @@
 
 
 
-#define IO_INPUT	1
-#define IO_OUTPUT	2
+#define IO_INPUT    1
+#define IO_OUTPUT   2
 
 
 static const char *const fnames[] = {"input", "output"};
@@ -51,7 +51,7 @@ static void fileerror (lua_State *L, int arg, const char *filename) {
 }
 
 
-#define tofilep(L)	((FILE **)luaL_checkudata(L, 1, LUA_FILEHANDLE))
+#define tofilep(L)  ((FILE **)luaL_checkudata(L, 1, LUA_FILEHANDLE))
 
 
 static int io_type (lua_State *L) {
@@ -550,4 +550,3 @@ LUALIB_API int luaopen_io (lua_State *L) {
   lua_pop(L, 1);  /* pop 'popen' */
   return 1;
 }
-

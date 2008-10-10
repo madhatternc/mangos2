@@ -49,134 +49,134 @@ TaxiHandler::~TaxiHandler( )
 
 void TaxiHandler::HandleMsg( NetworkPacket & recv_data, GameClient *pClient )
 {
-	NetworkPacket data;
-	char f[ 256 ];
-	sprintf( f, "WORLD: Taxi Opcode 0x%.4X", recv_data.opcode );
-	int CharZone;
-	CharZone=pClient->getCurrentChar( )->getZone();
-	printf("Zona: %i\n",CharZone);
-	LOG.outString( f );
-	switch( recv_data.opcode )
-	{
-		case CMSG_TAXINODE_STATUS_QUERY:
-		{
-			LOG.outString( "WORLD: Recieved CMSG_TAXINODE_STATUS_QUERY" );
-			uint32 guid1, guid2;
-			recv_data >> guid1 >> guid2;
+    NetworkPacket data;
+    char f[ 256 ];
+    sprintf( f, "WORLD: Taxi Opcode 0x%.4X", recv_data.opcode );
+    int CharZone;
+    CharZone=pClient->getCurrentChar( )->getZone();
+    printf("Zona: %i\n",CharZone);
+    LOG.outString( f );
+    switch( recv_data.opcode )
+    {
+        case CMSG_TAXINODE_STATUS_QUERY:
+        {
+            LOG.outString( "WORLD: Recieved CMSG_TAXINODE_STATUS_QUERY" );
+            uint32 guid1, guid2;
+            recv_data >> guid1 >> guid2;
 
-			data.Initialize( 9, SMSG_TAXINODE_STATUS );
-			data << guid1 << guid2 << uint8( 0 );
-			pClient->SendMsg( &data );
-			LOG.outString( "WORLD: Sent SMSG_TAXINODE_STATUS" );
-		}break;
-		case CMSG_TAXIQUERYAVAILABLENODES:
-		{
-			LOG.outString( "WORLD: Recieved CMSG_TAXIQUERYAVAILABLENODES" );
-			uint32 guid1, guid2;
-			recv_data >> guid1 >> guid2;
+            data.Initialize( 9, SMSG_TAXINODE_STATUS );
+            data << guid1 << guid2 << uint8( 0 );
+            pClient->SendMsg( &data );
+            LOG.outString( "WORLD: Sent SMSG_TAXINODE_STATUS" );
+        }break;
+        case CMSG_TAXIQUERYAVAILABLENODES:
+        {
+            LOG.outString( "WORLD: Recieved CMSG_TAXIQUERYAVAILABLENODES" );
+            uint32 guid1, guid2;
+            recv_data >> guid1 >> guid2;
 
-			data.Initialize( 32, SMSG_SHOWTAXINODES );
+            data.Initialize( 32, SMSG_SHOWTAXINODES );
 
-			DatabaseInterface *dbi = DATABASE.createDatabaseInterface( );
+            DatabaseInterface *dbi = DATABASE.createDatabaseInterface( );
 
-			uint32 curloc = dbi->getNearestTaxiNode(
-				pClient->getCurrentChar( )->getPositionX( ),
-				pClient->getCurrentChar( )->getPositionY( ),
-				pClient->getCurrentChar( )->getPositionZ( ), pClient->getCurrentChar( )->getMapId( ) );
+            uint32 curloc = dbi->getNearestTaxiNode(
+                pClient->getCurrentChar( )->getPositionX( ),
+                pClient->getCurrentChar( )->getPositionY( ),
+                pClient->getCurrentChar( )->getPositionZ( ), pClient->getCurrentChar( )->getMapId( ) );
 
-			data << uint32( 1 ) << guid1 << guid2;
+            data << uint32( 1 ) << guid1 << guid2;
 
-			// current location: 0x0c is darkshire... 0x02 is stormwind
-			data << uint32( curloc );
+            // current location: 0x0c is darkshire... 0x02 is stormwind
+            data << uint32( curloc );
 
-			uint32 TaxiMask = dbi->getGlobalTaxiNodeMask( curloc );
-			//uint32 TaxiMask = dbi->getGlobalTaxiNodeMask(  );
-			// a uint64 representing places on the map that have prices, same format as next uint64
-			data << ( TaxiMask | (1<<(curloc-1)) ) << uint32(0);
-			// a uint64 representing the map.  Each bit is a visible location -- smallest bit is location #1, etc.
-			data << ( TaxiMask | (1<<(curloc-1)) ) << uint32(0);
-			DATABASE.removeDatabaseInterface( dbi );
-			//data << uint32( 0 );
-			pClient->SendMsg( &data );
-			LOG.outString( "WORLD: Sent SMSG_SHOWTAXINODES" );
-		}break;
-		case CMSG_ACTIVATETAXI:
-		{
-			/*uint16 MountId;
-			switch (CharZone) //zone 45 dont know
-			{
-				case 10,40,33,44,51,38,45,267: //gryphon
-				{
-					MountId=0;
-				}break;
-				case 85,130,36: //bat
-				{
-				}break;
-				case 3: //lionfly and 33
-				else
-				{
-					MountId=0;
-				}
-			}*/
-			LOG.outString( "WORLD: Recieved CMSG_ACTIVATETAXI" );
-			uint32 guid1, guid2, sourcenode, destinationnode;
-			recv_data >> guid1 >> guid2 >> sourcenode >> destinationnode;
+            uint32 TaxiMask = dbi->getGlobalTaxiNodeMask( curloc );
+            //uint32 TaxiMask = dbi->getGlobalTaxiNodeMask(  );
+            // a uint64 representing places on the map that have prices, same format as next uint64
+            data << ( TaxiMask | (1<<(curloc-1)) ) << uint32(0);
+            // a uint64 representing the map.  Each bit is a visible location -- smallest bit is location #1, etc.
+            data << ( TaxiMask | (1<<(curloc-1)) ) << uint32(0);
+            DATABASE.removeDatabaseInterface( dbi );
+            //data << uint32( 0 );
+            pClient->SendMsg( &data );
+            LOG.outString( "WORLD: Sent SMSG_SHOWTAXINODES" );
+        }break;
+        case CMSG_ACTIVATETAXI:
+        {
+            /*uint16 MountId;
+            switch (CharZone) //zone 45 dont know
+            {
+                case 10,40,33,44,51,38,45,267: //gryphon
+                {
+                    MountId=0;
+                }break;
+                case 85,130,36: //bat
+                {
+                }break;
+                case 3: //lionfly and 33
+                else
+                {
+                    MountId=0;
+                }
+            }*/
+            LOG.outString( "WORLD: Recieved CMSG_ACTIVATETAXI" );
+            uint32 guid1, guid2, sourcenode, destinationnode;
+            recv_data >> guid1 >> guid2 >> sourcenode >> destinationnode;
 
-			// can't taxi if frozen for now, fixes bug when you double-click a node
-			if( pClient->getCurrentChar( )->getUpdateValue( UNIT_FIELD_FLAGS ) & 0x4 )
-				break;
+            // can't taxi if frozen for now, fixes bug when you double-click a node
+            if( pClient->getCurrentChar( )->getUpdateValue( UNIT_FIELD_FLAGS ) & 0x4 )
+                break;
 
-			DatabaseInterface *dbi = DATABASE.createDatabaseInterface( );
-			uint32 path = dbi->getPath( sourcenode, destinationnode );
+            DatabaseInterface *dbi = DATABASE.createDatabaseInterface( );
+            uint32 path = dbi->getPath( sourcenode, destinationnode );
 
-			Path pathnodes;
-			dbi->getPathNodes( path, &pathnodes );
+            Path pathnodes;
+            dbi->getPathNodes( path, &pathnodes );
 
-			DATABASE.removeDatabaseInterface( dbi );
+            DATABASE.removeDatabaseInterface( dbi );
 
-			data.Initialize( 4, SMSG_ACTIVATETAXIREPLY );
-			data << uint32( 0 );
-			pClient->SendMsg( &data );
-			LOG.outString( "WORLD: Sent SMSG_ACTIVATETAXIREPLY" );
+            data.Initialize( 4, SMSG_ACTIVATETAXIREPLY );
+            data << uint32( 0 );
+            pClient->SendMsg( &data );
+            LOG.outString( "WORLD: Sent SMSG_ACTIVATETAXIREPLY" );
 
-			// first create the mount
-			pClient->getCurrentChar( )->addUnitFlag( 0x001000 );
-			pClient->getCurrentChar( )->addUnitFlag( 0x000004 );
-			pClient->getCurrentChar( )->setUpdateValue( UNIT_FIELD_MOUNTDISPLAYID, 0x3a7 );
-			pClient->getCurrentChar( )->UpdateObject( );
+            // first create the mount
+            pClient->getCurrentChar( )->addUnitFlag( 0x001000 );
+            pClient->getCurrentChar( )->addUnitFlag( 0x000004 );
+            pClient->getCurrentChar( )->setUpdateValue( UNIT_FIELD_MOUNTDISPLAYID, 0x3a7 );
+            pClient->getCurrentChar( )->UpdateObject( );
 
-			// now mount it.  this must be done separately for it to animate while moving for some reason.
-			pClient->getCurrentChar( )->addUnitFlag( 0x002000 );
-			//                pClient->getCurrentChar( )->UpdateObject( );
+            // now mount it.  this must be done separately for it to animate while moving for some reason.
+            pClient->getCurrentChar( )->addUnitFlag( 0x002000 );
+            //                pClient->getCurrentChar( )->UpdateObject( );
 
-			// 0x001000 seems to make a mount visible
-			// 0x002000 seems to make you sit on the mount, and the mount move with you
-			// 0x100000 ??
-			// 0x000004 locks you so you can't move, no msg_move updates are sent to the server
-			// 0x000008 seems to enable detailed collision checking
+            // 0x001000 seems to make a mount visible
+            // 0x002000 seems to make you sit on the mount, and the mount move with you
+            // 0x100000 ??
+            // 0x000004 locks you so you can't move, no msg_move updates are sent to the server
+            // 0x000008 seems to enable detailed collision checking
 
-			data.Initialize( /*229*/37 + pathnodes.getLength( ) * 4 * 3, SMSG_MONSTER_MOVE );
-			data << pClient->getCurrentChar( )->GetGUID( ) << uint32( 0 );
-			//data << (float)-10514.92 << (float)-1260.089 << (float)41.38442; // starting location;
-			data << pClient->getCurrentChar( )->getPositionX( )
-				<< pClient->getCurrentChar( )->getPositionY( )
-				<< pClient->getCurrentChar( )->getPositionZ( );
-			data << pClient->getCurrentChar( )->getOrientation( );
+            data.Initialize( /*229*/37 + pathnodes.getLength( ) * 4 * 3, SMSG_MONSTER_MOVE );
+            data << pClient->getCurrentChar( )->GetGUID( ) << uint32( 0 );
+            //data << (float)-10514.92 << (float)-1260.089 << (float)41.38442; // starting location;
+            data << pClient->getCurrentChar( )->getPositionX( )
+                << pClient->getCurrentChar( )->getPositionY( )
+                << pClient->getCurrentChar( )->getPositionZ( );
+            data << pClient->getCurrentChar( )->getOrientation( );
 
-			data << uint8( 0 );								// dunno
-			data << uint32( 0x00000300 );					// flags?
+            data << uint8( 0 );                             // dunno
+            data << uint32( 0x00000300 );                   // flags?
 
-															// 36.7407
-			uint32 traveltime = uint32(pathnodes.getTotalLength( ) * 32);
-			data << uint32( traveltime );					// total travel time
+                                                            // 36.7407
+            uint32 traveltime = uint32(pathnodes.getTotalLength( ) * 32);
+            data << uint32( traveltime );                   // total travel time
 
-			data << uint32( pathnodes.getLength( ) );		// number of spline points
+            data << uint32( pathnodes.getLength( ) );       // number of spline points
 
-			pClient->getCurrentChar( )->setPosition( pathnodes.getNodes( )[ pathnodes.getLength( ) - 1 ].x, pathnodes.getNodes( )[ pathnodes.getLength( ) - 1 ].y, pathnodes.getNodes( )[ pathnodes.getLength( ) - 1 ].z, true );
-			data.WriteData( pathnodes.getNodes( ), pathnodes.getLength( ) * 4 * 3 );
+            pClient->getCurrentChar( )->setPosition( pathnodes.getNodes( )[ pathnodes.getLength( ) - 1 ].x, pathnodes.getNodes( )[ pathnodes.getLength( ) - 1 ].y, pathnodes.getNodes( )[ pathnodes.getLength( ) - 1 ].z, true );
+            data.WriteData( pathnodes.getNodes( ), pathnodes.getLength( ) * 4 * 3 );
 
-			pClient->getCurrentChar()->SendMessageToSet(&data, true);
-			//                WORLDSERVER.SendZoneMessage(&data, pClient, 1);
-		}break;
-	}
+            pClient->getCurrentChar()->SendMessageToSet(&data, true);
+            //                WORLDSERVER.SendZoneMessage(&data, pClient, 1);
+        }break;
+    }
 }

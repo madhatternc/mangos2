@@ -34,7 +34,7 @@
     type: c++code
     code: |
         #include "RealmProto.h"
-        
+
 
 -
     name: code_end
@@ -453,4 +453,3 @@
     opcode: 0x34
     type: packet
     direction: in
-

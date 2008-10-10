@@ -29,12 +29,12 @@
 
 uint32 GetMilliseconds ()
 {
-	uint32 time_in_ms = 0;
-	time_in_ms = timeGetTime();
-	return time_in_ms;
+    uint32 time_in_ms = 0;
+    time_in_ms = timeGetTime();
+    return time_in_ms;
 }
 
 void SleepMs (int ms)
 {
-	Sleep (ms);
+    Sleep (ms);
 }

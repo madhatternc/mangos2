@@ -33,13 +33,13 @@ class DatabaseInterface;
 
 class AuraHandler : public MsgHandler
 {
-	public:
-		AuraHandler();
-		~AuraHandler();
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-		int setAura(Unit *pUnit, uint32 spell);
+    public:
+        AuraHandler();
+        ~AuraHandler();
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        int setAura(Unit *pUnit, uint32 spell);
 
-	protected:
+    protected:
 
 };
-#endif														// __AURA_HANDLER_H__
+#endif                                                      // __AURA_HANDLER_H__

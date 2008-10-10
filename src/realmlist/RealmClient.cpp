@@ -26,214 +26,214 @@
 
 RealmClient::RealmClient (Socket *sock, RealmListSrv *serv) : Client (sock)
 {
-	Server = serv;
+    Server = serv;
 }
 
 void RealmClient::SocketEvent (uint mask)
 {
-	if (mask & PF_READ)
-	{
-		socket->Rewind ();
+    if (mask & PF_READ)
+    {
+        socket->Rewind ();
 
-		uint8 opcode;
-		if (!socket->Get (opcode))
-			return;
+        uint8 opcode;
+        if (!socket->Get (opcode))
+            return;
 
-		NetworkPacket *packet = NULL;
+        NetworkPacket *packet = NULL;
 
-		switch (opcode)
-		{
-			#include "RealmProto.inc"
-			default:
-				Server->Logger->Out (LOG_COMMON, "\axcWARNING: \ax6Unknown packet type: 0x%02X\n", opcode);
-		};
+        switch (opcode)
+        {
+            #include "RealmProto.inc"
+            default:
+                Server->Logger->Out (LOG_COMMON, "\axcWARNING: \ax6Unknown packet type: 0x%02X\n", opcode);
+        };
 
-		if (packet)
-		{
-			socket->Swallow ();
-			packet->DecRef ();
-		}
-	}
+        if (packet)
+        {
+            socket->Swallow ();
+            packet->DecRef ();
+        }
+    }
 }
 
 static char *str4 (uint8 *x)
 {
-	static char str4 [5];
-	int i, sl;
-	uint8 *eol = (uint8 *)memchr (x, 0, sizeof (uint32));
-	sl = eol ? eol - x : sizeof (uint32);
-	for (i = 0; i < sl; i++)
-		str4 [sl - i - 1] = x [i];
-	str4 [sl] = 0;
-	return str4;
+    static char str4 [5];
+    int i, sl;
+    uint8 *eol = (uint8 *)memchr (x, 0, sizeof (uint32));
+    sl = eol ? eol - x : sizeof (uint32);
+    for (i = 0; i < sl; i++)
+        str4 [sl - i - 1] = x [i];
+    str4 [sl] = 0;
+    return str4;
 }
 
 void RealmClient::FailChallenge (RealmErrors err, const char *errstr)
 {
-	SMSG_LOGON_CHALLENGE_t *outpkt = SMSG_LOGON_CHALLENGE_t::Create ();
-	outpkt->ErrorCode = err;
-	Send (outpkt);
-	Server->Logger->Out (LOG_DEBUG, "Sent LOGON_CHALLENGE with code '%s'\n", errstr);
-	return;
+    SMSG_LOGON_CHALLENGE_t *outpkt = SMSG_LOGON_CHALLENGE_t::Create ();
+    outpkt->ErrorCode = err;
+    Send (outpkt);
+    Server->Logger->Out (LOG_DEBUG, "Sent LOGON_CHALLENGE with code '%s'\n", errstr);
+    return;
 }
 
 void RealmClient::FailLogin (RealmErrors err, const char *errstr)
 {
-	SMSG_LOGON_PROOF_t *outpkt = SMSG_LOGON_PROOF_t::Create ();
-	outpkt->ErrorCode = err;
-	Send (outpkt);
-	Server->Logger->Out (LOG_DEBUG, "Sent LOGON_PROOF with code '%s'\n", errstr);
-	return;
+    SMSG_LOGON_PROOF_t *outpkt = SMSG_LOGON_PROOF_t::Create ();
+    outpkt->ErrorCode = err;
+    Send (outpkt);
+    Server->Logger->Out (LOG_DEBUG, "Sent LOGON_PROOF with code '%s'\n", errstr);
+    return;
 }
 
 void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
 {
-	Server->Logger->Out (LOG_DEBUG, "Received LOGON_CHALLENGE\n");
+    Server->Logger->Out (LOG_DEBUG, "Received LOGON_CHALLENGE\n");
 
-	printf ("Error Start Byte: %d\n", inpkt.ErrorCode);
-	printf ("Packet size: %d\n", inpkt.Length);
-	printf ("Game ID: %s\n", str4 (inpkt.GameID));
-	printf ("Client Version: %d.%d.%d\n", inpkt.ClientVersion [0],
-		inpkt.ClientVersion [1], inpkt.ClientVersion [2]);
-	printf ("Build Version: %d\n", inpkt.ClientBuild);
-	printf ("Architecture: %s\n", str4 (inpkt.Arch));
-	printf ("Platform: %s\n", str4 (inpkt.OS));
-	printf ("Language: %s\n", str4 (inpkt.Lang));
-	printf ("Client time zone: GMT%c%d\n",
-		inpkt.TimeZone >= 0 ? '+' : '-', inpkt.TimeZone / 60);
-	printf ("Client internal IP address: %s\n",
-		inet_ntoa (*(struct in_addr *)&inpkt.ClientIP));
-	printf ("Username: %s\n", inpkt.UserName);
+    printf ("Error Start Byte: %d\n", inpkt.ErrorCode);
+    printf ("Packet size: %d\n", inpkt.Length);
+    printf ("Game ID: %s\n", str4 (inpkt.GameID));
+    printf ("Client Version: %d.%d.%d\n", inpkt.ClientVersion [0],
+        inpkt.ClientVersion [1], inpkt.ClientVersion [2]);
+    printf ("Build Version: %d\n", inpkt.ClientBuild);
+    printf ("Architecture: %s\n", str4 (inpkt.Arch));
+    printf ("Platform: %s\n", str4 (inpkt.OS));
+    printf ("Language: %s\n", str4 (inpkt.Lang));
+    printf ("Client time zone: GMT%c%d\n",
+        inpkt.TimeZone >= 0 ? '+' : '-', inpkt.TimeZone / 60);
+    printf ("Client internal IP address: %s\n",
+        inet_ntoa (*(struct in_addr *)&inpkt.ClientIP));
+    printf ("Username: %s\n", inpkt.UserName);
 
-	if ((inpkt.ClientBuild < MIN_CLIENT_BUILD) ||
-		(inpkt.ClientBuild > MAX_CLIENT_BUILD))
-	{
-		FailChallenge (CE_BAD_VERSION, "wrong version");
-		return;
-	}
+    if ((inpkt.ClientBuild < MIN_CLIENT_BUILD) ||
+        (inpkt.ClientBuild > MAX_CLIENT_BUILD))
+    {
+        FailChallenge (CE_BAD_VERSION, "wrong version");
+        return;
+    }
 
-	DatabaseExecutor *dbex = Server->db->GetExecutor ();
-	int rc = 0;
-	char *passwd = NULL;
-	if (!dbex)
-		rc = 1;
-	else if (dbex->ExecuteF ("SELECT password,level FROM accounts WHERE login='%s'", inpkt.UserName) != dbeOk)
-		rc = 1;
-	else if (!dbex->NextRow ())
-		rc = 2;
-	else
-	{
-		passwd = strnew (dbex->Get (0));
-		upperstr (passwd);
-	}
+    DatabaseExecutor *dbex = Server->db->GetExecutor ();
+    int rc = 0;
+    char *passwd = NULL;
+    if (!dbex)
+        rc = 1;
+    else if (dbex->ExecuteF ("SELECT password,level FROM accounts WHERE login='%s'", inpkt.UserName) != dbeOk)
+        rc = 1;
+    else if (!dbex->NextRow ())
+        rc = 2;
+    else
+    {
+        passwd = strnew (dbex->Get (0));
+        upperstr (passwd);
+    }
 
-	if (dbex)
-		Server->db->PutExecutor (dbex);
+    if (dbex)
+        Server->db->PutExecutor (dbex);
 
-	switch (rc)
-	{
-		case 1:												// general failure
-			FailChallenge (CE_CANNOT_LOGIN, "could not log in");
-			return;
-		case 2:												// bad username
-			FailChallenge (CE_BAD_CREDENTIALS, "no such account");
-			return;
-	}
+    switch (rc)
+    {
+        case 1:                                             // general failure
+            FailChallenge (CE_CANNOT_LOGIN, "could not log in");
+            return;
+        case 2:                                             // bad username
+            FailChallenge (CE_BAD_CREDENTIALS, "no such account");
+            return;
+    }
 
-	// got username & pass, let's start SRP
-	Server->Logger->Out (LOG_DEBUG, "Challenge calculation with username %s and password %s\n", inpkt.UserName, passwd);
-	Challenge (inpkt.UserName, passwd);
-	delete [] passwd;
+    // got username & pass, let's start SRP
+    Server->Logger->Out (LOG_DEBUG, "Challenge calculation with username %s and password %s\n", inpkt.UserName, passwd);
+    Challenge (inpkt.UserName, passwd);
+    delete [] passwd;
 
-	SMSG_LOGON_CHALLENGE_t *outpkt = SMSG_LOGON_CHALLENGE_t::Create ();
-	memcpy (outpkt->BR, &BR, sizeof (BR));
-	memcpy (outpkt->N, &N, sizeof (N));
-	memcpy (outpkt->Salt, &salt, sizeof (salt));
-	Send (outpkt);
+    SMSG_LOGON_CHALLENGE_t *outpkt = SMSG_LOGON_CHALLENGE_t::Create ();
+    memcpy (outpkt->BR, &BR, sizeof (BR));
+    memcpy (outpkt->N, &N, sizeof (N));
+    memcpy (outpkt->Salt, &salt, sizeof (salt));
+    Send (outpkt);
 
-	Server->Logger->Out (LOG_DEBUG, "Sent LOGON_CHALLENGE\n");
+    Server->Logger->Out (LOG_DEBUG, "Sent LOGON_CHALLENGE\n");
 }
 
 void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
 {
-	Server->Logger->Out (LOG_DEBUG, "Recieved LOGON_PROOF\n");
+    Server->Logger->Out (LOG_DEBUG, "Recieved LOGON_PROOF\n");
 
-	Proof (inpkt.A);
+    Proof (inpkt.A);
 
-	#ifdef SRP_DEBUG
-	printBytes (inpkt.M1, 20, "in-M1");
-	printBytes (SS_Hash, 40, "SS_Hash");
-	#endif
+    #ifdef SRP_DEBUG
+    printBytes (inpkt.M1, 20, "in-M1");
+    printBytes (SS_Hash, 40, "SS_Hash");
+    #endif
 
-	// if they differ, wrong pass
-	if (memcmp (inpkt.M1, M1, 20))
-	{
-		FailLogin (CE_BAD_CREDENTIALS, "bad password");
-		return;
-	}
+    // if they differ, wrong pass
+    if (memcmp (inpkt.M1, M1, 20))
+    {
+        FailLogin (CE_BAD_CREDENTIALS, "bad password");
+        return;
+    }
 
-	DatabaseExecutor *dbex = Server->db->GetExecutor ();
-	if (!dbex)
-	{
-		FailLogin (CE_CANNOT_LOGIN, "could not log in");
-		return;
-	}
+    DatabaseExecutor *dbex = Server->db->GetExecutor ();
+    if (!dbex)
+    {
+        FailLogin (CE_CANNOT_LOGIN, "could not log in");
+        return;
+    }
 
-	char sshash [81];
-	Bin2Hex (sshash, SS_Hash, 40);
-	if (dbex->ExecuteF ("UPDATE accounts SET authip='%s',sessionkey='%s',lastlogin=NOW() WHERE login='%s'",
-		socket->GetIP (), sshash, UserName) != dbeOk)
-	{
-		Server->db->PutExecutor (dbex);
-		FailLogin (CE_CANNOT_LOGIN, "could not log in");
-		return;
-	}
+    char sshash [81];
+    Bin2Hex (sshash, SS_Hash, 40);
+    if (dbex->ExecuteF ("UPDATE accounts SET authip='%s',sessionkey='%s',lastlogin=NOW() WHERE login='%s'",
+        socket->GetIP (), sshash, UserName) != dbeOk)
+    {
+        Server->db->PutExecutor (dbex);
+        FailLogin (CE_CANNOT_LOGIN, "could not log in");
+        return;
+    }
 
-	Server->db->PutExecutor (dbex);
+    Server->db->PutExecutor (dbex);
 
-	SMSG_LOGON_PROOF_t *outpkt = SMSG_LOGON_PROOF_t::Create ();
-	memcpy (outpkt->M2, M2, 20);
-	Send (outpkt);
+    SMSG_LOGON_PROOF_t *outpkt = SMSG_LOGON_PROOF_t::Create ();
+    memcpy (outpkt->M2, M2, 20);
+    Send (outpkt);
 
-	Server->Logger->Out (LOG_DEBUG, "Sent LOGON_PROOF\n");
+    Server->Logger->Out (LOG_DEBUG, "Sent LOGON_PROOF\n");
 }
 
 void RealmClient::HandleRealmList (CMSG_REALMLIST_t &inpkt)
 {
-	Server->Logger->Out (LOG_DEBUG, "Received REALMLIST request %d\n", inpkt.request);
+    Server->Logger->Out (LOG_DEBUG, "Received REALMLIST request %d\n", inpkt.request);
 
-	RealmVector *rv = Server->GetRealms ();
-	if (!rv)
-		rv = new RealmVector ();
+    RealmVector *rv = Server->GetRealms ();
+    if (!rv)
+        rv = new RealmVector ();
 
-	DatabaseExecutor *dbex = Server->db->GetExecutor ();
-	if (dbex)
-	{
-		for (int i = 0; i < rv->Length (); i++)
-		{
-			char *qlogin = QuoteSQL (UserName);
-			char *qrealm = QuoteSQL (rv->Get (i)->Name);
-			if ((dbex->ExecuteF ("SELECT numchars FROM accountchars WHERE login='%s' AND realm='%s'",
-				qlogin, qrealm) == dbeOk) && dbex->NextRow ())
-				rv->Get (i)->NumChars = atoi (dbex->Get (0));
-			if (qlogin != UserName)
-				delete [] qlogin;
-			if (qrealm != rv->Get (i)->Name)
-				delete [] qrealm;
-		}
-		Server->db->PutExecutor (dbex);
-	}
+    DatabaseExecutor *dbex = Server->db->GetExecutor ();
+    if (dbex)
+    {
+        for (int i = 0; i < rv->Length (); i++)
+        {
+            char *qlogin = QuoteSQL (UserName);
+            char *qrealm = QuoteSQL (rv->Get (i)->Name);
+            if ((dbex->ExecuteF ("SELECT numchars FROM accountchars WHERE login='%s' AND realm='%s'",
+                qlogin, qrealm) == dbeOk) && dbex->NextRow ())
+                rv->Get (i)->NumChars = atoi (dbex->Get (0));
+            if (qlogin != UserName)
+                delete [] qlogin;
+            if (qrealm != rv->Get (i)->Name)
+                delete [] qrealm;
+        }
+        Server->db->PutExecutor (dbex);
+    }
 
-	SMSG_REALMLIST_t *outpkt = SMSG_REALMLIST_t::Create ();
-	outpkt->Request = inpkt.request;
-	outpkt->NumRealms = rv->Length ();
-	outpkt->RealmList.Exchange (*rv);
-	delete rv;
-	outpkt->Assemble ();
-	// Update the datalen field post-factum, now that we know packet length
-	// Equivalent to: outpkt->DataLen = outpkt->length;
-	PUT_LE16 (outpkt->data + 1, outpkt->length - 3);
-	Send (outpkt);
+    SMSG_REALMLIST_t *outpkt = SMSG_REALMLIST_t::Create ();
+    outpkt->Request = inpkt.request;
+    outpkt->NumRealms = rv->Length ();
+    outpkt->RealmList.Exchange (*rv);
+    delete rv;
+    outpkt->Assemble ();
+    // Update the datalen field post-factum, now that we know packet length
+    // Equivalent to: outpkt->DataLen = outpkt->length;
+    PUT_LE16 (outpkt->data + 1, outpkt->length - 3);
+    Send (outpkt);
 
-	Server->Logger->Out (LOG_DEBUG, "Sent REALMLIST\n");
+    Server->Logger->Out (LOG_DEBUG, "Sent REALMLIST\n");
 }

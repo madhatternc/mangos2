@@ -33,11 +33,11 @@ class DatabaseInterface;
 
 class PetHandler : public MsgHandler
 {
-	public:
-		PetHandler();
-		~PetHandler();
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-	protected:
+    public:
+        PetHandler();
+        ~PetHandler();
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+    protected:
 
 };
-#endif														// __PET_HANDLER_H__
+#endif                                                      // __PET_HANDLER_H__

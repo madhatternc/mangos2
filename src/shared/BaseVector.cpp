@@ -24,10 +24,10 @@
 
 BaseVector::~BaseVector ()
 {
-	DeleteAll ();
+    DeleteAll ();
 }
 
 void BaseVector::FreeItem (Some Item) const
 {
-	((Base *)Item)->DecRef ();
+    ((Base *)Item)->DecRef ();
 }

@@ -23,80 +23,80 @@
 
 void Server::WaitSocketEvents ()
 {
-	int nfds = 0;
-	fd_set rfds, wfds, efds;
+    int nfds = 0;
+    fd_set rfds, wfds, efds;
 
-	FD_ZERO (&rfds);
-	FD_ZERO (&wfds);
-	FD_ZERO (&efds);
+    FD_ZERO (&rfds);
+    FD_ZERO (&wfds);
+    FD_ZERO (&efds);
 
-	int i;
-	for (i = Clients.Length () - 1; i >= 0; i--)
-	{
-		Client *c = (Client *)Clients.Get (i);
-		if (i && !c->socket->Connected ())
-		{
-			// Remove dead clients from the queue immediately
-			DeleteClient (i);
-			continue;
-		}
+    int i;
+    for (i = Clients.Length () - 1; i >= 0; i--)
+    {
+        Client *c = (Client *)Clients.Get (i);
+        if (i && !c->socket->Connected ())
+        {
+            // Remove dead clients from the queue immediately
+            DeleteClient (i);
+            continue;
+        }
 
-		socket_t sh = c->socket->GetHandle ();
-		uint ev = c->socket->InterestedEvents ();
-		if (ev)
-		{
-			if (ev & PF_READ)
-				FD_SET (sh, &rfds);
-			if (ev & PF_WRITE)
-				FD_SET (sh, &wfds);
-			if (ev & PF_EXCEPT)
-				FD_SET (sh, &efds);
-			if (sh >= nfds)
-				nfds = sh + 1;
-		}
-	}
+        socket_t sh = c->socket->GetHandle ();
+        uint ev = c->socket->InterestedEvents ();
+        if (ev)
+        {
+            if (ev & PF_READ)
+                FD_SET (sh, &rfds);
+            if (ev & PF_WRITE)
+                FD_SET (sh, &wfds);
+            if (ev & PF_EXCEPT)
+                FD_SET (sh, &efds);
+            if (sh >= nfds)
+                nfds = sh + 1;
+        }
+    }
 
-	struct timeval tv;
-	tv.tv_sec = 0;
-	tv.tv_usec = StepTimeMs * 1000;
+    struct timeval tv;
+    tv.tv_sec = 0;
+    tv.tv_usec = StepTimeMs * 1000;
 
-	int nh = select (nfds, &rfds, &wfds, &efds, &tv);
+    int nh = select (nfds, &rfds, &wfds, &efds, &tv);
 
-	// No events, or an error?
-	DEBUG_BREAK_IF (nh == SOCKET_ERROR);
-	if (nh == 0 || nh == SOCKET_ERROR)
-		return;
+    // No events, or an error?
+    DEBUG_BREAK_IF (nh == SOCKET_ERROR);
+    if (nh == 0 || nh == SOCKET_ERROR)
+        return;
 
-	for (i = Clients.Length () - 1; i >= 0; i--)
-	{
-		Client *c = (Client *)Clients.Get (i);
-		socket_t sh = c->socket->GetHandle ();
-		uint ev = 0;
-		if (FD_ISSET (sh, &rfds))
-		{
-			ev |= PF_READ;
-			// Client 0 is always ourselves
-			if (i)
-				c->socket->ReceiveData ();
-		}
-		if (FD_ISSET (sh, &wfds))
-		{
-			ev |= PF_WRITE;
-			// Client 0 is always ourselves
-			if (i)
-				c->socket->SendPending ();
-		}
-		if (FD_ISSET (sh, &efds))
-			ev |= PF_EXCEPT;
-		if (ev)
-		{
-			c->SocketEvent (ev);
-			if (i && !c->socket->Connected ())
-			{
-				// Remove dead clients from the queue immediately
-				DeleteClient (i);
-				continue;
-			}
-		}
-	}
+    for (i = Clients.Length () - 1; i >= 0; i--)
+    {
+        Client *c = (Client *)Clients.Get (i);
+        socket_t sh = c->socket->GetHandle ();
+        uint ev = 0;
+        if (FD_ISSET (sh, &rfds))
+        {
+            ev |= PF_READ;
+            // Client 0 is always ourselves
+            if (i)
+                c->socket->ReceiveData ();
+        }
+        if (FD_ISSET (sh, &wfds))
+        {
+            ev |= PF_WRITE;
+            // Client 0 is always ourselves
+            if (i)
+                c->socket->SendPending ();
+        }
+        if (FD_ISSET (sh, &efds))
+            ev |= PF_EXCEPT;
+        if (ev)
+        {
+            c->SocketEvent (ev);
+            if (i && !c->socket->Connected ())
+            {
+                // Remove dead clients from the queue immediately
+                DeleteClient (i);
+                continue;
+            }
+        }
+    }
 }

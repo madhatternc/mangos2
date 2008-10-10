@@ -40,7 +40,7 @@ function clean (s)
  end
 
  if flags['C'] then
- 	return s
+    return s
  end
 
  local S = "" -- saved string
@@ -72,8 +72,7 @@ function clean (s)
  -- eliminate unecessary spaces
  S = gsub(S,"[ \t]+"," ")
  S = gsub(S,"[ \t]*\n[ \t]*","\n")
-	S = gsub(S,"\n+","\n")
+    S = gsub(S,"\n+","\n")
  S = unmask(S)
  return S
 end
-

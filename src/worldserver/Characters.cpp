@@ -27,168 +27,168 @@
 
 void GameClient::UpdateNumChars ()
 {
-	DatabaseExecutor *dbex = World->db->GetExecutor ();
-	if (!dbex)
-		return;
+    DatabaseExecutor *dbex = World->db->GetExecutor ();
+    if (!dbex)
+        return;
 
-	if (dbex->ExecuteF ("SELECT guid FROM characters WHERE login='%s'", Login) != dbeOk)
-	{
-		World->db->PutExecutor (dbex);
-		return;
-	}
+    if (dbex->ExecuteF ("SELECT guid FROM characters WHERE login='%s'", Login) != dbeOk)
+    {
+        World->db->PutExecutor (dbex);
+        return;
+    }
 
-	int n = dbex->NumRows ();
+    int n = dbex->NumRows ();
 
-	World->db->PutExecutor (dbex);
+    World->db->PutExecutor (dbex);
 
-	dbex = World->rdb->GetExecutor ();
-	if (dbex)
-	{
-		char *qlogin = QuoteSQL (Login);
-		char *qrealm = QuoteSQL (World->RealmName);
+    dbex = World->rdb->GetExecutor ();
+    if (dbex)
+    {
+        char *qlogin = QuoteSQL (Login);
+        char *qrealm = QuoteSQL (World->RealmName);
 
-		if (n)
-		{
-			bool updateok = (dbex->ExecuteF ("UPDATE accountchars SET numchars=%d "
-				"WHERE login='%s' AND realm='%s'", n, qlogin, qrealm) == dbeOk) &&
-				dbex->GetAffectedRows ();
-			if (!updateok)
-				dbex->ExecuteF ("INSERT INTO accountchars (login,realm,numchars) "
-					"VALUES ('%s','%s',%d)", qlogin, qrealm, n);
-		}
-		else
-			dbex->ExecuteF ("DELETE FROM accountchars WHERE login='%s' AND realm='%s'",
-				qlogin, qrealm);
+        if (n)
+        {
+            bool updateok = (dbex->ExecuteF ("UPDATE accountchars SET numchars=%d "
+                "WHERE login='%s' AND realm='%s'", n, qlogin, qrealm) == dbeOk) &&
+                dbex->GetAffectedRows ();
+            if (!updateok)
+                dbex->ExecuteF ("INSERT INTO accountchars (login,realm,numchars) "
+                    "VALUES ('%s','%s',%d)", qlogin, qrealm, n);
+        }
+        else
+            dbex->ExecuteF ("DELETE FROM accountchars WHERE login='%s' AND realm='%s'",
+                qlogin, qrealm);
 
-		if (qlogin != Login)
-			delete [] qlogin;
-		if (qrealm != World->RealmName)
-			delete [] qrealm;
+        if (qlogin != Login)
+            delete [] qlogin;
+        if (qrealm != World->RealmName)
+            delete [] qrealm;
 
-		World->rdb->PutExecutor (dbex);
-	}
+        World->rdb->PutExecutor (dbex);
+    }
 }
 
 void GameClient::HandleCharEnum ()
 {
-	SMSG_CHAR_ENUM_t *outpkt = SMSG_CHAR_ENUM_t::Create ();
+    SMSG_CHAR_ENUM_t *outpkt = SMSG_CHAR_ENUM_t::Create ();
 
-	DatabaseExecutor *dbex = World->db->GetExecutor ();
-	if (dbex)
-	{
-		if (dbex->ExecuteF ("SELECT guid FROM characters WHERE login='%s' ORDER BY guid", Login) == dbeOk)
-		{
-			uint64 guids [MAX_CHARS_PER_LOGIN];
-			int nguids = 0;
-			while (dbex->NextRow () && nguids < MAX_CHARS_PER_LOGIN)
-				guids [nguids++] = dbex->GetU64 (0);
+    DatabaseExecutor *dbex = World->db->GetExecutor ();
+    if (dbex)
+    {
+        if (dbex->ExecuteF ("SELECT guid FROM characters WHERE login='%s' ORDER BY guid", Login) == dbeOk)
+        {
+            uint64 guids [MAX_CHARS_PER_LOGIN];
+            int nguids = 0;
+            while (dbex->NextRow () && nguids < MAX_CHARS_PER_LOGIN)
+                guids [nguids++] = dbex->GetU64 (0);
 
-			CharacterData *cd = NULL;
-			outpkt->Count = 0;
-			for (int i = 0; i < nguids; i++)
-			{
-				if (!cd)
-					cd = new CharacterData ();
+            CharacterData *cd = NULL;
+            outpkt->Count = 0;
+            for (int i = 0; i < nguids; i++)
+            {
+                if (!cd)
+                    cd = new CharacterData ();
 
-				// Re-use the executor
-				dbex->Free ();
-				if (cd->Load (dbex, guids [i]))
-				{
-					outpkt->List.Push (cd);
-					outpkt->Count++;
-					cd = NULL;
-				}
-			}
-			if (cd)
-				delete cd;
-		}
-		World->db->PutExecutor (dbex);
-	}
+                // Re-use the executor
+                dbex->Free ();
+                if (cd->Load (dbex, guids [i]))
+                {
+                    outpkt->List.Push (cd);
+                    outpkt->Count++;
+                    cd = NULL;
+                }
+            }
+            if (cd)
+                delete cd;
+        }
+        World->db->PutExecutor (dbex);
+    }
 
-	Send (outpkt);
+    Send (outpkt);
 }
 
 void GameClient::HandleCharCreate (CMSG_CHAR_CREATE_t &inpkt)
 {
-	SMSG_CHAR_CREATE_t *outpkt = SMSG_CHAR_CREATE_t::Create ();
+    SMSG_CHAR_CREATE_t *outpkt = SMSG_CHAR_CREATE_t::Create ();
 
-	Player *NewPlayer = new Player;
-	if ((outpkt->ErrorCode = NewPlayer->Create (inpkt, this)) == WSE_CHARACTER_CREATED)
-	{
-		if (NewPlayer->SaveToDB ())
-			UpdateNumChars ();
-		else
-			outpkt->ErrorCode = WSE_NAME_ALREADY_IN_USE;
-	}
+    Player *NewPlayer = new Player;
+    if ((outpkt->ErrorCode = NewPlayer->Create (inpkt, this)) == WSE_CHARACTER_CREATED)
+    {
+        if (NewPlayer->SaveToDB ())
+            UpdateNumChars ();
+        else
+            outpkt->ErrorCode = WSE_NAME_ALREADY_IN_USE;
+    }
 
-	Send (outpkt);
+    Send (outpkt);
 
-	if (outpkt->ErrorCode == WSE_CHARACTER_CREATED)
-		LOG.Out (LOG_COMMON, "%s: Created character '%s'\n", Login, NewPlayer->Name);
-	NewPlayer->DecRef ();
+    if (outpkt->ErrorCode == WSE_CHARACTER_CREATED)
+        LOG.Out (LOG_COMMON, "%s: Created character '%s'\n", Login, NewPlayer->Name);
+    NewPlayer->DecRef ();
 }
 
 void GameClient::HandleCharDelete (CMSG_CHAR_DELETE_t &inpkt)
 {
-	Player *plr = new Player;
-	SMSG_CHAR_CREATE_t *outpkt = SMSG_CHAR_CREATE_t::Create ();
+    Player *plr = new Player;
+    SMSG_CHAR_CREATE_t *outpkt = SMSG_CHAR_CREATE_t::Create ();
 
-	outpkt->ErrorCode = WSE_CHARACTER_DELETION_FAILED;
-	// Ignore loading errors since character may be broken
-	plr->LoadFromDB (uint32 (inpkt.Guid));
-	if (plr->DeleteFromDB ())
-		outpkt->ErrorCode = WSE_CHARACTER_DELETED;
+    outpkt->ErrorCode = WSE_CHARACTER_DELETION_FAILED;
+    // Ignore loading errors since character may be broken
+    plr->LoadFromDB (uint32 (inpkt.Guid));
+    if (plr->DeleteFromDB ())
+        outpkt->ErrorCode = WSE_CHARACTER_DELETED;
 
-	Send (outpkt);
+    Send (outpkt);
 
-	if (outpkt->ErrorCode == WSE_CHARACTER_DELETED)
-		LOG.Out (LOG_COMMON, "%s: Deleted character '%s'\n",
-			Login, plr->Name);
-	plr->DecRef ();
+    if (outpkt->ErrorCode == WSE_CHARACTER_DELETED)
+        LOG.Out (LOG_COMMON, "%s: Deleted character '%s'\n",
+            Login, plr->Name);
+    plr->DecRef ();
 }
 
 void GameClient::HandlePlayerLogin (CMSG_PLAYER_LOGIN_t &inpkt)
 {
-	Character = new Player;
+    Character = new Player;
 
-	if (!Character->LoadFromDB (uint32 (inpkt.Guid)))
-	{
-		SMSG_CHARACTER_LOGIN_FAILED_t *outpkt = SMSG_CHARACTER_LOGIN_FAILED_t::Create ();
-		outpkt->ErrorCode = WSE_LOGIN_FAILED;
-		Send (outpkt);
-		Character->DecRef ();
-		Character = NULL;
-		return;
-	}
+    if (!Character->LoadFromDB (uint32 (inpkt.Guid)))
+    {
+        SMSG_CHARACTER_LOGIN_FAILED_t *outpkt = SMSG_CHARACTER_LOGIN_FAILED_t::Create ();
+        outpkt->ErrorCode = WSE_LOGIN_FAILED;
+        Send (outpkt);
+        Character->DecRef ();
+        Character = NULL;
+        return;
+    }
 
-	Character->Client = this;
+    Character->Client = this;
 
-	SendAccountDataMD5 ();
+    SendAccountDataMD5 ();
 
-	// MOTD
-	//	sChatHandler.FillSystemMessageData(&data, this, sWorld.GetMotd());
-	//	SendPacket( &data );
+    // MOTD
+    //  sChatHandler.FillSystemMessageData(&data, this, sWorld.GetMotd());
+    //  SendPacket( &data );
 
-	//data.Initialize(4, SMSG_SET_REST_START);
-	//data << unsure;
-	//SendPacket(&data);
+    //data.Initialize(4, SMSG_SET_REST_START);
+    //data << unsure;
+    //SendPacket(&data);
 
-	// Tell character to perform all login-time setup
-	Character->Login ();
+    // Tell character to perform all login-time setup
+    Character->Login ();
 
-	// Now send all A9's
-	// Add character to the ingame list
-	// Build the in-range set
-	// Send a message to other clients that a new player has entered the world
-	// And let this client know we're in game
+    // Now send all A9's
+    // Add character to the ingame list
+    // Build the in-range set
+    // Send a message to other clients that a new player has entered the world
+    // And let this client know we're in game
 
-	//objmgr.AddObject( pCurrChar );
-	//pCurrChar->PlaceOnMap();
+    //objmgr.AddObject( pCurrChar );
+    //pCurrChar->PlaceOnMap();
 
-	//	std::string outstring = pCurrChar->GetName();
-	//	outstring.append( " has entered the world." );
-	//	sWorld.SendWorldText( outstring.c_str( ) );
+    //  std::string outstring = pCurrChar->GetName();
+    //  outstring.append( " has entered the world." );
+    //  sWorld.SendWorldText( outstring.c_str( ) );
 
-	LOG.Out (LOG_COMMON, "%s: Entered into world as '%s'\n",
-		Login, Character->Name);
+    LOG.Out (LOG_COMMON, "%s: Entered into world as '%s'\n",
+        Login, Character->Name);
 }

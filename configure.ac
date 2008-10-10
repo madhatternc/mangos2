@@ -5,12 +5,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -57,7 +57,7 @@ fi
 AM_CONDITIONAL([USE_CODEGEN], [test "_$PYTHONPATH" != _])
 
 ## Check for required libraries.
-AC_CHECK_LIB( pthread, pthread_create, [], 
+AC_CHECK_LIB( pthread, pthread_create, [],
     [LDFLAGS="-pthread $LDFLAGS"
      AC_TRY_LINK([char pthread_create();],
          pthread_create();,
@@ -105,9 +105,9 @@ AC_ARG_ENABLE(debug,
          esac],[debug=false])
 #AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
 if test x$debug = xtrue; then
-	AC_DEFINE(DEBUG, 1, Enable this to include additional debugging code in executable)
-	CFLAGS=${CFLAGS:--O2 -g -Wall -Weffc++}
-	CXXFLAGS=${CXXFLAGS:--O2 -g -Wall -Weffc++}
+    AC_DEFINE(DEBUG, 1, Enable this to include additional debugging code in executable)
+    CFLAGS=${CFLAGS:--O2 -g -Wall -Weffc++}
+    CXXFLAGS=${CXXFLAGS:--O2 -g -Wall -Weffc++}
 fi
 AM_CONDITIONAL([DEBUG], [test "_$debug" != _])
 
@@ -161,37 +161,36 @@ AC_SUBST(USE_CODEGEN)
 AC_CONFIG_HEADER([config.h])
 
 AC_CONFIG_FILES([Makefile
-		 dep/Makefile
-		 dep/inc/Makefile
-		 dep/lib/Makefile
-		 dep/src/Makefile
-		 dep/src/lua/Makefile
-		 dep/src/tolua++/Makefile
-		 dep/src/tolua++/lib/Makefile
-		 dep/src/tolua++/bin/Makefile
-		 doc/Doxyfile
-		 doc/Makefile
-		 sql/Makefile
-		 sql/realmlist/Makefile
-		 sql/worldserver/Makefile
-		 src/Makefile
-		 src/realmlist/Makefile
-		 src/realmlist/realmlist.conf.dist
-		 src/shared/Makefile
-		 src/shared/lua/Makefile
-		 src/shared/lua/lib/Makefile
-		 src/tools/Makefile
-		 src/tools/gencode/Makefile
-		 src/tools/gencode/yaml/Makefile
-		 src/tools/tolua/Makefile
-		 src/tools/tolua/lib/Makefile
-		 src/tools/tolua/bin/Makefile
-		 src/worldserver/Makefile
-		 src/worldserver/worldserver.conf.dist
-		 src/worldserver/todo/Makefile])
+         dep/Makefile
+         dep/inc/Makefile
+         dep/lib/Makefile
+         dep/src/Makefile
+         dep/src/lua/Makefile
+         dep/src/tolua++/Makefile
+         dep/src/tolua++/lib/Makefile
+         dep/src/tolua++/bin/Makefile
+         doc/Doxyfile
+         doc/Makefile
+         sql/Makefile
+         sql/realmlist/Makefile
+         sql/worldserver/Makefile
+         src/Makefile
+         src/realmlist/Makefile
+         src/realmlist/realmlist.conf.dist
+         src/shared/Makefile
+         src/shared/lua/Makefile
+         src/shared/lua/lib/Makefile
+         src/tools/Makefile
+         src/tools/gencode/Makefile
+         src/tools/gencode/yaml/Makefile
+         src/tools/tolua/Makefile
+         src/tools/tolua/lib/Makefile
+         src/tools/tolua/bin/Makefile
+         src/worldserver/Makefile
+         src/worldserver/worldserver.conf.dist
+         src/worldserver/todo/Makefile])
 
 ## Additional processing
 
 ## Output files.
 AC_OUTPUT
-

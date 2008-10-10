@@ -31,13 +31,13 @@
 
 QuestMgr
 {
-	public:
-		QuestMgr(WorldServer* srv)
-		{
-			m_server = srv;
-		}
+    public:
+        QuestMgr(WorldServer* srv)
+        {
+            m_server = srv;
+        }
 
-		WorldServer m_server;
+        WorldServer m_server;
 
 }
-#endif														//__QUEST_MGR_H__
+#endif                                                      //__QUEST_MGR_H__

@@ -1,19 +1,19 @@
 A. HISTORY OF THE SOFTWARE
 ==========================
 
-The Python library for YAML was started by Steve Howell in 
+The Python library for YAML was started by Steve Howell in
 February 2002.  Steve is the primary author of the project,
-but others have contributed.  See the README for more on 
-the project.  The term "PyYaml" refers to the entire 
+but others have contributed.  See the README for more on
+the project.  The term "PyYaml" refers to the entire
 distribution of this library, including examples, documentation,
 and test files, as well as the core implementation.
 
-This library is intended for general use, and the license 
-below protects the "open source" nature of the library.  The 
-license does, however, allow for use of the library in 
-commercial applications as well, subject to the terms 
-and conditions listed.  The license below is a minor 
-rewrite of the Python 2.2 license, with no substantive 
+This library is intended for general use, and the license
+below protects the "open source" nature of the library.  The
+license does, however, allow for use of the library in
+commercial applications as well, subject to the terms
+and conditions listed.  The license below is a minor
+rewrite of the Python 2.2 license, with no substantive
 differences.
 
 
@@ -23,7 +23,7 @@ B. TERMS AND CONDITIONS FOR ACCESSING OR OTHERWISE USING PyYaml
 LICENSE AGREEMENT FOR PyYaml
 ----------------------------
 
-1. This LICENSE AGREEMENT is between Stephen S. Howell ("Author"), 
+1. This LICENSE AGREEMENT is between Stephen S. Howell ("Author"),
 and the Individual or Organization ("Licensee") accessing and
 otherwise using PyYaml software in source or binary form and its
 associated documentation.
@@ -67,5 +67,3 @@ products or services of Licensee, or any third party.
 8. By copying, installing or otherwise using PyYaml, Licensee
 agrees to be bound by the terms and conditions of this License
 Agreement.
-
-

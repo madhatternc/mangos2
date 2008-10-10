@@ -44,38 +44,38 @@ class Server;
  */
 class Client : public Base
 {
-	protected:
-		friend class Server;
+    protected:
+        friend class Server;
 
-		/**
-		 *  \brief The client socket
-		 */
-		Socket *socket;
+        /**
+         *  \brief The client socket
+         */
+        Socket *socket;
 
-		/**
-		 *  \brief Private destructor -- use DecRef () instead
-		 */
-		virtual ~Client ();
+        /**
+         *  \brief Private destructor -- use DecRef () instead
+         */
+        virtual ~Client ();
 
-	public:
-		/**
-		 *  \brief Create the client object listening to this socket
-		 */
-		Client (Socket *sock);								//tolua_hide abstract class can't be allociated
+    public:
+        /**
+         *  \brief Create the client object listening to this socket
+         */
+        Client (Socket *sock);                              //tolua_hide abstract class can't be allociated
 
-		/**
-		 *  \brief Called when any event happens with the socket.
-		 *
-		 *  \details
-		 *  Called when any event (one of those requested by socket->InterestedEvents())
-		 *  happens with the socket.
-		 *
-		 *  \arg \c mask Event mask (a combination of PF_XXX flags)
-		 */
-		virtual void SocketEvent (uint mask) = 0;
+        /**
+         *  \brief Called when any event happens with the socket.
+         *
+         *  \details
+         *  Called when any event (one of those requested by socket->InterestedEvents())
+         *  happens with the socket.
+         *
+         *  \arg \c mask Event mask (a combination of PF_XXX flags)
+         */
+        virtual void SocketEvent (uint mask) = 0;
 };
 
 /**
  *  @}
  */
-#endif														// __CLIENT_H__
+#endif                                                      // __CLIENT_H__

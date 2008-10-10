@@ -35,66 +35,66 @@ RealmListSrv::~RealmListSrv ()
 
 bool RealmListSrv::Start ()
 {
-	if (!db)
-		return false;
+    if (!db)
+        return false;
 
-	return Server::Start ();
+    return Server::Start ();
 }
 
 void RealmListSrv::SocketEvent (uint mask)
 {
-	if (mask & PF_READ)
-	{
-		Socket *sock = socket->Accept ();
-		if (!sock)
-			return;
-		// Free local references to refcounted objects
-		RealmClient *c = new RealmClient (sock, this);
-		AddClient (c);
-		c->DecRef ();
-		sock->DecRef ();
-	}
+    if (mask & PF_READ)
+    {
+        Socket *sock = socket->Accept ();
+        if (!sock)
+            return;
+        // Free local references to refcounted objects
+        RealmClient *c = new RealmClient (sock, this);
+        AddClient (c);
+        c->DecRef ();
+        sock->DecRef ();
+    }
 }
 
 void RealmListSrv::SetDatabase (Database *iDb)
 {
-	if (db != iDb)
-	{
-		if (db)
-			db->DecRef ();
-		if ((db = iDb))
-		{
-			db->IncRef ();
-			db->SetLogger (Logger);
-		}
-	}
+    if (db != iDb)
+    {
+        if (db)
+            db->DecRef ();
+        if ((db = iDb))
+        {
+            db->IncRef ();
+            db->SetLogger (Logger);
+        }
+    }
 }
 
 RealmVector *RealmListSrv::GetRealms ()
 {
-	DatabaseExecutor *dbex = db->GetExecutor ();
-	if (!dbex)
-		return NULL;
+    DatabaseExecutor *dbex = db->GetExecutor ();
+    if (!dbex)
+        return NULL;
 
-	RealmVector *rv = NULL;
-	if (dbex->Execute ("SELECT name,address,population,type,locked,color,language,online "
-		"FROM realms") == dbeOk)
-	{
-		rv = new RealmVector (9, 9);
-		while (dbex->NextRow ())
-		{
-			Realm *r = new Realm (dbex->Get (0), dbex->Get (1),
-				atof (dbex->Get (2)), atoi (dbex->Get (3)),
-				atoi (dbex->Get (4)), atoi (dbex->Get (5)),
-				atoi (dbex->Get (6)));
-			// Mark server with the 'offline' color if it is offline
-			if (!atoi (dbex->Get (7)))
-				r->Color = 2;
-			rv->Push (r);
-		}
-	}
+    RealmVector *rv = NULL;
+    if (dbex->Execute ("SELECT name,address,population,type,locked,color,language,online "
+        "FROM realms") == dbeOk)
+    {
+        rv = new RealmVector (9, 9);
+        while (dbex->NextRow ())
+        {
+            Realm *r = new Realm (dbex->Get (0), dbex->Get (1),
+                atof (dbex->Get (2)), atoi (dbex->Get (3)),
+                atoi (dbex->Get (4)), atoi (dbex->Get (5)),
+                atoi (dbex->Get (6)));
+            // Mark server with the 'offline' color if it is offline
+            if (!atoi (dbex->Get (7)))
+                r->Color = 2;
+            rv->Push (r);
+        }
+    }
 
-	db->PutExecutor (dbex);
+    db->PutExecutor (dbex);
 
-	return rv;
+    return rv;
 }

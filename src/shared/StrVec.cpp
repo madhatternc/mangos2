@@ -24,22 +24,22 @@
 
 StrVector::~StrVector ()
 {
-	DeleteAll ();
+    DeleteAll ();
 }
 
 void StrVector::FreeItem (Some Item) const
 {
-	delete [] (char *) Item;
+    delete [] (char *) Item;
 }
 
 int StrVector::Compare (Some Item1, Some Item2, int Mode) const
 {
-	(void)Mode;
-	return strcmp ((char *)Item1, (char *)Item2);
+    (void)Mode;
+    return strcmp ((char *)Item1, (char *)Item2);
 }
 
 int StrVector::CompareKey (Some Item, ConstSome Key, int Mode) const
 {
-	(void)Mode;
-	return strcmp ((char *)Item, (char *)Key);
+    (void)Mode;
+    return strcmp ((char *)Item, (char *)Key);
 }

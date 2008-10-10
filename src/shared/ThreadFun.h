@@ -41,37 +41,37 @@
  */
 class Thread : public Base
 {
-	public:
-		/**
-		 *  \enum ThreadPriority
-		 *
-		 *  Thread priorities
-		 */
-		enum ThreadPriority
-		{
-			IDLE,
-			LOWER,
-			LOW,
-			NORMAL,
-			HIGH,
-			HIGHER,
-			REALTIME
-		};
+    public:
+        /**
+         *  \enum ThreadPriority
+         *
+         *  Thread priorities
+         */
+        enum ThreadPriority
+        {
+            IDLE,
+            LOWER,
+            LOW,
+            NORMAL,
+            HIGH,
+            HIGHER,
+            REALTIME
+        };
 
-		/**
-		 *  \brief Start a new thread. Return NULL on error.
-		 *
-		 *  The created thread starts in the given routine, receiving the
-		 *  passed argument.
-		 *
-		 *  \return \c NULL returend on error.
-		 */
-		static Thread *Start (void (*routine) (void *arg), void *arg);
+        /**
+         *  \brief Start a new thread. Return NULL on error.
+         *
+         *  The created thread starts in the given routine, receiving the
+         *  passed argument.
+         *
+         *  \return \c NULL returend on error.
+         */
+        static Thread *Start (void (*routine) (void *arg), void *arg);
 
-		/**
-		 *  \brief Set thread priority
-		 */
-		virtual bool SetPriority (ThreadPriority prio) = 0;
+        /**
+         *  \brief Set thread priority
+         */
+        virtual bool SetPriority (ThreadPriority prio) = 0;
 };
 
 /**
@@ -80,29 +80,29 @@ class Thread : public Base
  */
 class Mutex : public Base
 {
-	public:
-		/**
-		 * Create a new mutex object.
-		 */
-		static Mutex *Create ();
+    public:
+        /**
+         * Create a new mutex object.
+         */
+        static Mutex *Create ();
 
-		/**
-		 *  \brief Lock mutex
-		 */
-		virtual bool Lock () = 0;
+        /**
+         *  \brief Lock mutex
+         */
+        virtual bool Lock () = 0;
 
-		/**
-		 *  \brief Try to lock the mutex; return true on success
-		 */
-		virtual bool TryLock () = 0;
+        /**
+         *  \brief Try to lock the mutex; return true on success
+         */
+        virtual bool TryLock () = 0;
 
-		/**
-		 *  \brief Unblock the mutex
-		 */
-		virtual void Unlock () = 0;
+        /**
+         *  \brief Unblock the mutex
+         */
+        virtual void Unlock () = 0;
 };
 
 /**
  *  @}
  */
-#endif														// __THREAD_FUN_H__
+#endif                                                      // __THREAD_FUN_H__

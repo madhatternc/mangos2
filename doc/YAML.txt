@@ -7,11 +7,11 @@ to parse all the incoming packets).
 Every packet has a description like this:
 -
   name: MSG_STATIC_NAME     // will be used as OPCODE name, member of opcodes
-			    // enum
+                // enum
   opcode: 0x00000           // opcode in hex value
   type: packet              // important, needed to determ type of description
   structure:                // if the packet contains anything else except op
-			    // headers, this is the description
+                // headers, this is the description
   - test:                   // name of value. this will be the struct name
       type: uint64          // type of the value
       init: 0               // value for struct init, optional
@@ -175,7 +175,7 @@ structure:
         cstring:
             This is a counted string, the first uint8 is the string length,
             after that it is followed by the string itself (without zero
-	    terminator).
+        terminator).
 
 Here's a example packet definition:
 

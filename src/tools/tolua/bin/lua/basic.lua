@@ -63,27 +63,27 @@ _global_enums = {}
 _renaming = {}
 function appendrenaming (s)
  local b,e,old,new = strfind(s,"%s*(.-)%s*@%s*(.-)%s*$")
-	if not b then
-	 error("#Invalid renaming syntax; it should be of the form: pattern@pattern")
-	end
-	tinsert(_renaming,{old=old, new=new})
+    if not b then
+     error("#Invalid renaming syntax; it should be of the form: pattern@pattern")
+    end
+    tinsert(_renaming,{old=old, new=new})
 end
 
 function applyrenaming (s)
-	for i=1,getn(_renaming) do
-	 local m,n = gsub(s,_renaming[i].old,_renaming[i].new)
-		if n ~= 0 then
-		 return m
-		end
-	end
-	return nil
+    for i=1,getn(_renaming) do
+     local m,n = gsub(s,_renaming[i].old,_renaming[i].new)
+        if n ~= 0 then
+         return m
+        end
+    end
+    return nil
 end
 
 -- Error handler
 function tolua_error (s,f)
 if _curr_code then
-	print("***curr code for error is "..tostring(_curr_code))
-	print(debug.traceback())
+    print("***curr code for error is "..tostring(_curr_code))
+    print(debug.traceback())
 end
  local out = _OUTPUT
  _OUTPUT = _STDERR
@@ -114,29 +114,29 @@ end
 
 -- register an user defined type: returns full type
 function regtype (t)
-	if isbasic(t) then
-		return t
-	end
-	local ft = findtype(t)
+    if isbasic(t) then
+        return t
+    end
+    local ft = findtype(t)
 
-	if not _usertype[ft] then
-		return appendusertype(t)
-	end
-	return ft
+    if not _usertype[ft] then
+        return appendusertype(t)
+    end
+    return ft
 end
 
 -- return type name: returns full type
 function typevar(type)
-	if type == '' or type == 'void' then
-		return type
-	else
-		local ft = findtype(type)
-		if ft then
-			return ft
-		end
-		_usertype[type] = type
-		return type
-	end
+    if type == '' or type == 'void' then
+        return type
+    else
+        local ft = findtype(type)
+        if ft then
+            return ft
+        end
+        _usertype[type] = type
+        return type
+    end
 end
 
 -- check if basic type
@@ -171,63 +171,63 @@ end
 -- also strips whitespace
 function split_c_tokens(s, pat)
 
-	-- debug.traceback()
+    -- debug.traceback()
 
-	s = string.gsub(s, "^%s*", "")
-	s = string.gsub(s, "%s*$", "")
+    s = string.gsub(s, "^%s*", "")
+    s = string.gsub(s, "%s*$", "")
 
-	local token_begin = 1
-	local token_end = 1
-	local ofs = 1
-	local ret = {n=0}
+    local token_begin = 1
+    local token_end = 1
+    local ofs = 1
+    local ret = {n=0}
 
-	function add_token(ofs)
+    function add_token(ofs)
 
-		local t = string.sub(s, token_begin, ofs)
-		t = string.gsub(t, "^%s*", "")
-		t = string.gsub(t, "%s*$", "")
-		ret.n = ret.n + 1
-		ret[ret.n] = t
-	end
+        local t = string.sub(s, token_begin, ofs)
+        t = string.gsub(t, "^%s*", "")
+        t = string.gsub(t, "%s*$", "")
+        ret.n = ret.n + 1
+        ret[ret.n] = t
+    end
 
-	while ofs <= string.len(s) do
+    while ofs <= string.len(s) do
 
-		local sub = string.sub(s, ofs, -1)
-		local b,e = string.find(sub, "^"..pat)
-		if b then
-			add_token(ofs-1)
-			ofs = ofs+e
-			token_begin = ofs
-		else
-			local char = string.sub(s, ofs, ofs)
-			if char == "(" or char == "<" then
+        local sub = string.sub(s, ofs, -1)
+        local b,e = string.find(sub, "^"..pat)
+        if b then
+            add_token(ofs-1)
+            ofs = ofs+e
+            token_begin = ofs
+        else
+            local char = string.sub(s, ofs, ofs)
+            if char == "(" or char == "<" then
 
-				local block
-				if char == "(" then block = "^%b()" end
-				if char == "<" then block = "^%b<>" end
+                local block
+                if char == "(" then block = "^%b()" end
+                if char == "<" then block = "^%b<>" end
 
-				b,e = string.find(sub, block)
-				if not b then
-					-- unterminated block?
-					ofs = ofs+1
-				else
-					ofs = ofs + e
-				end
+                b,e = string.find(sub, block)
+                if not b then
+                    -- unterminated block?
+                    ofs = ofs+1
+                else
+                    ofs = ofs + e
+                end
 
-			else
-				ofs = ofs+1
-			end
-		end
+            else
+                ofs = ofs+1
+            end
+        end
 
-	end
-	add_token(ofs)
-	--if ret.n == 0 then
+    end
+    add_token(ofs)
+    --if ret.n == 0 then
 
-	--	ret.n=1
-	--	ret[1] = ""
-	--end
+    --  ret.n=1
+    --  ret[1] = ""
+    --end
 
-	return ret
+    return ret
 
 end
 
@@ -249,7 +249,7 @@ function concatparam (line, ...)
  while i<=arg.n do
   if _cont and not strfind(_cont,'[%(,"]') and
      strfind(arg[i],"^[%a_~]") then
-	    line = line .. ' '
+        line = line .. ' '
   end
   line = line .. arg[i]
   if arg[i] ~= '' then
@@ -260,7 +260,7 @@ function concatparam (line, ...)
  if strfind(arg[arg.n],"[%/%)%;%{%}]$") then
   _cont=nil line = line .. '\n'
  end
-	return line
+    return line
 end
 
 -- output line
@@ -269,7 +269,7 @@ function output (...)
  while i<=arg.n do
   if _cont and not strfind(_cont,'[%(,"]') and
      strfind(arg[i],"^[%a_~]") then
-	    write(' ')
+        write(' ')
   end
   write(arg[i])
   if arg[i] ~= '' then
@@ -289,7 +289,7 @@ end
 -- right before processing anything else
 -- takes the package object as the parameter
 function preprocess_hook(p)
-	-- p.code has all the input code from the pkg
+    -- p.code has all the input code from the pkg
 end
 
 
@@ -321,8 +321,8 @@ function build_collect_hook(cls, i, v)
    output('\nstatic int '..v..' (lua_State* tolua_S)')
    output('{')
    output(' '..i..'* self = ('..i..'*) tolua_tousertype(tolua_S,1,0);')
-   output('	delete self;')
-   output('	return 0;')
+   output(' delete self;')
+   output(' return 0;')
    output('}')
 end
 
@@ -334,4 +334,3 @@ end
 function hook_custom_parse(obj, s)
   return nil
 end
-

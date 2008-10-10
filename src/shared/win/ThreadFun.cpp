@@ -29,123 +29,123 @@
 
 class Win32Thread : public Thread
 {
-	public:
-		bool terminate;
-		HANDLE th;
-		ULONG id;
-		void (*routine) (void *arg);
-		void *arg;
+    public:
+        bool terminate;
+        HANDLE th;
+        ULONG id;
+        void (*routine) (void *arg);
+        void *arg;
 
-		Win32Thread ();
-		virtual ~Win32Thread ();
+        Win32Thread ();
+        virtual ~Win32Thread ();
 
-		virtual bool SetPriority (ThreadPriority prio);
+        virtual bool SetPriority (ThreadPriority prio);
 };
 
 Win32Thread::Win32Thread ()
 {
-	th = NULL;
-	terminate = false;
+    th = NULL;
+    terminate = false;
 }
 
 Win32Thread::~Win32Thread ()
 {
-	/* Kill thread if this is not current thread */
-	if (th && (GetCurrentThreadId () != id))
-	{
-		TerminateThread (th, 0);
-		WaitForSingleObject (th, INFINITE);
-		CloseHandle (th);
-	}
+    /* Kill thread if this is not current thread */
+    if (th && (GetCurrentThreadId () != id))
+    {
+        TerminateThread (th, 0);
+        WaitForSingleObject (th, INFINITE);
+        CloseHandle (th);
+    }
 }
 
 bool Win32Thread::SetPriority (ThreadPriority prio)
 {
-	int p;
-	switch (prio)
-	{
-		case IDLE:  p = THREAD_PRIORITY_IDLE; break;
-		case LOWER: p = THREAD_PRIORITY_LOWEST; break;
-		case LOW:   p = THREAD_PRIORITY_BELOW_NORMAL; break;
-		case NORMAL:    p = THREAD_PRIORITY_NORMAL; break;
-		case HIGH:  p = THREAD_PRIORITY_ABOVE_NORMAL; break;
-		case HIGHER:    p = THREAD_PRIORITY_HIGHEST; break;
-		case REALTIME:  p = THREAD_PRIORITY_TIME_CRITICAL; break;
-		default:    p = THREAD_PRIORITY_NORMAL; break;
-	}
-	return SetThreadPriority (th, p);
+    int p;
+    switch (prio)
+    {
+        case IDLE:  p = THREAD_PRIORITY_IDLE; break;
+        case LOWER: p = THREAD_PRIORITY_LOWEST; break;
+        case LOW:   p = THREAD_PRIORITY_BELOW_NORMAL; break;
+        case NORMAL:    p = THREAD_PRIORITY_NORMAL; break;
+        case HIGH:  p = THREAD_PRIORITY_ABOVE_NORMAL; break;
+        case HIGHER:    p = THREAD_PRIORITY_HIGHEST; break;
+        case REALTIME:  p = THREAD_PRIORITY_TIME_CRITICAL; break;
+        default:    p = THREAD_PRIORITY_NORMAL; break;
+    }
+    return SetThreadPriority (th, p);
 }
 
 static DWORD WINAPI thread_start_routine (void *arg)
 {
-	Win32Thread *newthr = (Win32Thread *)arg;
-	newthr->id = GetCurrentThreadId ();
-	newthr->routine (newthr->arg);
-	return 0;
+    Win32Thread *newthr = (Win32Thread *)arg;
+    newthr->id = GetCurrentThreadId ();
+    newthr->routine (newthr->arg);
+    return 0;
 }
 
 Thread *Thread::Start (void (*routine) (void *arg), void *arg)
 {
-	DWORD dwtid;
-	Win32Thread *newthr = new Win32Thread ();
-	newthr->routine = routine;
-	newthr->arg = arg;
-	newthr->th = CreateThread (NULL, WIN32_THREAD_STACK_SIZE,
-		thread_start_routine, newthr, 0, &dwtid);
-	if (!newthr->th)
-	{
-		newthr->DecRef ();
-		return NULL;
-	}
+    DWORD dwtid;
+    Win32Thread *newthr = new Win32Thread ();
+    newthr->routine = routine;
+    newthr->arg = arg;
+    newthr->th = CreateThread (NULL, WIN32_THREAD_STACK_SIZE,
+        thread_start_routine, newthr, 0, &dwtid);
+    if (!newthr->th)
+    {
+        newthr->DecRef ();
+        return NULL;
+    }
 
-	return newthr;
+    return newthr;
 }
 
 class Win32Mutex : public Mutex
 {
-	public:
-		HANDLE sem;
+    public:
+        HANDLE sem;
 
-		Win32Mutex ();
-		virtual ~Win32Mutex ();
-		virtual bool Lock ();
-		virtual bool TryLock ();
-		virtual void Unlock ();
+        Win32Mutex ();
+        virtual ~Win32Mutex ();
+        virtual bool Lock ();
+        virtual bool TryLock ();
+        virtual void Unlock ();
 };
 
 Win32Mutex::Win32Mutex ()
 {
-	sem = CreateMutex (NULL, FALSE, NULL);
+    sem = CreateMutex (NULL, FALSE, NULL);
 }
 
 Win32Mutex::~Win32Mutex ()
 {
-	CloseHandle (sem);
+    CloseHandle (sem);
 }
 
 bool Win32Mutex::Lock ()
 {
-	return (WaitForSingleObject (sem, INFINITE) != WAIT_FAILED);
+    return (WaitForSingleObject (sem, INFINITE) != WAIT_FAILED);
 }
 
 bool Win32Mutex::TryLock ()
 {
-	DWORD state = WaitForSingleObject (sem, 0);
-	return (state == WAIT_OBJECT_0) && (state != WAIT_ABANDONED);
+    DWORD state = WaitForSingleObject (sem, 0);
+    return (state == WAIT_OBJECT_0) && (state != WAIT_ABANDONED);
 }
 
 void Win32Mutex::Unlock ()
 {
-	ReleaseMutex (sem);
+    ReleaseMutex (sem);
 }
 
 Mutex *Mutex::Create ()
 {
-	Win32Mutex *mutex = new Win32Mutex ();
-	if (!mutex->sem)
-	{
-		mutex->DecRef ();
-		return NULL;
-	}
-	return mutex;
+    Win32Mutex *mutex = new Win32Mutex ();
+    if (!mutex->sem)
+    {
+        mutex->DecRef ();
+        return NULL;
+    }
+    return mutex;
 }

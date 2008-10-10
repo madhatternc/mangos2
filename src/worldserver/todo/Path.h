@@ -26,35 +26,35 @@
 
 class Path
 {
-	public:
-		struct PathNode
-		{
-			float x,y,z;
-		};
-		Path( ): mNodes( 0 ), mLength( 0 ) { }
-		inline void setLength( const uint16 & length )
-		{
-			Clear( );
-			mLength = length; mNodes = new PathNode[ length ];
-		}
-		inline const uint16 & getLength( ) const { return mLength; };
-		inline PathNode * getNodes( ) { return mNodes; }
-		inline void Clear( ) { if( mNodes ) delete [ ] mNodes; mNodes = 0; }
-		float getTotalLength( )
-		{
-			float len = 0, xd, yd, zd;
-			for( uint32 a = 1; a < mLength; a ++ )
-			{
-				xd = mNodes[ a ].x - mNodes[ a-1 ].x;
-				yd = mNodes[ a ].y - mNodes[ a-1 ].y;
-				zd = mNodes[ a ].z - mNodes[ a-1 ].z;
-				len += (float)sqrt( xd * xd + yd*yd + zd*zd );
-			}
-			return len;
-		}
-		~Path( ) { Clear( ); }
-	protected:
-		PathNode * mNodes;
-		uint16 mLength;
+    public:
+        struct PathNode
+        {
+            float x,y,z;
+        };
+        Path( ): mNodes( 0 ), mLength( 0 ) { }
+        inline void setLength( const uint16 & length )
+        {
+            Clear( );
+            mLength = length; mNodes = new PathNode[ length ];
+        }
+        inline const uint16 & getLength( ) const { return mLength; };
+        inline PathNode * getNodes( ) { return mNodes; }
+        inline void Clear( ) { if( mNodes ) delete [ ] mNodes; mNodes = 0; }
+        float getTotalLength( )
+        {
+            float len = 0, xd, yd, zd;
+            for( uint32 a = 1; a < mLength; a ++ )
+            {
+                xd = mNodes[ a ].x - mNodes[ a-1 ].x;
+                yd = mNodes[ a ].y - mNodes[ a-1 ].y;
+                zd = mNodes[ a ].z - mNodes[ a-1 ].z;
+                len += (float)sqrt( xd * xd + yd*yd + zd*zd );
+            }
+            return len;
+        }
+        ~Path( ) { Clear( ); }
+    protected:
+        PathNode * mNodes;
+        uint16 mLength;
 };
-#endif														// __PATH_H__
+#endif                                                      // __PATH_H__

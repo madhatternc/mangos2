@@ -106,7 +106,7 @@ class NestedText:
             if indentLevel(nextLine) >= self.indentLevel:
                 return nextLine[self.indentLevel:]
             elif nextLine == '':
-                return ''                
+                return ''
 
     def pop(self):
         line = self.peek()
@@ -138,10 +138,10 @@ class NestedText:
 
     def nestBySpecificAmount(self, adjust):
         self.setNewIndent(self.indentLevel + adjust)
-        
+
     def setNewIndent(self, indentLevel):
         self.oldIndents.append(self.indentLevel)
-        self.indentLevel = indentLevel    
+        self.indentLevel = indentLevel
 
 class YamlLoaderException(Exception):
     def __init__(self, *args):

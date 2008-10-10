@@ -36,25 +36,25 @@ class DatabaseInterface;
 
 class SpellHandler : public MsgHandler
 {
-	public:
-		SpellHandler();
-		~SpellHandler();
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-		int applySpell( GameClient *pClient, Unit* target, uint32 spell, SpellEntry spellEntry);
-		int usePotion(GameClient *pClient, uint32 spell, SpellEntry spellEntry, uint32 targets);
-		int setAura(Unit *pUnit, uint32 spell);
-		float CalcDistance(float sx, float sy, float sz, float dx, float dy, float dz);
+    public:
+        SpellHandler();
+        ~SpellHandler();
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        int applySpell( GameClient *pClient, Unit* target, uint32 spell, SpellEntry spellEntry);
+        int usePotion(GameClient *pClient, uint32 spell, SpellEntry spellEntry, uint32 targets);
+        int setAura(Unit *pUnit, uint32 spell);
+        float CalcDistance(float sx, float sy, float sz, float dx, float dy, float dz);
 
-		guid PetCreature (GameClient *pClient, char* pName);
+        guid PetCreature (GameClient *pClient, char* pName);
 
-		float lrand, rrand;
-		float abstand, winkel;
-		float CalcDistance2d( float xe, float ye, float xz, float yz );
-		bool inbogen( float radius,  float xM, float yM,float zM, float offnung, float drehung, float xP, float yP,float zP );
-		float geteinfachererwinkel( float winkel );
-		float getwinkel( float xe, float ye, float xz, float yz );
+        float lrand, rrand;
+        float abstand, winkel;
+        float CalcDistance2d( float xe, float ye, float xz, float yz );
+        bool inbogen( float radius,  float xM, float yM,float zM, float offnung, float drehung, float xP, float yP,float zP );
+        float geteinfachererwinkel( float winkel );
+        float getwinkel( float xe, float ye, float xz, float yz );
 
-	protected:
+    protected:
 
 };
-#endif														// __SPELL_HANDLER_H__
+#endif                                                      // __SPELL_HANDLER_H__

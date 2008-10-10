@@ -24,27 +24,27 @@
 
 class SrpWorld
 {
-	public:
-		char user[1024];
-		char SS_Hash[40];
-		unsigned char keypos, prevbyte;
-		unsigned char keypos2, prevbyte2;
-		bool firstSent;
-		bool firstRecv;
-		bool encrypt;
+    public:
+        char user[1024];
+        char SS_Hash[40];
+        unsigned char keypos, prevbyte;
+        unsigned char keypos2, prevbyte2;
+        bool firstSent;
+        bool firstRecv;
+        bool encrypt;
 
-		SrpWorld()
-		{
-			firstSent = false;
-			firstRecv = false;
-			keypos = 0; prevbyte = 0;
-			keypos2 = 0; prevbyte2 = 0;
-			encrypt = true;
-		}
+        SrpWorld()
+        {
+            firstSent = false;
+            firstRecv = false;
+            keypos = 0; prevbyte = 0;
+            keypos2 = 0; prevbyte2 = 0;
+            encrypt = true;
+        }
 
-		~SrpWorld() {}
+        ~SrpWorld() {}
 
-		void decode(unsigned char *data);
-		void encode(unsigned char *data);
+        void decode(unsigned char *data);
+        void encode(unsigned char *data);
 };
-#endif														// __SRP_WORLD_H__
+#endif                                                      // __SRP_WORLD_H__

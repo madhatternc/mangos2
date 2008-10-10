@@ -24,22 +24,22 @@
 
 class Mail
 {
-	public:
-		uint32 MessageId;
-		uint32 SenderId;
-		uint32 RecipientId;
-		char *Subject;
-		char *Body;
-		uint32 ItemId;
-		uint32 Time;
-		uint32 Money;
-		uint32 COD;
-		uint32 Checked;
+    public:
+        uint32 MessageId;
+        uint32 SenderId;
+        uint32 RecipientId;
+        char *Subject;
+        char *Body;
+        uint32 ItemId;
+        uint32 Time;
+        uint32 Money;
+        uint32 COD;
+        uint32 Checked;
 
-		~Mail ()
-		{
-			delete [] Subject;
-			delete [] Body;
-		}
+        ~Mail ()
+        {
+            delete [] Subject;
+            delete [] Body;
+        }
 };
-#endif														// __MAIL_H__
+#endif                                                      // __MAIL_H__

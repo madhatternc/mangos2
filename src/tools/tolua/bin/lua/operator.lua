@@ -7,7 +7,7 @@
 -- This code is free software; you can redistribute it and/or modify it.
 -- The software provided hereunder is on an "as is" basis, and
 -- the author has no obligation to provide maintenance, support, updates,
--- enhancements, or modifications. 
+-- enhancements, or modifications.
 
 
 -- Operator class
@@ -32,7 +32,7 @@ _TM = {['+'] = 'add',
        ['&[]'] = 'seti',
        ['->'] = 'flechita',
       }
-       
+
 
 -- Print method
 function classOperator:print (ident,close)
@@ -76,7 +76,7 @@ end
 
 -- Constructor
 function Operator (d,k,a,c)
-	local ref = ''
+    local ref = ''
  local t = split(strsub(a,2,strlen(a)-1),',') -- eliminate braces
  local i=1
  local l = {n=0}
@@ -86,8 +86,8 @@ function Operator (d,k,a,c)
   i = i+1
  end
  if k == '[]' then
-	 local _
-	 _, _, ref = strfind(d,'(&)')
+     local _
+     _, _, ref = strfind(d,'(&)')
   d = gsub(d,'&','')
  elseif k=='&[]' then
   l.n = l.n+1
@@ -106,9 +106,7 @@ function Operator (d,k,a,c)
  end
  f.lname = ".".._TM[f.kind]
  if f.kind == '[]' and ref=='&' and f.const~='const' then
-  Operator(d,'&'..k,a,c) 	-- create correspoding set operator
+  Operator(d,'&'..k,a,c)    -- create correspoding set operator
  end
  return _Operator(f)
 end
-
-

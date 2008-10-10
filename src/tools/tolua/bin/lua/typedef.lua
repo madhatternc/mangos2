@@ -7,7 +7,7 @@
 -- This code is free software; you can redistribute it and/or modify it.
 -- The software provided hereunder is on an "as is" basis, and
 -- the author has no obligation to provide maintenance, support, updates,
--- enhancements, or modifications. 
+-- enhancements, or modifications.
 
 
 
@@ -55,16 +55,14 @@ function Typedef (s)
  end
  local o = {mod = ''}
  if string.find(s, "[<>]") then
- 	_,_,o.type,o.utype = string.find(s, "^%s*([^<>]+%b<>[^%s]*)%s+(.-)$")
+    _,_,o.type,o.utype = string.find(s, "^%s*([^<>]+%b<>[^%s]*)%s+(.-)$")
  else
- 	local t = split(gsub(s,"%s%s*"," ")," ")
- 	o = {
-	  utype = t[t.n],
-	  type = t[t.n-1],
-	  mod = concat(t,1,t.n-2),
-	 }
+    local t = split(gsub(s,"%s%s*"," ")," ")
+    o = {
+      utype = t[t.n],
+      type = t[t.n-1],
+      mod = concat(t,1,t.n-2),
+     }
  end
  return _Typedef(o)
 end
-
-

@@ -93,9 +93,9 @@ function classPackage:preprocess ()
                                         end)
 
  self.code = string.gsub(self.code, "\n%s*%$([^\n]+)", function (l)
-											Verbatim(l.."\n")
-											return "\n"
-										  end)
+                                            Verbatim(l.."\n")
+                                            return "\n"
+                                          end)
 end
 
 -- translate verbatim
@@ -186,30 +186,30 @@ end
 -- Parse C header file with tolua directives
 -- *** Thanks to Ariel Manzur for fixing bugs in nested directives ***
 function extract_code(fn,s)
-	if fn ~= "" then
-	  local code = '\n$#include "'..fn..'"\n'
+    if fn ~= "" then
+      local code = '\n$#include "'..fn..'"\n'
         else
           local code = "\n"
         end
-	s= "\n" .. s .. "\n" -- add blank lines as sentinels
-	local _,e,c,t = strfind(s, "\n([^\n]-)[Tt][Oo][Ll][Uu][Aa]_([^%s]*)[^\n]*\n")
-	while e do
-		t = strlower(t)
-		if t == "begin" then
-			_,e,c = strfind(s,"(.-)\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[Ee][Nn][Dd][^\n]*\n",e)
-			if not e then
-			 tolua_error("Unbalanced 'tolua_begin' directive in header file")
-			end
-		end
-		c = c.."\n"
+    s= "\n" .. s .. "\n" -- add blank lines as sentinels
+    local _,e,c,t = strfind(s, "\n([^\n]-)[Tt][Oo][Ll][Uu][Aa]_([^%s]*)[^\n]*\n")
+    while e do
+        t = strlower(t)
+        if t == "begin" then
+            _,e,c = strfind(s,"(.-)\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[Ee][Nn][Dd][^\n]*\n",e)
+            if not e then
+             tolua_error("Unbalanced 'tolua_begin' directive in header file")
+            end
+        end
+        c = c.."\n"
                 local x = string.find(c, "\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[hH][iI][Dd][eE][^\n]*\n")
                 --print("Found hide"..x)
-		c = string.gsub(c, "\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[hH][iI][Dd][eE][^\n]*\n", "\n");
-		c = string.gsub(c, "#define[^%(\n]*%(.-\n", "\n")
-		code = code .. c
-	 _,e,c,t = strfind(s, "\n([^\n]-)[Tt][Oo][Ll][Uu][Aa]_([^%s]*)[^\n]*\n",e)
-	end
-	return code
+        c = string.gsub(c, "\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[hH][iI][Dd][eE][^\n]*\n", "\n");
+        c = string.gsub(c, "#define[^%(\n]*%(.-\n", "\n")
+        code = code .. c
+     _,e,c,t = strfind(s, "\n([^\n]-)[Tt][Oo][Ll][Uu][Aa]_([^%s]*)[^\n]*\n",e)
+    end
+    return code
 end
 
 -- Constructor
@@ -223,12 +223,12 @@ function Package (name,fn)
   if not st then
    error('#'..msg)
   end
-		local _; _, _, ext = strfind(fn,".*%.(.*)$")
+        local _; _, _, ext = strfind(fn,".*%.(.*)$")
  end
  local code = "\n" .. read('*a')
-	if ext == 'h' or ext == 'hpp' then
-	 code = extract_code(fn,code)
-	end
+    if ext == 'h' or ext == 'hpp' then
+     code = extract_code(fn,code)
+    end
 
  -- close file
  if fn then
@@ -239,35 +239,35 @@ function Package (name,fn)
  local nsubst
  repeat
   code,nsubst = gsub(code,'\n%s*%$(.)file%s*"(.-)"([^\n]*)\n',
-		function (kind,fn,extra)
-			local _, _, ext = strfind(fn,".*%.(.*)$")
-			local fp,msg = openfile(fn,'r')
-			if not fp then
-				error('#'..msg..': '..fn)
-			end
-			local s = read(fp,'*a')
-			closefile(fp)
-			if kind == 'c' or kind == 'h' then
-				return extract_code(fn,s)
-			elseif kind == 'p' then
-				return "\n\n" .. s
-			elseif kind == 'l' then
-				return "\n$[\n" .. s .. "\n$]\n"
-			elseif kind == 'i' then
-				local t = {code=s}
-				extra = string.gsub(extra, "^%s*,%s*", "")
-				local pars = split_c_tokens(extra, ",")
-				include_file_hook(t, fn, unpack(pars))
-				return "\n\n" .. t.code
-			else
-				error('#Invalid include directive (use $cfile, $pfile, $lfile or $ifile)')
-			end
-		end)
+        function (kind,fn,extra)
+            local _, _, ext = strfind(fn,".*%.(.*)$")
+            local fp,msg = openfile(fn,'r')
+            if not fp then
+                error('#'..msg..': '..fn)
+            end
+            local s = read(fp,'*a')
+            closefile(fp)
+            if kind == 'c' or kind == 'h' then
+                return extract_code(fn,s)
+            elseif kind == 'p' then
+                return "\n\n" .. s
+            elseif kind == 'l' then
+                return "\n$[\n" .. s .. "\n$]\n"
+            elseif kind == 'i' then
+                local t = {code=s}
+                extra = string.gsub(extra, "^%s*,%s*", "")
+                local pars = split_c_tokens(extra, ",")
+                include_file_hook(t, fn, unpack(pars))
+                return "\n\n" .. t.code
+            else
+                error('#Invalid include directive (use $cfile, $pfile, $lfile or $ifile)')
+            end
+        end)
  until nsubst==0
 
  -- deal with renaming directive
  repeat -- I don't know why this is necesary
-	code,nsubst = gsub(code,'\n%s*%$renaming%s*(.-)%s*\n', function (r) appendrenaming(r) return "\n" end)
+    code,nsubst = gsub(code,'\n%s*%$renaming%s*(.-)%s*\n', function (r) appendrenaming(r) return "\n" end)
  until nsubst == 0
 
  local t = _Package(_Container{name=name, code=code})
@@ -279,5 +279,3 @@ function Package (name,fn)
  pop()
  return t
 end
-
-

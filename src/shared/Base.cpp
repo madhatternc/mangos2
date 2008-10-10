@@ -28,6 +28,6 @@ Base::~Base ()
 
 void Base::DecRef ()
 {
-	if (!--RefCount)
-		delete this;
+    if (!--RefCount)
+        delete this;
 }

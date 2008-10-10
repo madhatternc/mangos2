@@ -44,4 +44,4 @@
 /**
  *  @}
  */
-#endif														// __ERRORS_H__
+#endif                                                      // __ERRORS_H__

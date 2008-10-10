@@ -167,14 +167,14 @@ size_t DecodeSQL (const char *iSqlStr, void *oData, size_t oDataSize);
  * fear for SQL insertion attacks. For example, imagine you have the following
  * sequence:
  * \verbatim
- *		INSERT INTO mail (body) VALUES ('%s')
+ *      INSERT INTO mail (body) VALUES ('%s')
  * \endverbatim
  * where %s is replaced by letter's body as entered by the user. Now I can write
  * a letter like:
  * \verbatim
- *		Hello John!');
- *		DELETE FROM characters WHERE name=%;
- *		INSERT INTO MAIL (body) VALUES ('
+ *      Hello John!');
+ *      DELETE FROM characters WHERE name=%;
+ *      INSERT INTO MAIL (body) VALUES ('
  * \endverbatim
  * This function replaces ' with \' and \ with \\. These two simple changes
  * are enough to render such attacks useless.
@@ -244,4 +244,4 @@ void u8strupr (char *oDestString, const char *iSrcString);
  *   Source string
  */
 void u8strlwr (char *oDestString, const char *iSrcString);
-#endif														// __STRING_FUN_H__
+#endif                                                      // __STRING_FUN_H__

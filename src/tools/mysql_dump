@@ -10,16 +10,16 @@
 
 function dump_data ()
 {
-	echo -n "Dumping contents of $1:$2 ..."
+    echo -n "Dumping contents of $1:$2 ..."
     mysqldump$OPTS -Q --add-drop-table $1 $2 >sql_dump/$2.sql
-	echo " done"
+    echo " done"
 }
 
 function dump_struc ()
 {
-	echo -n "Dumping structure of $1:$2 ..."
+    echo -n "Dumping structure of $1:$2 ..."
     mysqldump$OPTS -Q --add-drop-table --no-data $1 $2 >sql_dump/$2.sql
-	echo " done"
+    echo " done"
 }
 
 dump_data  wow_rs realms && \

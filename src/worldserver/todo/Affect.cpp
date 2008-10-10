@@ -26,5 +26,5 @@ IMPLEMENT_VECTOR(Affect, ModifierVector, Modifier));
 
 void Affect::AddMod(uint8 t, int32 a,uint32 miscValue, uint32 miscValue2)
 {
-	m_modList.Push(Modifier(t, a,miscValue,miscValue2));
+    m_modList.Push(Modifier(t, a,miscValue,miscValue2));
 };

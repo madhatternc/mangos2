@@ -26,11 +26,11 @@
 
 class QueryHandler : public MsgHandler
 {
-	public:
-		QueryHandler();
-		~QueryHandler();
+    public:
+        QueryHandler();
+        ~QueryHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-	protected:
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+    protected:
 };
-#endif														// __QUERY_HANDLER_H__
+#endif                                                      // __QUERY_HANDLER_H__

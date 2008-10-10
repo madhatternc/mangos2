@@ -78,7 +78,7 @@ static int getinfo (lua_State *L) {
   }
   return 1;  /* return table */
 }
-    
+
 
 static int getlocal (lua_State *L) {
   lua_Debug ar;
@@ -221,8 +221,8 @@ static int debug (lua_State *L) {
 }
 
 
-#define LEVELS1	12	/* size of the first part of the stack */
-#define LEVELS2	10	/* size of the second part of the stack */
+#define LEVELS1 12  /* size of the first part of the stack */
+#define LEVELS2 10  /* size of the second part of the stack */
 
 static int errorfb (lua_State *L) {
   int level = 1;  /* skip level 0 (it's this function) */
@@ -252,7 +252,7 @@ static int errorfb (lua_State *L) {
     if (ar.currentline > 0)
       lua_pushfstring(L, "%d:", ar.currentline);
     switch (*ar.namewhat) {
-      case 'g':  /* global */ 
+      case 'g':  /* global */
       case 'l':  /* local */
       case 'f':  /* field */
       case 'm':  /* method */
@@ -296,4 +296,3 @@ LUALIB_API int luaopen_debug (lua_State *L) {
   lua_settable(L, LUA_GLOBALSINDEX);
   return 1;
 }
-

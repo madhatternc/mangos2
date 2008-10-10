@@ -18,10 +18,10 @@
 #include "lstate.h"
 
 
-#define sizeCclosure(n)	(cast(int, sizeof(CClosure)) + \
+#define sizeCclosure(n) (cast(int, sizeof(CClosure)) + \
                          cast(int, sizeof(TObject)*((n)-1)))
 
-#define sizeLclosure(n)	(cast(int, sizeof(LClosure)) + \
+#define sizeLclosure(n) (cast(int, sizeof(LClosure)) + \
                          cast(int, sizeof(TObject *)*((n)-1)))
 
 
@@ -132,4 +132,3 @@ const char *luaF_getlocalname (const Proto *f, int local_number, int pc) {
   }
   return NULL;  /* not found */
 }
-

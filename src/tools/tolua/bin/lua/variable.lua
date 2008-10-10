@@ -42,11 +42,11 @@ function classVariable:cfuncname (prefix)
  local p = self:inmodule() or self:innamespace() or self:inclass()
 
  if p then
- 	if self.parent.classtype == 'class' then
-		parent = "_" .. self.parent.type
-	else
-	  parent = "_" .. p
-	end
+    if self.parent.classtype == 'class' then
+        parent = "_" .. self.parent.type
+    else
+      parent = "_" .. p
+    end
  end
 
  if strfind(self.mod,"(unsigned)") then
@@ -59,7 +59,7 @@ function classVariable:cfuncname (prefix)
 
  local name =  prefix .. parent .. unsigned .. "_" .. gsub(self.lname or self.name,".*::","") .. ptr
 
-	name = clean_template(name)
+    name = clean_template(name)
  return name
 
 end
@@ -118,30 +118,30 @@ function classVariable:supcode ()
 
  -- check self value
  if class and static==nil then
-	 output('#ifndef TOLUA_RELEASE\n')
+     output('#ifndef TOLUA_RELEASE\n')
   output('  if (!self) tolua_error(tolua_S,"invalid \'self\' in accessing variable \''..self.name..'\'",NULL);');
-		output('#endif\n')
+        output('#endif\n')
  end
 
  -- return value
  if string.find(self.mod, 'tolua_inherits') then
- 	output('#ifdef __cplusplus\n')
-	output('  tolua_pushusertype(tolua_S,(void*)static_cast<'..self.type..'*>(self), "',self.type,'");')
-	output('#else\n')
-	output('  tolua_pushusertype(tolua_S,(void*)(('..self.type..'*)self), "',self.type,'");')
-	output('#endif\n')
+    output('#ifdef __cplusplus\n')
+    output('  tolua_pushusertype(tolua_S,(void*)static_cast<'..self.type..'*>(self), "',self.type,'");')
+    output('#else\n')
+    output('  tolua_pushusertype(tolua_S,(void*)(('..self.type..'*)self), "',self.type,'");')
+    output('#endif\n')
  else
-	local t,ct = isbasic(self.type)
-	if t then
-		output('  tolua_push'..t..'(tolua_S,(',ct,')'..self:getvalue(class,static)..');')
-	else
-		t = self.type
-		if self.ptr == '&' or self.ptr == '' then
-			output('  tolua_pushusertype(tolua_S,(void*)&'..self:getvalue(class,static)..',"',t,'");')
-		else
-			output('  tolua_pushusertype(tolua_S,(void*)'..self:getvalue(class,static)..',"',t,'");')
-		end
-	end
+    local t,ct = isbasic(self.type)
+    if t then
+        output('  tolua_push'..t..'(tolua_S,(',ct,')'..self:getvalue(class,static)..');')
+    else
+        t = self.type
+        if self.ptr == '&' or self.ptr == '' then
+            output('  tolua_pushusertype(tolua_S,(void*)&'..self:getvalue(class,static)..',"',t,'");')
+        else
+            output('  tolua_pushusertype(tolua_S,(void*)'..self:getvalue(class,static)..',"',t,'");')
+        end
+    end
  end
  output(' return 1;')
  output('}')
@@ -164,10 +164,10 @@ function classVariable:supcode ()
    output('(',self.parent.type,'*) ')
    output('tolua_tousertype(tolua_S,1,0);')
    -- check self value
-		end
+        end
   -- check types
-		output('#ifndef TOLUA_RELEASE\n')
-		output('  tolua_Error tolua_err;')
+        output('#ifndef TOLUA_RELEASE\n')
+        output('  tolua_Error tolua_err;')
   if class and static==nil then
    output('  if (!self) tolua_error(tolua_S,"invalid \'self\' in accessing variable \''..self.name..'\'",NULL);');
   elseif static then
@@ -177,49 +177,49 @@ function classVariable:supcode ()
   -- check variable type
   output('  if (!'..self:outchecktype(2)..')')
   output('   tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);')
-		output('#endif\n')
+        output('#endif\n')
 
   -- assign value
-		local def = 0
-		if self.def ~= '' then def = self.def end
-		if self.type == 'char*' and self.dim ~= '' then -- is string
-		 output(' strncpy(')
-			if class and static then
-				output(self.parent.type..'::'..self.name)
-			elseif class then
-				output('self->'..self.name)
-			else
-				output(self.name)
-			end
-			output(',tolua_tostring(tolua_S,2,',def,'),',self.dim,'-1);')
-		else
-			local ptr = ''
-			if self.ptr~='' then ptr = '*' end
-			output(' ')
-			if class and static then
-				output(self.parent.type..'::'..self.name)
-			elseif class then
-				output('self->'..self.name)
-			else
-				output(self.name)
-			end
-			local t = isbasic(self.type)
-			output(' = ')
-			if not t and ptr=='' then output('*') end
-			output('((',self.mod,self.type)
-			if not t then
-				output('*')
-			end
-			output(') ')
-			if t then
-			if isenum(self.type) then
-				output('(int) ')
-			end
-				output('tolua_to'..t,'(tolua_S,2,',def,'));')
-			else
-				output('tolua_tousertype(tolua_S,2,',def,'));')
-			end
-		end
+        local def = 0
+        if self.def ~= '' then def = self.def end
+        if self.type == 'char*' and self.dim ~= '' then -- is string
+         output(' strncpy(')
+            if class and static then
+                output(self.parent.type..'::'..self.name)
+            elseif class then
+                output('self->'..self.name)
+            else
+                output(self.name)
+            end
+            output(',tolua_tostring(tolua_S,2,',def,'),',self.dim,'-1);')
+        else
+            local ptr = ''
+            if self.ptr~='' then ptr = '*' end
+            output(' ')
+            if class and static then
+                output(self.parent.type..'::'..self.name)
+            elseif class then
+                output('self->'..self.name)
+            else
+                output(self.name)
+            end
+            local t = isbasic(self.type)
+            output(' = ')
+            if not t and ptr=='' then output('*') end
+            output('((',self.mod,self.type)
+            if not t then
+                output('*')
+            end
+            output(') ')
+            if t then
+            if isenum(self.type) then
+                output('(int) ')
+            end
+                output('tolua_to'..t,'(tolua_S,2,',def,'));')
+            else
+                output('tolua_tousertype(tolua_S,2,',def,'));')
+            end
+        end
   output(' return 0;')
   output('}')
   output('\n')
@@ -254,5 +254,3 @@ end
 function Variable (s)
  return _Variable (Declaration(s,'var'))
 end
-
-

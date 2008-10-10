@@ -7,4 +7,3 @@ extern "C" {
 }
 /* Exported function */
 extern int tolua_worldsrv_open (lua_State* tolua_S);
-

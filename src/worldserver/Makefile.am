@@ -93,21 +93,21 @@ GameClient.o: Opcodes.inc
 
 Luawrapper.cpp: Opcodes.h worldsrv.pkg
 	@echo "Generating LUA wrapper"
-	../tools/tolua/bin/tolua -1 -L worldsrv.lua -o Luawrapper.cpp worldsrv.pkg
+	$(srcdir)/../tools/tolua/bin/tolua -1 -L worldsrv.lua -o Luawrapper.cpp worldsrv.pkg
 
 if USE_CODEGEN
 
-Opcodes.h: Protocol.rules ../tools/gencode/gencode.py ../tools/gencode/gencxx.py
+Opcodes.h: Protocol.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
 	@echo "Generating " $@
-	@PYTHONPATH@ ../tools/gencode/gencode.py -t cxx -f $@ -w header $<
+	@PYTHONPATH@ $(srcdir)/../tools/gencode/gencode.py -t cxx -f $@ -w header $<
 
-Opcodes.cpp: Protocol.rules ../tools/gencode/gencode.py ../tools/gencode/gencxx.py Opcodes.h
+Opcodes.cpp: Protocol.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py Opcodes.h
 	@echo "Generating " $@
-	@PYTHONPATH@ ../tools/gencode/gencode.py -t cxx -f $@ -w code $< $(DEBUG_TRUE)-n
+	@PYTHONPATH@ $(srcdir)/../tools/gencode/gencode.py -t cxx -f $@ -w code $< $(DEBUG_TRUE)-n
 
-Opcodes.inc: Protocol.rules ../tools/gencode/gencode.py ../tools/gencode/gencxx.py
+Opcodes.inc: Protocol.rules $(srcdir)/../tools/gencode/gencode.py ../tools/gencode/gencxx.py
 	@echo "Generating " $@
-	@PYTHONPATH@ ../tools/gencode/gencode.py -t cxx -f $@ -w parser $<
+	@PYTHONPATH@ $(srcdir)/../tools/gencode/gencode.py -t cxx -f $@ -w parser $<
 
 endif
 

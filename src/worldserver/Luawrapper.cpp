@@ -33,71 +33,71 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S);
 static int tolua_collect_WorldServer (lua_State* tolua_S)
 {
  WorldServer* self = (WorldServer*) tolua_tousertype(tolua_S,1,0);
-	self->DecRef();
-	return 0;
+    self->DecRef();
+    return 0;
 }
 
 static int tolua_collect_GameClient (lua_State* tolua_S)
 {
  GameClient* self = (GameClient*) tolua_tousertype(tolua_S,1,0);
-	delete self;
-	return 0;
+    delete self;
+    return 0;
 }
 
 static int tolua_collect_time_t (lua_State* tolua_S)
 {
  time_t* self = (time_t*) tolua_tousertype(tolua_S,1,0);
-	delete self;
-	return 0;
+    delete self;
+    return 0;
 }
 
 static int tolua_collect_ItemPrototype (lua_State* tolua_S)
 {
  ItemPrototype* self = (ItemPrototype*) tolua_tousertype(tolua_S,1,0);
-	delete self;
-	return 0;
+    delete self;
+    return 0;
 }
 
 static int tolua_collect_NetworkPacket (lua_State* tolua_S)
 {
  NetworkPacket* self = (NetworkPacket*) tolua_tousertype(tolua_S,1,0);
-	self->DecRef();
-	return 0;
+    self->DecRef();
+    return 0;
 }
 
 static int tolua_collect_Modifier (lua_State* tolua_S)
 {
  Modifier* self = (Modifier*) tolua_tousertype(tolua_S,1,0);
-	delete self;
-	return 0;
+    delete self;
+    return 0;
 }
 
 static int tolua_collect_Item (lua_State* tolua_S)
 {
  Item* self = (Item*) tolua_tousertype(tolua_S,1,0);
-	self->DecRef();
-	return 0;
+    self->DecRef();
+    return 0;
 }
 
 static int tolua_collect_Unit (lua_State* tolua_S)
 {
  Unit* self = (Unit*) tolua_tousertype(tolua_S,1,0);
-	delete self;
-	return 0;
+    delete self;
+    return 0;
 }
 
 static int tolua_collect_Base (lua_State* tolua_S)
 {
  Base* self = (Base*) tolua_tousertype(tolua_S,1,0);
-	self->DecRef();
-	return 0;
+    self->DecRef();
+    return 0;
 }
 
 static int tolua_collect_Affect (lua_State* tolua_S)
 {
  Affect* self = (Affect*) tolua_tousertype(tolua_S,1,0);
-	delete self;
-	return 0;
+    delete self;
+    return 0;
 }
 #endif
 

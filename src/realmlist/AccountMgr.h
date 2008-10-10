@@ -25,4 +25,4 @@
 #include "Log.h"
 #include "version.h"
 #include "RealmListSrv.h"
-#endif														// __ACCOUNT_MGR_H__
+#endif                                                      // __ACCOUNT_MGR_H__

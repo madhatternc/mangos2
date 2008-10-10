@@ -22,9 +22,9 @@ setmetatable(classDefine,classFeature)
 
 -- register define
 function classDefine:register (pre)
-	if not self:check_public_access() then
-		return
-	end
+    if not self:check_public_access() then
+        return
+    end
 
  pre = pre or ''
  output(pre..'tolua_constant(tolua_S,"'..self.lname..'",'..self.name..');')
@@ -59,5 +59,3 @@ function Define (n)
   name = n
  }
 end
-
-

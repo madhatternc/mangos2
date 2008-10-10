@@ -7369,4 +7369,3 @@ TOLUA_API int tolua_tolua_open (lua_State* tolua_S)
  return tolua_tolua_open(tolua_S);
 };
 #endif
-

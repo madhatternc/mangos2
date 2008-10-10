@@ -26,7 +26,7 @@ There are several programs and libraries required in order to compile MaNGOS2
 successfully:
 
  * pthread development package (headers) are required, as MaNGOS2 uses
-   threads. 
+   threads.
    Note: on some systems, the pthread development files are part of the
    glibc packages.
  * zlib development package (headers) are required, as we use them for data
@@ -41,7 +41,7 @@ successfully:
 Here's a list of options that is specifically useful for configuring MaNGOS2:
 
  --sysconfdir=/etc/mangos2
-   
+
    This will set the directory where the compiled daemons will look for the
    configuration files.
 
@@ -87,4 +87,3 @@ Installation is straight-forward and only requires you to run a short
 command line:
 
 $ make install
-

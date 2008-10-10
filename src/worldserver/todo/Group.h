@@ -28,50 +28,50 @@
 
 class Group
 {
-	public:
-		Group()
-		{
-			leaderguid = 0;
-			lootmethod = 0;
-			looterguid = 0;
-		}
-		~Group()
-		{
-			Members.DeleteAll();
-		}
-		void Create(Object* Leader)
-		{
-			AddMember(Leader, true);
-		}
-		void AddMember(Object* Member, bool tisleader)
-		{
-			Members.Insert(Member);
-			if(thisleader)
-			{
-				Leaderguid = Member.GetGUID();
-				Leader = Member.GetName();
-			}
-		}
+    public:
+        Group()
+        {
+            leaderguid = 0;
+            lootmethod = 0;
+            looterguid = 0;
+        }
+        ~Group()
+        {
+            Members.DeleteAll();
+        }
+        void Create(Object* Leader)
+        {
+            AddMember(Leader, true);
+        }
+        void AddMember(Object* Member, bool tisleader)
+        {
+            Members.Insert(Member);
+            if(thisleader)
+            {
+                Leaderguid = Member.GetGUID();
+                Leader = Member.GetName();
+            }
+        }
 
-		void ChangeLeader(char * tname);
-		int DelMember(char * tname);
-		int IsFull()
-		{
-			return Members.Length() == MAXGROUPSIZE ? 1 : 0;
-		}
+        void ChangeLeader(char * tname);
+        int DelMember(char * tname);
+        int IsFull()
+        {
+            return Members.Length() == MAXGROUPSIZE ? 1 : 0;
+        }
 
-		void SendUpdate();
-		void Disband();
+        void SendUpdate();
+        void Disband();
 
-		uint64 Leaderguid;
-		char *Leader;
+        uint64 Leaderguid;
+        char *Leader;
 
-		//MemberSlot members[MAXGROUPSIZE];
-		ObjectVector *Members;
+        //MemberSlot members[MAXGROUPSIZE];
+        ObjectVector *Members;
 
-		uint32 Lootthreshold;								// 0 2 4
-		uint32 Lootmethod;
-		uint32 Looterguid;
+        uint32 Lootthreshold;                               // 0 2 4
+        uint32 Lootmethod;
+        uint32 Looterguid;
 
 };
-#endif														// __GROUP_H__
+#endif                                                      // __GROUP_H__

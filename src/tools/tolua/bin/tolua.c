@@ -66,12 +66,12 @@ static void error (char* o)
 int main (int argc, char* argv[])
 {
  lua_State* L = lua_open();
-	luaopen_base(L);
-	luaopen_io(L);
-	luaopen_string(L);
-	luaopen_table(L);
-	luaopen_math(L);
-	luaopen_debug(L);
+    luaopen_base(L);
+    luaopen_io(L);
+    luaopen_string(L);
+    luaopen_table(L);
+    luaopen_math(L);
+    luaopen_debug(L);
 
  lua_pushstring(L,TOLUA_VERSION); lua_setglobal(L,"TOLUA_VERSION");
 
@@ -130,7 +130,7 @@ int main (int argc, char* argv[])
   p = (p==NULL) ? path : p+1;
   sprintf(p,"%s","../src/bin/lua/");
   lua_pushstring(L,path); lua_setglobal(L,"path");
-		strcat(path,"all.lua");
+        strcat(path,"all.lua");
   lua_dofile(L,path);
  }
 #endif

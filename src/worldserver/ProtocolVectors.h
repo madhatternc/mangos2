@@ -25,16 +25,16 @@
 #ifndef __PROTOCOL_VECTORS_H__
 #define __PROTOCOL_VECTORS_H__
 
-class DatabaseExecutor;										//tolua_hide
+class DatabaseExecutor;                                     //tolua_hide
 
 //----// SMSG_LOOT_RESPONSE
 
 struct LootItem
 {
-	uint8 Slot;
-	uint32 Guidsno;
-	uint32 Quantity;
-	uint32 Displayid;
+    uint8 Slot;
+    uint32 Guidsno;
+    uint32 Quantity;
+    uint32 Displayid;
 };
 
 DECLARE_VECTOR (LootResponseVector, LootItem *, );
@@ -43,12 +43,12 @@ DECLARE_VECTOR (LootResponseVector, LootItem *, );
 
 struct FriendStr
 {
-	uint64 PlayerGUID;
-	unsigned char Status;
+    uint64 PlayerGUID;
+    unsigned char Status;
 
-	int Area;
-	int Level;
-	int Class;
+    int Area;
+    int Level;
+    int Class;
 };
 
 DECLARE_VECTOR (FriendsVector, FriendStr *, );
@@ -56,12 +56,12 @@ DECLARE_VECTOR (FriendsVector, FriendStr *, );
 //----// SMSG_GROUP_LIST
 struct Member
 {
-	uint8 Slotid;
-	char * Membername;
-	uint32 Guidsno;
+    uint8 Slotid;
+    char * Membername;
+    uint32 Guidsno;
 
-	~Member ()
-		{ delete [] Membername; }
+    ~Member ()
+        { delete [] Membername; }
 };
 
 DECLARE_VECTOR (MembersVector, Member *, );
@@ -75,72 +75,72 @@ DECLARE_VECTOR (MembersVector, Member *, );
  */
 struct CharacterData
 {
-	uint64 GUID;
-	const char *Name;
-	uint8 Race;
-	uint8 Class;
-	uint8 Gender;
-	uint8 Skin;
-	uint8 Face;
-	uint8 HairStyle;
-	uint8 HairColor;
-	uint8 FacialHair;
-	uint8 Level;
-	uint32 ZoneId;
-	uint32 MapId;
-	float PositionX;
-	float PositionY;
-	float PositionZ;
-	uint32 Guild;
-	uint32 Unknown;
-	uint8 RestState;
-	uint32 PetInfoId;
-	uint32 PetLevel;
-	uint32 PetFamilyId;
+    uint64 GUID;
+    const char *Name;
+    uint8 Race;
+    uint8 Class;
+    uint8 Gender;
+    uint8 Skin;
+    uint8 Face;
+    uint8 HairStyle;
+    uint8 HairColor;
+    uint8 FacialHair;
+    uint8 Level;
+    uint32 ZoneId;
+    uint32 MapId;
+    float PositionX;
+    float PositionY;
+    float PositionZ;
+    uint32 Guild;
+    uint32 Unknown;
+    uint8 RestState;
+    uint32 PetInfoId;
+    uint32 PetLevel;
+    uint32 PetFamilyId;
 
-	struct SlotItemData
-	{
-		uint32 DisplayId;
-		uint8 InventoryType;
-	};
-	DECLARE_VECTOR (SlotItemsVector, SlotItemData *, ) SlotItems;
+    struct SlotItemData
+    {
+        uint32 DisplayId;
+        uint8 InventoryType;
+    };
+    DECLARE_VECTOR (SlotItemsVector, SlotItemData *, ) SlotItems;
 
-	CharacterData ()
-		{ Name = NULL; }
+    CharacterData ()
+        { Name = NULL; }
 
-	~CharacterData ()
-		{ delete [] Name; }
+    ~CharacterData ()
+        { delete [] Name; }
 
-	/**
-	 * Load character data from database, given the lower part of GUID
-	 * (the upper part is supposed to be HIGHGUID_PLAYER).
-	 */
-	bool Load (DatabaseExecutor *dbex, uint32 iLowGuid);
+    /**
+     * Load character data from database, given the lower part of GUID
+     * (the upper part is supposed to be HIGHGUID_PLAYER).
+     */
+    bool Load (DatabaseExecutor *dbex, uint32 iLowGuid);
 };
 
 DECLARE_VECTOR (CharsVector, CharacterData *, );
 
 struct DamageInfo
 {
-	/// Damage type: 0 - white font, 1 - yellow
-	uint32 Type;
-	/// damage float
-	uint32 Float;
-	/// Damage amount
-	uint32 Damage;
-	/// damage absorbed
-	uint32 Absorbed;
-	/// new victim state
-	uint32 VictimState;
-	/// victim round duraction
-	uint32 RoundDuration;
-	/// additional spell damage amount
-	uint32 AdditionalSpellDamage;
-	/// additional spell damage id
-	uint32 AdditionalSpellId;
-	/// Damage amount blocked
-	uint32 AdditionalSpellAbsorbed;
+    /// Damage type: 0 - white font, 1 - yellow
+    uint32 Type;
+    /// damage float
+    uint32 Float;
+    /// Damage amount
+    uint32 Damage;
+    /// damage absorbed
+    uint32 Absorbed;
+    /// new victim state
+    uint32 VictimState;
+    /// victim round duraction
+    uint32 RoundDuration;
+    /// additional spell damage amount
+    uint32 AdditionalSpellDamage;
+    /// additional spell damage id
+    uint32 AdditionalSpellId;
+    /// Damage amount blocked
+    uint32 AdditionalSpellAbsorbed;
 };
 
 DECLARE_VECTOR (DamageVector, DamageInfo *, );
-#endif														// __PROTOCOL_VECTORS_H__
+#endif                                                      // __PROTOCOL_VECTORS_H__

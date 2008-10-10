@@ -26,18 +26,18 @@
 extern "C" {
 #endif
 
-#define tolua_tocppstring	tolua_tostring
-#define tolua_pushcppstring(x,y)	tolua_pushstring(x,y.c_str())
-#define tolua_iscppstring	tolua_isstring
+#define tolua_tocppstring   tolua_tostring
+#define tolua_pushcppstring(x,y)    tolua_pushstring(x,y.c_str())
+#define tolua_iscppstring   tolua_isstring
 
 #include "lua.h"
 #include "lauxlib.h"
 
 struct tolua_Error
 {
-	int index;
-	int array;
-	const char* type;
+    int index;
+    int array;
+    const char* type;
 };
 typedef struct tolua_Error tolua_Error;
 

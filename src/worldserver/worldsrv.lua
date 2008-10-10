@@ -2,14 +2,14 @@
 --_basic['uint8*'] = 'string'
 
 vector_template = [[
-class VType : public Vector 
-{ 
-public: 
-	VType (int limit = 16, int threshold = 16) : Vector (limit, threshold) {} 
-	virtual ~VType (); 
-	virtual void FreeItem (Some Item) const; 
-	CType &Get (int iIndex) const;
-	inline CType &operator [] (int iIndex) const;
+class VType : public Vector
+{
+public:
+    VType (int limit = 16, int threshold = 16) : Vector (limit, threshold) {}
+    virtual ~VType ();
+    virtual void FreeItem (Some Item) const;
+    CType &Get (int iIndex) const;
+    inline CType &operator [] (int iIndex) const;
 }
 ]]
 
@@ -27,7 +27,7 @@ function is_basetype(ob)
      --end
    end
    if ob == "Base" then
-   	return 1
+    return 1
    end
    return nil
 end
@@ -38,11 +38,11 @@ function build_collect_hook(cls, i, v)
    output('{')
    output(' '..i..'* self = ('..i..'*) tolua_tousertype(tolua_S,1,0);')
    if is_basetype(i) then
-      output('	self->DecRef();')
+      output('  self->DecRef();')
    else
-      output('	delete self;')
+      output('  delete self;')
    end
-   output('	return 0;')
+   output(' return 0;')
    output('}')
 end
 
@@ -66,7 +66,7 @@ end
 -- takes a table with a string called 'code' inside, the filename, and any extra arguments
 -- passed to $ifile. no return value
 function include_file_hook(t, filename, ...)
-  -- We filter out the structlet parents from the classes in Opcodes.h because they are not 
+  -- We filter out the structlet parents from the classes in Opcodes.h because they are not
   -- necessary, blow up the wrapper and generate compiler problems
   flush()
   if type(t.code) == nil then
@@ -77,7 +77,7 @@ function include_file_hook(t, filename, ...)
   t.code = remove_text(t.code, 'extern%s*"C"%s*%b{}%s*', "")
   t.code = remove_text(t.code, "[Tt][Oo][Ll][Uu][Aa]_[Bb][Ee][Gg][Ii][Nn]_[hH][iI][Dd][eE].-[Tt][Oo][Ll][Uu][Aa]_[Ee][Nn][Dd]_[hH][iI][Dd][eE]", "")
   t.code = remove_text(t.code, ",%s*\.\.\.%s*%)", ")") -- we remove varargs because this is done on lua level
-  
+
   if filename == "Opcodes.h" then
     t.code = string.gsub(t.code, "class%s([^%s]+)%s*:%s*public NetworkPacket([, %w_]*)","class %1 : public NetworkPacket")
   elseif t.code ~= nil then
@@ -99,7 +99,7 @@ function mkvector(m, n, c)
 
 end
 
--- We catch here macros like the vector definitions and adjust the 
+-- We catch here macros like the vector definitions and adjust the
 -- Vector template. This allows us to simply generate all Vector classes
 -- at the end of all headers
 function hook_custom_parse(obj, s)
@@ -122,4 +122,3 @@ function hook_custom_parse(obj, s)
   end
   return nil
 end
-

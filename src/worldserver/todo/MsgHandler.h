@@ -30,10 +30,10 @@ class GameClient;
 class NetworkPacket;
 class MsgHandler
 {
-	public:
-		MsgHandler() {};
-		virtual ~MsgHandler() {};
+    public:
+        MsgHandler() {};
+        virtual ~MsgHandler() {};
 
-		virtual void HandleMsg( NetworkPacket & recv_data, GameClient *pClient ) = 0;
+        virtual void HandleMsg( NetworkPacket & recv_data, GameClient *pClient ) = 0;
 };
-#endif														// __MSG_HANDLER_H__
+#endif                                                      // __MSG_HANDLER_H__

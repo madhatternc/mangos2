@@ -32,4 +32,3 @@ mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world inventory > worldserver/inventory.sql
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world char_spells > worldserver/char_spells.sql
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-world mail > worldserver/mail.sql
-

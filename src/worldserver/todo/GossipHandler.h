@@ -29,31 +29,31 @@ class TextOption;
 class NPCText;
 class GossipHandler : public MsgHandler
 {
-	public:
-		GossipHandler();
-		~GossipHandler();
+    public:
+        GossipHandler();
+        ~GossipHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-		void addTextRelation( TextRelation *pTextRelation );
-		void addNPCText( NPCText * pNPCText );
-		void addTextOption( TextOption * pTextOption );
-		TextRelation * getTextRelation( uint32 NPCID );
-		uint32 getTextID(uint32 NPCID);
-		NPCText * getNPCText( uint32 NPCTextID );
-		TextOption * getTextOption( uint32 OptionID );
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void addTextRelation( TextRelation *pTextRelation );
+        void addNPCText( NPCText * pNPCText );
+        void addTextOption( TextOption * pTextOption );
+        TextRelation * getTextRelation( uint32 NPCID );
+        uint32 getTextID(uint32 NPCID);
+        NPCText * getNPCText( uint32 NPCTextID );
+        TextOption * getTextOption( uint32 OptionID );
 
-	protected:
-		// Gossip data
-		//NPC Text RelationShip
-		typedef std::map<uint32, TextRelation*> TextRelationMap;
-		TextRelationMap mTextRelations;
+    protected:
+        // Gossip data
+        //NPC Text RelationShip
+        typedef std::map<uint32, TextRelation*> TextRelationMap;
+        TextRelationMap mTextRelations;
 
-		//Text Options
-		typedef std::map<uint32, TextOption*> TextOptionMap;
-		TextOptionMap mTextOptions;
+        //Text Options
+        typedef std::map<uint32, TextOption*> TextOptionMap;
+        TextOptionMap mTextOptions;
 
-		//NPC Texts
-		typedef std::map<uint32, NPCText*> NPCTextMap;
-		NPCTextMap mNPCTexts;
+        //NPC Texts
+        typedef std::map<uint32, NPCText*> NPCTextMap;
+        NPCTextMap mNPCTexts;
 };
-#endif														// __GOSSIP_HANDLER_H__
+#endif                                                      // __GOSSIP_HANDLER_H__

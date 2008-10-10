@@ -42,28 +42,28 @@
  */
 class DatabaseMySQL : public Database
 {
-	protected:
-		char *Host;
-		int Port;
-		char *User;
-		char *Password;
-		char *Database;
+    protected:
+        char *Host;
+        int Port;
+        char *User;
+        char *Password;
+        char *Database;
 
-		virtual ~DatabaseMySQL ();
+        virtual ~DatabaseMySQL ();
 
-		virtual DatabaseError Open (const char *dbAddress);
+        virtual DatabaseError Open (const char *dbAddress);
 
-		/**
-		 * Create a Database Executor object, suitable for issuing
-		 * SQL requests and then working with the results.
-		 * @return
-		 *    A new object or NULL if we're out of resources.
-		 */
-		virtual DatabaseExecutor *CreateExecutor ();
-	public:
+        /**
+         * Create a Database Executor object, suitable for issuing
+         * SQL requests and then working with the results.
+         * @return
+         *    A new object or NULL if we're out of resources.
+         */
+        virtual DatabaseExecutor *CreateExecutor ();
+    public:
 };
 
 /**
  *  @}
  */
-#endif														// __DATABASE_MYSQL_H__
+#endif                                                      // __DATABASE_MYSQL_H__

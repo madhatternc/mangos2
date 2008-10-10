@@ -25,109 +25,109 @@
 Server::Server (uint iPort, uint iStepTime, Log *iLogger)
 : Client (NULL), Clients (16, 16), Running (false)
 {
-	Port = iPort;
-	StepTimeMs = iStepTime;
-	MainThread = NULL;
-	SetLogger (iLogger);
+    Port = iPort;
+    StepTimeMs = iStepTime;
+    MainThread = NULL;
+    SetLogger (iLogger);
 }
 
 Server::~Server ()
 {
-	Stop ();
+    Stop ();
 }
 
 bool Server::Start ()
 {
-	if (!Running)
-	{
-		socket = Socket::Listen (Port, Logger);
-		if (!socket)
-			return false;
+    if (!Running)
+    {
+        socket = Socket::Listen (Port, Logger);
+        if (!socket)
+            return false;
 
-		Running = true;
-		Die = false;
-		Tick = GetMilliseconds ();
-		MainThread = Thread::Start (KickMainLoop, this);
-		if (!MainThread)
-		{
-			CONSOLE.Out ("\axeFailed to create server thread\n");
-			socket->DecRef ();
-			socket = NULL;
-			Running = false;
-			return false;
-		}
-		MainThread->SetPriority (Thread::HIGHER);
-	}
-	return Running;
+        Running = true;
+        Die = false;
+        Tick = GetMilliseconds ();
+        MainThread = Thread::Start (KickMainLoop, this);
+        if (!MainThread)
+        {
+            CONSOLE.Out ("\axeFailed to create server thread\n");
+            socket->DecRef ();
+            socket = NULL;
+            Running = false;
+            return false;
+        }
+        MainThread->SetPriority (Thread::HIGHER);
+    }
+    return Running;
 }
 
 void Server::Stop ()
 {
-	if (!MainThread)
-		return;
+    if (!MainThread)
+        return;
 
-	// Mark ourselves as bleeding
-	Die = true;
-	// Wait for the server thread to shut down then force it down anyways
-	SleepMs ((StepTimeMs * 5) / 4);
-	// Kill server thread
-	if (MainThread)
-	{
-		MainThread->DecRef ();
-		MainThread = NULL;
-	}
-	if (socket)
-	{
-		socket->DecRef ();
-		socket = NULL;
-	}
-	// Kick all clients
-	Clients.DeleteAll ();
-	Running = false;
+    // Mark ourselves as bleeding
+    Die = true;
+    // Wait for the server thread to shut down then force it down anyways
+    SleepMs ((StepTimeMs * 5) / 4);
+    // Kill server thread
+    if (MainThread)
+    {
+        MainThread->DecRef ();
+        MainThread = NULL;
+    }
+    if (socket)
+    {
+        socket->DecRef ();
+        socket = NULL;
+    }
+    // Kick all clients
+    Clients.DeleteAll ();
+    Running = false;
 }
 
 void Server::KickMainLoop (void *arg)
 {
-	((Server *)arg)->MainLoop ();
+    ((Server *)arg)->MainLoop ();
 }
 
 void Server::MainLoop ()
 {
-	// Add ourselves to the start of list of clients
-	// so that we can receive socket events
-	Clients.Insert (0, this);
+    // Add ourselves to the start of list of clients
+    // so that we can receive socket events
+    Clients.Insert (0, this);
 
-	while (!Die)
-	{
-		uint32 OldTick = Tick;
-		Tick = GetMilliseconds ();
-		// We don't really care about overflows since the time
-		// difference will be always valid (unless the interval
-		// between two frames will not exceed ~1193046 hours :)
-		Update (Tick - OldTick);
-		// Handle all new socket events, and remove dead clients
-		WaitSocketEvents ();
-	}
+    while (!Die)
+    {
+        uint32 OldTick = Tick;
+        Tick = GetMilliseconds ();
+        // We don't really care about overflows since the time
+        // difference will be always valid (unless the interval
+        // between two frames will not exceed ~1193046 hours :)
+        Update (Tick - OldTick);
+        // Handle all new socket events, and remove dead clients
+        WaitSocketEvents ();
+    }
 
-	// Remove ourselves from the list of clients
-	// NOTE: This may be the last reference to our object, so make
-	// sure this statement comes last in this function
-	if (GetRefCount () == 1)
-		Clients.DeleteAll ();
-	else
-		Clients.Delete (0);
+    // Remove ourselves from the list of clients
+    // NOTE: This may be the last reference to our object, so make
+    // sure this statement comes last in this function
+    if (GetRefCount () == 1)
+        Clients.DeleteAll ();
+    else
+        Clients.Delete (0);
 }
 
 void Server::SetLogger (Log *iLogger)
 {
-	if (Logger)
-		Logger->DecRef ();
-	Logger = iLogger;
-	if (Logger)
-		Logger->IncRef ();
+    if (Logger)
+        Logger->DecRef ();
+    Logger = iLogger;
+    if (Logger)
+        Logger->IncRef ();
 }
 
 void Server::DeleteClient (uint iIndex)
 {
-	Clients.Delete (iIndex);
+    Clients.Delete (iIndex);
 }

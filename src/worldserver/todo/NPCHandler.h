@@ -27,13 +27,13 @@
 class DatabaseInterface;
 class NPCHandler : public MsgHandler
 {
-	public:
-		NPCHandler();
-		~NPCHandler();
+    public:
+        NPCHandler();
+        ~NPCHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
 
-	protected:
+    protected:
 
 };
-#endif														// __NPC_HANDLER_H__
+#endif                                                      // __NPC_HANDLER_H__

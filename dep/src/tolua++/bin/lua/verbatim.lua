@@ -17,7 +17,7 @@
 --   line = line text
 classVerbatim = {
  line = '',
-	cond = nil,    -- condition: where to generate the code (s=suport, r=register)
+    cond = nil,    -- condition: where to generate the code (s=suport, r=register)
 }
 classVerbatim.__index = classVerbatim
 setmetatable(classVerbatim,classFeature)
@@ -74,5 +74,3 @@ function Verbatim (l,cond)
   cond = cond or '',
  }
 end
-
-

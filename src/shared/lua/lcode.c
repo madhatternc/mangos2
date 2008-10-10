@@ -22,7 +22,7 @@
 #include "ltable.h"
 
 
-#define hasjumps(e)	((e)->t != (e)->f)
+#define hasjumps(e) ((e)->t != (e)->f)
 
 
 void luaK_nil (FuncState *fs, int from, int n) {
@@ -374,7 +374,7 @@ void luaK_exp2nextreg (FuncState *fs, expdesc *e) {
 int luaK_exp2anyreg (FuncState *fs, expdesc *e) {
   luaK_dischargevars(fs, e);
   if (e->k == VNONRELOC) {
-    if (!hasjumps(e)) return e->info;  /* exp is already in a register */ 
+    if (!hasjumps(e)) return e->info;  /* exp is already in a register */
     if (e->info >= fs->nactvar) {  /* reg. is not a local? */
       luaK_exp2reg(fs, e, e->info);  /* put value on it */
       return e->info;
@@ -711,4 +711,3 @@ int luaK_codeABx (FuncState *fs, OpCode o, int a, unsigned int bc) {
   lua_assert(getOpMode(o) == iABx || getOpMode(o) == iAsBx);
   return luaK_code(fs, CREATE_ABx(o, a, bc), fs->ls->lastline);
 }
-

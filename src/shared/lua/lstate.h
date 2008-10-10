@@ -22,14 +22,14 @@
 ** a thread must also synchronize any write-access to its own stack.
 ** Unsynchronized accesses are allowed only when reading its own stack,
 ** or when reading immutable fields from global objects
-** (such as string values and udata values). 
+** (such as string values and udata values).
 */
 #ifndef lua_lock
-#define lua_lock(L)	((void) 0)
+#define lua_lock(L) ((void) 0)
 #endif
 
 #ifndef lua_unlock
-#define lua_unlock(L)	((void) 0)
+#define lua_unlock(L)   ((void) 0)
 #endif
 
 
@@ -43,13 +43,13 @@ struct lua_longjmp;  /* defined in ldo.c */
 
 
 /* default meta table (both for tables and udata) */
-#define defaultmeta(L)	(&G(L)->_defaultmeta)
+#define defaultmeta(L)  (&G(L)->_defaultmeta)
 
 /* table of globals */
-#define gt(L)	(&L->_gt)
+#define gt(L)   (&L->_gt)
 
 /* registry */
-#define registry(L)	(&G(L)->_registry)
+#define registry(L) (&G(L)->_registry)
 
 
 /* extra stack space to handle TM calls and some other extras */
@@ -74,7 +74,7 @@ typedef struct stringtable {
 */
 typedef struct CallInfo {
   StkId base;  /* base for called function */
-  StkId	top;  /* top for this function */
+  StkId top;  /* top for this function */
   int state;  /* bit fields; see below */
   union {
     struct {  /* for Lua functions */
@@ -92,17 +92,17 @@ typedef struct CallInfo {
 /*
 ** bit fields for `CallInfo.state'
 */
-#define CI_C		(1<<0)  /* 1 if function is a C function */
+#define CI_C        (1<<0)  /* 1 if function is a C function */
 /* 1 if (Lua) function has an active `luaV_execute' running it */
-#define CI_HASFRAME	(1<<1)
+#define CI_HASFRAME (1<<1)
 /* 1 if Lua function is calling another Lua function (and therefore its
    `pc' is being used by the other, and therefore CI_SAVEDPC is 1 too) */
-#define CI_CALLING	(1<<2)
-#define CI_SAVEDPC	(1<<3)  /* 1 if `savedpc' is updated */
-#define CI_YIELD	(1<<4)  /* 1 if thread is suspended */
+#define CI_CALLING  (1<<2)
+#define CI_SAVEDPC  (1<<3)  /* 1 if `savedpc' is updated */
+#define CI_YIELD    (1<<4)  /* 1 if thread is suspended */
 
 
-#define ci_func(ci)	(clvalue((ci)->base - 1))
+#define ci_func(ci) (clvalue((ci)->base - 1))
 
 
 /*
@@ -155,7 +155,7 @@ struct lua_State {
 };
 
 
-#define G(L)	(L->l_G)
+#define G(L)    (L->l_G)
 
 
 /*
@@ -174,22 +174,21 @@ union GCObject {
 
 
 /* macros to convert a GCObject into a specific value */
-#define gcotots(o)	check_exp((o)->gch.tt == LUA_TSTRING, &((o)->ts))
-#define gcotou(o)	check_exp((o)->gch.tt == LUA_TUSERDATA, &((o)->u))
-#define gcotocl(o)	check_exp((o)->gch.tt == LUA_TFUNCTION, &((o)->cl))
-#define gcotoh(o)	check_exp((o)->gch.tt == LUA_TTABLE, &((o)->h))
-#define gcotop(o)	check_exp((o)->gch.tt == LUA_TPROTO, &((o)->p))
-#define gcotouv(o)	check_exp((o)->gch.tt == LUA_TUPVAL, &((o)->uv))
+#define gcotots(o)  check_exp((o)->gch.tt == LUA_TSTRING, &((o)->ts))
+#define gcotou(o)   check_exp((o)->gch.tt == LUA_TUSERDATA, &((o)->u))
+#define gcotocl(o)  check_exp((o)->gch.tt == LUA_TFUNCTION, &((o)->cl))
+#define gcotoh(o)   check_exp((o)->gch.tt == LUA_TTABLE, &((o)->h))
+#define gcotop(o)   check_exp((o)->gch.tt == LUA_TPROTO, &((o)->p))
+#define gcotouv(o)  check_exp((o)->gch.tt == LUA_TUPVAL, &((o)->uv))
 #define ngcotouv(o) \
-	check_exp((o) == NULL || (o)->gch.tt == LUA_TUPVAL, &((o)->uv))
-#define gcototh(o)	check_exp((o)->gch.tt == LUA_TTHREAD, &((o)->th))
+    check_exp((o) == NULL || (o)->gch.tt == LUA_TUPVAL, &((o)->uv))
+#define gcototh(o)  check_exp((o)->gch.tt == LUA_TTHREAD, &((o)->th))
 
 /* macro to convert any value into a GCObject */
-#define valtogco(v)	(cast(GCObject *, (v)))
+#define valtogco(v) (cast(GCObject *, (v)))
 
 
 lua_State *luaE_newthread (lua_State *L);
 void luaE_freethread (lua_State *L, lua_State *L1);
 
 #endif
-

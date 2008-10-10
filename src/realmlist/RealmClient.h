@@ -34,35 +34,35 @@ class RealmListSrv;
  */
 class RealmClient : public Client, public SrpRealm
 {
-	protected:
-		/// A pointer to parent realm server
-		RealmListSrv *Server;
+    protected:
+        /// A pointer to parent realm server
+        RealmListSrv *Server;
 
-		/// Send the packet and free it
-		void Send (NetworkPacket *outpkt)
-			{ socket->SendData (outpkt); outpkt->DecRef (); }
+        /// Send the packet and free it
+        void Send (NetworkPacket *outpkt)
+            { socket->SendData (outpkt); outpkt->DecRef (); }
 
-		void FailChallenge (RealmErrors err, const char *errstr);
-		void FailLogin (RealmErrors err, const char *errstr);
+        void FailChallenge (RealmErrors err, const char *errstr);
+        void FailLogin (RealmErrors err, const char *errstr);
 
-		void HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt);
-		void HandleReconnectChallenge (CMSG_RECONNECT_CHALLENGE_t &inpkt)
-			{ HandleLogonChallenge (*(CMSG_LOGON_CHALLENGE_t *)&inpkt); }
-		void HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt);
-		void HandleRealmList (CMSG_REALMLIST_t &inpkt);
+        void HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt);
+        void HandleReconnectChallenge (CMSG_RECONNECT_CHALLENGE_t &inpkt)
+            { HandleLogonChallenge (*(CMSG_LOGON_CHALLENGE_t *)&inpkt); }
+        void HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt);
+        void HandleRealmList (CMSG_REALMLIST_t &inpkt);
 
-	public:
-		/**
-		 * Initialize the realm network client.
-		 */
-		RealmClient (Socket *sock, RealmListSrv *serv);
+    public:
+        /**
+         * Initialize the realm network client.
+         */
+        RealmClient (Socket *sock, RealmListSrv *serv);
 
-		/**
-		 * Called when any event (one of those requested by socket->InterestedEvents())
-		 * happens with the socket.
-		 * @arg mask
-		 *   Event mask (a combination of PF_XXX flags)
-		 */
-		virtual void SocketEvent (uint mask);
+        /**
+         * Called when any event (one of those requested by socket->InterestedEvents())
+         * happens with the socket.
+         * @arg mask
+         *   Event mask (a combination of PF_XXX flags)
+         */
+        virtual void SocketEvent (uint mask);
 };
-#endif														// __REALM_CLIENT_H__
+#endif                                                      // __REALM_CLIENT_H__

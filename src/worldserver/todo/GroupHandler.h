@@ -26,11 +26,11 @@
 
 class GroupHandler : public MsgHandler
 {
-	public:
-		GroupHandler();
-		~GroupHandler();
+    public:
+        GroupHandler();
+        ~GroupHandler();
 
-		void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
-	protected:
+        void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
+    protected:
 };
-#endif														// __GROUP_HANDLER_H__
+#endif                                                      // __GROUP_HANDLER_H__

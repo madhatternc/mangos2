@@ -33,7 +33,7 @@ function classModule:register (pre)
   i = i+1
  end
  output(pre..'tolua_endmodule(tolua_S);')
-	pop()
+    pop()
 end
 
 -- Print method
@@ -64,5 +64,3 @@ function Module (n,b)
  pop()
  return t
 end
-
-

@@ -47,22 +47,22 @@ function _Enumerate (t,varname)
  setmetatable(t,classEnumerate)
  append(t)
  appendenum(t)
-	 if varname and varname ~= "" then
-		if t.name ~= "" then
-			Variable(t.name.." "..varname)
-		else
-			local ns = getcurrnamespace()
-			warning("Variable "..ns..varname.." of type <anonymous enum> is declared as read-only")
-			Variable("tolua_readonly int "..varname)
-		end
-	end
+     if varname and varname ~= "" then
+        if t.name ~= "" then
+            Variable(t.name.." "..varname)
+        else
+            local ns = getcurrnamespace()
+            warning("Variable "..ns..varname.." of type <anonymous enum> is declared as read-only")
+            Variable("tolua_readonly int "..varname)
+        end
+    end
 return t
 end
 
 -- Constructor
 -- Expects a string representing the enumerate body
 function Enumerate (n,b,varname)
-	b = string.gsub(b, ",[%s\n]*}", "\n}") -- eliminate last ','
+    b = string.gsub(b, ",[%s\n]*}", "\n}") -- eliminate last ','
  local t = split(strsub(b,2,-2),',') -- eliminate braces
  local i = 1
  local e = {n=0}
@@ -79,17 +79,16 @@ function Enumerate (n,b,varname)
  while e[i] do
   local t = split(e[i],'@')
   e[i] = t[1]
-		if not t[2] then
-		 t[2] = applyrenaming(t[1])
-		end
+        if not t[2] then
+         t[2] = applyrenaming(t[1])
+        end
   e.lnames[i] = t[2] or t[1]
   _global_enums[ ns..e[i] ] = (ns..e[i])
   i = i+1
  end
-	e.name = n
-	if n ~= "" then
-		Typedef("int "..n)
-	end
+    e.name = n
+    if n ~= "" then
+        Typedef("int "..n)
+    end
  return _Enumerate(e, varname)
 end
-

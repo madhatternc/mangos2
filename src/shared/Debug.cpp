@@ -24,44 +24,44 @@
 
 void DebugDump (FILE *Out, const void *Data, unsigned Size, const void *Base)
 {
-	if (Base == (const void *)-1)
-		Base = Data;
+    if (Base == (const void *)-1)
+        Base = Data;
 
-	const uint8 *data = (const uint8 *)Data;
-	unsigned int ofs = 0;
-	while (ofs < Size)
-	{
-		fprintf (Out, "%08x | ", (uintptr)data - (uintptr)Base + ofs);
+    const uint8 *data = (const uint8 *)Data;
+    unsigned int ofs = 0;
+    while (ofs < Size)
+    {
+        fprintf (Out, "%08x | ", (uintptr)data - (uintptr)Base + ofs);
 
-		unsigned int i;
-		for (i = 0; i < 16; i++)
-			if (ofs + i < Size)
-				fprintf (Out, "%02x ", data [ofs + i]);
-		else
-			fprintf (Out, "   ");
+        unsigned int i;
+        for (i = 0; i < 16; i++)
+            if (ofs + i < Size)
+                fprintf (Out, "%02x ", data [ofs + i]);
+        else
+            fprintf (Out, "   ");
 
-		fprintf (Out, "| ");
-		for (i = 0; i < 16; i++)
-			if (ofs + i < Size)
-		{
-			char c = data [ofs + i];
-			fprintf (Out, "%c", c > 31 ? c : '.');
-		}
-		else
-			fprintf (Out, " ");
+        fprintf (Out, "| ");
+        for (i = 0; i < 16; i++)
+            if (ofs + i < Size)
+        {
+            char c = data [ofs + i];
+            fprintf (Out, "%c", c > 31 ? c : '.');
+        }
+        else
+            fprintf (Out, " ");
 
-		ofs += 16;
-		fprintf (Out, "\n");
-	}
-	fflush (Out);
+        ofs += 16;
+        fprintf (Out, "\n");
+    }
+    fflush (Out);
 }
 
 void printBytes(void *bytes, int l, char *name)
 {
-	if (bytes == NULL)
-		return;
-	printf ("%s: ", name);
-	for (int i = 0; i < l; i++)
-		printf ("%02X", ((uint8 *)bytes) [i]);
-	printf ("\n");
+    if (bytes == NULL)
+        return;
+    printf ("%s: ", name);
+    for (int i = 0; i < l; i++)
+        printf ("%02X", ((uint8 *)bytes) [i]);
+    printf ("\n");
 }

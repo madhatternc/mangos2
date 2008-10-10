@@ -24,18 +24,18 @@
 
 struct bidentry
 {
-	uint32 AuctionID;
-	uint32 amt;
+    uint32 AuctionID;
+    uint32 amt;
 };
 struct AuctionEntry
 {
-	uint32 auctioneer;
-	uint32 item;
-	uint32 owner;
-	uint32 bid;
-	uint32 buyout;
-	time_t time;
-	uint32 bidder;
-	uint32 Id;
+    uint32 auctioneer;
+    uint32 item;
+    uint32 owner;
+    uint32 bid;
+    uint32 buyout;
+    time_t time;
+    uint32 bidder;
+    uint32 Id;
 };
-#endif														// __AUCTION_HOUSE_H__
+#endif                                                      // __AUCTION_HOUSE_H__

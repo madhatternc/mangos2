@@ -21,9 +21,9 @@
 
 extern "C"
 {
-	#include "lua.h"
-	#include "lauxlib.h"
-	#include "lualib.h"
+    #include "lua.h"
+    #include "lauxlib.h"
+    #include "lualib.h"
 }
 
 #include "tolua++.h"
@@ -42,8 +42,8 @@ extern "C"
 // in two vectors at once: in Clients and in SortedClients.
 #undef IMPLEMENT_VECTOR
 #define IMPLEMENT_VECTOR(Namespace, VType, CType) \
-	Namespace VType::~VType () {} \
-	void Namespace VType::FreeItem (Some Item) const {}
+    Namespace VType::~VType () {} \
+    void Namespace VType::FreeItem (Some Item) const {}
 
 IMPLEMENT_VECTOR_SORTED_STRKEY (WorldServer::, SortedClientsVector, GameClient *, Login)
 
@@ -55,126 +55,126 @@ WorldServer *World;
 WorldServer::WorldServer (uint iPort, Log *iLogger) : Server (iPort, 100, iLogger),
 GuidPool (16, 16)
 {
-	World = this;
-	RealmName = strnew ("Local realm");
-	MOTD = strnew ("Welcome!");
-	ClientLimit = DEFCLIENTLIMIT;
-	StartZone = DEFSTARTHUMANZONE;
-	Cinematics = DEFSHOWINTRO;
-	AuthCount = 0;
-	GameFeatures = 0;
+    World = this;
+    RealmName = strnew ("Local realm");
+    MOTD = strnew ("Welcome!");
+    ClientLimit = DEFCLIENTLIMIT;
+    StartZone = DEFSTARTHUMANZONE;
+    Cinematics = DEFSHOWINTRO;
+    AuthCount = 0;
+    GameFeatures = 0;
 
-	db = rdb = NULL;
+    db = rdb = NULL;
 
-	// Set game time to current time
-	time_t t = time(NULL);
-	struct tm *tms = localtime (&t);
-	GameTime = (3600 * tms->tm_hour) + (tms->tm_min * 60) + (tms->tm_sec);
+    // Set game time to current time
+    time_t t = time(NULL);
+    struct tm *tms = localtime (&t);
+    GameTime = (3600 * tms->tm_hour) + (tms->tm_min * 60) + (tms->tm_sec);
 
-	// Initialize the Random Number Generator
-	srand (t);
+    // Initialize the Random Number Generator
+    srand (t);
 
-	StartLua ();
+    StartLua ();
 }
 
 WorldServer::~WorldServer()
 {
-	lua_close (Lua);
+    lua_close (Lua);
 
-	if (db)
-		db->DecRef ();
-	if (rdb)
-		rdb->DecRef ();
+    if (db)
+        db->DecRef ();
+    if (rdb)
+        rdb->DecRef ();
 
-	delete [] MOTD;
-	delete [] RealmName;
+    delete [] MOTD;
+    delete [] RealmName;
 }
 
 void WorldServer::SetDatabase (Database *iwdb, Database *irdb)
 {
-	if (iwdb != db)
-	{
-		if (db)
-			db->DecRef ();
-		if ((db = iwdb))
-		{
-			db->IncRef ();
-			db->SetLogger (Logger);
-		}
-	}
-	if (irdb != rdb)
-	{
-		if (rdb)
-			rdb->DecRef ();
-		if ((rdb = irdb))
-		{
-			rdb->IncRef ();
-			rdb->SetLogger (Logger);
-		}
-	}
+    if (iwdb != db)
+    {
+        if (db)
+            db->DecRef ();
+        if ((db = iwdb))
+        {
+            db->IncRef ();
+            db->SetLogger (Logger);
+        }
+    }
+    if (irdb != rdb)
+    {
+        if (rdb)
+            rdb->DecRef ();
+        if ((rdb = irdb))
+        {
+            rdb->IncRef ();
+            rdb->SetLogger (Logger);
+        }
+    }
 }
 
 void WorldServer::SocketEvent (uint mask)
 {
-	if (mask & PF_READ)
-	{
-		Socket *sock = socket->Accept ();
-		if (!sock)
-			return;
-		GameClient *c = new GameClient (sock);
-		AddClient (c);
-		// Free local references to refcounted objects
-		c->DecRef ();
-		sock->DecRef ();
-	}
+    if (mask & PF_READ)
+    {
+        Socket *sock = socket->Accept ();
+        if (!sock)
+            return;
+        GameClient *c = new GameClient (sock);
+        AddClient (c);
+        // Free local references to refcounted objects
+        c->DecRef ();
+        sock->DecRef ();
+    }
 }
 
 bool WorldServer::Start ()
 {
-	if (!db || !rdb)
-		return false;
+    if (!db || !rdb)
+        return false;
 
-	if (!Player::PreloadStaticData ())
-		return false;
-	if (!Item::PreloadStaticData ())
-	{
-		error1: Player::UnloadStaticData ();
-		return false;
-	}
-	if (!LoadGuidPool ())
-	{
-		Item::UnloadStaticData ();
-		goto error1;
-	}
+    if (!Player::PreloadStaticData ())
+        return false;
+    if (!Item::PreloadStaticData ())
+    {
+        error1: Player::UnloadStaticData ();
+        return false;
+    }
+    if (!LoadGuidPool ())
+    {
+        Item::UnloadStaticData ();
+        goto error1;
+    }
 
-	if (!Server::Start ())
-		goto error1;
+    if (!Server::Start ())
+        goto error1;
 
-	UpdateRealm (true);
-	return true;
+    UpdateRealm (true);
+    return true;
 }
 
 void WorldServer::Stop ()
 {
-	UpdateRealm (false);
-	Server::Stop ();
+    UpdateRealm (false);
+    Server::Stop ();
 
-	// Clear out sorted client list -- just in case
-	SortedClients.DeleteAll ();
+    // Clear out sorted client list -- just in case
+    SortedClients.DeleteAll ();
 
-	Item::UnloadStaticData ();
-	Player::UnloadStaticData ();
-	SaveGuidPool ();
+    Item::UnloadStaticData ();
+    Player::UnloadStaticData ();
+    SaveGuidPool ();
 }
 
 void WorldServer::UpdateRealm (bool Online)
 {
-	DatabaseExecutor *dbex = rdb->GetExecutor ();
-	uint numpl = Online ? GetClientsConnected () : 0;
-	uint color = ClientLimit ? ((float (numpl) / ClientLimit) > 0.75 ? 1 : 0) : 0;
-	dbex->ExecuteF ("UPDATE realms SET players=%d,online=%d,color=%d WHERE name='%s'",
-		numpl, Online ? 1 : 0, color, RealmName);
-	rdb->PutExecutor (dbex);
+    DatabaseExecutor *dbex = rdb->GetExecutor ();
+    uint numpl = Online ? GetClientsConnected () : 0;
+    uint color = ClientLimit ? ((float (numpl) / ClientLimit) > 0.75 ? 1 : 0) : 0;
+    dbex->ExecuteF ("UPDATE realms SET players=%d,online=%d,color=%d WHERE name='%s'",
+        numpl, Online ? 1 : 0, color, RealmName);
+    rdb->PutExecutor (dbex);
 }
 
 void WorldServer::Update (uint32 DeltaMs)
@@ -183,96 +183,96 @@ void WorldServer::Update (uint32 DeltaMs)
 
 void WorldServer::SendGlobalPacket (NetworkPacket *data, GameClient *Self)
 {
-	//@@@todo
-	for (int i = Clients.Length () - 1; i >= 0; i--)
-	{
-		//		GameClient *c = (GameClient *)Clients.Get (i);
-		//		if (c != Self && c->Authenticated ())
-		//			c->sock->SendData (data);
-	}
+    //@@@todo
+    for (int i = Clients.Length () - 1; i >= 0; i--)
+    {
+        //      GameClient *c = (GameClient *)Clients.Get (i);
+        //      if (c != Self && c->Authenticated ())
+        //          c->sock->SendData (data);
+    }
 }
 
 void WorldServer::SendGlobalMessage (const char *iText, GameClient *Self)
 {
-	//@@@todo
+    //@@@todo
 }
 
 void WorldServer::DeleteClient (uint iIndex)
 {
-	GameClient *c = (GameClient *)Clients.Get (iIndex);
-	int idx = SortedClients.FindSortedKey (c->Login);
-	DEBUG_BREAK_IF (idx < 0);
-	DEBUG_PRINTF ("Removing client %s, index %d\n", c->Login, idx);
-	if (idx >= 0)
-		SortedClients.Delete (idx);
-	Server::DeleteClient (iIndex);
+    GameClient *c = (GameClient *)Clients.Get (iIndex);
+    int idx = SortedClients.FindSortedKey (c->Login);
+    DEBUG_BREAK_IF (idx < 0);
+    DEBUG_PRINTF ("Removing client %s, index %d\n", c->Login, idx);
+    if (idx >= 0)
+        SortedClients.Delete (idx);
+    Server::DeleteClient (iIndex);
 }
 
 bool WorldServer::LoadGuidPool ()
 {
-	GuidPool.DeleteAll ();
+    GuidPool.DeleteAll ();
 
-	DatabaseExecutor *dbex = db->GetExecutor ();
-	if (dbex->Execute ("SELECT * FROM guid_pool") != dbeOk)
-	{
-		Logger->Out (LOG_IMPORTANT, "Failed to load GUID pools from database!\n");
-		db->PutExecutor (dbex);
-		return false;
-	}
+    DatabaseExecutor *dbex = db->GetExecutor ();
+    if (dbex->Execute ("SELECT * FROM guid_pool") != dbeOk)
+    {
+        Logger->Out (LOG_IMPORTANT, "Failed to load GUID pools from database!\n");
+        db->PutExecutor (dbex);
+        return false;
+    }
 
-	while (dbex->NextRow ())
-	{
-		GuidPool.Push (Some (dbex->GetU32 (0)));
-		GuidPool.Push (Some (dbex->GetU32 (1)));
-	}
-	db->PutExecutor (dbex);
-	return true;
+    while (dbex->NextRow ())
+    {
+        GuidPool.Push (Some (dbex->GetU32 (0)));
+        GuidPool.Push (Some (dbex->GetU32 (1)));
+    }
+    db->PutExecutor (dbex);
+    return true;
 }
 
 void WorldServer::SaveGuidPool ()
 {
-	DatabaseExecutor *dbex = db->GetExecutor ();
-	for (int i = 0; i < GuidPool.Length (); i += 2)
-		if ((dbex->ExecuteF ("UPDATE guid_pool SET guid_low=%lu WHERE guid_high=%lu",
-		GuidPool.Get (i + 1), GuidPool.Get (i)) != dbeOk)
-		|| !dbex->GetAffectedRows ())
-			dbex->ExecuteF ("INSERT INTO guid_pool (guid_high, guid_low) VALUES (%lu,%lu)",
-				GuidPool.Get (i), GuidPool.Get (i + 1));
-	db->PutExecutor (dbex);
+    DatabaseExecutor *dbex = db->GetExecutor ();
+    for (int i = 0; i < GuidPool.Length (); i += 2)
+        if ((dbex->ExecuteF ("UPDATE guid_pool SET guid_low=%lu WHERE guid_high=%lu",
+        GuidPool.Get (i + 1), GuidPool.Get (i)) != dbeOk)
+        || !dbex->GetAffectedRows ())
+            dbex->ExecuteF ("INSERT INTO guid_pool (guid_high, guid_low) VALUES (%lu,%lu)",
+                GuidPool.Get (i), GuidPool.Get (i + 1));
+    db->PutExecutor (dbex);
 }
 
 uint64 WorldServer::GenerateGUID (uint32 GuidHigh)
 {
-	int i;
-	for (i = 0; i < GuidPool.Length (); i += 2)
-		if (GuidPool.Get (i) == Some (GuidHigh))
-	{
-		uint32 *gl = (uint32 *)&GuidPool.Get (i + 1);
-		return ++*gl;
-	}
+    int i;
+    for (i = 0; i < GuidPool.Length (); i += 2)
+        if (GuidPool.Get (i) == Some (GuidHigh))
+    {
+        uint32 *gl = (uint32 *)&GuidPool.Get (i + 1);
+        return ++*gl;
+    }
 
-	GuidPool.Push (Some (GuidHigh));
-	// Don't start at zero... dunno why but maybe that could be useful later
-	GuidPool.Push (Some (1));
-	return 1;
+    GuidPool.Push (Some (GuidHigh));
+    // Don't start at zero... dunno why but maybe that could be useful later
+    GuidPool.Push (Some (1));
+    return 1;
 }
 
 void WorldServer::StartLua ()
 {
-	Lua = lua_open ();
-	/* opens the basic library */
-	luaopen_base (Lua);
-	/* opens the table library */
-	luaopen_table (Lua);
-	/* opens the I/O library */
-	luaopen_io (Lua);
-	/* opens the string lib. */
-	luaopen_string (Lua);
-	/* opens the math lib. */
-	luaopen_math (Lua);
-	/* opens worldsrv wrapper */
-	tolua_worldsrv_open (Lua);
-	// Add World to the global table
-	tolua_pushusertype (Lua, (void *)this,"WorldServer");
-	lua_setglobal (Lua, "World");
+    Lua = lua_open ();
+    /* opens the basic library */
+    luaopen_base (Lua);
+    /* opens the table library */
+    luaopen_table (Lua);
+    /* opens the I/O library */
+    luaopen_io (Lua);
+    /* opens the string lib. */
+    luaopen_string (Lua);
+    /* opens the math lib. */
+    luaopen_math (Lua);
+    /* opens worldsrv wrapper */
+    tolua_worldsrv_open (Lua);
+    // Add World to the global table
+    tolua_pushusertype (Lua, (void *)this,"WorldServer");
+    lua_setglobal (Lua, "World");
 }

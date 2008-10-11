@@ -15,7 +15,7 @@
 
 ## Process this file with automake to produce Makefile.in
 
-AM_CPPFLAGS = -I$(srcdir)/../../include -I$(srcdir)/../../include/zlib
+AM_CPPFLAGS = -I$(srcdir)/../../include -I$(srcdir)/../../include/zlib -DUSE_DLOPEN=1 -DUSE_DEGREES -DUSE_TMPNAME=0 -DLUA_USE_POSIX
 
 noinst_LIBRARIES = liblua.a
 

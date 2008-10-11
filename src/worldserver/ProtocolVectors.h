@@ -25,7 +25,7 @@
 #ifndef __PROTOCOL_VECTORS_H__
 #define __PROTOCOL_VECTORS_H__
 
-class DatabaseExecutor;                                     //tolua_hide
+class DatabaseExecutor; //tolua_hide
 
 //----// SMSG_LOOT_RESPONSE
 

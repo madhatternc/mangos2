@@ -46,7 +46,7 @@ enum
     HIGHGUID_DYNAMICOBJECT = 0xF000A000,
 };
 
-#define MAKEGUID(h,l)   ((uint64 (h) << 32) | l)            //tolua_hide
+#define MAKEGUID(h,l)   ((uint64 (h) << 32) | l) //tolua_hide
 
 /**
  * Object type mask bits.

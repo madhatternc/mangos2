@@ -390,7 +390,7 @@ void Socket::SendData (const void *data, uint length)
     }
 }
 
-char *Socket::ErrorString (uint32 code)
+const char *Socket::ErrorString (uint32 code)
 {
     switch (code)
     {

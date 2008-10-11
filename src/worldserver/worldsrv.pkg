@@ -67,4 +67,4 @@ $ifile "WorldServer.h"
 
 // Defines
 
-//#define VERSION 1.3
+//#define VERSION 0.5.0.02

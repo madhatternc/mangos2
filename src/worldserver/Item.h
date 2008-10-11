@@ -147,11 +147,11 @@ struct ItemPrototype
     uint32 Field23;
     uint32 MaxCount;
     uint32 Field25;
-    uint32 ItemStatType [10];                               //tolua_hide
-    uint32 ItemStatValue [10];                              //tolua_hide
-    float DamageMin [5];                                    //tolua_hide
-    float DamageMax [5];                                    //tolua_hide
-    uint32 DamageType [5];                                  //tolua_hide
+    uint32 ItemStatType [10]; //tolua_hide
+    uint32 ItemStatValue [10]; //tolua_hide
+    float DamageMin [5]; //tolua_hide
+    float DamageMax [5]; //tolua_hide
+    uint32 DamageType [5]; //tolua_hide
     uint32 Armor;
     uint32 Field62;
     uint32 FireRes;
@@ -161,12 +161,12 @@ struct ItemPrototype
     uint32 ArcaneRes;
     uint32 Delay;
     uint32 Field69;
-    uint32 SpellId [5];                                     //tolua_hide
-    uint32 SpellTrigger [5];                                //tolua_hide
-    uint32 SpellCharges [5];                                //tolua_hide
-    uint32 SpellCooldown [5];                               //tolua_hide
-    uint32 SpellCategory [5];                               //tolua_hide
-    uint32 SpellCategoryCooldown [5];                       //tolua_hide
+    uint32 SpellId [5]; //tolua_hide
+    uint32 SpellTrigger [5]; //tolua_hide
+    uint32 SpellCharges [5]; //tolua_hide
+    uint32 SpellCooldown [5]; //tolua_hide
+    uint32 SpellCategory [5]; //tolua_hide
+    uint32 SpellCategoryCooldown [5]; //tolua_hide
     uint32 Bonding;
     char *Description;
     uint32 Field102;
@@ -207,8 +207,7 @@ class Item : public Object
         ItemPrototype *ItemProto;
 
         /// Item prototype data
-                                                            //tolua_hide
-        static DECLARE_VECTOR_SORTED (ItemProtoVector, ItemPrototype *, ) ItemPrototypes;
+        static DECLARE_VECTOR_SORTED (ItemProtoVector, ItemPrototype *, ) ItemPrototypes; //tolua_hide
 
         /// Preload all static data from database
         static bool PreloadStaticData ();
@@ -240,8 +239,8 @@ class Item : public Object
         static ItemPrototype *FindProto (uint iItemId);
 
         /// Item Properties
-        void SetDurability (uint32 Value);                  //tolua_hide
-        void SetDurabilityToMax ();                         //tolua_hide
+        void SetDurability (uint32 Value); //tolua_hide
+        void SetDurabilityToMax (); //tolua_hide
 
         //----------------// Object saving & loading //----------------//
 

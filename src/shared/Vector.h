@@ -361,7 +361,7 @@ static int SignCompare (T a, T b)
         return (CType)Vector::GetByKey (Key, Mode); \
     }
 
-    // tolua_end_hide
+// tolua_end_hide
 
     /**
      *  @}

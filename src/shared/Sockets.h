@@ -74,27 +74,27 @@
  */
 class NetworkPacket : public Base
 {
-    protected:
-        /// Private destructor -- use DecRef () instead
-        virtual ~NetworkPacket ();
+protected:
+    /// Private destructor -- use DecRef () instead
+    virtual ~NetworkPacket ();
 
-    public:
-        /// The data associated with this packet
-        uint8 *data;                                        //tolua_hide temporary fix
-        /// The length of the associated data
-        uint length;
+public:
+    /// The data associated with this packet
+    uint8 *data;  //tolua_hide temporary fix
+    /// The length of the associated data
+    uint length;
 
-        /// Construct an empty network packet
-        NetworkPacket ();
+    /// Construct an empty network packet
+    NetworkPacket ();
 
-        /// Construct a network packet with given size
-        NetworkPacket (uint newlength);
+    /// Construct a network packet with given size
+    NetworkPacket (uint newlength);
 
-        /// Set the data array so that it can hold this many bytes
-        void SetLength (uint newlength);
+    /// Set the data array so that it can hold this many bytes
+    void SetLength (uint newlength);
 
-        /// Construct the packet data from other sources
-        virtual void Assemble ();
+    /// Construct the packet data from other sources
+    virtual void Assemble ();
 };
 
 // Don't process more than 64k bytes per client at once
@@ -124,11 +124,11 @@ class NetworkPacket : public Base
  * points to the first available byte in buffer, other to the first
  * free byte in buffer:
  *
- * \verbatim
+ * \Verbatim
  *   tail-- v
  * [........{data data data data}.........]
  *                               ^-- head
- * \endverbatim
+ * \EndVerbatim
  *
  * The pointers move as data is copied to the buffer (head) and as data is
  * being digested from the buffer (tail). The send queue can hold whole
@@ -140,11 +140,11 @@ class NetworkPacket : public Base
  * Both buffers can wrap around the buffer end so that memory copy operations
  * are minimized, like this:
  *
- * \verbatim
+ * \Verbatim
  *                      tail-- v
  * [data data}.................{data data ]
  *           ^-- head
- * \endverbatim
+ * \EndVerbatim
  *
  * Because you cannot work with such a wrapped-around buffer like usual
  * (e.g. get a pointer to something and go ahead), no functions are present
@@ -157,239 +157,237 @@ class NetworkPacket : public Base
  */
 class Socket : public Base
 {
-    private:
-        /// Handle of the socket encapsulated in this object
-        socket_t handle;
-        /// Network address of the socket
-        sockaddr_in inaddr;
+private:
+    /// Handle of the socket encapsulated in this object
+    socket_t handle;
+    /// Network address of the socket
+    sockaddr_in inaddr;
 
-        /// Receiver queue
-        uint8 recvb [RECVB_SIZE];
-        /// Receiver buffer tail and head
-        int recv_tail, recv_head;
-        /// The phantom tail for data accessor functions
-        int data_tail;
+    /// Receiver queue
+    uint8 recvb [RECVB_SIZE];
+    /// Receiver buffer tail and head
+    int recv_tail, recv_head;
+    /// The phantom tail for data accessor functions
+    int data_tail;
 
-        /// The send queue (NetworkPacket's)
-        BaseVector sendq;
-        /// Amount of data sent from the first packet in queue
-        uint sendq0_bytes;
-        /// The already serialized send queue
-        uint8 sendb [SENDB_SIZE];
-        /// Send buffer tail and head
-        uint send_tail, send_head;
+    /// The send queue (NetworkPacket's)
+    BaseVector sendq;
+    /// Amount of data sent from the first packet in queue
+    uint sendq0_bytes;
+    /// The already serialized send queue
+    uint8 sendb [SENDB_SIZE];
+    /// Send buffer tail and head
+    uint send_tail, send_head;
 
-        /// Is this socket still connected?
-        bool connected;
+    /// Is this socket still connected?
+    bool connected;
 
-        /// The logger associated with this and all derived sockets
-        Log *Logger;
+    /// The logger associated with this and all derived sockets
+    Log *Logger;
 
-        /// Private constructor & destructor, only createable via Network
-        Socket (socket_t sh, sockaddr_in *sa, Log *iLogger);
-        virtual ~Socket ();
+    /// Private constructor & destructor, only createable via Network
+    Socket (socket_t sh, sockaddr_in *sa, Log *iLogger);
+    virtual ~Socket ();
 
-        friend class Network;
+    friend class Network;
 
-    public:
-        /// Open a TCP port and listen for connections
-        static Socket *Listen (int port, Log *iLogger);
+public:
+    /// Open a TCP port and listen for connections
+    static Socket *Listen (int port, Log *iLogger);
 
-        /// Open new socket and try to connect to host:port
-        static Socket *Connect (int port, char *host, Log *iLogger);
+    /// Open new socket and try to connect to host:port
+    static Socket *Connect (int port, char *host, Log *iLogger);
 
-        /// Get the name of an errorcode
-        static char *ErrorString (uint32 code);
+    /// Get the name of an errorcode
+    static const char *ErrorString (uint32 code);
 
-        /**
-         * Receive some more data. Returns true if there's anything new
-         * in the receive buffer.
-         */
-        bool ReceiveData ();
+    /**
+     * Receive some more data. Returns true if there's anything new
+     * in the receive buffer.
+     */
+    bool ReceiveData ();
 
-        /**
-         * Send a network packet.
-         * The network packet is put into the send queue array if the send
-         * buffer is full, and will be sent at a later time. In this case
-         * the reference counter on data is incremented, and it will be
-         * decremented only after the packet will be actually sent.
-         */
-        void SendData (NetworkPacket *data);
+    /**
+     * Send a network packet.
+     * The network packet is put into the send queue array if the send
+     * buffer is full, and will be sent at a later time. In this case
+     * the reference counter on data is incremented, and it will be
+     * decremented only after the packet will be actually sent.
+     */
+    void SendData (NetworkPacket *data);
 
-        /**
-         * Send just a buffer of data: blocks if send queue is full,
-         * so it's not recommended to use this function for large amounts.
-         */
-        void SendData (const void *data, uint length);
+    /**
+     * Send just a buffer of data: blocks if send queue is full,
+     * so it's not recommended to use this function for large amounts.
+     */
+    void SendData (const void *data, uint length);
 
-        /**
-         * Try to send what's yet unsent.
-         */
-        void SendPending ();
+    /**
+     * Try to send what's yet unsent.
+     */
+    void SendPending ();
 
-        /**
-         * Accept an incoming connection request if one exists
-         * @return
-         *   A new socket or NULL if error.
-         */
-        Socket *Accept ();
+    /**
+     * Accept an incoming connection request if one exists
+     * @return
+     *   A new socket or NULL if error.
+     */
+    Socket *Accept ();
 
-        /**
-         * Return a combination of PF_XXX flags for which events
-         * we're interested to see right now.
-         */
-        uint InterestedEvents ();
+    /**
+     * Return a combination of PF_XXX flags for which events
+     * we're interested to see right now.
+     */
+    uint InterestedEvents ();
 
-        /// Is this socket still connected?
-        bool Connected () const
-            { return connected; }
+    /// Is this socket still connected?
+    bool Connected () const
+    { return connected; }
 
-        /// Get socket handle (for internal use only)
-        socket_t GetHandle ()                               // tolua_hide
-        {                                                   // tolua_hide
-            return handle;
-        }
+    /// Get socket handle (for internal use only)
+    socket_t GetHandle () // tolua_hide
+    { return handle; }  // tolua_hide
 
-        inline char * GetIP ()
-            { return inet_ntoa (inaddr.sin_addr); }
+    inline char * GetIP ()
+    { return inet_ntoa (inaddr.sin_addr); }
 
-        /// Set the logger used to log miscelaneous network events
-        void SetLogger (Log *iLogger);
+    /// Set the logger used to log miscelaneous network events
+    void SetLogger (Log *iLogger);
 
-        /**
-         * This function starts a receive buffer access sequence.
-         * The virtual pointers are set to the beginning of the available
-         * data in the receive buffer.
-         */
-        void Rewind ()
-            { data_tail = recv_tail; }
+    /**
+     * This function starts a receive buffer access sequence.
+     * The virtual pointers are set to the beginning of the available
+     * data in the receive buffer.
+     */
+    void Rewind ()
+    { data_tail = recv_tail; }
 
-        /**
-         * This function can be called only AFTER initializing non-destructive
-         * data analysis by calling Rewind ().
-         * @return
-         *   Number of bytes *STILL* available in the receive buffers.
-         */
-        uint Avail ()
-            { return (recv_head - data_tail) & RECVB_MASK; }
+    /**
+     * This function can be called only AFTER initializing non-destructive
+     * data analysis by calling Rewind ().
+     * @return
+     *   Number of bytes *STILL* available in the receive buffers.
+     */
+    uint Avail ()
+    { return (recv_head - data_tail) & RECVB_MASK; }
 
-        /**
-         * Get how much data would be swallowed if we would call Swallow()
-         */
-        uint Chewed ()
-            { return (data_tail - recv_tail) & RECVB_MASK; }
+    /**
+     * Get how much data would be swallowed if we would call Swallow()
+     */
+    uint Chewed ()
+    { return (data_tail - recv_tail) & RECVB_MASK; }
 
-        /**
-         * Tell the socket that the data consumed since the call to Rewind ()
-         * and until now (by calling the Get () methods) has been successfully
-         * digested.
-         */
-        void Swallow ()
-            { recv_tail = data_tail; }
+    /**
+     * Tell the socket that the data consumed since the call to Rewind ()
+     * and until now (by calling the Get () methods) has been successfully
+     * digested.
+     */
+    void Swallow ()
+    { recv_tail = data_tail; }
 
-        /**
-         * Skip some bytes from the data sequence
-         * @arg iLength
-         *   Number of bytes to skip
-         * @return
-         *   false if receive buffer contains less data
-         */
-        bool Skip (uint iLength)
-        {
-            if (iLength > Avail ())
-                return false;
-            data_tail = (data_tail + iLength) & RECVB_MASK;
-            return true;
-        }
+    /**
+     * Skip some bytes from the data sequence
+     * @arg iLength
+     *   Number of bytes to skip
+     * @return
+     *   false if receive buffer contains less data
+     */
+    bool Skip (uint iLength)
+    {
+        if (iLength > Avail ())
+            return false;
+        data_tail = (data_tail + iLength) & RECVB_MASK;
+        return true;
+    }
 
-        /**
-         * Copy a number of bytes from receive buffer to user buffer.
-         * @arg oData
-         *   Pointer to output data buffer.
-         * @arg iDataSize
-         *   Data buffer size in bytes.
-         * @return
-         *   true if byte has been read; false if buffer is empty
-         */
-        bool Get (void *oData, uint iDataSize);
+    /**
+     * Copy a number of bytes from receive buffer to user buffer.
+     * @arg oData
+     *   Pointer to output data buffer.
+     * @arg iDataSize
+     *   Data buffer size in bytes.
+     * @return
+     *   true if byte has been read; false if buffer is empty
+     */
+    bool Get (void *oData, uint iDataSize);
 
-        /**
-         * Get next byte from the receive buffer.
-         * @arg b
-         *   The output byte
-         * @return
-         *   true if byte has been read; false if buffer is empty
-         */
-        bool Get (uint8 &b)
-        {
-            if (data_tail == recv_head)
-                return false;
-            b = recvb [data_tail];
-            data_tail = (data_tail + 1) & RECVB_MASK;
-            return true;
-        }
+    /**
+     * Get next byte from the receive buffer.
+     * @arg b
+     *   The output byte
+     * @return
+     *   true if byte has been read; false if buffer is empty
+     */
+    bool Get (uint8 &b)
+    {
+        if (data_tail == recv_head)
+            return false;
+        b = recvb [data_tail];
+        data_tail = (data_tail + 1) & RECVB_MASK;
+        return true;
+    }
 
-        /**
-         * Get next little-endian 16-bit word from the receive buffer.
-         * @arg w16
-         *   The output word
-         * @return
-         *   true if data has been read; false if buffer is empty
-         */
-        bool GetLE (uint16 &w16);
+    /**
+     * Get next little-endian 16-bit word from the receive buffer.
+     * @arg w16
+     *   The output word
+     * @return
+     *   true if data has been read; false if buffer is empty
+     */
+    bool GetLE (uint16 &w16);
 
-        /**
-         * Get next little-endian 32-bit word from the receive buffer.
-         * @arg w32
-         *   The output word
-         * @return
-         *   true if data has been read; false if buffer is empty
-         */
-        bool GetLE (uint32 &w32);
+    /**
+     * Get next little-endian 32-bit word from the receive buffer.
+     * @arg w32
+     *   The output word
+     * @return
+     *   true if data has been read; false if buffer is empty
+     */
+    bool GetLE (uint32 &w32);
 
-        /**
-         * Get next little-endian 64-bit word from the receive buffer.
-         * @arg w64
-         *   The output word
-         * @return
-         *   true if data has been read; false if buffer is empty
-         */
-        bool GetLE (uint64 &w64);
+    /**
+     * Get next little-endian 64-bit word from the receive buffer.
+     * @arg w64
+     *   The output word
+     * @return
+     *   true if data has been read; false if buffer is empty
+     */
+    bool GetLE (uint64 &w64);
 
-        /**
-         * Get next little-endian 32-bit float from the receive buffer.
-         * @arg f32
-         *   The output floating-point variable
-         * @return
-         *   true if data has been read; false if buffer is empty
-         */
-        bool GetLE (float &f32)
-            { return GetLE (*(uint32 *)&f32); }
+    /**
+     * Get next little-endian 32-bit float from the receive buffer.
+     * @arg f32
+     *   The output floating-point variable
+     * @return
+     *   true if data has been read; false if buffer is empty
+     */
+    bool GetLE (float &f32)
+    { return GetLE (*(uint32 *)&f32); }
 
-        /**
-         * Get next big-endian 16-bit word from the receive buffer.
-         * @arg w16
-         *   The output word
-         * @return
-         *   true if data has been read; false if buffer is empty
-         */
-        bool GetBE (uint16 &w16);
+    /**
+     * Get next big-endian 16-bit word from the receive buffer.
+     * @arg w16
+     *   The output word
+     * @return
+     *   true if data has been read; false if buffer is empty
+     */
+    bool GetBE (uint16 &w16);
 
-        /**
-         * Get next big-endian 32-bit word from the receive buffer.
-         * @arg w32
-         *   The output word
-         * @return
-         *   true if data has been read; false if buffer is empty
-         */
-        bool GetBE (uint32 &w32);
+    /**
+     * Get next big-endian 32-bit word from the receive buffer.
+     * @arg w32
+     *   The output word
+     * @return
+     *   true if data has been read; false if buffer is empty
+     */
+    bool GetBE (uint32 &w32);
 
-        /**
-         * Get a C string from the buffer.
-         * @return
-         *   NULL if there's no zero-terminated string in the buffer.
-         */
-        char *GetCStr ();
+    /**
+     * Get a C string from the buffer.
+     * @return
+     *   NULL if there's no zero-terminated string in the buffer.
+     */
+    char *GetCStr ();
 };
 
 /**

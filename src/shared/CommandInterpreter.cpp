@@ -79,7 +79,7 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
         int num_brackets = 0;
         for (int i = 0; i < cmd->NumArgs; i++)
         {
-            char *arg_type, *bracket = "";
+            const char *arg_type, *bracket = "";
             switch (cmd->Type [i] & ~ARG_OPT)
             {
                 case ARG_STR:

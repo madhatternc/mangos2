@@ -62,3 +62,6 @@ src/realmlist/RealmProto.inc
 src/worldserver/Opcodes.cpp
 src/worldserver/Opcodes.h
 src/worldserver/Opcodes.inc
+
+src/worldserver/Luawrapper.cpp
+src/worldserver/Luawrapper.h

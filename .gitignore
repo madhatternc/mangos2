@@ -55,3 +55,10 @@ src/shared/svn_revision.h
 src/tools/tolua/bin/tolua
 src/worldserver/mangos2-worldserver
 
+src/realmlist/RealmProto.cpp
+src/realmlist/RealmProto.h
+src/realmlist/RealmProto.inc
+
+src/worldserver/Opcodes.cpp
+src/worldserver/Opcodes.h
+src/worldserver/Opcodes.inc

@@ -1,7 +1,6 @@
 FILES
 INSTALL
 build-log.txt
-indent-sources
 
 *.pyc
 *.[oa]

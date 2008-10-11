@@ -70,4 +70,4 @@ class NPCText
         uint32 m_OptionCount;
         uint32 m_OptionID[15];                              // all the id's of options
 };
-#endif                                                      // __GOSSIP_H__
+#endif // __GOSSIP_H__

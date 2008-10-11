@@ -57,4 +57,4 @@ class Path
         PathNode * mNodes;
         uint16 mLength;
 };
-#endif                                                      // __PATH_H__
+#endif // __PATH_H__

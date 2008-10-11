@@ -40,4 +40,4 @@ class PetHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __PET_HANDLER_H__
+#endif // __PET_HANDLER_H__

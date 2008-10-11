@@ -38,4 +38,4 @@ struct AuctionEntry
     uint32 bidder;
     uint32 Id;
 };
-#endif                                                      // __AUCTION_HOUSE_H__
+#endif // __AUCTION_HOUSE_H__

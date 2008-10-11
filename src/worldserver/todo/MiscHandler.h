@@ -84,4 +84,4 @@ class MiscHandler
     protected:
 
 };
-#endif                                                      // __MISC_HANDLER_H__
+#endif // __MISC_HANDLER_H__

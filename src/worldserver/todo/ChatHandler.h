@@ -212,4 +212,4 @@ class ChatHandler
 
         ChatCommandVector* ChatCommands;
 };
-#endif                                                      // __CHAT_HANDLER_H__
+#endif // __CHAT_HANDLER_H__

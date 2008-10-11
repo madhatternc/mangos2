@@ -313,4 +313,4 @@ class Unit : public Object
          */
         bool IsInFront (Unit *iTarget, float iDistance); //tolua_hide
 };
-#endif                                                      // __UNIT_H__
+#endif // __UNIT_H__

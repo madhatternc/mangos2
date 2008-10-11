@@ -280,4 +280,4 @@ class Console : public Singleton <Console>
         static void PushColor ();
         static void PopColor ();
 };
-#endif                                                      // __CONSOLE_H__
+#endif // __CONSOLE_H__

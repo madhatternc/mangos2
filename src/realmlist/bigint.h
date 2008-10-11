@@ -147,4 +147,4 @@ extern "C"
     #ifdef __cplusplus
 }
 #endif
-#endif                                                      // __BIGINT_H__
+#endif // __BIGINT_H__

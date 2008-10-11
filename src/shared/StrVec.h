@@ -79,4 +79,4 @@ class StrVector : public Vector
 /**
  *  @}
  */
-#endif                                                      // __STR_VEC_H__
+#endif // __STR_VEC_H__

@@ -305,4 +305,4 @@ class Unit : public Object
         bool m_Pet;
 
 };
-#endif                                                      // __UNIT_H__
+#endif // __UNIT_H__

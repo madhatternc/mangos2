@@ -204,4 +204,4 @@ extern WorldServer *World; //tolua_hide
 
 /// Easy access to logger
 #define LOG     (*World->Logger) //tolua_hide
-#endif                                                      // __WORLD_SERVER_H__
+#endif // __WORLD_SERVER_H__

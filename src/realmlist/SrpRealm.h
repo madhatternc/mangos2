@@ -69,4 +69,4 @@ void Hex2Bin (uint8 *dst, size_t size, char *src);
  *   Source binary array length in bytes
  */
 void Bin2Hex (char *dst, uint8 *src, size_t size);
-#endif                                                      // __SRP_REALM_H__
+#endif // __SRP_REALM_H__

@@ -33,4 +33,4 @@ class TaxiHandler : public MsgHandler
         void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
     protected:
 };
-#endif                                                      // __TAXI_HANDLER_H__
+#endif // __TAXI_HANDLER_H__

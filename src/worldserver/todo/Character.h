@@ -263,4 +263,4 @@ class Character : public Unit
         uint32 m_mana;
 
 };
-#endif                                                      // __CHARACTER_H__
+#endif // __CHARACTER_H__

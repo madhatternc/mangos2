@@ -95,4 +95,4 @@ class BaseVector : public Vector
 /**
  *  @}
  */
-#endif                                                      // __BASE_VECTOR_H__
+#endif // __BASE_VECTOR_H__

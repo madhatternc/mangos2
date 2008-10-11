@@ -47,4 +47,4 @@ class SrpWorld
         void decode(unsigned char *data);
         void encode(unsigned char *data);
 };
-#endif                                                      // __SRP_WORLD_H__
+#endif // __SRP_WORLD_H__

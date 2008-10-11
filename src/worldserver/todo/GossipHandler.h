@@ -56,4 +56,4 @@ class GossipHandler : public MsgHandler
         typedef std::map<uint32, NPCText*> NPCTextMap;
         NPCTextMap mNPCTexts;
 };
-#endif                                                      // __GOSSIP_HANDLER_H__
+#endif // __GOSSIP_HANDLER_H__

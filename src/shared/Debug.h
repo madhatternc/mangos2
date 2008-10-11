@@ -74,4 +74,4 @@ void printBytes(void *bytes, int l, char *name);
 /**
  *  @}
  */
-#endif                                                      // __DEBUG_H__
+#endif // __DEBUG_H__

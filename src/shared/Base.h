@@ -116,4 +116,4 @@ class Base
 /**
  *  @}
  */
-#endif                                                      // __BASE_H__
+#endif // __BASE_H__

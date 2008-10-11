@@ -51,4 +51,4 @@ class SkillHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __SKILL_HANDLER_H__
+#endif // __SKILL_HANDLER_H__

@@ -33,4 +33,4 @@ class GroupHandler : public MsgHandler
         void HandleMsg( NetworkPacket & recv_data, GameClient *pClient );
     protected:
 };
-#endif                                                      // __GROUP_HANDLER_H__
+#endif // __GROUP_HANDLER_H__

@@ -540,4 +540,4 @@ class Player : public Unit
         void LeftChannel (Channel *iChan);
         void CleanupChannels ();
 };
-#endif                                                      // __PLAYER_H__
+#endif // __PLAYER_H__

@@ -65,4 +65,4 @@ class RealmClient : public Client, public SrpRealm
          */
         virtual void SocketEvent (uint mask);
 };
-#endif                                                      // __REALM_CLIENT_H__
+#endif // __REALM_CLIENT_H__

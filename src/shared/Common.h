@@ -290,4 +290,4 @@ static inline float GET_BEF32 (void *x)
 template <typename T>
 static T Square (T a)
 { return a * a; }
-#endif                                                      // __COMMON_H__
+#endif // __COMMON_H__

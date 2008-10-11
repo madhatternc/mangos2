@@ -78,4 +78,4 @@ class Client : public Base
 /**
  *  @}
  */
-#endif                                                      // __CLIENT_H__
+#endif // __CLIENT_H__

@@ -36,4 +36,4 @@ class NPCHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __NPC_HANDLER_H__
+#endif // __NPC_HANDLER_H__

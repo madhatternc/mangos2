@@ -97,4 +97,4 @@ DECLARE_HASH_VECTOR (ObjectHashVector, Object *, HashGuid,
 HASHFUNC_INT (HashGuid, uint64)
 /* Insert element 'Item' into the hash vector */
 void Insert (Object *Item););
-#endif                                                      // __OBJECT_VECTOR_H__
+#endif // __OBJECT_VECTOR_H__

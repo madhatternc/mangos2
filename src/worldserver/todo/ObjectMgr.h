@@ -111,4 +111,4 @@ class ObjectManager
     protected:
 
 };
-#endif                                                      // __OBJECT_MGR_H__
+#endif // __OBJECT_MGR_H__

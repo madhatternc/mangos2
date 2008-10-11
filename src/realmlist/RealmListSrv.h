@@ -120,4 +120,4 @@ class RealmListSrv : public Server
          */
         RealmVector *GetRealms ();
 };
-#endif                                                      // __REALM_LIST_SRV_H__
+#endif // __REALM_LIST_SRV_H__

@@ -36,4 +36,4 @@ class World : public Singleton <World>
     protected:
         //  std::set < Character * > mCharacters;
 };
-#endif                                                      // __WORLD_H__
+#endif // __WORLD_H__

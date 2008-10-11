@@ -57,4 +57,4 @@ class SpellHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __SPELL_HANDLER_H__
+#endif // __SPELL_HANDLER_H__

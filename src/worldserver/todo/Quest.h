@@ -95,4 +95,4 @@ class Quest
         uint32 m_rewardGold;                                // gold reward
         uint32 m_questXp;                                   // XP gained from completing this quest
 };
-#endif                                                      // __QUEST_H__
+#endif // __QUEST_H__

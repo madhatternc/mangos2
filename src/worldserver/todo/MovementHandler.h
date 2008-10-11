@@ -35,4 +35,4 @@ class MovementHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __MOVEMENT_HANDLER_H__
+#endif // __MOVEMENT_HANDLER_H__

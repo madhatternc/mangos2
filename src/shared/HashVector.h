@@ -490,4 +490,4 @@ class HashVector : protected Vector
         /**
          *  @}
          */
-#endif                                                      // __HASH_VECTOR_H__
+#endif // __HASH_VECTOR_H__

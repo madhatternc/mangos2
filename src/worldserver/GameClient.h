@@ -128,4 +128,4 @@ class GameClient : public Client
         /// Assembles, encrypts and sends a packet
         void Send (NetworkPacket *packet);
 };
-#endif                                                      // __GAMECLIENT_H__
+#endif // __GAMECLIENT_H__

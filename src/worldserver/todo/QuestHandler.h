@@ -40,4 +40,4 @@ class QuestHandler : public MsgHandler
         typedef std::map<uint32, Quest*> QuestMap;
         QuestMap mQuests;
 };
-#endif                                                      // __QUEST_HANDLER_H__
+#endif // __QUEST_HANDLER_H__

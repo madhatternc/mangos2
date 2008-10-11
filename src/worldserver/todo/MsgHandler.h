@@ -36,4 +36,4 @@ class MsgHandler
 
         virtual void HandleMsg( NetworkPacket & recv_data, GameClient *pClient ) = 0;
 };
-#endif                                                      // __MSG_HANDLER_H__
+#endif // __MSG_HANDLER_H__

@@ -132,4 +132,4 @@ class Log : public Base
          */
         void GetLogging (char *oBuffer, size_t iBufferLen);
 };
-#endif                                                      // __LOG_H__
+#endif // __LOG_H__

@@ -42,4 +42,4 @@ class Mail
             delete [] Body;
         }
 };
-#endif                                                      // __MAIL_H__
+#endif // __MAIL_H__

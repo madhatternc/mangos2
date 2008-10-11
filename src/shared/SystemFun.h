@@ -33,4 +33,4 @@ void SleepMs (int ms);
  * Get number of milliseconds passed since doesn't matter when.
  */
 uint32 GetMilliseconds ();
-#endif                                                      // __SYSTEM_FUN_H__
+#endif // __SYSTEM_FUN_H__

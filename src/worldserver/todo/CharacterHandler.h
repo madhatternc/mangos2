@@ -36,4 +36,4 @@ class CharacterHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __CHARACTER_HANDLER_H__
+#endif // __CHARACTER_HANDLER_H__

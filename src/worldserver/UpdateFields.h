@@ -305,4 +305,4 @@ enum CorpseUpdateFields
     CORPSE_FIELD_FLAGS                      = 0x001D + CORPSE_START,
     CORPSE_END                              = 0x001E + CORPSE_START
 };
-#endif                                                      // __UPDATE_FIELDS_H__
+#endif // __UPDATE_FIELDS_H__

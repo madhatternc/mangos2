@@ -31,4 +31,4 @@ class GameObject : public Object
         void Create (uint32 guidlow, uint32 display_id, uint8 state, float scale,
             uint16 type, uint16 faction,  float x, float y, float z, float ang);
 };
-#endif                                                      // __GAME_OBJECT_H__
+#endif // __GAME_OBJECT_H__

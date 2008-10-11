@@ -67,4 +67,4 @@
 #define RL_CONFIG_FILE      SYSCONFDIR"realmlist.conf"
 #define WS_CONFIG_FILE      SYSCONFDIR"worldserver.conf"
 #define VC_CONFIG_FILE      SYSCONFDIR"voicechat.conf"
-#endif                                                      // __VERSION_H__
+#endif // __VERSION_H__

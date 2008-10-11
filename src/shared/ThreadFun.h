@@ -105,4 +105,4 @@ class Mutex : public Base
 /**
  *  @}
  */
-#endif                                                      // __THREAD_FUN_H__
+#endif // __THREAD_FUN_H__

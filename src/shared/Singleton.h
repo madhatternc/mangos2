@@ -67,4 +67,4 @@ template < class type > class Singleton
 /**
  *  @}
  */
-#endif                                                      // __SINGLETON_H__
+#endif // __SINGLETON_H__

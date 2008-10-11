@@ -42,4 +42,4 @@ class AuraHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __AURA_HANDLER_H__
+#endif // __AURA_HANDLER_H__

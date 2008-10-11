@@ -366,4 +366,4 @@ static int SignCompare (T a, T b)
     /**
      *  @}
      */
-#endif                                                      // __VECTOR_H__
+#endif // __VECTOR_H__

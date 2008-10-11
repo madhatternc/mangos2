@@ -147,4 +147,4 @@ struct CommandDesc
 extern void CommandInterpreter (const char *ConfigFile, void *UserData,
 CommandDesc *Commands, int NumCommands,
 const char *Prompt);
-#endif                                                      // __COMMAND_INTERPRETER_H__
+#endif // __COMMAND_INTERPRETER_H__

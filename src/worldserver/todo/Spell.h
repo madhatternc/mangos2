@@ -538,4 +538,4 @@ enum ReplenishType
     REPLENISH_MANA = 21,
     REPLENISH_RAGE = 22                                     //don't know if rage is 22 or what, but will do for now
 };
-#endif                                                      // __SPELL_H__
+#endif // __SPELL_H__

@@ -123,4 +123,4 @@ class DatabaseInterface
         void loadChatCommand(const char *name, ChatCommand * cmd);
 
 };
-#endif                                                      // __DATABASE_INTERFACE_H__
+#endif // __DATABASE_INTERFACE_H__

@@ -51,4 +51,4 @@ class CombatHandler
         uint32 petGUID;
 
 };
-#endif                                                      // __COMBAT_H__
+#endif // __COMBAT_H__

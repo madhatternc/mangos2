@@ -319,4 +319,4 @@ class Affect
             return rc;
         }
 };
-#endif                                                      // __AFFECT_H__
+#endif // __AFFECT_H__

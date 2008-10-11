@@ -74,4 +74,4 @@ class Group
         uint32 Looterguid;
 
 };
-#endif                                                      // __GROUP_H__
+#endif // __GROUP_H__

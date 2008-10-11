@@ -143,4 +143,4 @@ struct DamageInfo
 };
 
 DECLARE_VECTOR (DamageVector, DamageInfo *, );
-#endif                                                      // __PROTOCOL_VECTORS_H__
+#endif // __PROTOCOL_VECTORS_H__

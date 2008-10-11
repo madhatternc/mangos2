@@ -436,4 +436,4 @@ class Object : public Base
         /// Delete this object from database
         virtual bool DeleteFromDB () = 0;
 };
-#endif                                                      // __OBJECT_H__
+#endif // __OBJECT_H__

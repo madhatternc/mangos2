@@ -44,4 +44,4 @@ class AreaTrigger
         float m_O;
         uint32 m_TargetTriggerID;
 };
-#endif                                                      // __AREA_TRIGGER_H__
+#endif // __AREA_TRIGGER_H__

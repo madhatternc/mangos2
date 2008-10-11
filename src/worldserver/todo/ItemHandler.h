@@ -34,4 +34,4 @@ class ItemHandler : public MsgHandler
     protected:
         char curopcodebuf[256]; uint32 debugcounter;
 };
-#endif                                                      // __ITEM_HANDLER_H__
+#endif // __ITEM_HANDLER_H__

@@ -244,4 +244,4 @@ void u8strupr (char *oDestString, const char *iSrcString);
  *   Source string
  */
 void u8strlwr (char *oDestString, const char *iSrcString);
-#endif                                                      // __STRING_FUN_H__
+#endif // __STRING_FUN_H__

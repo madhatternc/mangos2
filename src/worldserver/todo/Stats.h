@@ -87,4 +87,4 @@ uint32 CalculateDamage(const Unit *pAttacker)
 
     return dmg;
 }
-#endif                                                      // __STATS_H__
+#endif // __STATS_H__

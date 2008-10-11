@@ -242,4 +242,4 @@ class BitVector
 /**
  *  @}
  */
-#endif                                                      // __BIT_VECTOR_H__
+#endif // __BIT_VECTOR_H__

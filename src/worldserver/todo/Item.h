@@ -88,4 +88,4 @@ class Item : public Object
         uint32 Unknown2;
 
 };
-#endif                                                      // __ITEM_H__
+#endif // __ITEM_H__

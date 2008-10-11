@@ -25,4 +25,4 @@
 #include "SrpRealm.h"
 #include "StringFun.h"
 #include "RealmProto.h"
-#endif                                                      // __REALM_MGR_H__
+#endif // __REALM_MGR_H__

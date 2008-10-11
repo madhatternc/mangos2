@@ -45,4 +45,4 @@ struct MemoryManager : public Singleton < MemoryManager >
 /**
  *  @}
  */
-#endif                                                      // __MEMORY_LEAKS_H__
+#endif // __MEMORY_LEAKS_H__

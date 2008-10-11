@@ -82,4 +82,4 @@ class Timer
         void Reset ()
             { Current = 0; }
 };
-#endif                                                      // __TIMER_H__
+#endif // __TIMER_H__

@@ -251,4 +251,4 @@ class Item : public Object
         /// Delete this object from database
         virtual bool DeleteFromDB ();
 };
-#endif                                                      // __ITEM_H__
+#endif // __ITEM_H__

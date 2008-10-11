@@ -36,4 +36,4 @@ class TradeHandler : public MsgHandler
     protected:
 
 };
-#endif                                                      // __TRADE_HANDLER_H__
+#endif // __TRADE_HANDLER_H__

@@ -1,7 +1,7 @@
-= MaNGOS2 -- README =
+# MaNGOS2 #
 
 Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
-Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -29,28 +29,28 @@ Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
   This product includes software developed by Tom Wu and Eugene
   Jhong for the SRP Distribution (http://srp.stanford.edu/).
 
-== Welcome to MaNGOS2 ==
+## Welcome to MaNGOS2 ##
 
-MaNGOS2 is a free, Open Source implementation of a game server compatible
-with the original World of Warcraft client.Please see the file COPYING for
-license details.
+MaNGOS2 is a free, Open Source implementation of a game server compatible with
+the original World of Warcraft client. Please see the file COPYING for license
+details.
 
-MaNGOS2 was based off the last release from Team OpenWoW, published on 14th
-May 2005, and has been extended to support all features which currently are
+MaNGOS2 was based off the last release from Team OpenWoW, published on 14th May
+2005, and has been extended to support all features which currently are
 supported by the MaNGOS1 series.
 
-For further information on the MaNGOS2, please visit our project web
-site at <http://www.getmangos.com/>. Our Wiki site provides you with
-valueable information on almost any topic regarding MaNGOS.
+For further information on the MaNGOS2, please visit our [project web
+site](http://getmangos.com/). Our Wiki site provides you with valueable
+information on almost any topic regarding MaNGOS and related projects.
 
-== Further readings ==
+## Further readings ##
 Documenation on various development related topics can be found in the doc/
 subdirectory, including Doxygen-generated API documentation.
 
 The required SQL files for creating the database backend are included in the
 sql/ subdirectory.
 
-== Building and Installing ==
+## Building and Installing ##
 In order to build and install MaNGOS2 under Linux, follow the instructions
 described in the INSTALL.GNU file.
 

@@ -1,1054 +1,1070 @@
-2008-09-22  Daniel  <theluda@googlemail.com>
-
-	Extraction of SVN revision is gone. Need the same for GIT now.
-
-2008-09-22  Daniel  <theluda@googlemail.com>
-
-	Configuration files will no longer be overwritten on make install
-	execution.
-
-	* configure.ac: Parse realmlist.conf.dist, worldserver.conf.dist.
-	* src/realmlist/Makefile.am: Install realmlist.conf.dist.
-	* src/realmlist/realmlist.conf: Moved to realmlist.conf.dist.in.
-	* src/worldserver/Makefile.am: Install worldserver.conf.dist.
-	* src/worldserver/worldserver.conf: Moved to worldserver.conf.dist.in.
-
-2008-07-18  Daniel  <theluda@googlemail.com>
-
-	mangos2 is now an official project of the newly founded
-	MaNGOS foundation. All further development will take
-	place at http://getmangos.com/
-	
-	For questions regarding this change, please send your
-	inquiries via email to foundation@getmangos.com.
-
-2008-06-16  Daniel  <theluda@googlemail.com>
-
-	* src/realmlist/Main.cpp: Proper #include ordering.
-	* src/realmlist/SrpRealm.cpp: Proper #include ordering.
-	* src/shared/BitVector.h: Proper #include ordering.
-	* src/shared/Common.h: Proper #include ordering.
-	* src/shared/Console.cpp: Proper #include ordering.
-	* src/shared/Database.cpp: Proper #include ordering.
-	* src/shared/DatabaseMySQL.cpp: Proper #include ordering.
-	* src/shared/HashVector.h: Proper #include ordering.
-	* src/shared/Log.cpp: Proper #include ordering.
-	* src/shared/Log.h: Proper #include ordering.
-	* src/shared/StringFun.cpp: Proper #include ordering.
-	* src/shared/Timer.h: Proper #include ordering.
-	* src/shared/UTF8Fun.cpp: Proper #include ordering.
-	* src/shared/posix/ConsoleSysDep.cpp: Proper #include ordering.
-	* src/shared/posix/ThreadFun.cpp: Proper #include ordering.
-	* src/shared/posix/TimeFun.cpp: Proper #include ordering.
-	* src/shared/win/ThreadFun.cpp: Proper #include ordering.
-	* src/shared/win/TimeFun.cpp: Proper #include ordering.
-	* src/worldserver/AccountData.cpp: Proper #include ordering.
-	* src/worldserver/GameClient.cpp: Proper #include ordering.
-	* src/worldserver/GameClient.h: Proper #include ordering.
-	* src/worldserver/Main.cpp: Proper #include ordering.
-	* src/worldserver/Quadtree.cpp: Proper #include ordering.
-	* src/worldserver/Unit.cpp: Proper #include ordering.
-	* src/worldserver/WorldServer.cpp: Proper #include ordering.
-	* src/worldserver/WorldServer.h: Proper #include ordering.
-	* src/worldserver/todo/Combat.cpp: Proper #include ordering.
-	* src/worldserver/todo/DatabaseInterface.cpp: Proper #include ordering.
-	* src/worldserver/todo/GroupHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/MiscHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/MovementHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/Path.h: Proper #include ordering.
-	* src/worldserver/todo/PetHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/QueryHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/SpellHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/SpellHandler.h: Proper #include ordering.
-	* src/worldserver/todo/TaxiHandler.cpp: Proper #include ordering.
-	* src/worldserver/todo/Unit.cpp: Proper #include ordering.
-	* src/worldserver/todo/Unit.h: Proper #include ordering.
-
-2008-06-10  Daniel  <theluda@googlemail.com>
-
-	* Makefile.am: Added solution files for Visual Studio 2008.
-
-2008-06-10  Daniel  <theluda@googlemail.com>
-
-	* win/VC9/: Added solution files for Visual Studio 2008.
-
-2008-05-19  Daniel  <theluda@googlemail.com>
-
-	* dep/src/lua/: Upgrade to LUA 5.1.3.
-
-2008-05-08  Daniel  <theluda@googlemail.com>
-
-	* sql/README: Clarified database usage.
-	* sql/worldserver/protoitem.sql: Reverted to old format.
-	* src/shared/version.h: Allow client 2.4.0 (build 8089)
-	  to client 2.4.1 (build 8125) for connections.
-	* doc/RealmServerOpcodes.odt: A few clarifications.
-
-2008-02-12  Daniel  <theluda@googlemail.com>
-
-	* sql/worldserver/tasks/README: Describe our task scripts.
-	* sql/worldserver/tasks/items-remove-non-protoitems.sql:
-	  A little script to delete all items which are not used
-	  in a character prototype.
-	* src/shared/version.h: Allow client 2.3.0 (build 7561)
-	  to client 2.3.3 (build 7799) for connections.
-
-2008-02-06  Daniel  <theluda@googlemail.com>
-
-	* src/tools/gensvnrevision: Use SH instead of Bash.
-	* win/VC8/libmangos2.vcproj: Moving svn_revision.h build
-	  to file-specific pre-build process.
-	* win/svn_revision.js: Works now, if there is an old
-	  file or no revision data.
+2008-10-13  Daniel  <theluda@getmangos.com>
+
+    Updated configure to use m4 macros for detection of MySQL, PostgreSQL,
+    and SQLite.
+
+    Updated LUA to 5.1.4. We now use lua from dep/ instead of src/shared/lua.
+
+    Updated tolua++ to 1.0.92. We now use tolua++ from dep instead of the old
+    version from src/tools/tolua/.
+
+    Updated client login for client 2.4.3 build 8606.
+
+    Added account and realm management to authentication and realm list
+    server.
+
+2008-09-22  Daniel  <theluda@getmangos.com>
+
+    Extraction of SVN revision is gone. Need the same for GIT now.
+
+2008-09-22  Daniel  <theluda@getmangos.com>
+
+    Configuration files will no longer be overwritten on make install
+    execution.
+
+    * configure.ac: Parse realmlist.conf.dist, worldserver.conf.dist.
+    * src/realmlist/Makefile.am: Install realmlist.conf.dist.
+    * src/realmlist/realmlist.conf: Moved to realmlist.conf.dist.in.
+    * src/worldserver/Makefile.am: Install worldserver.conf.dist.
+    * src/worldserver/worldserver.conf: Moved to worldserver.conf.dist.in.
+
+2008-07-18  Daniel  <theluda@getmangos.com>
 
-2008-02-04  Daniel  <theluda@googlemail.com>
+    mangos2 is now an official project of the newly founded
+    MaNGOS foundation. All further development will take
+    place at http://getmangos.com/
 
-	* configure.ac: Generate svn_revision.h on configure run.
-	* src/shared/svn_revision.h: Removed.
+    For questions regarding this change, please send your
+    inquiries via email to foundation@getmangos.com or to
+    http://groups.google.com/group/mangos-foundation
 
-2008-01-10  Daniel  <theluda@googlemail.com>
+2008-06-16  Daniel  <theluda@getmangos.com>
+
+    * src/realmlist/Main.cpp: Proper #include ordering.
+    * src/realmlist/SrpRealm.cpp: Proper #include ordering.
+    * src/shared/BitVector.h: Proper #include ordering.
+    * src/shared/Common.h: Proper #include ordering.
+    * src/shared/Console.cpp: Proper #include ordering.
+    * src/shared/Database.cpp: Proper #include ordering.
+    * src/shared/DatabaseMySQL.cpp: Proper #include ordering.
+    * src/shared/HashVector.h: Proper #include ordering.
+    * src/shared/Log.cpp: Proper #include ordering.
+    * src/shared/Log.h: Proper #include ordering.
+    * src/shared/StringFun.cpp: Proper #include ordering.
+    * src/shared/Timer.h: Proper #include ordering.
+    * src/shared/UTF8Fun.cpp: Proper #include ordering.
+    * src/shared/posix/ConsoleSysDep.cpp: Proper #include ordering.
+    * src/shared/posix/ThreadFun.cpp: Proper #include ordering.
+    * src/shared/posix/TimeFun.cpp: Proper #include ordering.
+    * src/shared/win/ThreadFun.cpp: Proper #include ordering.
+    * src/shared/win/TimeFun.cpp: Proper #include ordering.
+    * src/worldserver/AccountData.cpp: Proper #include ordering.
+    * src/worldserver/GameClient.cpp: Proper #include ordering.
+    * src/worldserver/GameClient.h: Proper #include ordering.
+    * src/worldserver/Main.cpp: Proper #include ordering.
+    * src/worldserver/Quadtree.cpp: Proper #include ordering.
+    * src/worldserver/Unit.cpp: Proper #include ordering.
+    * src/worldserver/WorldServer.cpp: Proper #include ordering.
+    * src/worldserver/WorldServer.h: Proper #include ordering.
+    * src/worldserver/todo/Combat.cpp: Proper #include ordering.
+    * src/worldserver/todo/DatabaseInterface.cpp: Proper #include ordering.
+    * src/worldserver/todo/GroupHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/MiscHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/MovementHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/Path.h: Proper #include ordering.
+    * src/worldserver/todo/PetHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/QueryHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/SpellHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/SpellHandler.h: Proper #include ordering.
+    * src/worldserver/todo/TaxiHandler.cpp: Proper #include ordering.
+    * src/worldserver/todo/Unit.cpp: Proper #include ordering.
+    * src/worldserver/todo/Unit.h: Proper #include ordering.
+
+2008-06-10  Daniel  <theluda@getmangos.com>
+
+    * Makefile.am: Added solution files for Visual Studio 2008.
+
+2008-06-10  Daniel  <theluda@getmangos.com>
+
+    * win/VC9/: Added solution files for Visual Studio 2008.
+
+2008-05-19  Daniel  <theluda@getmangos.com>
+
+    * dep/src/lua/: Upgrade to LUA 5.1.3.
+
+2008-05-08  Daniel  <theluda@getmangos.com>
+
+    * sql/README: Clarified database usage.
+    * sql/worldserver/protoitem.sql: Reverted to old format.
+    * src/shared/version.h: Allow client 2.4.0 (build 8089)
+      to client 2.4.1 (build 8125) for connections.
+    * doc/RealmServerOpcodes.odt: A few clarifications.
 
-	File headers updated for 2008.
+2008-02-12  Daniel  <theluda@getmangos.com>
 
-2008-01-04  Daniel  <theluda@googlemail.com>
+    * sql/worldserver/tasks/README: Describe our task scripts.
+    * sql/worldserver/tasks/items-remove-non-protoitems.sql:
+      A little script to delete all items which are not used
+      in a character prototype.
+    * src/shared/version.h: Allow client 2.3.0 (build 7561)
+      to client 2.3.3 (build 7799) for connections.
 
-	* src/realmlist/RealmClient.cpp: SRP_DEBUG enabled.
-	* src/realmlist/SrpRealm.cpp: SRP_DEBUG enabled.
-	* src/realmlist/SrpRealm.h: SRP_DEBUG enabled.
+2008-02-06  Daniel  <theluda@getmangos.com>
 
-2008-01-04  Daniel  <theluda@googlemail.com>
+    * src/tools/gensvnrevision: Use SH instead of Bash.
+    * win/VC8/libmangos2.vcproj: Moving svn_revision.h build
+      to file-specific pre-build process.
+    * win/svn_revision.js: Works now, if there is an old
+      file or no revision data.
 
-	* sql/realmlist/accounts.sql: Added TEST account to
-	  verify SRP6 challenge and proof with known values.
-	* src/realmlist/RealmProto.cpp: Regenerated.
-	* src/realmlist/RealmProto.h: Regenerated.
-	* src/realmlist/RealmProto.inc: Regenerated.
-	* src/realmlist/RealmProto.rules: Tiny fixes to the
-	  SMSG_LOGON_CHALLENGE packet.
-	* src/realmlist/SrpRealm.cpp: Debug SRP6 challenge.
+2008-02-04  Daniel  <theluda@getmangos.com>
 
-2008-01-01  Daniel  <theluda@googlemail.com>
+    * configure.ac: Generate svn_revision.h on configure run.
+    * src/shared/svn_revision.h: Removed.
 
-	* doc/PrototypeCharacters.ods: A few updates.
-	* doc/RealmServerOpcodes.odt: A few updates.
-	* src/shared/Makefile.am: Call SVN revision script
-	  with header file name as parameter.
-	* src/tools/gensvnrevision: use first parameter as
-	  header file.
+2008-01-10  Daniel  <theluda@getmangos.com>
 
-2007-12-30  Daniel  <theluda@googlemail.com>
+    File headers updated for 2008.
 
-	* doc/Makefile.am: Distribute character prototype
-	  sheet, too.
+2008-01-04  Daniel  <theluda@getmangos.com>
 
-2007-12-29  Daniel  <theluda@googlemail.com>
+    * src/realmlist/RealmClient.cpp: SRP_DEBUG enabled.
+    * src/realmlist/SrpRealm.cpp: SRP_DEBUG enabled.
+    * src/realmlist/SrpRealm.h: SRP_DEBUG enabled.
 
-	* doc/PrototypeCharacters.ods: Added spreadsheet with all
-	  character prototype values.
+2008-01-04  Daniel  <theluda@getmangos.com>
 
-2007-12-27  Daniel  <theluda@googlemail.com>
+    * sql/realmlist/accounts.sql: Added TEST account to
+      verify SRP6 challenge and proof with known values.
+    * src/realmlist/RealmProto.cpp: Regenerated.
+    * src/realmlist/RealmProto.h: Regenerated.
+    * src/realmlist/RealmProto.inc: Regenerated.
+    * src/realmlist/RealmProto.rules: Tiny fixes to the
+      SMSG_LOGON_CHALLENGE packet.
+    * src/realmlist/SrpRealm.cpp: Debug SRP6 challenge.
 
-	* src/shared/svn_revision.h: SVN_REVISION on trunk will
-	  always stay zero. Only on build time, the actual SVN
-	  revision will be in there, and for tagged releases.
-	  Please do not change this file on trunk.
+2008-01-01  Daniel  <theluda@getmangos.com>
 
-2007-12-27  Daniel  <theluda@googlemail.com>
+    * doc/PrototypeCharacters.ods: A few updates.
+    * doc/RealmServerOpcodes.odt: A few updates.
+    * src/shared/Makefile.am: Call SVN revision script
+      with header file name as parameter.
+    * src/tools/gensvnrevision: use first parameter as
+      header file.
 
-	* Makefile.am: Added win/svn_revision.js to DIST files.
-	* src/realmlist/Main.cpp: Output SVN revision.
-	* src/realmlist/realmlist.conf: Enable file logging.
-	* src/shared/Makefile.am: Include SVN revision.
-	* src/shared/svn_revision.h: Include SVN revision.
-	* src/shared/version.h: Include SVN revision.
-	* src/tools/Makefile.am: Include SVN revision.
-	* src/tools/gensvnrevision: Generates svn_revision.h.
-	* src/worldserver/Main.cpp: Output SVN revision.
-	* src/worldserver/Player.cpp: Fix protochar loading.
-	* src/worldserver/Player.h: Fix protochar loading.
-	* src/worldserver/worldserver.conf: Enable file logging.
-	* win/VC8/libmangos2.vcproj: Include SVN revision.
-	* win/svn_revision.js: Generates svn_revision.h.
+2007-12-30  Daniel  <theluda@getmangos.com>
 
-2007-12-24  Daniel  <theluda@googlemail.com>
+    * doc/Makefile.am: Distribute character prototype
+      sheet, too.
 
-	* win/VC8/libmangos2.vcproj: Enable 64-bit warnings.
-	* win/VC8/lua.vcproj: Enable 64-bit warnings.
-	* win/VC8/realmlist.vcproj: Enable 64-bit warnings.
-	* win/VC8/worldserver.vcproj: Enable 64-bit warnings.
+2007-12-29  Daniel  <theluda@getmangos.com>
 
-2007-12-23  Daniel  <theluda@googlemail.com>
+    * doc/PrototypeCharacters.ods: Added spreadsheet with all
+      character prototype values.
 
-	* src/shared/version.h: Added a few #define values for
-	  future extensions like map and patch system.
-	* src/voicechat/README: Added a few hints of what the
-	  voice chat is going to do.
+2007-12-27  Daniel  <theluda@getmangos.com>
 
-2007-12-23  Daniel  <theluda@googlemail.com>
+    * src/shared/svn_revision.h: SVN_REVISION on trunk will
+      always stay zero. Only on build time, the actual SVN
+      revision will be in there, and for tagged releases.
+      Please do not change this file on trunk.
 
-	* src/shared/version.h: Use realmlist.conf.
+2007-12-27  Daniel  <theluda@getmangos.com>
 
-2007-12-23  Daniel  <theluda@googlemail.com>
+    * Makefile.am: Added win/svn_revision.js to DIST files.
+    * src/realmlist/Main.cpp: Output SVN revision.
+    * src/realmlist/realmlist.conf: Enable file logging.
+    * src/shared/Makefile.am: Include SVN revision.
+    * src/shared/svn_revision.h: Include SVN revision.
+    * src/shared/version.h: Include SVN revision.
+    * src/tools/Makefile.am: Include SVN revision.
+    * src/tools/gensvnrevision: Generates svn_revision.h.
+    * src/worldserver/Main.cpp: Output SVN revision.
+    * src/worldserver/Player.cpp: Fix protochar loading.
+    * src/worldserver/Player.h: Fix protochar loading.
+    * src/worldserver/worldserver.conf: Enable file logging.
+    * win/VC8/libmangos2.vcproj: Include SVN revision.
+    * win/svn_revision.js: Generates svn_revision.h.
 
-	* src/Makefile.am: Configuration files moved to sub directories.
-	* src/realmlist/Makefile.am: Configuration file added.
-	* src/realmserver.conf: Moved to realmlist/.
-	* src/worldserver.conf: Moved to worldserver/.
-	* src/worldserver/Makefile.am: Configuration file added.
+2007-12-24  Daniel  <theluda@getmangos.com>
 
-2007-12-21  Daniel  <theluda@googlemail.com>
+    * win/VC8/libmangos2.vcproj: Enable 64-bit warnings.
+    * win/VC8/lua.vcproj: Enable 64-bit warnings.
+    * win/VC8/realmlist.vcproj: Enable 64-bit warnings.
+    * win/VC8/worldserver.vcproj: Enable 64-bit warnings.
 
-	* sql/realmlist/Makefile.am: Install to sql/realmlist/.
-	* sql/worldserver/Makefile.am: Install to sql/worldserver/.
-	* src/Makefile.am: reamserver.conf moved to realmlist.conf.
-	* src/voicechat/README: And Captain Placeholder presents
-	  our own voice chat dummy.
+2007-12-23  Daniel  <theluda@getmangos.com>
 
-2007-12-19  Daniel  <theluda@googlemail.com>
+    * src/shared/version.h: Added a few #define values for
+      future extensions like map and patch system.
+    * src/voicechat/README: Added a few hints of what the
+      voice chat is going to do.
 
-	* configure.ac: Only use gcc debug flag when DEBUG is true.
+2007-12-23  Daniel  <theluda@getmangos.com>
 
-2007-12-18  Daniel  <theluda@googlemail.com>
+    * src/shared/version.h: Use realmlist.conf.
 
-	* src/realmlist/RealmClient.cpp: More debug utilities to
-	  check for valid SRP results.
-	* src/realmlist/RealmProto.cpp: Regenerated.
-	* src/realmlist/RealmProto.h: Regenerated.
-	* src/realmlist/RealmProto.inc: Regenerated.
-	* src/realmlist/RealmProto.rules: Added CMSG_RECONNECT_* /
-	  SMSG_RECONNECT_* packet structures.
-	* src/realmlist/SrpRealm.cpp: A few comments added while
-	  verifying the SRP calculations.
+2007-12-23  Daniel  <theluda@getmangos.com>
 
-2007-12-18  Daniel  <theluda@googlemail.com>
+    * src/Makefile.am: Configuration files moved to sub directories.
+    * src/realmlist/Makefile.am: Configuration file added.
+    * src/realmserver.conf: Moved to realmlist/.
+    * src/worldserver.conf: Moved to worldserver/.
+    * src/worldserver/Makefile.am: Configuration file added.
 
-	* src/realmlist/RealmClient.cpp: Output results of SRP6
-	  calculations in DEBUG mode.
+2007-12-21  Daniel  <theluda@getmangos.com>
 
-2007-12-16  Daniel  <theluda@googlemail.com>
+    * sql/realmlist/Makefile.am: Install to sql/realmlist/.
+    * sql/worldserver/Makefile.am: Install to sql/worldserver/.
+    * src/Makefile.am: reamserver.conf moved to realmlist.conf.
+    * src/voicechat/README: And Captain Placeholder presents
+      our own voice chat dummy.
 
-	* src/realmlist/RealmProto.cpp: Regenerated.
-	* src/realmlist/RealmProto.h: Regenerated.
-	* src/realmlist/RealmProto.inc: Regenerated.
-	* src/realmlist/RealmProto.rules: Added unknown field
-	  to matching location in SMSG_LOGON_CHALLENGE.
+2007-12-19  Daniel  <theluda@getmangos.com>
 
-2007-12-16  Daniel  <theluda@googlemail.com>
+    * configure.ac: Only use gcc debug flag when DEBUG is true.
 
-	* src/realmlist/RealmProto.cpp: Regenerated.
-	* src/realmlist/RealmProto.h: Regenerated.
-	* src/realmlist/RealmProto.inc: Regenerated.
-	* src/realmlist/RealmProto.rules: Moved unknown field
-	  to matching location in SMSG_LOGON_CHALLENGE.
+2007-12-18  Daniel  <theluda@getmangos.com>
 
-2007-12-14  Daniel  <theluda@googlemail.com>
+    * src/realmlist/RealmClient.cpp: More debug utilities to
+      check for valid SRP results.
+    * src/realmlist/RealmProto.cpp: Regenerated.
+    * src/realmlist/RealmProto.h: Regenerated.
+    * src/realmlist/RealmProto.inc: Regenerated.
+    * src/realmlist/RealmProto.rules: Added CMSG_RECONNECT_* /
+      SMSG_RECONNECT_* packet structures.
+    * src/realmlist/SrpRealm.cpp: A few comments added while
+      verifying the SRP calculations.
 
-	* Makefile.am: Fixed inclusion of Windows project files.
-	* configure.ac: Added src/worldserver/todo/
-	* dep/src/lua/Makefile.am: Fixed EXTRA_DIST.
-	* dep/src/tolua++/Makefile.am: Fixed EXTRA_DIST.
-	* dep/src/tolua++/bin/Makefile.am: Fixed EXTRA_DIST.
-	* doc/Makefile.am: Fixed EXTRA_DIST.
-	* src/shared/Makefile.am: Fixed EXTRA_DIST.
-	* src/shared/lua/Makefile.am: Fixed EXTRA_DIST.
-	* src/tools/Makefile.am: Fixed EXTRA_DIST.
-	* src/tools/tolua/Makefile.am: Fixed EXTRA_DIST.
-	* src/tools/tolua/bin/Makefile.am: Fixed EXTRA_DIST.
-	* src/worldserver/Makefile.am: Added todo/.
-	* src/worldserver/todo/: Applied code style ruleset.
-	* src/worldserver/todo/Makefile.am: Added.
+2007-12-18  Daniel  <theluda@getmangos.com>
 
-2007-12-14  Daniel  <theluda@googlemail.com>
+    * src/realmlist/RealmClient.cpp: Output results of SRP6
+      calculations in DEBUG mode.
 
-	* src/realmlist/: Applied code style ruleset.
-	* src/shared/: Applied code style ruleset.
-	* src/worldserver/: Applied code style ruleset.
+2007-12-16  Daniel  <theluda@getmangos.com>
 
-2007-12-14  Daniel  <theluda@googlemail.com>
+    * src/realmlist/RealmProto.cpp: Regenerated.
+    * src/realmlist/RealmProto.h: Regenerated.
+    * src/realmlist/RealmProto.inc: Regenerated.
+    * src/realmlist/RealmProto.rules: Added unknown field
+      to matching location in SMSG_LOGON_CHALLENGE.
 
-	* INSTALL.GNU: A few clarifications.
-	* INSTALL.Win.txt: A few clarifications.
-	* README: A few clarifications.
+2007-12-16  Daniel  <theluda@getmangos.com>
 
-2007-12-10  Daniel  <theluda@googlemail.com>
+    * src/realmlist/RealmProto.cpp: Regenerated.
+    * src/realmlist/RealmProto.h: Regenerated.
+    * src/realmlist/RealmProto.inc: Regenerated.
+    * src/realmlist/RealmProto.rules: Moved unknown field
+      to matching location in SMSG_LOGON_CHALLENGE.
 
-	* src/worldserver/Luawrapper.cpp: Item classes, and
-	item quality added to LUA visible constants.
+2007-12-14  Daniel  <theluda@getmangos.com>
 
-2007-12-10  Daniel  <theluda@googlemail.com>
+    * Makefile.am: Fixed inclusion of Windows project files.
+    * configure.ac: Added src/worldserver/todo/
+    * dep/src/lua/Makefile.am: Fixed EXTRA_DIST.
+    * dep/src/tolua++/Makefile.am: Fixed EXTRA_DIST.
+    * dep/src/tolua++/bin/Makefile.am: Fixed EXTRA_DIST.
+    * doc/Makefile.am: Fixed EXTRA_DIST.
+    * src/shared/Makefile.am: Fixed EXTRA_DIST.
+    * src/shared/lua/Makefile.am: Fixed EXTRA_DIST.
+    * src/tools/Makefile.am: Fixed EXTRA_DIST.
+    * src/tools/tolua/Makefile.am: Fixed EXTRA_DIST.
+    * src/tools/tolua/bin/Makefile.am: Fixed EXTRA_DIST.
+    * src/worldserver/Makefile.am: Added todo/.
+    * src/worldserver/todo/: Applied code style ruleset.
+    * src/worldserver/todo/Makefile.am: Added.
 
-	MaNGOS2, version 0.5.0.02. This going to be a first
-	preview release for the developer team.
+2007-12-14  Daniel  <theluda@getmangos.com>
 
-2007-12-08  Daniel  <theluda@googlemail.com>
+    * src/realmlist/: Applied code style ruleset.
+    * src/shared/: Applied code style ruleset.
+    * src/worldserver/: Applied code style ruleset.
 
-	Normalized a lot of header files, and made doxygen
-	documentation better by grouping classes by their
-	purpose.
+2007-12-14  Daniel  <theluda@getmangos.com>
 
-	* doc/Doxyfile.in: A few tweaks.
-	* src/realmlist/: Normalized structure.
-	* src/shared/: Normalized structure.
-	* src/worldserver/: Normalized structure.
-	* src/worldserver/todo/: Normalized structure.
+    * INSTALL.GNU: A few clarifications.
+    * INSTALL.Win.txt: A few clarifications.
+    * README: A few clarifications.
 
-2007-12-07  Daniel  <theluda@googlemail.com>
+2007-12-10  Daniel  <theluda@getmangos.com>
 
-	* win/VC8/libopenwow.vcproj: A tiny fix.
-	* win/VC8/lua.vcproj: LUA project file refined. Much cleaner.
-	* win/VC8/OpenWoW.sln: LUA project now included.
+    * src/worldserver/Luawrapper.cpp: Item classes, and
+    item quality added to LUA visible constants.
 
-2007-12-07  Daniel  <theluda@googlemail.com>
+2007-12-10  Daniel  <theluda@getmangos.com>
 
-	LUA project added.
+    MaNGOS2, version 0.5.0.02. This going to be a first
+    preview release for the developer team.
 
-	* Makefile.am: LUA project added.
-	* win/VC8/libopenwow.vcproj: Fixed preprocessor defines.
-	* win/VC8/lua.vcproj: LUA project added.
-	* win/VC8/realmlist.vcproj: Fixed preprocessor defines.
-	* win/VC8/worldserver.vcproj: Fixed preprocessor defines.
+2007-12-08  Daniel  <theluda@getmangos.com>
 
-2007-12-07  Daniel  <theluda@googlemail.com>
+    Normalized a lot of header files, and made doxygen
+    documentation better by grouping classes by their
+    purpose.
 
-	* src/realmlist/AccountMgr.cpp: eol-style native.
-	* src/realmlist/RealmMgr.cpp: eol-style native.
-	* src/realmlist/AccountMgr.h: eol-style native.
-	* src/realmlist/RealmMgr.h: eol-style native.
-    
-2007-12-07  Daniel  <theluda@googlemail.com>
-
-	* src/shared/Base.h: Comments updated.
-	* src/shared/BaseVector.h: Comments updated.
-	* src/shared/HashVector.h: Comments updated.
-	* src/shared/StrVec.h: Comments updated.
-	* src/shared/ThreadFun.h: Comments updated.
-	* src/shared/Vector.h: Comments updated.
-
-2007-12-06  Daniel  <theluda@googlemail.com>
-
-	Started to update doxygen comments for Doxygen 1.5.
-
-	* doc/Doxyfile.in: Refined this a bit.
-	* doc/doxygen-svn-info: Script to extract svn version.
-	* src/realmlist/: Updated doxygen comments for 1.5.
-	* src/shared/: Updated doxygen comments for 1.5.
-	* src/shared/posix/: Updated doxygen comments for 1.5.
-	* src/shared/win/: Updated doxygen comments for 1.5.
-	* src/worldserver/: Updated doxygen comments for 1.5.
-	* src/worldserver/todo/: Updated doxygen comments for 1.5.
-
-2007-12-06  Daniel  <theluda@googlemail.com>
-
-	* win/VC8/realmlist.vcproj: Added account and realm management
-	  classes to build.
-
-2007-12-05  Daniel  <theluda@googlemail.com>
-
-	Started management classes for accounts and realms.
-
-	* src/realmlist/AccountMgr.cpp: Account management class.
-	* src/realmlist/AccountMgr.h: Account management class.
-	* src/realmlist/Makefile.am: New classes added.
-	* src/realmlist/RealmMgr.cpp: Realm management class.
-	* src/realmlist/RealmMgr.h: Realm management class
-
-2007-12-05  Daniel  <theluda@googlemail.com>
-
-	* doc/Doxyfile.in: Updated for doxygen 1.5.3.
-
-2007-12-04  Daniel  <theluda@googlemail.com>
+    * doc/Doxyfile.in: A few tweaks.
+    * src/realmlist/: Normalized structure.
+    * src/shared/: Normalized structure.
+    * src/worldserver/: Normalized structure.
+    * src/worldserver/todo/: Normalized structure.
 
-	... and a lot more files hit by Doxygen headers.
-
-	* doc/Doxyfile.in: Refined the Doxygen settings.
-	* src/realmlist/: Doxygen style file headers.
-	* src/shared/Base.cpp: Corrected copyright notice.
-	* src/shared/Base.h: Corrected copyright notice.
-	* src/shared/BaseVector.cpp: Corrected copyright notice.
-	* src/shared/BaseVector.h: Corrected copyright notice.
-	* src/shared/HashVector.cpp: Corrected copyright notice.
-	* src/shared/HashVector.h: Corrected copyright notice.
-	* src/shared/StrVec.cpp: Corrected copyright notice.
-	* src/shared/StrVec.h: Corrected copyright notice.
-	* src/shared/ThreadFun.h: Corrected copyright notice.
-	* src/shared/Vector.cpp: Corrected copyright notice.
-	* src/shared/Vector.h: Corrected copyright notice.
-	* src/shared/posix/ConsoleSysDep.cpp: Corrected copyright notice.
-	* src/shared/posix/ThreadFun.cpp: Corrected copyright notice.
-	* src/shared/posix/TimeFun.cpp: Corrected copyright notice.
-	* src/shared/win/ConsoleSysDep.cpp: Corrected copyright notice.
-	* src/shared/win/ThreadFun.cpp: Corrected copyright notice.
-	* src/shared/win/TimeFun.cpp: Corrected copyright notice.
-	* src/worldserver/: Doxygen style file headers.
-	* src/worldserver/todo/: Doxygen style file headers.
-
-2007-12-03  Daniel  <theluda@googlemail.com>
-
-	* src/shared/: Doxygen style file headers.
-
-2007-12-03  Daniel  <theluda@googlemail.com>
-
-	* dep/src/getopt.c, dep/src/getopt1.c: We need the configuration
-	  header here.
-	* src/shared/DatabaseMySQL.cpp: Moving platform dependant stuff
-	  into config.win.h.
-	* src/shared/win/ThreadFun.cpp: Class constructor fixed.
-	* win/config.win.h: Yes, we do need WinSock2 *sigh*
-	* win/VC8/: Ignore the generated cache files used by VC++.
-	* win/VC8/libopenwow.vcproj: Finally working build configurations
-	  for Win32 and Win64 (x86_64).
-	* win/VC8/OpenWoW.sln: Added the new build configurations.
-
-2007-11-30  Daniel  <theluda@googlemail.com>
-
-	* TODO: Finally a real list of things to work on.
-	* src/realmlist/RealmClient.cpp, src/realmlist/RealmProto.cpp,
-	  src/realmlist/RealmProto.h, src/realmlist/RealmProto.inc,
-	  src/realmlist/RealmProto.rules: Added client update opcodes.
-	* src/shared/DatabaseMySQL.cpp, src/shared/EncodeSQL.cpp,
-	  src/shared/Log.cpp: Windows build fixes.
-	* src/shared/Errors.h, src/shared/MemoryLeaks.cpp,
-	  src/shared/MemoryLeaks.h, src/shared/Sockets.h: Added
-	  proper file headers.
-	* src/worldserver/GameClient.cpp, src/worldserver/GameClient.h,
-	  src/worldserver/Object.cpp, src/worldserver/Object.h,
-	  src/worldserver/Unit.cpp, src/worldserver/UpdateFields.h,
-	  src/worldserver/WorldServer.cpp, src/worldserver/WorldServer.h:
-	  Added proper file headers.
-
-2007-11-30  Daniel  <theluda@googlemail.com>
-
-	* src/realmlist/RealmClient.cpp: Username length added.
-	* src/realmlist/RealmListSrv.cpp: Updated realm struct.
-	* src/realmlist/RealmListSrv.h: Updated realm struct.
-	* src/realmlist/RealmProto.cpp: Updated packet structures.
-	* src/realmlist/RealmProto.h: Updated packet structures.
-	* src/realmlist/RealmProto.inc: Updated packet structures.
-	* src/realmlist/RealmProto.rules: Updated packet structures.
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	* NEWS: Update to client 2.3.0 (build 7561).
-	* TODO:Update to client 2.3.0 (build 7561).
-	* src/shared/version.h: Update to client 2.3.0 (build 7561).
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	* src/realmlist/RealmClient.cpp: Display the contents of
-	  CMSG_LOGON_CHALLENGE in the proper order.
-	* src/realmlist/RealmProto.cpp: Update SMSG_LOGON_CHALLENGE.
-	* src/realmlist/RealmProto.h: Update SMSG_LOGON_CHALLENGE.
-	* src/realmlist/RealmProto.inc: Update SMSG_LOGON_CHALLENGE.
-	* src/realmlist/RealmProto.rules: Update SMSG_LOGON_CHALLENGE.
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	* dep/src/tolua++/bin/Makefile.am: Fixed link to LUA5.1
-	* dep/src/tolua++/lib/Makefile.am: Fixed link to LUA5.1
-	* src/realmlist/RealmProto.cpp: Regenerated.
-	* src/realmlist/RealmProto.h: Regenerated.
-	* src/realmlist/RealmProto.inc: Typo fixed.
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	* src/realmlist/RealmProto.rules: Tiny fixes for the
-	  structure of CMSG_RECONNECT_CHALLENGE.
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	tolua++ 1.0.92 imported. Needs to be customized for
-	our purposes, and needs a few build changes for LUA
-	5.1 (from dep/src/lua/).
-
-	* config.h.in: Fixed typo.
-	* configure.ac: Added tolua++ 1.0.92.
-	* dep/src/Makefile.am: Added tolua++ 1.0.92.
-	* dep/src/tolua++/: Added tolua++ 1.0.92.
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	* configure.ac: Moved config.h to root dir.
-	* src/realmlist/RealmClient.cpp: Added FailChallenge for
-	  errors occuring during LOGON_CHALLENGE procedure.
-	* src/realmlist/RealmClient.h: Added FailChallenge for
-	  errors occuring during LOGON_CHALLENGE procedure.
-	* src/shared/Common.h: A few style fixes.
-	* src/shared/config.h.in: Moved to config.h.
-	* src/shared/config.win.h: Moved to win/config.h.
-	* src/shared/version.h: A few style fixes.
-	* win/VC8/libopenwow.vcproj: Use config.win.h.
-	* win/VC8/realmlist.vcproj: Use config.win.h.
-	* win/VC8/worldserver.vcproj: Use config.win.h.
-
-2007-11-29  Daniel  <theluda@googlemail.com>
-
-	* sql/mysql_dump: Temporary database dumper.
-	* src/realmlist/Main.cpp: Minor fixes.
-	* src/realmlist/RealmClient.cpp: Minor fixes.
-	* src/realmlist/RealmClient.h: Minor fixes.
-	* src/realmlist/RealmProto.cpp: Minor fixes.
-	* src/realmlist/RealmProto.h: Minor fixes.
-	* src/realmlist/RealmProto.inc: Minor fixes.
-	* src/realmlist/RealmProto.rules: Minor fixes.
-	* src/shared/version.h: Minor fixes.
-	* src/worldserver/GameClient.cpp: Minor fixes.
-	* src/worldserver/Main.cpp: Minor fixes.
-
-2007-11-28  Daniel  <theluda@googlemail.com>
-
-	* src/realmlist/RealmProto.cpp: Added to track changes.
-	* src/realmlist/RealmProto.h: Added to track changes.
-	* src/realmlist/RealmProto.inc: Added to track changes.
-	* src/tools/realmManager/account/models.py: Finished
-	  authentication model for account data.
-	* src/tools/realmManager/realm/models.py: Finished realm
-	  model.
-	* src/worldserver/GameClient.cpp: Using Opcodes.inc now.
-	* src/worldserver/Makefile.am: Parser.inc -> Opcodes.inc.
-	* src/worldserver/Opcodes.cpp: Added to track changes.
-	* src/worldserver/Opcodes.h: Added to track changes.
-	* src/worldserver/Opcodes.inc: Added to track changes.
-	* win/beforeworld.bat: Use proper names for generated files.
-
-2007-11-27  Daniel  <theluda@googlemail.com>
-
-	Build fixes, and a few code cleanups.
-
-	* configure.ac: Disabled check for AC_FUNC_STRNLEN. This breaks
-	  autoconf, probably a bug.
-	* sql/realmlist/accountchars.sql: Set charset to utf8.
-	* sql/realmlist/accounts.sql: Set charset to utf8.
-	* sql/realmlist/realms.sql: Set charset to utf8. Add default
-	  realms of all realm types for each language.
-	* sql/worldserver/protoitem.sql: Set charset to utf8.
-	* src/realmlist/AccountMgr.cpp: Removed.
-	* src/realmlist/AccountMgr.h: Removed.
-	* src/realmlist/Makefile.am: Changed build order.
-	* src/realmlist/RealmListSrv.h: Update Realm struct to match
-	  patch 2.3.0 realm list structure.
-	* src/realmlist/RealmMgr.cpp: Removed.
-	* src/realmlist/RealmMgr.h: Removed.
-	* src/shared/EncodeSQL.cpp: Removed debug code.
-	* src/shared/version.h: Added define for client patcher system.
-	* src/tools/realmManager/realm/models.py: Updated realm model to
-	  match patch 2.3.0 realm list structure.
-	* src/worldserver/Makefile.am: Changed build order.
-
-2007-11-25  Daniel  <theluda@googlemail.com>
-
-	Build libopenwow as shared library, part I (Windows).
-
-	* win/VC8/libopenwow.vcproj: Build as shared library.
-	* win/VC8/realmlist.vcproj: Link against libopenwow shared
-	  library.
-	* win/VC8/worldserver.vcproj: Link against libopenwow shared
-	  library.
-
-2007-11-21  Daniel  <theluda@googlemail.com>
-
-	A few more fixes, to allow 2.3.0 clients to at least
-	log on to the realmserver.
-
-	* src/shared/Common.h: Fixed a small comment typo.
-	* src/shared/version.h: Set supported client build to 7561.
-	* src/realmlist/RealmClient.cpp: Quote username for SQL.
-	* src/realmlist/RealmListSrv.cpp: Locked state added.
-	* src/realmlist/RealmProto.rules: Finished the description
-	  of SMSG_REALMLIST. Stamped, and ready to be used.
-	* src/realmlist/RealmListSrv.h: Locked state added.
-	* sql/realmlist/realms.sql: Locked state added.
-	* sql/worldserver/protochar.sql: Added player orientation.
-	* sql/worldserver/protoitem.sql: Only include Alliance starting
-	  items for now. Horde coming soon.
-	* sql/worldserver/access_levels.sql: Ordered account levels.
-
-2007-11-09  Daniel  <theluda@googlemail.com>
-
-	The big code style day. We now have every piece of code
-	styled following our new style guide.
-
-	* src/realmlist/AccountMgr.cpp: Code with style!
-	* src/realmlist/AccountMgr.h: Code with style!
-	* src/realmlist/Main.cpp: Code with style!
-	* src/realmlist/RealmClient.cpp: Code with style!
-	* src/realmlist/RealmClient.h: Code with style!
-	* src/realmlist/RealmListSrv.h: Code with style!
-	* src/realmlist/RealmMgr.cpp: Code with style!
-	* src/realmlist/RealmMgr.h: Code with style!
-	* src/realmlist/SrpRealm.cpp: Code with style!
-	* src/realmlist/SrpRealm.h: Code with style!
-	* src/realmlist/bigint.cpp: Code with style!
-	* src/realmlist/bigint.h: Code with style!
-	* src/shared/Base.h: Code with style!
-	* src/shared/BaseVector.h: Code with style!
-	* src/shared/BitVector.h: Code with style!
-	* src/shared/Client.h: Code with style!
-	* src/shared/CommandInterpreter.cpp: Code with style!
-	* src/shared/CommandInterpreter.h: Code with style!
-	* src/shared/Common.h: Code with style!
-	* src/shared/Console.cpp: Code with style!
-	* src/shared/Console.h: Code with style!
-	* src/shared/Database.cpp: Code with style!
-	* src/shared/Database.h: Code with style!
-	* src/shared/DatabaseMySQL.cpp: Code with style!
-	* src/shared/DatabaseMySQL.h: Code with style!
-	* src/shared/Debug.h: Code with style!
-	* src/shared/EncodeSQL.cpp: Code with style!
-	* src/shared/Errors.h: Code with style!
-	* src/shared/HashVector.h: Code with style!
-	* src/shared/Log.cpp: Code with style!
-	* src/shared/Log.h: Code with style!
-	* src/shared/Server.cpp: Code with style!
-	* src/shared/Server.h: Code with style!
-	* src/shared/Singleton.h: Code with style!
-	* src/shared/Sockets.cpp: Code with style!
-	* src/shared/Sockets.h: Code with style!
-	* src/shared/StrVec.h: Code with style!
-	* src/shared/StringFun.h: Code with style!
-	* src/shared/SystemFun.h: Code with style!
-	* src/shared/ThreadFun.h: Code with style!
-	* src/shared/Timer.h: Code with style!
-	* src/shared/Vector.cpp: Code with style!
-	* src/shared/Vector.h: Code with style!
-	* src/shared/config.win.h: Code with style!
-	* src/shared/posix/ConsoleSysDep.cpp: Code with style!
-	* src/shared/posix/ThreadFun.cpp: Code with style!
-	* src/shared/version.h: Code with style!
-	* src/shared/win/ConsoleSysDep.cpp: Code with style!
-	* src/shared/win/ThreadFun.cpp: Code with style!
-	* src/worldserver/Affect.h: Code with style!
-	* src/worldserver/Characters.cpp: Code with style!
-	* src/worldserver/GameClient.cpp: Code with style!
-	* src/worldserver/GameClient.h: Code with style!
-	* src/worldserver/Item.cpp: Code with style!
-	* src/worldserver/Item.h: Code with style!
-	* src/worldserver/Mail.h: Code with style!
-	* src/worldserver/Main.cpp: Code with style!
-	* src/worldserver/Object.h: Code with style!
-	* src/worldserver/ObjectVector.h: Code with style!
-	* src/worldserver/Player.cpp: Code with style!
-	* src/worldserver/Player.h: Code with style!
-	* src/worldserver/ProtocolVectors.h: Code with style!
-	* src/worldserver/Quadtree.cpp: Code with style!
-	* src/worldserver/Quadtree.h: Code with style!
-	* src/worldserver/Unit.cpp: Code with style!
-	* src/worldserver/Unit.h: Code with style!
-	* src/worldserver/UpdateFields.h: Code with style!
-	* src/worldserver/WorldServer.cpp: Code with style!
-	* src/worldserver/WorldServer.h: Code with style!
-	* src/worldserver/todo/Affect.cpp: Code with style!
-	* src/worldserver/todo/AreaTrigger.h: Code with style!
-	* src/worldserver/todo/AuctionHouse.cpp: Code with style!
-	* src/worldserver/todo/AuraHandler.cpp: Code with style!
-	* src/worldserver/todo/AuraHandler.h: Code with style!
-	* src/worldserver/todo/Character.cpp: Code with style!
-	* src/worldserver/todo/Character.h: Code with style!
-	* src/worldserver/todo/CharacterHandler.cpp: Code with style!
-	* src/worldserver/todo/CharacterHandler.h: Code with style!
-	* src/worldserver/todo/ChatHandler.cpp: Code with style!
-	* src/worldserver/todo/ChatHandler.h: Code with style!
-	* src/worldserver/todo/Combat.cpp: Code with style!
-	* src/worldserver/todo/Combat.h: Code with style!
-	* src/worldserver/todo/DatabaseInterface.cpp: Code with style!
-	* src/worldserver/todo/DatabaseInterface.h: Code with style!
-	* src/worldserver/todo/GameObject.cpp: Code with style!
-	* src/worldserver/todo/GameObject.h: Code with style!
-	* src/worldserver/todo/Gossip.h: Code with style!
-	* src/worldserver/todo/GossipHandler.cpp: Code with style!
-	* src/worldserver/todo/GossipHandler.h: Code with style!
-	* src/worldserver/todo/Group.cpp: Code with style!
-	* src/worldserver/todo/Group.h: Code with style!
-	* src/worldserver/todo/GroupHandler.cpp: Code with style!
-	* src/worldserver/todo/GroupHandler.h: Code with style!
-	* src/worldserver/todo/Item.h: Code with style!
-	* src/worldserver/todo/ItemHandler.cpp: Code with style!
-	* src/worldserver/todo/ItemHandler.h: Code with style!
-	* src/worldserver/todo/Level0.cpp: Code with style!
-	* src/worldserver/todo/Level1.cpp: Code with style!
-	* src/worldserver/todo/Level2.cpp: Code with style!
-	* src/worldserver/todo/Level3.cpp: Code with style!
-	* src/worldserver/todo/MiscHandler.cpp: Code with style!
-	* src/worldserver/todo/MiscHandler.h: Code with style!
-	* src/worldserver/todo/MovementHandler.cpp: Code with style!
-	* src/worldserver/todo/MovementHandler.h: Code with style!
-	* src/worldserver/todo/MsgHandler.h: Code with style!
-	* src/worldserver/todo/NPCHandler.cpp: Code with style!
-	* src/worldserver/todo/NPCHandler.h: Code with style!
-	* src/worldserver/todo/ObjectMgr.cpp: Code with style!
-	* src/worldserver/todo/ObjectMgr.h: Code with style!
-	* src/worldserver/todo/Path.h: Code with style!
-	* src/worldserver/todo/PetHandler.cpp: Code with style!
-	* src/worldserver/todo/PetHandler.h: Code with style!
-	* src/worldserver/todo/QueryHandler.cpp: Code with style!
-	* src/worldserver/todo/QueryHandler.h: Code with style!
-	* src/worldserver/todo/Quest.h: Code with style!
-	* src/worldserver/todo/QuestHandler.cpp: Code with style!
-	* src/worldserver/todo/QuestHandler.h: Code with style!
-	* src/worldserver/todo/QuestMgr.cpp: Code with style!
-	* src/worldserver/todo/QuestMgr.h: Code with style!
-	* src/worldserver/todo/SkillHandler.cpp: Code with style!
-	* src/worldserver/todo/SkillHandler.h: Code with style!
-	* src/worldserver/todo/Spell.cpp: Code with style!
-	* src/worldserver/todo/Spell.h: Code with style!
-	* src/worldserver/todo/SpellHandler.cpp: Code with style!
-	* src/worldserver/todo/SpellHandler.h: Code with style!
-	* src/worldserver/todo/SrpWorld.h: Code with style!
-	* src/worldserver/todo/Stats.h: Code with style!
-	* src/worldserver/todo/TaxiHandler.cpp: Code with style!
-	* src/worldserver/todo/TaxiHandler.h: Code with style!
-	* src/worldserver/todo/TradeHandler.cpp: Code with style!
-	* src/worldserver/todo/TradeHandler.h: Code with style!
-	* src/worldserver/todo/Unit.cpp: Code with style!
-	* src/worldserver/todo/Unit.h: Code with style!
-	* src/worldserver/todo/World.h: Code with style!
-
-2007-11-07  Daniel  <theluda@googlemail.com>
-
-	A few cosmetic changes, and more 2.2.3 updates.
-
-	* Makefile.am: Moving Windows project to libopenwow.
-	* src/realmlist/RealmProto.rules: Updated error codes and
-	  opcode data. Next up is realm list opcode handling.
-	* src/tools/realmManager/patch/models.py: Added description.
-	* win/VC8/OpenWoW.sln: Moving Windows project to libopenwow.
-	* win/VC8/shared.vcproj: Renamed to libopenwow.sln.
-
-2007-11-07  Daniel  <theluda@googlemail.com>
-
-	Added x86_64 build configurations for Windows.
-
-	* win/VC8/OpenWoW.sln: x86_64 solutions updates.
-	* win/VC8/realmlist.vcproj: x86_64 build configuration added.
-	* win/VC8/shared.vcproj: x86_64 build configuration added.
-	* win/VC8/worldsrv.vcproj: x86_64 build configuration added.
-
-2007-11-01  Daniel  <theluda@googlemail.com>
-
-	Renamed a few directories, no more abbreviations.
-
-	* configure.ac: world/ and worldsrv/ to worldserver/.
-	* sql/Makefile.am: world/ and worldsrv/ to worldserver/.
-	* sql/realm/: realm/ to realmlist/.
-	* sql/world/Makefile.am: world/ and worldsrv/ to worldserver/.
-	* src/Makefile.am: world/ and worldsrv/ to worldserver/.
-	* src/worldserv.conf: world/ and worldsrv/ to worldserver/.
-	* src/worldsrv/: world/ and worldsrv/ to worldserver/.
-	* win/VC8/OpenWoW.sln: world/ and worldsrv/ to worldserver/.
-	* win/VC8/worldsrv.vcproj: world/ and worldsrv/ to worldserver/.
-
-2007-10-31  Daniel  <theluda@googlemail.com>
-
-	Started upgrade to new realm list opcode structure.
-
-	* src/realmlist/RealmClient.cpp: Handle changed opcodes.
-	* src/realmlist/RealmProto.rules: Started updating opcodes.
-	* src/tools/dbc_convert.py: Added new DBC files for later
-	  usage.
-
-2007-10-29  Daniel  <theluda@googlemail.com>
-
-	Start upgrade to LUA 5.1.2. Upgrade to tolua++-1.0.92
-	coming next.
-
-	* configure.ac: Create LUA Makefile
-	* dep/src/Makefile.am: Parse the lua directory.
-	* dep/src/lua/: Added LUA 5.1.2.
-	* src/tools/realmManager/realm/models.py: We now have a
-	  working model for our realm list entries. Finished.
-
-2007-10-26  Daniel  <theluda@googlemail.com>
-
-	Realm list manager extended.
-
-	* src/tools/realmManager/account/models.py: More docs.
-	* src/tools/realmManager/patch/models.py: Added.
-	* src/tools/realmManager/patch/views.py: Added.
-	* src/tools/realmManager/realm/models.py: More docs.
-	* src/tools/realmManager/settings.py: Added patch app.
-
-2007-10-25  Daniel  <theluda@googlemail.com>
-
-	Bump version back to 0.5.0.01. *cough*
-
-	* INSTALL.GNU: Improved readability.
-	* INSTALL.Win.txt: Sync with INSTALL.GNU.
-	* NEWS: Just a tiny chapter for version 0.5.0.01.
-	* configure.ac: Bump version.
-	* doc/MasterControlProtocol.xml: Now usable with xmlto.
-	* src/shared/config.win.h: Bump version.
-
-2007-10-24  Daniel  <theluda@googlemail.com>
-
-	Cleaned the Visual Studio 2005 project files, and a bit
-	of style for our new opcode manual.
-
-	* Makefile.am: Changed path for VC8 solution file.
-	* doc/docbook.css: Added style for opcode manual.
-	* win/OpenWoW-VC8.sln: Moved to win/VC8/OpenWoW.sln.
-	* win/VC8/realmlist.vcproj: Fixed name.
-	* win/VC8/shared.vcproj: Fixed name.
-	* win/VC8/worldsrv.vcproj: Fixed name.
-
-2007-10-24  Daniel  <theluda@googlemail.com>
-
-	Added Django-based prototyping application for the
-	realm list server.
-
-	* src/tools/OpenWoWTracer.py: Removed.
-	* src/tools/owowtracer/: Removed.
-	* src/tools/realmManager/: Realm list manager written
-	  using Django (see http://www.djangoproject.com/).
-	  This will be used for prototyping database schema.
-
-2007-10-24  Daniel  <theluda@googlemail.com>
-
-	Update world server opcode list for patch 2.2.3.
-
-	* src/realmlist/Main.cpp: Fixed Typo. It is not "OpemWoW".
-	* src/worldsrv/Characters.cpp: Updated a few enums.
-	* src/worldsrv/Player.cpp: Updated a few enums.
-	* src/worldsrv/Protocol.rules: Updated with all known
-	  opcodes for patch 2.2.3 (build 7359).
-
-2007-10-24  Daniel  <theluda@googlemail.com>
-
-	Support for Visual Studio 2003 (VC7) removed. VC7 does not
-	support 64bit builds.
-	
-	* Makefile.am: Removed VC7 from EXTRA_DIST section.
-	* win/VC7: Removed.
-	* win/OpenWoW-VC7.sln: Removed
-
-2007-10-23  Daniel  <theluda@googlemail.com>
-
-	POSIX builds should now be safe. Full 'make distcheck'
-	is now free from any open issues.
-
-	* README: Fixed a few typos.
-	* configure.ac: Added Makefiles for the LUA stuff.
-	* doc/Python_Readme.doc: Gone.
-	* sql/realm/Makefile.am: Moved all realm list SQL here.
-	* sql/world/Makefile.am: Moved all world server SQL here.
-	* src/Makefile.am: Install configuration files to SYSCONFDIR.
-	* src/realmlist/Makefile.am: Fixed library linking.
-	* src/shared/Makefile.am: Fixed a few paths.
-	* src/shared/lua/Makefile: Removed. Now generated.
-	* src/shared/lua/Makefile.am: Proper Makefile template.
-	* src/shared/lua/config: Removed.
-	* src/shared/lua/lib/Makefile: Removed. Now generated.
-	* src/shared/lua/lib/Makefile.am: Proper Makefile template.
-	* src/shared/lua/lua/Makefile: Removed. Now generated.
-	* src/shared/lua/lua/README: Removed.
-	* src/shared/lua/lua/lua.c: Removed.
-	* src/shared/lua/luac/Makefile: Removed.
-	* src/shared/lua/luac/README: Removed.
-	* src/shared/lua/luac/luac.c: Removed.
-	* src/shared/lua/luac/print.c: Removed.
-	* src/tools/tolua/Makefile: Removed. Now generated.
-	* src/tools/tolua/Makefile.am: Proper Makefile template.
-	* src/tools/tolua/bin/Makefile: Removed. Now generated.
-	* src/tools/tolua/bin/Makefile.am: Proper Makefile template.
-	* src/tools/tolua/config: Removed.
-	* src/tools/tolua/lib/Makefile: Removed. Now generated.
-	* src/tools/tolua/lib/Makefile.am: Proper Makefile template.
-	* src/worldsrv/Makefile.am: Fixed library linking and a few paths.
-
-2007-10-22  Daniel  <theluda@googlemail.com>
-
-	Bump version to 2.2.3. Version now equals the supported
-	client version.
-
-	* configure.ac: Bump version.
-	* src/realmlist/RealmProto.rules: Bump version.
-	* src/shared/config.win.h: Bump version.
-	* src/shared/version.h: Bump version.
-	* src/worldsrv/Protocol.rules: Bump version.
-	* sql/: Updated SQL dumps for MySQL 5.x compatibility.
-
-2007-10-22  Daniel  <theluda@googlemail.com>
-
-	Important: License changed to GPL version 3. Please read
-	COPYING to see what has changed.
-
-	* src/realmlist/AccountMgr.cpp: Added GPL v3 header.
-	* src/realmlist/AccountMgr.h: Added GPL v3 header.
-	* src/realmlist/Main.cpp: Added GPL v3 header.
-	* src/realmlist/RealmClient.cpp: Added GPL v3 header.
-	* src/realmlist/RealmClient.h: Added GPL v3 header.
-	* src/realmlist/RealmListSrv.cpp: Added GPL v3 header.
-	* src/realmlist/RealmListSrv.h: Added GPL v3 header.
-	* src/realmlist/RealmMgr.cpp: Added GPL v3 header.
-	* src/realmlist/RealmMgr.h: Added GPL v3 header.
-	* src/realmlist/SrpRealm.cpp: Added GPL v3 header.
-	* src/realmlist/SrpRealm.h: Added GPL v3 header.
-	* src/shared/Base.cpp: Added GPL v3 header.
-	* src/shared/Base.h: Added GPL v3 header.
-	* src/shared/BaseVector.cpp: Added GPL v3 header.
-	* src/shared/BaseVector.h: Added GPL v3 header.
-	* src/shared/BitVector.h: Added GPL v3 header.
-	* src/shared/Client.cpp: Added GPL v3 header.
-	* src/shared/Client.h: Added GPL v3 header.
-	* src/shared/CommandInterpreter.cpp: Added GPL v3 header.
-	* src/shared/CommandInterpreter.h: Added GPL v3 header.
-	* src/shared/Common.h: Added GPL v3 header.
-	* src/shared/Console.cpp: Added GPL v3 header.
-	* src/shared/Console.h: Added GPL v3 header.
-	* src/shared/Database.cpp: Added GPL v3 header.
-	* src/shared/Database.h: Added GPL v3 header.
-	* src/shared/DatabaseMySQL.cpp: Added GPL v3 header.
-	* src/shared/DatabaseMySQL.h: Added GPL v3 header.
-	* src/shared/Debug.cpp: Added GPL v3 header.
-	* src/shared/Debug.h: Added GPL v3 header.
-	* src/shared/EncodeSQL.cpp: Added GPL v3 header.
-	* src/shared/Errors.h: Added GPL v3 header.
-	* src/shared/HashVector.cpp: Added GPL v3 header.
-	* src/shared/HashVector.h: Added GPL v3 header.
-	* src/shared/Log.cpp: Added GPL v3 header.
-	* src/shared/Log.h: Added GPL v3 header.
-	* src/shared/MemoryLeaks.cpp: Added GPL v3 header.
-	* src/shared/MemoryLeaks.h: Added GPL v3 header.
-	* src/shared/Server.cpp: Added GPL v3 header.
-	* src/shared/Server.h: Added GPL v3 header.
-	* src/shared/Singleton.h: Added GPL v3 header.
-	* src/shared/Sockets.cpp: Added GPL v3 header.
-	* src/shared/Sockets.h: Added GPL v3 header.
-	* src/shared/StrVec.cpp: Added GPL v3 header.
-	* src/shared/StrVec.h: Added GPL v3 header.
-	* src/shared/StringFun.cpp: Added GPL v3 header.
-	* src/shared/StringFun.h: Added GPL v3 header.
-	* src/shared/SystemFun.h: Added GPL v3 header.
-	* src/shared/ThreadFun.h: Added GPL v3 header.
-	* src/shared/Timer.h: Added GPL v3 header.
-	* src/shared/UTF8Fun.cpp: Added GPL v3 header.
-	* src/shared/Vector.cpp: Added GPL v3 header.
-	* src/shared/Vector.h: Added GPL v3 header.
-	* src/shared/posix/ConsoleSysDep.cpp: Added GPL v3 header.
-	* src/shared/posix/ThreadFun.cpp: Added GPL v3 header.
-	* src/shared/posix/TimeFun.cpp: Added GPL v3 header.
-	* src/shared/posix/WaitSockets.cpp: Added GPL v3 header.
-	* src/shared/version.h: Added GPL v3 header.
-	* src/shared/win/ConsoleSysDep.cpp: Added GPL v3 header.
-	* src/shared/win/ThreadFun.cpp: Added GPL v3 header.
-	* src/shared/win/TimeFun.cpp: Added GPL v3 header.
-	* src/shared/win/WaitSockets.cpp: Added GPL v3 header.
-	* src/tools/gencode/Makefile.am: Fixed typos.
-	* src/worldsrv/AccountData.cpp: Added GPL v3 header.
-	* src/worldsrv/Affect.h: Added GPL v3 header.
-	* src/worldsrv/AuctionHouse.h: Added GPL v3 header.
-	* src/worldsrv/Characters.cpp: Added GPL v3 header.
-	* src/worldsrv/GameClient.cpp: Added GPL v3 header.
-	* src/worldsrv/GameClient.h: Added GPL v3 header.
-	* src/worldsrv/Item.cpp: Added GPL v3 header.
-	* src/worldsrv/Item.h: Added GPL v3 header.
-	* src/worldsrv/Luawrapper.cpp: Updated.
-	* src/worldsrv/Mail.h: Added GPL v3 header.
-	* src/worldsrv/Main.cpp: Added GPL v3 header.
-	* src/worldsrv/Object.cpp: Added GPL v3 header.
-	* src/worldsrv/Object.h: Added GPL v3 header.
-	* src/worldsrv/ObjectVector.cpp: Added GPL v3 header.
-	* src/worldsrv/ObjectVector.h: Added GPL v3 header.
-	* src/worldsrv/Player.cpp: Added GPL v3 header.
-	* src/worldsrv/Player.h: Added GPL v3 header.
-	* src/worldsrv/ProtocolVectors.cpp: Added GPL v3 header.
-	* src/worldsrv/ProtocolVectors.h: Added GPL v3 header.
-	* src/worldsrv/Quadtree.cpp: Added GPL v3 header.
-	* src/worldsrv/Quadtree.h: Added GPL v3 header.
-	* src/worldsrv/Unit.cpp: Added GPL v3 header.
-	* src/worldsrv/Unit.h: Added GPL v3 header.
-	* src/worldsrv/UpdateFields.h: Added GPL v3 header.
-	* src/worldsrv/WorldServer.cpp: Added GPL v3 header.
-	* src/worldsrv/WorldServer.h: Added GPL v3 header.
-	* src/worldsrv/todo/Affect.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/AreaTrigger.h: Added GPL v3 header.
-	* src/worldsrv/todo/AuctionHouse.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/AuraHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/AuraHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Character.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Character.h: Added GPL v3 header.
-	* src/worldsrv/todo/CharacterHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/CharacterHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/ChatHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/ChatHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Combat.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Combat.h: Added GPL v3 header.
-	* src/worldsrv/todo/DatabaseInterface.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/DatabaseInterface.h: Added GPL v3 header.
-	* src/worldsrv/todo/GameObject.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/GameObject.h: Added GPL v3 header.
-	* src/worldsrv/todo/Gossip.h: Added GPL v3 header.
-	* src/worldsrv/todo/GossipHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/GossipHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Group.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Group.h: Added GPL v3 header.
-	* src/worldsrv/todo/GroupHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/GroupHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Item.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Item.h: Added GPL v3 header.
-	* src/worldsrv/todo/ItemHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/ItemHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Level1.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Level2.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Level3.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/MiscHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/MiscHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/MovementHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/MovementHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/MsgHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/NPCHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/ObjectMgr.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/ObjectMgr.h: Added GPL v3 header.
-	* src/worldsrv/todo/Path.h: Added GPL v3 header.
-	* src/worldsrv/todo/PetHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/PetHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/QueryHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/QueryHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Quest.h: Added GPL v3 header.
-	* src/worldsrv/todo/QuestHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/QuestHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/QuestMgr.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/QuestMgr.h: Added GPL v3 header.
-	* src/worldsrv/todo/SkillHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/SkillHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Spell.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/Spell.h: Added GPL v3 header.
-	* src/worldsrv/todo/SpellHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/SpellHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/SrpWorld.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/SrpWorld.h: Added GPL v3 header.
-	* src/worldsrv/todo/Stats.h: Added GPL v3 header.
-	* src/worldsrv/todo/TaxiHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/TaxiHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/TradeHandler.cpp: Added GPL v3 header.
-	* src/worldsrv/todo/TradeHandler.h: Added GPL v3 header.
-	* src/worldsrv/todo/Unit.h: Added GPL v3 header.
-	* src/worldsrv/todo/World.h: Added GPL v3 header.
-
-2007-10-21  Daniel  <theluda@googlemail.com>
-
-	A few more fixes for the build order. We love GNU make.
-
-	* configure.ac: Generate Makefile for gencode, too.
-	* sql/Makefile.am: Comment removed.
-	* src/realmlist/Makefile.am: Build order changed. Generated
-	  files first.
-	* src/tools/Makefile.am:
-	* src/tools/gencode/Makefile.am: We do install gencode now.
-	* src/tools/gencode/yaml/Makefile.am: And gencode needs YAML.
-	* src/worldsrv/Luawrapper.cpp: Updated.
-	* src/worldsrv/Makefile.am: Build order changed. Generated
-	  files first.
-
-2007-10-19  Daniel  <theluda@googlemail.com>
-
-	Posix build now works.
-
-	* configure.ac: Fixed.
-	* src/realmlist/Makefile.am: Fixed.
-	* src/worldsrv/AuthHandler.cpp: Removed.
-	* src/worldsrv/GameClient.cpp: Fixed.
-	* src/worldsrv/GameClient.h: Fixed.
-	* src/worldsrv/Luawrapper.cpp: Updated.
-	* src/worldsrv/Makefile.am: Fixed.
-	* src/worldsrv/Opcodes.cpp: Removed.
-	* src/worldsrv/Opcodes.h: Removed.
-	* src/worldsrv/Protocol.rules: Fixed.
+2007-12-07  Daniel  <theluda@getmangos.com>
+
+    * win/VC8/libopenwow.vcproj: A tiny fix.
+    * win/VC8/lua.vcproj: LUA project file refined. Much cleaner.
+    * win/VC8/OpenWoW.sln: LUA project now included.
+
+2007-12-07  Daniel  <theluda@getmangos.com>
+
+    LUA project added.
+
+    * Makefile.am: LUA project added.
+    * win/VC8/libopenwow.vcproj: Fixed preprocessor defines.
+    * win/VC8/lua.vcproj: LUA project added.
+    * win/VC8/realmlist.vcproj: Fixed preprocessor defines.
+    * win/VC8/worldserver.vcproj: Fixed preprocessor defines.
+
+2007-12-07  Daniel  <theluda@getmangos.com>
+
+    * src/realmlist/AccountMgr.cpp: eol-style native.
+    * src/realmlist/RealmMgr.cpp: eol-style native.
+    * src/realmlist/AccountMgr.h: eol-style native.
+    * src/realmlist/RealmMgr.h: eol-style native.
+
+2007-12-07  Daniel  <theluda@getmangos.com>
+
+    * src/shared/Base.h: Comments updated.
+    * src/shared/BaseVector.h: Comments updated.
+    * src/shared/HashVector.h: Comments updated.
+    * src/shared/StrVec.h: Comments updated.
+    * src/shared/ThreadFun.h: Comments updated.
+    * src/shared/Vector.h: Comments updated.
+
+2007-12-06  Daniel  <theluda@getmangos.com>
+
+    Started to update doxygen comments for Doxygen 1.5.
+
+    * doc/Doxyfile.in: Refined this a bit.
+    * doc/doxygen-svn-info: Script to extract svn version.
+    * src/realmlist/: Updated doxygen comments for 1.5.
+    * src/shared/: Updated doxygen comments for 1.5.
+    * src/shared/posix/: Updated doxygen comments for 1.5.
+    * src/shared/win/: Updated doxygen comments for 1.5.
+    * src/worldserver/: Updated doxygen comments for 1.5.
+    * src/worldserver/todo/: Updated doxygen comments for 1.5.
+
+2007-12-06  Daniel  <theluda@getmangos.com>
+
+    * win/VC8/realmlist.vcproj: Added account and realm management
+      classes to build.
+
+2007-12-05  Daniel  <theluda@getmangos.com>
+
+    Started management classes for accounts and realms.
+
+    * src/realmlist/AccountMgr.cpp: Account management class.
+    * src/realmlist/AccountMgr.h: Account management class.
+    * src/realmlist/Makefile.am: New classes added.
+    * src/realmlist/RealmMgr.cpp: Realm management class.
+    * src/realmlist/RealmMgr.h: Realm management class
+
+2007-12-05  Daniel  <theluda@getmangos.com>
+
+    * doc/Doxyfile.in: Updated for doxygen 1.5.3.
+
+2007-12-04  Daniel  <theluda@getmangos.com>
+
+    ... and a lot more files hit by Doxygen headers.
+
+    * doc/Doxyfile.in: Refined the Doxygen settings.
+    * src/realmlist/: Doxygen style file headers.
+    * src/shared/Base.cpp: Corrected copyright notice.
+    * src/shared/Base.h: Corrected copyright notice.
+    * src/shared/BaseVector.cpp: Corrected copyright notice.
+    * src/shared/BaseVector.h: Corrected copyright notice.
+    * src/shared/HashVector.cpp: Corrected copyright notice.
+    * src/shared/HashVector.h: Corrected copyright notice.
+    * src/shared/StrVec.cpp: Corrected copyright notice.
+    * src/shared/StrVec.h: Corrected copyright notice.
+    * src/shared/ThreadFun.h: Corrected copyright notice.
+    * src/shared/Vector.cpp: Corrected copyright notice.
+    * src/shared/Vector.h: Corrected copyright notice.
+    * src/shared/posix/ConsoleSysDep.cpp: Corrected copyright notice.
+    * src/shared/posix/ThreadFun.cpp: Corrected copyright notice.
+    * src/shared/posix/TimeFun.cpp: Corrected copyright notice.
+    * src/shared/win/ConsoleSysDep.cpp: Corrected copyright notice.
+    * src/shared/win/ThreadFun.cpp: Corrected copyright notice.
+    * src/shared/win/TimeFun.cpp: Corrected copyright notice.
+    * src/worldserver/: Doxygen style file headers.
+    * src/worldserver/todo/: Doxygen style file headers.
+
+2007-12-03  Daniel  <theluda@getmangos.com>
+
+    * src/shared/: Doxygen style file headers.
+
+2007-12-03  Daniel  <theluda@getmangos.com>
+
+    * dep/src/getopt.c, dep/src/getopt1.c: We need the configuration
+      header here.
+    * src/shared/DatabaseMySQL.cpp: Moving platform dependant stuff
+      into config.win.h.
+    * src/shared/win/ThreadFun.cpp: Class constructor fixed.
+    * win/config.win.h: Yes, we do need WinSock2 *sigh*
+    * win/VC8/: Ignore the generated cache files used by VC++.
+    * win/VC8/libopenwow.vcproj: Finally working build configurations
+      for Win32 and Win64 (x86_64).
+    * win/VC8/OpenWoW.sln: Added the new build configurations.
+
+2007-11-30  Daniel  <theluda@getmangos.com>
+
+    * TODO: Finally a real list of things to work on.
+    * src/realmlist/RealmClient.cpp, src/realmlist/RealmProto.cpp,
+      src/realmlist/RealmProto.h, src/realmlist/RealmProto.inc,
+      src/realmlist/RealmProto.rules: Added client update opcodes.
+    * src/shared/DatabaseMySQL.cpp, src/shared/EncodeSQL.cpp,
+      src/shared/Log.cpp: Windows build fixes.
+    * src/shared/Errors.h, src/shared/MemoryLeaks.cpp,
+      src/shared/MemoryLeaks.h, src/shared/Sockets.h: Added
+      proper file headers.
+    * src/worldserver/GameClient.cpp, src/worldserver/GameClient.h,
+      src/worldserver/Object.cpp, src/worldserver/Object.h,
+      src/worldserver/Unit.cpp, src/worldserver/UpdateFields.h,
+      src/worldserver/WorldServer.cpp, src/worldserver/WorldServer.h:
+      Added proper file headers.
+
+2007-11-30  Daniel  <theluda@getmangos.com>
+
+    * src/realmlist/RealmClient.cpp: Username length added.
+    * src/realmlist/RealmListSrv.cpp: Updated realm struct.
+    * src/realmlist/RealmListSrv.h: Updated realm struct.
+    * src/realmlist/RealmProto.cpp: Updated packet structures.
+    * src/realmlist/RealmProto.h: Updated packet structures.
+    * src/realmlist/RealmProto.inc: Updated packet structures.
+    * src/realmlist/RealmProto.rules: Updated packet structures.
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    * NEWS: Update to client 2.3.0 (build 7561).
+    * TODO:Update to client 2.3.0 (build 7561).
+    * src/shared/version.h: Update to client 2.3.0 (build 7561).
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    * src/realmlist/RealmClient.cpp: Display the contents of
+      CMSG_LOGON_CHALLENGE in the proper order.
+    * src/realmlist/RealmProto.cpp: Update SMSG_LOGON_CHALLENGE.
+    * src/realmlist/RealmProto.h: Update SMSG_LOGON_CHALLENGE.
+    * src/realmlist/RealmProto.inc: Update SMSG_LOGON_CHALLENGE.
+    * src/realmlist/RealmProto.rules: Update SMSG_LOGON_CHALLENGE.
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    * dep/src/tolua++/bin/Makefile.am: Fixed link to LUA5.1
+    * dep/src/tolua++/lib/Makefile.am: Fixed link to LUA5.1
+    * src/realmlist/RealmProto.cpp: Regenerated.
+    * src/realmlist/RealmProto.h: Regenerated.
+    * src/realmlist/RealmProto.inc: Typo fixed.
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    * src/realmlist/RealmProto.rules: Tiny fixes for the
+      structure of CMSG_RECONNECT_CHALLENGE.
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    tolua++ 1.0.92 imported. Needs to be customized for
+    our purposes, and needs a few build changes for LUA
+    5.1 (from dep/src/lua/).
+
+    * config.h.in: Fixed typo.
+    * configure.ac: Added tolua++ 1.0.92.
+    * dep/src/Makefile.am: Added tolua++ 1.0.92.
+    * dep/src/tolua++/: Added tolua++ 1.0.92.
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    * configure.ac: Moved config.h to root dir.
+    * src/realmlist/RealmClient.cpp: Added FailChallenge for
+      errors occuring during LOGON_CHALLENGE procedure.
+    * src/realmlist/RealmClient.h: Added FailChallenge for
+      errors occuring during LOGON_CHALLENGE procedure.
+    * src/shared/Common.h: A few style fixes.
+    * src/shared/config.h.in: Moved to config.h.
+    * src/shared/config.win.h: Moved to win/config.h.
+    * src/shared/version.h: A few style fixes.
+    * win/VC8/libopenwow.vcproj: Use config.win.h.
+    * win/VC8/realmlist.vcproj: Use config.win.h.
+    * win/VC8/worldserver.vcproj: Use config.win.h.
+
+2007-11-29  Daniel  <theluda@getmangos.com>
+
+    * sql/mysql_dump: Temporary database dumper.
+    * src/realmlist/Main.cpp: Minor fixes.
+    * src/realmlist/RealmClient.cpp: Minor fixes.
+    * src/realmlist/RealmClient.h: Minor fixes.
+    * src/realmlist/RealmProto.cpp: Minor fixes.
+    * src/realmlist/RealmProto.h: Minor fixes.
+    * src/realmlist/RealmProto.inc: Minor fixes.
+    * src/realmlist/RealmProto.rules: Minor fixes.
+    * src/shared/version.h: Minor fixes.
+    * src/worldserver/GameClient.cpp: Minor fixes.
+    * src/worldserver/Main.cpp: Minor fixes.
+
+2007-11-28  Daniel  <theluda@getmangos.com>
+
+    * src/realmlist/RealmProto.cpp: Added to track changes.
+    * src/realmlist/RealmProto.h: Added to track changes.
+    * src/realmlist/RealmProto.inc: Added to track changes.
+    * src/tools/realmManager/account/models.py: Finished
+      authentication model for account data.
+    * src/tools/realmManager/realm/models.py: Finished realm
+      model.
+    * src/worldserver/GameClient.cpp: Using Opcodes.inc now.
+    * src/worldserver/Makefile.am: Parser.inc -> Opcodes.inc.
+    * src/worldserver/Opcodes.cpp: Added to track changes.
+    * src/worldserver/Opcodes.h: Added to track changes.
+    * src/worldserver/Opcodes.inc: Added to track changes.
+    * win/beforeworld.bat: Use proper names for generated files.
+
+2007-11-27  Daniel  <theluda@getmangos.com>
+
+    Build fixes, and a few code cleanups.
+
+    * configure.ac: Disabled check for AC_FUNC_STRNLEN. This breaks
+      autoconf, probably a bug.
+    * sql/realmlist/accountchars.sql: Set charset to utf8.
+    * sql/realmlist/accounts.sql: Set charset to utf8.
+    * sql/realmlist/realms.sql: Set charset to utf8. Add default
+      realms of all realm types for each language.
+    * sql/worldserver/protoitem.sql: Set charset to utf8.
+    * src/realmlist/AccountMgr.cpp: Removed.
+    * src/realmlist/AccountMgr.h: Removed.
+    * src/realmlist/Makefile.am: Changed build order.
+    * src/realmlist/RealmListSrv.h: Update Realm struct to match
+      patch 2.3.0 realm list structure.
+    * src/realmlist/RealmMgr.cpp: Removed.
+    * src/realmlist/RealmMgr.h: Removed.
+    * src/shared/EncodeSQL.cpp: Removed debug code.
+    * src/shared/version.h: Added define for client patcher system.
+    * src/tools/realmManager/realm/models.py: Updated realm model to
+      match patch 2.3.0 realm list structure.
+    * src/worldserver/Makefile.am: Changed build order.
+
+2007-11-25  Daniel  <theluda@getmangos.com>
+
+    Build libopenwow as shared library, part I (Windows).
+
+    * win/VC8/libopenwow.vcproj: Build as shared library.
+    * win/VC8/realmlist.vcproj: Link against libopenwow shared
+      library.
+    * win/VC8/worldserver.vcproj: Link against libopenwow shared
+      library.
+
+2007-11-21  Daniel  <theluda@getmangos.com>
+
+    A few more fixes, to allow 2.3.0 clients to at least
+    log on to the realmserver.
+
+    * src/shared/Common.h: Fixed a small comment typo.
+    * src/shared/version.h: Set supported client build to 7561.
+    * src/realmlist/RealmClient.cpp: Quote username for SQL.
+    * src/realmlist/RealmListSrv.cpp: Locked state added.
+    * src/realmlist/RealmProto.rules: Finished the description
+      of SMSG_REALMLIST. Stamped, and ready to be used.
+    * src/realmlist/RealmListSrv.h: Locked state added.
+    * sql/realmlist/realms.sql: Locked state added.
+    * sql/worldserver/protochar.sql: Added player orientation.
+    * sql/worldserver/protoitem.sql: Only include Alliance starting
+      items for now. Horde coming soon.
+    * sql/worldserver/access_levels.sql: Ordered account levels.
+
+2007-11-09  Daniel  <theluda@getmangos.com>
+
+    The big code style day. We now have every piece of code
+    styled following our new style guide.
+
+    * src/realmlist/AccountMgr.cpp: Code with style!
+    * src/realmlist/AccountMgr.h: Code with style!
+    * src/realmlist/Main.cpp: Code with style!
+    * src/realmlist/RealmClient.cpp: Code with style!
+    * src/realmlist/RealmClient.h: Code with style!
+    * src/realmlist/RealmListSrv.h: Code with style!
+    * src/realmlist/RealmMgr.cpp: Code with style!
+    * src/realmlist/RealmMgr.h: Code with style!
+    * src/realmlist/SrpRealm.cpp: Code with style!
+    * src/realmlist/SrpRealm.h: Code with style!
+    * src/realmlist/bigint.cpp: Code with style!
+    * src/realmlist/bigint.h: Code with style!
+    * src/shared/Base.h: Code with style!
+    * src/shared/BaseVector.h: Code with style!
+    * src/shared/BitVector.h: Code with style!
+    * src/shared/Client.h: Code with style!
+    * src/shared/CommandInterpreter.cpp: Code with style!
+    * src/shared/CommandInterpreter.h: Code with style!
+    * src/shared/Common.h: Code with style!
+    * src/shared/Console.cpp: Code with style!
+    * src/shared/Console.h: Code with style!
+    * src/shared/Database.cpp: Code with style!
+    * src/shared/Database.h: Code with style!
+    * src/shared/DatabaseMySQL.cpp: Code with style!
+    * src/shared/DatabaseMySQL.h: Code with style!
+    * src/shared/Debug.h: Code with style!
+    * src/shared/EncodeSQL.cpp: Code with style!
+    * src/shared/Errors.h: Code with style!
+    * src/shared/HashVector.h: Code with style!
+    * src/shared/Log.cpp: Code with style!
+    * src/shared/Log.h: Code with style!
+    * src/shared/Server.cpp: Code with style!
+    * src/shared/Server.h: Code with style!
+    * src/shared/Singleton.h: Code with style!
+    * src/shared/Sockets.cpp: Code with style!
+    * src/shared/Sockets.h: Code with style!
+    * src/shared/StrVec.h: Code with style!
+    * src/shared/StringFun.h: Code with style!
+    * src/shared/SystemFun.h: Code with style!
+    * src/shared/ThreadFun.h: Code with style!
+    * src/shared/Timer.h: Code with style!
+    * src/shared/Vector.cpp: Code with style!
+    * src/shared/Vector.h: Code with style!
+    * src/shared/config.win.h: Code with style!
+    * src/shared/posix/ConsoleSysDep.cpp: Code with style!
+    * src/shared/posix/ThreadFun.cpp: Code with style!
+    * src/shared/version.h: Code with style!
+    * src/shared/win/ConsoleSysDep.cpp: Code with style!
+    * src/shared/win/ThreadFun.cpp: Code with style!
+    * src/worldserver/Affect.h: Code with style!
+    * src/worldserver/Characters.cpp: Code with style!
+    * src/worldserver/GameClient.cpp: Code with style!
+    * src/worldserver/GameClient.h: Code with style!
+    * src/worldserver/Item.cpp: Code with style!
+    * src/worldserver/Item.h: Code with style!
+    * src/worldserver/Mail.h: Code with style!
+    * src/worldserver/Main.cpp: Code with style!
+    * src/worldserver/Object.h: Code with style!
+    * src/worldserver/ObjectVector.h: Code with style!
+    * src/worldserver/Player.cpp: Code with style!
+    * src/worldserver/Player.h: Code with style!
+    * src/worldserver/ProtocolVectors.h: Code with style!
+    * src/worldserver/Quadtree.cpp: Code with style!
+    * src/worldserver/Quadtree.h: Code with style!
+    * src/worldserver/Unit.cpp: Code with style!
+    * src/worldserver/Unit.h: Code with style!
+    * src/worldserver/UpdateFields.h: Code with style!
+    * src/worldserver/WorldServer.cpp: Code with style!
+    * src/worldserver/WorldServer.h: Code with style!
+    * src/worldserver/todo/Affect.cpp: Code with style!
+    * src/worldserver/todo/AreaTrigger.h: Code with style!
+    * src/worldserver/todo/AuctionHouse.cpp: Code with style!
+    * src/worldserver/todo/AuraHandler.cpp: Code with style!
+    * src/worldserver/todo/AuraHandler.h: Code with style!
+    * src/worldserver/todo/Character.cpp: Code with style!
+    * src/worldserver/todo/Character.h: Code with style!
+    * src/worldserver/todo/CharacterHandler.cpp: Code with style!
+    * src/worldserver/todo/CharacterHandler.h: Code with style!
+    * src/worldserver/todo/ChatHandler.cpp: Code with style!
+    * src/worldserver/todo/ChatHandler.h: Code with style!
+    * src/worldserver/todo/Combat.cpp: Code with style!
+    * src/worldserver/todo/Combat.h: Code with style!
+    * src/worldserver/todo/DatabaseInterface.cpp: Code with style!
+    * src/worldserver/todo/DatabaseInterface.h: Code with style!
+    * src/worldserver/todo/GameObject.cpp: Code with style!
+    * src/worldserver/todo/GameObject.h: Code with style!
+    * src/worldserver/todo/Gossip.h: Code with style!
+    * src/worldserver/todo/GossipHandler.cpp: Code with style!
+    * src/worldserver/todo/GossipHandler.h: Code with style!
+    * src/worldserver/todo/Group.cpp: Code with style!
+    * src/worldserver/todo/Group.h: Code with style!
+    * src/worldserver/todo/GroupHandler.cpp: Code with style!
+    * src/worldserver/todo/GroupHandler.h: Code with style!
+    * src/worldserver/todo/Item.h: Code with style!
+    * src/worldserver/todo/ItemHandler.cpp: Code with style!
+    * src/worldserver/todo/ItemHandler.h: Code with style!
+    * src/worldserver/todo/Level0.cpp: Code with style!
+    * src/worldserver/todo/Level1.cpp: Code with style!
+    * src/worldserver/todo/Level2.cpp: Code with style!
+    * src/worldserver/todo/Level3.cpp: Code with style!
+    * src/worldserver/todo/MiscHandler.cpp: Code with style!
+    * src/worldserver/todo/MiscHandler.h: Code with style!
+    * src/worldserver/todo/MovementHandler.cpp: Code with style!
+    * src/worldserver/todo/MovementHandler.h: Code with style!
+    * src/worldserver/todo/MsgHandler.h: Code with style!
+    * src/worldserver/todo/NPCHandler.cpp: Code with style!
+    * src/worldserver/todo/NPCHandler.h: Code with style!
+    * src/worldserver/todo/ObjectMgr.cpp: Code with style!
+    * src/worldserver/todo/ObjectMgr.h: Code with style!
+    * src/worldserver/todo/Path.h: Code with style!
+    * src/worldserver/todo/PetHandler.cpp: Code with style!
+    * src/worldserver/todo/PetHandler.h: Code with style!
+    * src/worldserver/todo/QueryHandler.cpp: Code with style!
+    * src/worldserver/todo/QueryHandler.h: Code with style!
+    * src/worldserver/todo/Quest.h: Code with style!
+    * src/worldserver/todo/QuestHandler.cpp: Code with style!
+    * src/worldserver/todo/QuestHandler.h: Code with style!
+    * src/worldserver/todo/QuestMgr.cpp: Code with style!
+    * src/worldserver/todo/QuestMgr.h: Code with style!
+    * src/worldserver/todo/SkillHandler.cpp: Code with style!
+    * src/worldserver/todo/SkillHandler.h: Code with style!
+    * src/worldserver/todo/Spell.cpp: Code with style!
+    * src/worldserver/todo/Spell.h: Code with style!
+    * src/worldserver/todo/SpellHandler.cpp: Code with style!
+    * src/worldserver/todo/SpellHandler.h: Code with style!
+    * src/worldserver/todo/SrpWorld.h: Code with style!
+    * src/worldserver/todo/Stats.h: Code with style!
+    * src/worldserver/todo/TaxiHandler.cpp: Code with style!
+    * src/worldserver/todo/TaxiHandler.h: Code with style!
+    * src/worldserver/todo/TradeHandler.cpp: Code with style!
+    * src/worldserver/todo/TradeHandler.h: Code with style!
+    * src/worldserver/todo/Unit.cpp: Code with style!
+    * src/worldserver/todo/Unit.h: Code with style!
+    * src/worldserver/todo/World.h: Code with style!
+
+2007-11-07  Daniel  <theluda@getmangos.com>
+
+    A few cosmetic changes, and more 2.2.3 updates.
+
+    * Makefile.am: Moving Windows project to libopenwow.
+    * src/realmlist/RealmProto.rules: Updated error codes and
+      opcode data. Next up is realm list opcode handling.
+    * src/tools/realmManager/patch/models.py: Added description.
+    * win/VC8/OpenWoW.sln: Moving Windows project to libopenwow.
+    * win/VC8/shared.vcproj: Renamed to libopenwow.sln.
+
+2007-11-07  Daniel  <theluda@getmangos.com>
+
+    Added x86_64 build configurations for Windows.
+
+    * win/VC8/OpenWoW.sln: x86_64 solutions updates.
+    * win/VC8/realmlist.vcproj: x86_64 build configuration added.
+    * win/VC8/shared.vcproj: x86_64 build configuration added.
+    * win/VC8/worldsrv.vcproj: x86_64 build configuration added.
+
+2007-11-01  Daniel  <theluda@getmangos.com>
+
+    Renamed a few directories, no more abbreviations.
+
+    * configure.ac: world/ and worldsrv/ to worldserver/.
+    * sql/Makefile.am: world/ and worldsrv/ to worldserver/.
+    * sql/realm/: realm/ to realmlist/.
+    * sql/world/Makefile.am: world/ and worldsrv/ to worldserver/.
+    * src/Makefile.am: world/ and worldsrv/ to worldserver/.
+    * src/worldserv.conf: world/ and worldsrv/ to worldserver/.
+    * src/worldsrv/: world/ and worldsrv/ to worldserver/.
+    * win/VC8/OpenWoW.sln: world/ and worldsrv/ to worldserver/.
+    * win/VC8/worldsrv.vcproj: world/ and worldsrv/ to worldserver/.
+
+2007-10-31  Daniel  <theluda@getmangos.com>
+
+    Started upgrade to new realm list opcode structure.
+
+    * src/realmlist/RealmClient.cpp: Handle changed opcodes.
+    * src/realmlist/RealmProto.rules: Started updating opcodes.
+    * src/tools/dbc_convert.py: Added new DBC files for later
+      usage.
+
+2007-10-29  Daniel  <theluda@getmangos.com>
+
+    Start upgrade to LUA 5.1.2. Upgrade to tolua++-1.0.92
+    coming next.
+
+    * configure.ac: Create LUA Makefile
+    * dep/src/Makefile.am: Parse the lua directory.
+    * dep/src/lua/: Added LUA 5.1.2.
+    * src/tools/realmManager/realm/models.py: We now have a
+      working model for our realm list entries. Finished.
+
+2007-10-26  Daniel  <theluda@getmangos.com>
+
+    Realm list manager extended.
+
+    * src/tools/realmManager/account/models.py: More docs.
+    * src/tools/realmManager/patch/models.py: Added.
+    * src/tools/realmManager/patch/views.py: Added.
+    * src/tools/realmManager/realm/models.py: More docs.
+    * src/tools/realmManager/settings.py: Added patch app.
+
+2007-10-25  Daniel  <theluda@getmangos.com>
+
+    Bump version back to 0.5.0.01. *cough*
+
+    * INSTALL.GNU: Improved readability.
+    * INSTALL.Win.txt: Sync with INSTALL.GNU.
+    * NEWS: Just a tiny chapter for version 0.5.0.01.
+    * configure.ac: Bump version.
+    * doc/MasterControlProtocol.xml: Now usable with xmlto.
+    * src/shared/config.win.h: Bump version.
+
+2007-10-24  Daniel  <theluda@getmangos.com>
+
+    Cleaned the Visual Studio 2005 project files, and a bit
+    of style for our new opcode manual.
+
+    * Makefile.am: Changed path for VC8 solution file.
+    * doc/docbook.css: Added style for opcode manual.
+    * win/OpenWoW-VC8.sln: Moved to win/VC8/OpenWoW.sln.
+    * win/VC8/realmlist.vcproj: Fixed name.
+    * win/VC8/shared.vcproj: Fixed name.
+    * win/VC8/worldsrv.vcproj: Fixed name.
+
+2007-10-24  Daniel  <theluda@getmangos.com>
+
+    Added Django-based prototyping application for the
+    realm list server.
+
+    * src/tools/OpenWoWTracer.py: Removed.
+    * src/tools/owowtracer/: Removed.
+    * src/tools/realmManager/: Realm list manager written
+      using Django (see http://www.djangoproject.com/).
+      This will be used for prototyping database schema.
+
+2007-10-24  Daniel  <theluda@getmangos.com>
+
+    Update world server opcode list for patch 2.2.3.
+
+    * src/realmlist/Main.cpp: Fixed Typo. It is not "OpemWoW".
+    * src/worldsrv/Characters.cpp: Updated a few enums.
+    * src/worldsrv/Player.cpp: Updated a few enums.
+    * src/worldsrv/Protocol.rules: Updated with all known
+      opcodes for patch 2.2.3 (build 7359).
+
+2007-10-24  Daniel  <theluda@getmangos.com>
+
+    Support for Visual Studio 2003 (VC7) removed. VC7 does not
+    support 64bit builds.
+
+    * Makefile.am: Removed VC7 from EXTRA_DIST section.
+    * win/VC7: Removed.
+    * win/OpenWoW-VC7.sln: Removed
+
+2007-10-23  Daniel  <theluda@getmangos.com>
+
+    POSIX builds should now be safe. Full 'make distcheck'
+    is now free from any open issues.
+
+    * README: Fixed a few typos.
+    * configure.ac: Added Makefiles for the LUA stuff.
+    * doc/Python_Readme.doc: Gone.
+    * sql/realm/Makefile.am: Moved all realm list SQL here.
+    * sql/world/Makefile.am: Moved all world server SQL here.
+    * src/Makefile.am: Install configuration files to SYSCONFDIR.
+    * src/realmlist/Makefile.am: Fixed library linking.
+    * src/shared/Makefile.am: Fixed a few paths.
+    * src/shared/lua/Makefile: Removed. Now generated.
+    * src/shared/lua/Makefile.am: Proper Makefile template.
+    * src/shared/lua/config: Removed.
+    * src/shared/lua/lib/Makefile: Removed. Now generated.
+    * src/shared/lua/lib/Makefile.am: Proper Makefile template.
+    * src/shared/lua/lua/Makefile: Removed. Now generated.
+    * src/shared/lua/lua/README: Removed.
+    * src/shared/lua/lua/lua.c: Removed.
+    * src/shared/lua/luac/Makefile: Removed.
+    * src/shared/lua/luac/README: Removed.
+    * src/shared/lua/luac/luac.c: Removed.
+    * src/shared/lua/luac/print.c: Removed.
+    * src/tools/tolua/Makefile: Removed. Now generated.
+    * src/tools/tolua/Makefile.am: Proper Makefile template.
+    * src/tools/tolua/bin/Makefile: Removed. Now generated.
+    * src/tools/tolua/bin/Makefile.am: Proper Makefile template.
+    * src/tools/tolua/config: Removed.
+    * src/tools/tolua/lib/Makefile: Removed. Now generated.
+    * src/tools/tolua/lib/Makefile.am: Proper Makefile template.
+    * src/worldsrv/Makefile.am: Fixed library linking and a few paths.
+
+2007-10-22  Daniel  <theluda@getmangos.com>
+
+    Bump version to 2.2.3. Version now equals the supported
+    client version.
+
+    * configure.ac: Bump version.
+    * src/realmlist/RealmProto.rules: Bump version.
+    * src/shared/config.win.h: Bump version.
+    * src/shared/version.h: Bump version.
+    * src/worldsrv/Protocol.rules: Bump version.
+    * sql/: Updated SQL dumps for MySQL 5.x compatibility.
+
+2007-10-22  Daniel  <theluda@getmangos.com>
+
+    Important: License changed to GPL version 3. Please read
+    COPYING to see what has changed.
+
+    * src/realmlist/AccountMgr.cpp: Added GPL v3 header.
+    * src/realmlist/AccountMgr.h: Added GPL v3 header.
+    * src/realmlist/Main.cpp: Added GPL v3 header.
+    * src/realmlist/RealmClient.cpp: Added GPL v3 header.
+    * src/realmlist/RealmClient.h: Added GPL v3 header.
+    * src/realmlist/RealmListSrv.cpp: Added GPL v3 header.
+    * src/realmlist/RealmListSrv.h: Added GPL v3 header.
+    * src/realmlist/RealmMgr.cpp: Added GPL v3 header.
+    * src/realmlist/RealmMgr.h: Added GPL v3 header.
+    * src/realmlist/SrpRealm.cpp: Added GPL v3 header.
+    * src/realmlist/SrpRealm.h: Added GPL v3 header.
+    * src/shared/Base.cpp: Added GPL v3 header.
+    * src/shared/Base.h: Added GPL v3 header.
+    * src/shared/BaseVector.cpp: Added GPL v3 header.
+    * src/shared/BaseVector.h: Added GPL v3 header.
+    * src/shared/BitVector.h: Added GPL v3 header.
+    * src/shared/Client.cpp: Added GPL v3 header.
+    * src/shared/Client.h: Added GPL v3 header.
+    * src/shared/CommandInterpreter.cpp: Added GPL v3 header.
+    * src/shared/CommandInterpreter.h: Added GPL v3 header.
+    * src/shared/Common.h: Added GPL v3 header.
+    * src/shared/Console.cpp: Added GPL v3 header.
+    * src/shared/Console.h: Added GPL v3 header.
+    * src/shared/Database.cpp: Added GPL v3 header.
+    * src/shared/Database.h: Added GPL v3 header.
+    * src/shared/DatabaseMySQL.cpp: Added GPL v3 header.
+    * src/shared/DatabaseMySQL.h: Added GPL v3 header.
+    * src/shared/Debug.cpp: Added GPL v3 header.
+    * src/shared/Debug.h: Added GPL v3 header.
+    * src/shared/EncodeSQL.cpp: Added GPL v3 header.
+    * src/shared/Errors.h: Added GPL v3 header.
+    * src/shared/HashVector.cpp: Added GPL v3 header.
+    * src/shared/HashVector.h: Added GPL v3 header.
+    * src/shared/Log.cpp: Added GPL v3 header.
+    * src/shared/Log.h: Added GPL v3 header.
+    * src/shared/MemoryLeaks.cpp: Added GPL v3 header.
+    * src/shared/MemoryLeaks.h: Added GPL v3 header.
+    * src/shared/Server.cpp: Added GPL v3 header.
+    * src/shared/Server.h: Added GPL v3 header.
+    * src/shared/Singleton.h: Added GPL v3 header.
+    * src/shared/Sockets.cpp: Added GPL v3 header.
+    * src/shared/Sockets.h: Added GPL v3 header.
+    * src/shared/StrVec.cpp: Added GPL v3 header.
+    * src/shared/StrVec.h: Added GPL v3 header.
+    * src/shared/StringFun.cpp: Added GPL v3 header.
+    * src/shared/StringFun.h: Added GPL v3 header.
+    * src/shared/SystemFun.h: Added GPL v3 header.
+    * src/shared/ThreadFun.h: Added GPL v3 header.
+    * src/shared/Timer.h: Added GPL v3 header.
+    * src/shared/UTF8Fun.cpp: Added GPL v3 header.
+    * src/shared/Vector.cpp: Added GPL v3 header.
+    * src/shared/Vector.h: Added GPL v3 header.
+    * src/shared/posix/ConsoleSysDep.cpp: Added GPL v3 header.
+    * src/shared/posix/ThreadFun.cpp: Added GPL v3 header.
+    * src/shared/posix/TimeFun.cpp: Added GPL v3 header.
+    * src/shared/posix/WaitSockets.cpp: Added GPL v3 header.
+    * src/shared/version.h: Added GPL v3 header.
+    * src/shared/win/ConsoleSysDep.cpp: Added GPL v3 header.
+    * src/shared/win/ThreadFun.cpp: Added GPL v3 header.
+    * src/shared/win/TimeFun.cpp: Added GPL v3 header.
+    * src/shared/win/WaitSockets.cpp: Added GPL v3 header.
+    * src/tools/gencode/Makefile.am: Fixed typos.
+    * src/worldsrv/AccountData.cpp: Added GPL v3 header.
+    * src/worldsrv/Affect.h: Added GPL v3 header.
+    * src/worldsrv/AuctionHouse.h: Added GPL v3 header.
+    * src/worldsrv/Characters.cpp: Added GPL v3 header.
+    * src/worldsrv/GameClient.cpp: Added GPL v3 header.
+    * src/worldsrv/GameClient.h: Added GPL v3 header.
+    * src/worldsrv/Item.cpp: Added GPL v3 header.
+    * src/worldsrv/Item.h: Added GPL v3 header.
+    * src/worldsrv/Luawrapper.cpp: Updated.
+    * src/worldsrv/Mail.h: Added GPL v3 header.
+    * src/worldsrv/Main.cpp: Added GPL v3 header.
+    * src/worldsrv/Object.cpp: Added GPL v3 header.
+    * src/worldsrv/Object.h: Added GPL v3 header.
+    * src/worldsrv/ObjectVector.cpp: Added GPL v3 header.
+    * src/worldsrv/ObjectVector.h: Added GPL v3 header.
+    * src/worldsrv/Player.cpp: Added GPL v3 header.
+    * src/worldsrv/Player.h: Added GPL v3 header.
+    * src/worldsrv/ProtocolVectors.cpp: Added GPL v3 header.
+    * src/worldsrv/ProtocolVectors.h: Added GPL v3 header.
+    * src/worldsrv/Quadtree.cpp: Added GPL v3 header.
+    * src/worldsrv/Quadtree.h: Added GPL v3 header.
+    * src/worldsrv/Unit.cpp: Added GPL v3 header.
+    * src/worldsrv/Unit.h: Added GPL v3 header.
+    * src/worldsrv/UpdateFields.h: Added GPL v3 header.
+    * src/worldsrv/WorldServer.cpp: Added GPL v3 header.
+    * src/worldsrv/WorldServer.h: Added GPL v3 header.
+    * src/worldsrv/todo/Affect.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/AreaTrigger.h: Added GPL v3 header.
+    * src/worldsrv/todo/AuctionHouse.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/AuraHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/AuraHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Character.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Character.h: Added GPL v3 header.
+    * src/worldsrv/todo/CharacterHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/CharacterHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/ChatHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/ChatHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Combat.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Combat.h: Added GPL v3 header.
+    * src/worldsrv/todo/DatabaseInterface.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/DatabaseInterface.h: Added GPL v3 header.
+    * src/worldsrv/todo/GameObject.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/GameObject.h: Added GPL v3 header.
+    * src/worldsrv/todo/Gossip.h: Added GPL v3 header.
+    * src/worldsrv/todo/GossipHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/GossipHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Group.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Group.h: Added GPL v3 header.
+    * src/worldsrv/todo/GroupHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/GroupHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Item.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Item.h: Added GPL v3 header.
+    * src/worldsrv/todo/ItemHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/ItemHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Level1.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Level2.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Level3.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/MiscHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/MiscHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/MovementHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/MovementHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/MsgHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/NPCHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/ObjectMgr.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/ObjectMgr.h: Added GPL v3 header.
+    * src/worldsrv/todo/Path.h: Added GPL v3 header.
+    * src/worldsrv/todo/PetHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/PetHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/QueryHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/QueryHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Quest.h: Added GPL v3 header.
+    * src/worldsrv/todo/QuestHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/QuestHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/QuestMgr.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/QuestMgr.h: Added GPL v3 header.
+    * src/worldsrv/todo/SkillHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/SkillHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Spell.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/Spell.h: Added GPL v3 header.
+    * src/worldsrv/todo/SpellHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/SpellHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/SrpWorld.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/SrpWorld.h: Added GPL v3 header.
+    * src/worldsrv/todo/Stats.h: Added GPL v3 header.
+    * src/worldsrv/todo/TaxiHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/TaxiHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/TradeHandler.cpp: Added GPL v3 header.
+    * src/worldsrv/todo/TradeHandler.h: Added GPL v3 header.
+    * src/worldsrv/todo/Unit.h: Added GPL v3 header.
+    * src/worldsrv/todo/World.h: Added GPL v3 header.
+
+2007-10-21  Daniel  <theluda@getmangos.com>
+
+    A few more fixes for the build order. We love GNU make.
+
+    * configure.ac: Generate Makefile for gencode, too.
+    * sql/Makefile.am: Comment removed.
+    * src/realmlist/Makefile.am: Build order changed. Generated
+      files first.
+    * src/tools/Makefile.am:
+    * src/tools/gencode/Makefile.am: We do install gencode now.
+    * src/tools/gencode/yaml/Makefile.am: And gencode needs YAML.
+    * src/worldsrv/Luawrapper.cpp: Updated.
+    * src/worldsrv/Makefile.am: Build order changed. Generated
+      files first.
+
+2007-10-19  Daniel  <theluda@getmangos.com>
+
+    Posix build now works.
+
+    * configure.ac: Fixed.
+    * src/realmlist/Makefile.am: Fixed.
+    * src/worldsrv/AuthHandler.cpp: Removed.
+    * src/worldsrv/GameClient.cpp: Fixed.
+    * src/worldsrv/GameClient.h: Fixed.
+    * src/worldsrv/Luawrapper.cpp: Updated.
+    * src/worldsrv/Makefile.am: Fixed.
+    * src/worldsrv/Opcodes.cpp: Removed.
+    * src/worldsrv/Opcodes.h: Removed.
+    * src/worldsrv/Protocol.rules: Fixed.

@@ -1,22 +1,25 @@
-= MaNGOS2 -- History of visible changes =
+# History of visible changes #
 
 Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
-Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
 
 See the COPYING file for copying conditions.
 
 Visit our project website for documentation, and more:
-http://www.getmangos.com/
+http://getmangos.com/
 
 Please submit bug reports at:
-http://www.getmangos.com/
+http://mangos.lighthouseapp.com/
+
+Discussion mailing list:
+http://groups.google.com/group/mangos-core
 
 Version 0.5.0.02
-* OpenWoW continued has been renamed to MaNGOS2, and a few hundred changes
-  have been made to introduce client 2.4.3 support, and completely document
-  all sources, and other interesting stuff. You will surely love this one.
+* MaNGOS2 has received a lot of love, especially for the authentication and
+  realm list server. It now is feature complete, and supports full account and
+  realm management, and allows client connections from World of Warcraft client
+  version 2.4.3 build 8606 in any client language.
 
 Version 0.5.0.01
-* Hell, it's been a long time, and OpenWoW is back. Now serving an updated
-  core which features full support for World of Warcraft clients of version
-  2.3.0 (build 7561).
+* Initial release of MaNGOS2, now following the principles of Agile Software
+  development.

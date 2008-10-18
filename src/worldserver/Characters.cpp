@@ -3,7 +3,7 @@
  *    \brief  Provides basic Character functions.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,7 +58,7 @@ void GameClient::UpdateNumChars ()
         }
         else
             dbex->ExecuteF ("DELETE FROM accountchars WHERE login='%s' AND realm='%s'",
-                qlogin, qrealm);
+                            qlogin, qrealm);
 
         if (qlogin != Login)
             delete [] qlogin;
@@ -143,7 +143,7 @@ void GameClient::HandleCharDelete (CMSG_CHAR_DELETE_t &inpkt)
 
     if (outpkt->ErrorCode == WSE_CHARACTER_DELETED)
         LOG.Out (LOG_COMMON, "%s: Deleted character '%s'\n",
-            Login, plr->Name);
+                 Login, plr->Name);
     plr->DecRef ();
 }
 
@@ -166,8 +166,8 @@ void GameClient::HandlePlayerLogin (CMSG_PLAYER_LOGIN_t &inpkt)
     SendAccountDataMD5 ();
 
     // MOTD
-    //  sChatHandler.FillSystemMessageData(&data, this, sWorld.GetMotd());
-    //  SendPacket( &data );
+//  sChatHandler.FillSystemMessageData(&data, this, sWorld.GetMotd());
+//  SendPacket( &data );
 
     //data.Initialize(4, SMSG_SET_REST_START);
     //data << unsure;
@@ -190,5 +190,5 @@ void GameClient::HandlePlayerLogin (CMSG_PLAYER_LOGIN_t &inpkt)
     //  sWorld.SendWorldText( outstring.c_str( ) );
 
     LOG.Out (LOG_COMMON, "%s: Entered into world as '%s'\n",
-        Login, Character->Name);
+             Login, Character->Name);
 }

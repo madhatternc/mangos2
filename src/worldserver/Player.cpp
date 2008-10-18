@@ -3,7 +3,7 @@
  *    \brief  Provides basic Player functions.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,8 +40,8 @@ IMPLEMENT_VECTOR_SORTED (Player::, PlayerCreateInfoVector, PlayerCreateInfo *, R
 Player::PlayerCreateInfoVector Player::PlayerCreateData (64, 64);
 
 Player::Player () : Unit (), RegenTimer (0), DismountTimer (0),
-Quests (0, 64), Channels (0, 16), MailBox (0, 16),
-Spells (0, 32)
+    Quests (0, 64), Channels (0, 16), MailBox (0, 16),
+    Spells (0, 32)
 {
     DismountCost = 0;
     DismountPosX = DismountPosY = DismountPosZ = 0.0;
@@ -97,7 +97,7 @@ bool Player::PreloadStaticData ()
         return false;
     }
 
-    if (dbex->NumFields () != 52)
+    if (dbex->NumFields () != 51)
     {
         LOG.Out (LOG_IMPORTANT, "Character prototype table has wrong number of fields!\n");
         World->db->PutExecutor (dbex);
@@ -115,21 +115,20 @@ bool Player::PreloadStaticData ()
         pci->PositionX = dbex->GetFloat (4);
         pci->PositionY = dbex->GetFloat (5);
         pci->PositionZ = dbex->GetFloat (6);
-        pci->Orientation = dbex->GetFloat (7);
-        pci->DisplayId = dbex->GetU32 (8);
-        pci->Strength = dbex->GetU32 (9);
-        pci->Ability = dbex->GetU32 (10);
-        pci->Stamina = dbex->GetU32 (11);
-        pci->Intellect = dbex->GetU32 (12);
-        pci->Spirit = dbex->GetU32 (13);
-        pci->Health = dbex->GetU32 (14);
-        pci->Mana = dbex->GetU32 (15);
-        pci->Rage = dbex->GetU32 (16);
-        pci->Focus = dbex->GetU32 (17);
-        pci->Energy = dbex->GetU32 (18);
-        pci->AttackPower = dbex->GetU32 (19);
-        pci->MinDmg = dbex->GetFloat (20);
-        pci->MaxDmg = dbex->GetFloat (21);
+        pci->DisplayId = dbex->GetU32 (7);
+        pci->Strength = dbex->GetU32 (8);
+        pci->Ability = dbex->GetU32 (9);
+        pci->Stamina = dbex->GetU32 (10);
+        pci->Intellect = dbex->GetU32 (11);
+        pci->Spirit = dbex->GetU32 (12);
+        pci->Health = dbex->GetU32 (13);
+        pci->Mana = dbex->GetU32 (14);
+        pci->Rage = dbex->GetU32 (15);
+        pci->Focus = dbex->GetU32 (16);
+        pci->Energy = dbex->GetU32 (17);
+        pci->AttackPower = dbex->GetU32 (18);
+        pci->MinDmg = dbex->GetFloat (19);
+        pci->MaxDmg = dbex->GetFloat (20);
         int x = 21;
         for (uint i = 0; i < ARRAY_LEN (pci->Item); i++)
         {
@@ -171,7 +170,7 @@ PlayerCreateInfo *Player::FindCreateInfo (int iRace, int iClass, uint32 *err)
     PlayerCreateInfo *pci = NULL;
     bool found = false;
     while (idx < PlayerCreateData.Length () &&
-        (pci = PlayerCreateData.Get (idx))->Race == iRace)
+           (pci = PlayerCreateData.Get (idx))->Race == iRace)
     {
         if (pci->Class == iClass)
         {
@@ -242,10 +241,10 @@ uint32 Player::Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient)
     uint8 powertype;
     switch (inpkt.Class)
     {
-        case CLASS_WARRIOR : powertype = 1; break;          // Rage
-        case CLASS_PALADIN : powertype = 0; break;          // Mana
+        case CLASS_WARRIOR : powertype = 1; break; // Rage
+        case CLASS_PALADIN : powertype = 0; break; // Mana
         case CLASS_HUNTER  : powertype = 0; break;
-        case CLASS_ROGUE   : powertype = 3; break;          // Energy
+        case CLASS_ROGUE   : powertype = 3; break; // Energy
         case CLASS_PRIEST  : powertype = 0; break;
         case CLASS_SHAMAN  : powertype = 0; break;
         case CLASS_MAGE    : powertype = 0; break;
@@ -253,7 +252,7 @@ uint32 Player::Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient)
         case CLASS_DRUID   : powertype = 0; break;
         default:
             return WSE_ERROR_CREATING_CHARACTER;
-    }                                                       // 2 = Focus (unused)
+    } // 2 = Focus (unused)
 
     delete [] Name;
     // Steal inpkt.Name since its allocated for us anyway ...
@@ -270,7 +269,7 @@ uint32 Player::Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient)
     Field.SetF32 (OBJECT_FIELD_SCALE_X, 1.0f);
     Field.SetU32 (UNIT_FIELD_HEALTH, pci->Health);
     Field.SetU32 (UNIT_FIELD_POWER1, pci->Mana);
-    Field.SetU32 (UNIT_FIELD_POWER2, 0);                    // this gets divided by 10
+    Field.SetU32 (UNIT_FIELD_POWER2, 0); // this gets divided by 10
     Field.SetU32 (UNIT_FIELD_POWER3, pci->Focus);
     Field.SetU32 (UNIT_FIELD_POWER4, pci->Energy);
     //Field.SetU32 (UNIT_FIELD_POWER5, 0xEEEEEEEE);
@@ -283,7 +282,7 @@ uint32 Player::Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient)
     Field.SetU32 (UNIT_FIELD_LEVEL, 1);
     Field.SetU32 (UNIT_FIELD_FACTIONTEMPLATE, 1);
     Field.SetU32 (UNIT_FIELD_BYTES_0, uint32 (inpkt.Race ) | (uint32 (inpkt.Class) << 8 ) | \
-        (uint32 (inpkt.Gender) << 16 ) | (uint32 (powertype) << 24));
+                  (uint32 (inpkt.Gender) << 16 ) | (uint32 (powertype) << 24));
     Field.SetU32 (UNIT_FIELD_BYTES_1, 0x0011EE00);
     Field.SetU32 (UNIT_FIELD_BYTES_2, 0xEEEEEE00);
     Field.SetU32 (UNIT_FIELD_FLAGS , 0x08);
@@ -302,20 +301,20 @@ uint32 Player::Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient)
     Field.SetF32 (UNIT_FIELD_MAXDAMAGE, pci->MaxDmg);
     Field.SetU32 (UNIT_FIELD_ATTACKPOWER, pci->AttackPower);
     Field.SetU32 (PLAYER_BYTES, uint32 (inpkt.Skin) | (uint32 (inpkt.Face) << 8) | \
-        (uint32 (inpkt.HairStyle) << 16) | (uint32 (inpkt.HairColor) << 24));
+                  (uint32 (inpkt.HairStyle) << 16) | (uint32 (inpkt.HairColor) << 24));
     Field.SetU32 (PLAYER_BYTES_2, uint32 (inpkt.FacialHair) | (uint32 (inpkt.OutfitId) << 8) | \
-        (0x01 << 16) | (0x01 << 24));
+                  (0x01 << 16) | (0x01 << 24));
     Field.SetU32 (PLAYER_NEXT_LEVEL_XP, 800);
     Field.SetU32 (PLAYER_FIELD_BYTES, 0xEEEE0000);
 
     for (uint i = 0; i < ARRAY_LEN (pci->Item); i++)
         if (pci->Item [i] && pci->ItemSlot [i])
-    {
-        Item *item = new Item ();
-        item->Create (World->GenerateGUID (HIGHGUID_THING), pci->Item [i], this);
-        AddItemToSlot (pci->ItemSlot [i], item);
-        item->DecRef ();
-    }
+        {
+            Item *item = new Item ();
+            item->Create (World->GenerateGUID (HIGHGUID_THING), pci->Item [i], this);
+            AddItemToSlot (pci->ItemSlot [i], item);
+            item->DecRef ();
+        }
 
     for (uint i = 0; i < ARRAY_LEN (pci->Spell); i++)
         if (pci->Spell [i])
@@ -394,8 +393,8 @@ void Player::Update(uint32 p_time )
             m_dismountCost = 0;
 
             SetPosition(m_mount_pos_x,
-                m_mount_pos_y,
-                m_mount_pos_z, true);
+                        m_mount_pos_y,
+                        m_mount_pos_z, true);
 
             Field.SetU32 (UNIT_FIELD_MOUNTDISPLAYID , 0);
             RemoveFlag(UNIT_FIELD_FLAGS ,0x000004);
@@ -454,20 +453,16 @@ void Player::Regenerate(uint16 field_cur, uint16 field_max, bool switch_)
     switch (field_cur)
     {
         case UNIT_FIELD_HEALTH:
-                                                            //FIXME
-            curValue+=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * .15));
+            curValue+=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * .15));  //FIXME
             break;
         case UNIT_FIELD_POWER1:
-                                                            //FIXME
-            curValue+=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * .15));
+            curValue+=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * .15));  //FIXME
             break;
         case UNIT_FIELD_POWER2:
-                                                            //FIXME
-            curValue-=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * 1.5));
+            curValue-=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * 1.5));  //FIXME
             break;
         case UNIT_FIELD_POWER4:
-                                                            //FIXME
-            curValue+=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * .15));
+            curValue+=uint32((GetUInt32Value(UNIT_FIELD_STAT4) * .15));  //FIXME
             break;
     }
 
@@ -482,6 +477,7 @@ void Player::Regenerate(uint16 field_cur, uint16 field_max, bool switch_)
         Field.SetU32 (field_cur, curValue);
     }
 }
+
 
 /////////////////////////////////// QUESTS ////////////////////////////////////////////
 uint32 Player::getQuestStatus(uint32 quest_id)
@@ -561,6 +557,7 @@ uint16 Player::getQuestSlot(uint32 quest_id)
  }
  }*/
 
+
 void Player::KilledMonster(uint32 entry, const uint64 &guid)
 {
     for(StatusMap::iterator i = mQuestStatus.begin(); i != mQuestStatus.end(); ++ i )
@@ -606,10 +603,10 @@ void Player::KilledMonster(uint32 entry, const uint64 &guid)
                     // Ehh, I think a packet should be sent here, but I havent found one in the official logs yet
 
                     return;
-                }                                           // end if mobId == entry
-            }                                               // end for each mobId
-        }                                                   // end if status == 3
-    }                                                       // end for each quest
+                } // end if mobId == entry
+            } // end for each mobId
+        } // end if status == 3
+    } // end for each quest
 }
 
 //======================================================
@@ -637,6 +634,7 @@ bool Player::checkQuestStatus(uint32 quest_id)
 
     return false;
 }
+
 
 ///  This function sends the message displaying the purple XP gain for the char
 ///  It assumes you will send out an UpdateObject packet at a later time.
@@ -667,11 +665,10 @@ void Player::GiveXP(uint32 xp, const uint64 &guid)
     {
         uint32 healthGain = 0, newHealth = 0, manaGain = 0, newMana=0;
         // Level-Up!
-        newXP = newXP - nextLvlXP;                          // reset XP to 0, but add extra from this xp add
-        nextLvlXP += nextLvlXP/2;                           // set the new next level xp
+        newXP = newXP - nextLvlXP;  // reset XP to 0, but add extra from this xp add
+        nextLvlXP += nextLvlXP/2;   // set the new next level xp
 
-                                                            // increment the level
-        uint16 level = (uint16)GetUInt32Value(UNIT_FIELD_LEVEL) + 1;
+        uint16 level = (uint16)GetUInt32Value(UNIT_FIELD_LEVEL) + 1;    // increment the level
 
         healthGain = GetUInt32Value(UNIT_FIELD_STAT2) / 2;
         newHealth = GetUInt32Value(UNIT_FIELD_MAXHEALTH) + healthGain;
@@ -696,8 +693,8 @@ void Player::GiveXP(uint32 xp, const uint64 &guid)
         data.Initialize(SMSG_LEVELUP_INFO);
 
         data << uint32(level);
-        data << uint32(healthGain);                         // health gain
-        data << uint32(manaGain);                           // mana gain
+        data << uint32(healthGain);     // health gain
+        data << uint32(manaGain);       // mana gain
         data << uint32(0);
         data << uint32(0);
         data << uint32(0);
@@ -718,6 +715,7 @@ void Player::GiveXP(uint32 xp, const uint64 &guid)
     Field.SetU32 (PLAYER_XP, newXP);
 }
 
+
 void Player::smsg_InitialSpells()
 {
     WorldPacket data;
@@ -725,13 +723,13 @@ void Player::smsg_InitialSpells()
 
     data.Initialize(SMSG_INITIAL_SPELLS);
     data << uint8(0);
-    data << uint16(spellCount);                             // spell count
+    data << uint16(spellCount); // spell count
 
     std::list<struct spells>::iterator itr;
     for (itr = m_spells.begin(); itr != m_spells.end(); ++itr)
     {
-        data << uint16(itr->spellId);                       // spell id
-        data << uint16(itr->slotId);                        // slot
+        data << uint16(itr->spellId); // spell id
+        data << uint16(itr->slotId); // slot
     }
     data << uint16(0);
 
@@ -757,7 +755,6 @@ void Player::RemoveMail(uint32 id)
         }
     }
 }
-
 void Player::AddMail(Mail *m)
 {
     std::list<Mail*>::iterator itr;
@@ -834,6 +831,7 @@ void Player::_SetCreateBits(UpdateMask *updateMask, Player *target) const
     }
 }
 
+
 void Player::_SetUpdateBits(UpdateMask *updateMask, Player *target) const
 {
     if(target == this)
@@ -850,6 +848,7 @@ void Player::_SetUpdateBits(UpdateMask *updateMask, Player *target) const
         *updateMask &= mask;
     }
 }
+
 
 void Player::_SetVisibleBits(UpdateMask *updateMask, Player *target) const
 {
@@ -903,12 +902,11 @@ void Player::_SetVisibleBits(UpdateMask *updateMask, Player *target) const
 
     for(uint16 i = 0; i < EQUIPMENT_SLOT_END; i++)
     {
-                                                            // lowguid
-        updateMask->SetBit((uint16)(PLAYER_FIELD_INV_SLOT_HEAD + i*2));
-                                                            // highguid
-        updateMask->SetBit((uint16)(PLAYER_FIELD_INV_SLOT_HEAD + (i*2) + 1));
+        updateMask->SetBit((uint16)(PLAYER_FIELD_INV_SLOT_HEAD + i*2)); // lowguid
+        updateMask->SetBit((uint16)(PLAYER_FIELD_INV_SLOT_HEAD + (i*2) + 1)); // highguid
     }
 }
+
 
 void Player::BuildCreateUpdateBlockForPlayer(UpdateData *data, Player *target ) const
 {
@@ -934,6 +932,7 @@ void Player::BuildCreateUpdateBlockForPlayer(UpdateData *data, Player *target ) 
     Unit::BuildCreateUpdateBlockForPlayer(data, target);
 }
 
+
 void Player::DestroyForPlayer(Player *target ) const
 {
     Unit::DestroyForPlayer(target);
@@ -957,6 +956,7 @@ void Player::DestroyForPlayer(Player *target ) const
         }
     }
 }
+
 #endif
 
 bool Player::SaveToDB ()
@@ -971,9 +971,9 @@ bool Player::SaveToDB ()
         Field.SetBits (UNIT_FIELD_FLAGS, UFF_LOCKED_MOVE | UFF_MOUNTED, 0);
     }
 
-    //  bool inworld = IsInWorld();
-    //  if (inworld)
-    //      RemoveFromWorld();
+//  bool inworld = IsInWorld();
+//  if (inworld)
+//      RemoveFromWorld();
 
     ApplyAllItemMods (false);
     ApplyAllAffectMods (false);
@@ -988,9 +988,9 @@ bool Player::SaveToDB ()
     char *actions = EncodeSQL (Actions, sizeof (Actions));
     // Account data
     char *data0 = !AccountData [0] ? NULL :
-    EncodeSQL (AccountData [0], sizeof (uint32) * 2 + 16 + GET_LE32 (AccountData [0] + 4));
+        EncodeSQL (AccountData [0], sizeof (uint32) * 2 + 16 + GET_LE32 (AccountData [0] + 4));
     char *data1 = !AccountData [1] ? NULL :
-    EncodeSQL (AccountData [1], sizeof (uint32) * 2 + 16 + GET_LE32 (AccountData [1] + 4));
+        EncodeSQL (AccountData [1], sizeof (uint32) * 2 + 16 + GET_LE32 (AccountData [1] + 4));
 
     char *qlogin = QuoteSQL (Client->Login);
 
@@ -1001,17 +1001,17 @@ bool Player::SaveToDB ()
         "data='%s',taxiMask='%s',tutorialMask='%s',actions='%s',data0='%s',data1='%s' WHERE guid=%lu",
         PositionX, PositionY, PositionZ, Orientation, MapId, ZoneId, fields, taximask,
         tutmask, actions, NN_STR (data0), NN_STR (data1), GetLowGUID ()) == dbeOk)
-        && dbex->GetAffectedRows ();
+     && dbex->GetAffectedRows ();
 
     if (!updateok && (dbex->ExecuteF ("INSERT INTO characters "
-        "(guid,login,data,name,positionX,positionY,positionZ,orientation,"
-        "mapId,zoneId,taxiMask,tutorialMask,actions,data0,data1) VALUES "
-        "(%lu,'%s','%s','%s',%g,%g,%g,%g,%lu,%lu,'%s','%s','%s','%s','%s')",
-        GetLowGUID (), qlogin, fields, Name, PositionX, PositionY, PositionZ, Orientation,
-        MapId, ZoneId, taximask, tutmask, actions, NN_STR (data0), NN_STR (data1)) != dbeOk))
+            "(guid,login,data,name,positionX,positionY,positionZ,orientation,"
+            "mapId,zoneId,taxiMask,tutorialMask,actions,data0,data1) VALUES "
+            "(%lu,'%s','%s','%s',%g,%g,%g,%g,%lu,%lu,'%s','%s','%s','%s','%s')",
+            GetLowGUID (), qlogin, fields, Name, PositionX, PositionY, PositionZ, Orientation,
+            MapId, ZoneId, taximask, tutmask, actions, NN_STR (data0), NN_STR (data1)) != dbeOk))
     {
         LOG.Out (LOG_IMPORTANT, "Table `characters`: failed to store character %lu!\n",
-            GetLowGUID ());
+                 GetLowGUID ());
         rc = false;
     }
 
@@ -1036,8 +1036,8 @@ bool Player::SaveToDB ()
     ApplyAllAffectMods (true);
     ApplyAllItemMods (true);
 
-    //  if (inworld)
-    //      AddToWorld ();
+//  if (inworld)
+//      AddToWorld ();
 
     return rc;
 }
@@ -1052,8 +1052,8 @@ bool Player::LoadFromDB (uint32 iLowGuid)
         return false;
 
     if ((dbex->ExecuteF ("SELECT name,data,positionX,positionY,positionZ,orientation,mapId,zoneId,"
-        "taxiMask,tutorialMask,actions,data0,data1 FROM characters WHERE guid=%lu",
-        iLowGuid) != dbeOk) || !dbex->NextRow ())
+                         "taxiMask,tutorialMask,actions,data0,data1 FROM characters WHERE guid=%lu",
+                         iLowGuid) != dbeOk) || !dbex->NextRow ())
         return false;
 
     Field.SetU64 (OBJECT_FIELD_GUID, MAKEGUID (HIGHGUID_PLAYER, iLowGuid));
@@ -1122,15 +1122,15 @@ bool Player::DeleteFromDB ()
     // of this player, and if we'll have one big IF it will stop at first
     // SQL query that failed.
     bool rc = (dbex->ExecuteF ("DELETE FROM characters WHERE guid=%lu",
-        GetLowGUID ()) == dbeOk);
+               GetLowGUID ()) == dbeOk);
     if (dbex->ExecuteF ("DELETE FROM inventory WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         rc = false;
     if (dbex->ExecuteF ("DELETE FROM quest_status WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         rc = false;
     if (dbex->ExecuteF ("DELETE FROM char_spells WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         rc = false;
 
     for (uint i = 0; i < ARRAY_LEN (Items); i++)
@@ -1149,7 +1149,7 @@ bool Player::SaveQuestStatus (DatabaseExecutor *dbex)
     // them if we would use this approach.
 
     if (dbex->ExecuteF ("DELETE FROM quest_status WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     for (int i = 0; i < Quests.Length (); i++)
@@ -1166,7 +1166,7 @@ bool Player::SaveQuestStatus (DatabaseExecutor *dbex)
             qs->ItemCount [0], qs->ItemCount [1], qs->ItemCount [2], qs->ItemCount [3]) != dbeOk)
         {
             LOG.Out (LOG_IMPORTANT, "Table `quest_status`: failed to store quest %lu for player %lu!\n",
-                qs->QuestId, GetLowGUID ());
+                     qs->QuestId, GetLowGUID ());
             return false;
         }
     }
@@ -1194,10 +1194,10 @@ bool Player::LoadQuestStatus (DatabaseExecutor *dbex)
         qs->ItemCount [1] = dbex->GetU32 (7);
         qs->ItemCount [2] = dbex->GetU32 (8);
         qs->ItemCount [3] = dbex->GetU32 (9);
-        //      if (LoadExistingQuest (qs))
-        Quests.Push (qs);
-        //      else
-        //          delete qs;
+//      if (LoadExistingQuest (qs))
+            Quests.Push (qs);
+//      else
+//          delete qs;
     }
     return true;
 }
@@ -1205,7 +1205,7 @@ bool Player::LoadQuestStatus (DatabaseExecutor *dbex)
 bool Player::SaveInventory (DatabaseExecutor *dbex)
 {
     if (dbex->ExecuteF ("DELETE FROM inventory WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     for (uint i = 0; i < ARRAY_LEN (Items); i++)
@@ -1219,7 +1219,7 @@ bool Player::SaveInventory (DatabaseExecutor *dbex)
             GetLowGUID (), i, Items [i]->GetLowGUID ()) != dbeOk)
         {
             LOG.Out (LOG_IMPORTANT, "Table `inventory`: failed to store inventory item %lu for player %lu!\n",
-                Items [i]->GetLowGUID (), GetLowGUID ());
+                    Items [i]->GetLowGUID (), GetLowGUID ());
             return false;
         }
     }
@@ -1229,17 +1229,17 @@ bool Player::SaveInventory (DatabaseExecutor *dbex)
 bool Player::LoadInventory (DatabaseExecutor *dbex)
 {
     if (dbex->ExecuteF ("SELECT itemGuid,slot FROM inventory WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     // Clean current inventory
     for (uint i = 0; i < ARRAY_LEN (Items); i++)
         if (Items [i])
-    {
-        Items [i]->DecRef ();
-        Items [i] = 0;
-        Field.SetU64 (PLAYER_FIELD_INV_SLOT_HEAD + i * 2, 0);
-    }
+        {
+            Items [i]->DecRef ();
+            Items [i] = 0;
+            Field.SetU64 (PLAYER_FIELD_INV_SLOT_HEAD + i * 2, 0);
+        }
 
     while (dbex->NextRow ())
     {
@@ -1255,7 +1255,7 @@ bool Player::LoadInventory (DatabaseExecutor *dbex)
 bool Player::SaveSpells (DatabaseExecutor *dbex)
 {
     if (dbex->ExecuteF ("DELETE FROM char_spells WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     for (int i = 0; i < Spells.Length (); i++)
@@ -1265,7 +1265,7 @@ bool Player::SaveSpells (DatabaseExecutor *dbex)
             GetLowGUID (), s->SpellId, s->SlotId) != dbeOk)
         {
             LOG.Out (LOG_IMPORTANT, "Table `char_spells`: failed to store spell %lu for player %lu!\n",
-                s->SpellId, GetLowGUID ());
+                     s->SpellId, GetLowGUID ());
             return false;
         }
     }
@@ -1275,7 +1275,7 @@ bool Player::SaveSpells (DatabaseExecutor *dbex)
 bool Player::LoadSpells (DatabaseExecutor *dbex)
 {
     if (dbex->ExecuteF ("SELECT spellId,slot FROM char_spells WHERE charGuid=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     // Clear spell list
@@ -1290,7 +1290,7 @@ bool Player::LoadSpells (DatabaseExecutor *dbex)
 bool Player::SaveMail (DatabaseExecutor *dbex)
 {
     if (dbex->ExecuteF ("DELETE FROM mail WHERE recipient=%lu",
-        GetLowGUID ()) != dbeOk)
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     for (int i = 0; i < MailBox.Length (); i++)
@@ -1300,9 +1300,9 @@ bool Player::SaveMail (DatabaseExecutor *dbex)
         char *qbody = QuoteSQL (m->Body);
 
         if (dbex->ExecuteF ("INSERT INTO mail (mailId,sender,recipient,subject,body,item,time,money,COD,checked) "
-            "VALUES (%lu,%lu,%lu,'%s','%s',%lu,%lu,%lu,%lu,%lu)",
-            m->MessageId, m->SenderId, m->RecipientId, qsubj, qbody,
-            m->ItemId, m->Time, m->Money, m->COD, m->Checked) != dbeOk)
+                            "VALUES (%lu,%lu,%lu,'%s','%s',%lu,%lu,%lu,%lu,%lu)",
+                            m->MessageId, m->SenderId, m->RecipientId, qsubj, qbody,
+                            m->ItemId, m->Time, m->Money, m->COD, m->Checked) != dbeOk)
             return false;;
 
         if (qsubj != m->Subject)
@@ -1316,8 +1316,8 @@ bool Player::SaveMail (DatabaseExecutor *dbex)
 bool Player::LoadMail (DatabaseExecutor *dbex)
 {
     if (dbex->ExecuteF ("SELECT mailId,sender,recipient,subject,body,item,time,"
-        "money,COD,checked FROM mail WHERE recipient=%lu",
-        GetLowGUID ()) != dbeOk)
+                        "money,COD,checked FROM mail WHERE recipient=%lu",
+                        GetLowGUID ()) != dbeOk)
         return false;
 
     // Clear message list -- just in case
@@ -1404,15 +1404,15 @@ int Player::FindFreeItemSlot (uint32 iInvType)
 
     for (uint i = 0; i < ARRAY_LEN (ItemSlotTypes); i++)
         if ((ItemSlotTypes [i].InvType == iInvType) &&
-        !GetItem (ItemSlotTypes [i].Slot))
-    {
-        // Special case for 2H weapon
-        if ((iInvType == INVTYPE_2HWEAPON) &&
-            GetItem (EQUIPMENT_SLOT_OFFHAND))
-            return -1;
+            !GetItem (ItemSlotTypes [i].Slot))
+        {
+            // Special case for 2H weapon
+            if ((iInvType == INVTYPE_2HWEAPON) &&
+                GetItem (EQUIPMENT_SLOT_OFFHAND))
+                return -1;
 
-        return ItemSlotTypes [i].Slot;
-    }
+            return ItemSlotTypes [i].Slot;
+        }
 
     return -1;
 }
@@ -1421,15 +1421,15 @@ bool Player::CanEquipItemInSlot (uint8 iSlot, uint32 iInvType)
 {
     for (uint i = 0; i < ARRAY_LEN (ItemSlotTypes); i++)
         if ((ItemSlotTypes [i].InvType == iInvType) &&
-        (ItemSlotTypes [i].Slot == iSlot))
-    {
-        // Special case for 2H weapon
-        if ((iInvType == INVTYPE_2HWEAPON) &&
-            GetItem (EQUIPMENT_SLOT_OFFHAND))
-            return false;
+            (ItemSlotTypes [i].Slot == iSlot))
+        {
+            // Special case for 2H weapon
+            if ((iInvType == INVTYPE_2HWEAPON) &&
+                GetItem (EQUIPMENT_SLOT_OFFHAND))
+                return false;
 
-        return true;
-    }
+            return true;
+        }
 
     return false;
 }
@@ -1462,9 +1462,9 @@ void Player::SwapItemSlots (uint8 iSrcSlot, uint8 iDstSlot)
     }
 
     Field.SetU64 (PLAYER_FIELD_INV_SLOT_HEAD + (iSrcSlot * 2),
-        Items [iSrcSlot] ? Items [iSrcSlot]->GetGUID () : 0);
+                  Items [iSrcSlot] ? Items [iSrcSlot]->GetGUID () : 0);
     Field.SetU64 (PLAYER_FIELD_INV_SLOT_HEAD + (iDstSlot * 2),
-        Items [iDstSlot] ? Items [iDstSlot]->GetGUID () : 0);
+                  Items [iDstSlot] ? Items [iDstSlot]->GetGUID () : 0);
 }
 
 int Player::GetSlotByItemID (uint32 iItemId)
@@ -1576,6 +1576,7 @@ void Player::AddToWorld()
     }
 }
 
+
 void Player::RemoveFromWorld()
 {
     for(int i = 0; i < INVENTORY_SLOT_ITEM_END; i++)
@@ -1587,6 +1588,7 @@ void Player::RemoveFromWorld()
     Object::RemoveFromWorld();
 }
 
+
 void Player::SetMovement(uint8 pType)
 {
     WorldPacket data;
@@ -1594,29 +1596,29 @@ void Player::SetMovement(uint8 pType)
     switch(pType)
     {
         case MOVE_ROOT:
-        {
-            data.Initialize(SMSG_FORCE_MOVE_ROOT);
-            data << GetGUID();
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                data.Initialize(SMSG_FORCE_MOVE_ROOT);
+                data << GetGUID();
+                GetSession()->SendPacket(&data);
+            }break;
         case MOVE_UNROOT:
-        {
-            data.Initialize(SMSG_FORCE_MOVE_UNROOT);
-            data << GetGUID();
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                data.Initialize(SMSG_FORCE_MOVE_UNROOT);
+                data << GetGUID();
+                GetSession()->SendPacket(&data);
+            }break;
         case MOVE_WATER_WALK:
-        {
-            data.Initialize(SMSG_MOVE_WATER_WALK);
-            data << GetGUID();
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                data.Initialize(SMSG_MOVE_WATER_WALK);
+                data << GetGUID();
+                GetSession()->SendPacket(&data);
+            }break;
         case MOVE_LAND_WALK:
-        {
-            data.Initialize(SMSG_MOVE_LAND_WALK);
-            data << GetU32Value(OBJECT_FIELD_GUID);
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                data.Initialize(SMSG_MOVE_LAND_WALK);
+                data << GetU32Value(OBJECT_FIELD_GUID);
+                GetSession()->SendPacket(&data);
+            }break;
         default:break;
     }
 }
@@ -1628,36 +1630,36 @@ void Player::SetPlayerSpeed(uint8 SpeedType, float value, bool forced)
     switch(SpeedType)
     {
         case RUN:
-        {
-            if(forced) { data.Initialize(SMSG_FORCE_RUN_SPEED_CHANGE); }
-            else { data.Initialize(MSG_MOVE_SET_RUN_SPEED); }
-            data << GetGUID();
-            data << float(value);
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                if(forced) { data.Initialize(SMSG_FORCE_RUN_SPEED_CHANGE); }
+                else { data.Initialize(MSG_MOVE_SET_RUN_SPEED); }
+                data << GetGUID();
+                data << float(value);
+                GetSession()->SendPacket(&data);
+            }break;
         case RUNBACK:
-        {
-            if(forced) { data.Initialize(SMSG_FORCE_RUN_BACK_SPEED_CHANGE); }
-            else { data.Initialize(MSG_MOVE_SET_RUN_BACK_SPEED); }
-            data << GetGUID();
-            data << float(value);
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                if(forced) { data.Initialize(SMSG_FORCE_RUN_BACK_SPEED_CHANGE); }
+                else { data.Initialize(MSG_MOVE_SET_RUN_BACK_SPEED); }
+                data << GetGUID();
+                data << float(value);
+                GetSession()->SendPacket(&data);
+            }break;
         case SWIM:
-        {
-            if(forced) { data.Initialize(SMSG_FORCE_SWIM_SPEED_CHANGE); }
-            else { data.Initialize(MSG_MOVE_SET_SWIM_SPEED); }
-            data << GetGUID();
-            data << float(value);
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                if(forced) { data.Initialize(SMSG_FORCE_SWIM_SPEED_CHANGE); }
+                else { data.Initialize(MSG_MOVE_SET_SWIM_SPEED); }
+                data << GetGUID();
+                data << float(value);
+                GetSession()->SendPacket(&data);
+            }break;
         case SWIMBACK:
-        {
-            data.Initialize(MSG_MOVE_SET_SWIM_BACK_SPEED);
-            data << GetGUID();
-            data << float(value);
-            GetSession()->SendPacket(&data);
-        }break;
+            {
+                data.Initialize(MSG_MOVE_SET_SWIM_BACK_SPEED);
+                data << GetGUID();
+                data << float(value);
+                GetSession()->SendPacket(&data);
+            }break;
         default:break;
     }
 }
@@ -1761,7 +1763,7 @@ void Player::KillPlayer()
     GetSession()->SendPacket(&data);
 
     setDeathState(CORPSE);
-    SetFlag(UNIT_FIELD_FLAGS, 0x08);                        //player death animation, also can be used with DYNAMIC_FLAGS
+    SetFlag(UNIT_FIELD_FLAGS, 0x08); //player death animation, also can be used with DYNAMIC_FLAGS
     SetFlag(UNIT_DYNAMIC_FLAGS, 0x00);
     CreateCorpse();
 }
@@ -1776,7 +1778,7 @@ void Player::CreateCorpse()
     {
         pCorpse = new Corpse();
         pCorpse->Create(objmgr.GenerateLowGuid(HIGHGUID_CORPSE), this, GetMapId(), GetPositionX(),
-            GetPositionY(), GetPositionZ(), GetOrientation());
+                        GetPositionY(), GetPositionZ(), GetOrientation());
 
         _uf = GetU32Value(UNIT_FIELD_BYTES_0);
         _pb = GetU32Value(PLAYER_BYTES);
@@ -1816,7 +1818,7 @@ void Player::CreateCorpse()
         pCorpse->SaveToDB();
         objmgr.AddObject(pCorpse);
     }
-    else                                                    //Corpse already exist in world, update it
+    else //Corpse already exist in world, update it
     {
         pCorpse->SetPosition(GetPositionX(), GetPositionY(), GetPositionZ(), GetOrientation());
     }
@@ -1838,7 +1840,7 @@ void Player::SpawnCorpseBones()
     if(pCorpse)
     {
         pCorpse->Field.SetU32 (CORPSE_FIELD_FLAGS, 5);
-        pCorpse->SetUInt64Value(CORPSE_FIELD_OWNER, 0);     // remove corpse owner association
+        pCorpse->SetUInt64Value(CORPSE_FIELD_OWNER, 0); // remove corpse owner association
         //remove item association
         for (int i = 0; i < EQUIPMENT_SLOT_END; i++)
         {
@@ -1870,6 +1872,7 @@ void Player::DeathDurabilityLoss(double percent)
     }
 }
 
+
 void Player::RepopAtGraveyard()
 {
     float closestX, closestY, closestZ, closestO;
@@ -1886,7 +1889,7 @@ void Player::RepopAtGraveyard()
             curY = pGrave->Y;
             curZ = pGrave->Z;
             if(first || pow(m_positionX-curX,2) + pow(m_positionY-curY,2) <
-                pow(m_positionX-closestX,2) + pow(m_positionY-closestY,2) )
+               pow(m_positionX-closestX,2) + pow(m_positionY-closestY,2) )
             {
                 first = false;
 
@@ -1906,11 +1909,11 @@ void Player::JoinedChannel(Channel *c)
 {
     m_channels.push_back(c);
 }
-
 void Player::LeftChannel(Channel *c)
 {
     m_channels.remove(c);
 }
+
 #endif
 
 void Player::ApplyModifierU32 (uint iFieldIndex, int iDelta, bool iApply)
@@ -1982,8 +1985,8 @@ void Player::ApplyAllItemMods (bool iApply)
 
 void Player::CleanupChannels ()
 {
-    //  for (int i = Channels.Length () - 1; i >= 0; i--)
-    //      Channels.Get (i)->Leave (this, false);
+//  for (int i = Channels.Length () - 1; i >= 0; i--)
+//      Channels.Get (i)->Leave (this, false);
 }
 
 void Player::Update (uint32 iDeltaMs)
@@ -2017,7 +2020,7 @@ void Player::Login ()
     time_t minutes = World->GetGameTime () / 60;
     time_t hours = minutes / 60; minutes %= 60;
     timpkt->Time = minutes + (hours << 6);
-    timpkt->Speed = (float)0.017f;                          // Normal Game Speed
+    timpkt->Speed = (float)0.017f;  // Normal Game Speed
     Client->Send (timpkt);
 
     // SMSG_UPDATE_AURA_DURATION -- if the player had an aura on when he logged out

@@ -3,7 +3,7 @@
  *    \brief  Provides a basic object definition.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,7 +62,7 @@ Object::Object () : ObjectsInRange (0, 64)
     BackWalkSpeed = 2.5;
     SwimSpeed = 4.72222;
     BackSwimSpeed = 4.5;
-    TurnRate = 3.14159;                                     // 180 degrees per second
+    TurnRate = 3.14159; // 180 degrees per second
 
     IsInWorld = false;
 

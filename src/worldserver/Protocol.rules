@@ -1,5 +1,5 @@
 --- #YAML:1.0
-# World server protocol definition, version 2.4.3
+# World of Warcraft protocol opcodes 1.3.0
 # This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
 -
     name: header_start

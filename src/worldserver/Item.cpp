@@ -3,7 +3,7 @@
  *    \brief  Provides basic Item functions.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -208,14 +208,14 @@ bool Item::SaveToDB ()
     // Most of the time the item will be already in database, so
     // try UPDATE first, and if it fails, try INSERT
     bool updateok = (dbex->ExecuteF ("UPDATE items SET data='%s' WHERE guid=%lu",
-        fields, GetLowGUID ()) == dbeOk)
-        && dbex->GetAffectedRows ();
+                                     fields, GetLowGUID ()) == dbeOk)
+                 && dbex->GetAffectedRows ();
     if (!updateok && ((dbex->ExecuteF ("INSERT INTO items VALUES (%lu, '%s')",
-        GetLowGUID (), fields) != dbeOk)
-        || !dbex->GetAffectedRows ()))
+                                       GetLowGUID (), fields) != dbeOk)
+                   || !dbex->GetAffectedRows ()))
     {
         LOG.Out (LOG_IMPORTANT, "Table `items`: failed to store item %lu!\n",
-            GetLowGUID ());
+                 GetLowGUID ());
         rc = false;
     }
 
@@ -233,7 +233,7 @@ bool Item::LoadFromDB (uint32 iLowGuid)
     if ((dbex->ExecuteF ("SELECT data FROM items WHERE guid=%lu", iLowGuid) != dbeOk) ||
         !dbex->NextRow ())
     {
-        error:  World->db->PutExecutor (dbex);
+error:  World->db->PutExecutor (dbex);
         return false;
     }
 

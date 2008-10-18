@@ -3,7 +3,7 @@
  *    \brief  Defines vectors used by packets of the world server protocol.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,8 +39,8 @@ bool CharacterData::Load (DatabaseExecutor *dbex, uint32 iLowGuid)
 {
     // We can safely ignore top 32 bits of the GUID since HIGHGUID_PLAYER == 0
     if ((dbex->ExecuteF ("SELECT name,PositionX,PositionY,PositionZ,mapId,zoneId,data "
-        "FROM characters WHERE guid=%d", iLowGuid) != dbeOk)
-        || !dbex->NextRow ())
+                         "FROM characters WHERE guid=%d", iLowGuid) != dbeOk)
+     || !dbex->NextRow ())
         return false;
 
     GUID = MAKEGUID (HIGHGUID_PLAYER, iLowGuid);
@@ -87,7 +87,7 @@ bool CharacterData::Load (DatabaseExecutor *dbex, uint32 iLowGuid)
     }
 
     if (dbex->ExecuteF ("SELECT itemGuid,slot FROM inventory WHERE charGuid=%d "
-        "AND slot<" STRINGIZE(EQUIPMENT_SLOT_END), iLowGuid) != dbeOk)
+                        "AND slot<" STRINGIZE(EQUIPMENT_SLOT_END), iLowGuid) != dbeOk)
         return true;
 
     while (dbex->NextRow ())
@@ -99,7 +99,7 @@ bool CharacterData::Load (DatabaseExecutor *dbex, uint32 iLowGuid)
         // Load just the first few fields of the item so that
         DatabaseExecutor *ndbex = dbex->GetParent ()->GetExecutor ();
         if ((ndbex->ExecuteF ("SELECT data FROM items WHERE guid=%lu", item_guid) != dbeOk)
-            || !ndbex->NextRow ())
+         || !ndbex->NextRow ())
         {
             dbex->GetParent ()->PutExecutor (ndbex);
             continue;

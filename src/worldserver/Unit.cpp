@@ -3,7 +3,7 @@
  *    \brief  Provides basic Unit functions.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ IMPLEMENT_VECTOR (Affect::, ModifierVector, Modifier *)
 IMPLEMENT_VECTOR (Unit::, AffectVector, Affect *)
 
 Unit::Unit () : Object (), AttackTimer (0), Attackers (0, 16),
-Affects (0, 16)
+    Affects (0, 16)
 {
     TempAffect = NULL;
     Aura = NULL;
@@ -92,16 +92,16 @@ void Unit::ReceiveDamage (Unit *iAttacker, uint32 iDamage)
     {
         Field.SetU32 (UNIT_FIELD_HEALTH, Health - iDamage);
 
-        #if 0
+#if 0
         // This logic will go to corresponding class: Creature or Player
         // Every unit type has its own rules how to decide how to answer
         // when somebody hurts him.
 
         // this need alot of work.
         if ((World->GameFeatures & GF_PLAYER_AUTOATTACK)
-            || !(GetType () & TYPE_PLAYER))
+         || !(GetType () & TYPE_PLAYER))
         {
-            ((Creature*)iVictim)->AI_ChangeState(ATTACKING);// when attacked mobs stop moving around
+            ((Creature*)iVictim)->AI_ChangeState(ATTACKING); // when attacked mobs stop moving around
             ((Creature*)iVictim)->AI_AttackReaction(this, damage);
             /*
              //uint32 max_health = Field.GetU32(UNIT_FIELD_MAXHEALTH);
@@ -114,9 +114,9 @@ void Unit::ReceiveDamage (Unit *iAttacker, uint32 iDamage)
              {}
              */
         }
-        #endif
+#endif
     }
-    else                                                    // Oh well, we're killed
+    else // Oh well, we're killed
     {
         // Put something in our pockets if they're empty
         GenerateLoot ();
@@ -129,7 +129,7 @@ void Unit::ReceiveDamage (Unit *iAttacker, uint32 iDamage)
         Field.SetBits (UNIT_FIELD_FLAGS, UFF_IN_COMBAT | UFF_DEAD, UFF_DEAD);
 
         // Remove the effect of all items & spells from the victim
-        //@@@       RemoveAllAffects ();
+//@@@       RemoveAllAffects ();
 
         SetDeathState (JUST_DIED);
     }
@@ -142,8 +142,8 @@ void Unit::SpellNonMeleeDamageLog (Unit *iVictim, uint32 iSpellId, uint32 iDamag
     //  return;
 
     DEBUG_PRINTF ("%X:%u attacked %X:%u for %u damage with spell %u",
-        GetHighGUID (), GetLowGUID (), iVictim->GetHighGUID (),
-        iVictim->GetLowGUID (), iDamage, iSpellId);
+             GetHighGUID (), GetLowGUID (), iVictim->GetHighGUID (),
+             iVictim->GetLowGUID (), iDamage, iSpellId);
 
     SMSG_SPELLNONMELEEDAMAGELOG_t *outpkt = SMSG_SPELLNONMELEEDAMAGELOG_t::Create ();
     outpkt->Victim = iVictim->GetGUID ();
@@ -163,8 +163,8 @@ void Unit::PeriodicAuraLog (Unit *iVictim, uint32 iSpellId, uint32 iDamage, uint
     //  return;
 
     DEBUG_PRINTF ("PeriodicAuraLog: %X:%u attacked %X:%u for %u damage with spell %u",
-        GetHighGUID (), GetLowGUID (), iVictim->GetHighGUID (),
-        iVictim->GetLowGUID (), iDamage, iSpellId);
+             GetHighGUID (), GetLowGUID (), iVictim->GetHighGUID (),
+             iVictim->GetLowGUID (), iDamage, iSpellId);
 
     SMSG_PERIODICAURALOG_t *outpkt = SMSG_PERIODICAURALOG_t::Create ();
     outpkt->Victim = iVictim->GetGUID ();
@@ -185,12 +185,12 @@ void Unit::AttackerStateUpdate (Unit *iVictim, uint32 iDamage, bool DoT)
     uint32 damageType = 0;
 
     DEBUG_PRINTF ("%X:%u attacked %X:%u for %u damage",
-        GetHighGUID (), GetLowGUID (),
-        iVictim->GetLowGUID (), iVictim->GetHighGUID(), iDamage);
+                  GetHighGUID (), GetLowGUID (),
+                  iVictim->GetLowGUID (), iVictim->GetHighGUID(), iDamage);
 
     if (!iDamage)
         //@@@@@@@@todo: highly temporary
-        iDamage = 10;                                       //CalculateDamage (this);
+        iDamage = 10;//CalculateDamage (this);
     else
         damageType = 1;
 
@@ -198,7 +198,7 @@ void Unit::AttackerStateUpdate (Unit *iVictim, uint32 iDamage, bool DoT)
         hit_status = 0;
 
     // if we are currently casting a melee spell then finish it now
-    #if 0
+#if 0
     if (MeleeSpell)
     {
         if (CurrentSpell->getState () == SPELL_STATE_IDLE)
@@ -211,7 +211,7 @@ void Unit::AttackerStateUpdate (Unit *iVictim, uint32 iDamage, bool DoT)
             m_currentSpell->finish();
         }
     }
-    #endif
+#endif
 
     SMSG_ATTACKERSTATEUPDATE_t *outpkt = SMSG_ATTACKERSTATEUPDATE_t::Create ();
     outpkt->AttackFlags = hit_status;
@@ -246,8 +246,8 @@ void Unit::AttackStart (Unit *iVictim)
     }
 
     DEBUG_PRINTF ("%X:%u attacked %X:%u",
-        GetHighGUID (), GetLowGUID (),
-        iVictim->GetHighGUID (), iVictim->GetLowGUID ());
+                  GetHighGUID (), GetLowGUID (),
+                  iVictim->GetHighGUID (), iVictim->GetLowGUID ());
 
     // Send out ATTACKSTART
     SMSG_ATTACKSTART_t *outpkt = SMSG_ATTACKSTART_t::Create ();
@@ -264,8 +264,8 @@ void Unit::AttackStart (Unit *iVictim)
 void Unit::AttackStop (uint64 iVictimGuid)
 {
     DEBUG_PRINTF ("%X:%u stopped attacking %X:%u",
-        GetHighGUID (), GetLowGUID (),
-        uint32 (iVictimGuid >> 32), uint32 (iVictimGuid));
+                  GetHighGUID (), GetLowGUID (),
+                  uint32 (iVictimGuid >> 32), uint32 (iVictimGuid));
 
     Field.SetBits (UNIT_FIELD_FLAGS, UFF_IN_COMBAT, 0);
 
@@ -278,7 +278,7 @@ void Unit::AttackStop (uint64 iVictimGuid)
 
 bool Unit::AddAffect (Affect *iAff, bool iUniq)
 {
-    #if 0
+#if 0
     int i;
 
     DEBUG_PRINTF ("adding affect");
@@ -305,7 +305,7 @@ bool Unit::AddAffect (Affect *iAff, bool iUniq)
     m_affects.push_back(aff);
 
     for (Affect::ModList::const_iterator j = aff->GetModList().begin();
-        j != aff->GetModList().end(); j++)
+         j != aff->GetModList().end(); j++)
     {
         ApplyModifier(&(*j), true, aff);
     }
@@ -315,22 +315,21 @@ bool Unit::AddAffect (Affect *iAff, bool iUniq)
     Log::getSingleton().outDetail("Unit::AddAffect() - affect added");
 
     return true;
-    #endif
-    return false;
+#endif
+        return false;
 }
 
 void Unit::RemoveAffect (Affect *aff)
 {
     int aid = Affects.Find(aff);
     if(aid == -1)
-        return;
+            return;
 
     if(aff->CoAffect != 0)
         RemoveAffect(aff->CoAffect);
 
-    // Remove all modifiers of this affect
-    for (int i = 0; i < aff->Modifiers.Length(); i++)
-    {
+        // Remove all modifiers of this affect
+    for (int i = 0; i < aff->Modifiers.Length(); i++) {
         ApplyModifier(aff->Modifiers.Get(i), false, aff);
     }
 
@@ -341,20 +340,18 @@ void Unit::RemoveAffect (Affect *aff)
 
 void Unit::RemoveAffectById(uint32 spellId)
 {
-    #if 0
+#if 0
     if(AuraSlot != NULL)
-        if(m_aura->GetId() == spellId)
-    {
-        Aurasl = NULL;
-        return;
-    }
+        if(m_aura->GetId() == spellId){
+            Aurasl = NULL;
+            return;
+        }
 
     Affect* aff = FindAff(spellId);
     if(aff)
         aff->SetDuration(0);
-    #endif
+#endif
 }
-
 #if 0
 
 bool Unit::SetAffDuration(uint32 spellId,Unit* caster,uint32 duration)
@@ -363,8 +360,7 @@ bool Unit::SetAffDuration(uint32 spellId,Unit* caster,uint32 duration)
 
     for (i = m_affects.begin(); i != m_affects.end(); i++)
     {
-        if ((*i)->GetId() == spellId && (*i)->GetCasterGUID() == caster->GetGUID())
-        {
+        if ((*i)->GetId() == spellId && (*i)->GetCasterGUID() == caster->GetGUID()){
             (*i)->SetDuration(duration);
             return true;
         }
@@ -375,7 +371,7 @@ bool Unit::SetAffDuration(uint32 spellId,Unit* caster,uint32 duration)
 
 bool Unit::RemoveAffect(uint32 spellId)
 {
-    #if 0
+#if 0
     Affects::iterator i, next;
     Affect *aff;
     bool result = false;
@@ -390,7 +386,7 @@ bool Unit::RemoveAffect(uint32 spellId)
         if (aff->GetSpellId() == spellId)
         {
             for (Affect::ModList::const_iterator j = aff->GetModList().begin();
-                j != aff->GetModList().end(); i++)
+                 j != aff->GetModList().end(); i++)
             {
                 ApplyModifier(&(*j), false, aff);
             }
@@ -406,13 +402,13 @@ bool Unit::RemoveAffect(uint32 spellId)
     }
 
     return result;
-    #endif
+#endif
     return false;
 }
 
 void Unit::RemoveAllAffects()
 {
-    #if 0
+#if 0
     for (int i = Affects.Length () - 1; i >= 0; i--)
     {
         Affect *aff = (Affect *)Affects.Get (i);
@@ -425,12 +421,13 @@ void Unit::RemoveAllAffects()
     }
 
     return;
-    #endif
+#endif
 }
+
 
 void Unit::ApplyAllAffectMods (bool iApply)
 {
-    #if 0
+#if 0
     Affects::iterator i;
     Affect::ModList::const_iterator j;
 
@@ -441,754 +438,712 @@ void Unit::ApplyAllAffectMods (bool iApply)
         aff = *i;
 
         for (j = aff->GetModList().begin();
-            j != aff->GetModList().end(); j++)
+             j != aff->GetModList().end(); j++)
         {
             ApplyModifier(&(*j), true, aff);
         }
 
         _AddAura(aff);
     }
-    #endif
+#endif
 }
+
 
 void Unit::ApplyModifier (Modifier *iMod, bool iApply, Affect *iParent)
 {
-    #if 0
+#if 0
     WorldPacket data;
     switch(mod->GetType())
     {
         case SPELL_AURA_NONE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_BIND_SIGHT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_THREAT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_AURAS_VISIBLE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RESISTANCE_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_CREATURE_ATTACK_POWER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_TOTAL_THREAT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_WATER_WALK:
-        {
-            apply ?
-                data.Initialize(SMSG_MOVE_WATER_WALK)
-                : data.Initialize(SMSG_MOVE_LAND_WALK);
-            data << GetGUID();
-            SendToSet(&data,true);
-        }break;
+            {
+                apply ?
+               data.Initialize(SMSG_MOVE_WATER_WALK)
+               : data.Initialize(SMSG_MOVE_LAND_WALK);
+                data << GetGUID();
+                SendToSet(&data,true);
+            }break;
         case SPELL_AURA_FEATHER_FALL:
-        {
-            apply ?
-                data.Initialize(SMSG_MOVE_FEATHER_FALL)
-                : data.Initialize(SMSG_MOVE_NORMAL_FALL);
-            data << GetGUID();
-            SendToSet(&data,true);
-        }break;
+            {
+                apply ?
+               data.Initialize(SMSG_MOVE_FEATHER_FALL)
+               : data.Initialize(SMSG_MOVE_NORMAL_FALL);
+                data << GetGUID();
+                SendToSet(&data,true);
+            }break;
         case SPELL_AURA_HOVER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_ADD_FLAT_MODIFIER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_ADD_PCT_MODIFIER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_ADD_TARGET_TRIGGER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_TAUNT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POWER_REGEN_PERCENT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_ADD_CASTER_HIT_TRIGGER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_OVERRIDE_CLASS_SCRIPTS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RANGED_DAMAGE_TAKEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RANGED_DAMAGE_TAKEN_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_HEALING:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_IGNORE_REGEN_INTERRUPT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_MECHANIC_RESISTANCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_HEALING_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_SHARE_PET_TRACKING:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_STUN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_UNTRACKABLE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_EMPATHY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_OFFHAND_DAMAGE_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POWER_COST_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RANGED_ATTACK_POWER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_MELEE_DAMAGE_TAKEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_MELEE_DAMAGE_TAKEN_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_RANGED_ATTACK_POWER_ATTACKER_BONUS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POSSESS_PET:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INCREASE_SPEED_ALWAYS:
-        {
-            data.Initialize(MSG_MOVE_SET_RUN_SPEED);
-            data << GetGUID();
-            apply ? data << float(7.5+7.5/100*mod->GetAmount()) : data << float(7.5);
-            SendToSet(&data,true);
-        }break;
+            {
+                data.Initialize(MSG_MOVE_SET_RUN_SPEED);
+                data << GetGUID();
+                apply ? data << float(7.5+7.5/100*mod->GetAmount()) : data << float(7.5);
+                SendToSet(&data,true);
+            }break;
         case SPELL_AURA_MOD_DAMAGE_DONE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_MOUNTED_SPEED_ALWAYS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_CREATURE_RANGED_ATTACK_POWER:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INCREASE_ENERGY_PERCENT:
-        {
-            uint32 percent = mod->GetAmount();
-            uint32 current = Field.GetU32(UNIT_FIELD_POWER4);
-            apply ? Field.SetU32(UNIT_FIELD_POWER4,current+current/100*percent) : Field.SetU32(UNIT_FIELD_POWER4,current-current/(100+percent)*100);
-        }break;
+            {
+                uint32 percent = mod->GetAmount();
+                uint32 current = Field.GetU32(UNIT_FIELD_POWER4);
+                apply ? Field.SetU32(UNIT_FIELD_POWER4,current+current/100*percent) : Field.SetU32(UNIT_FIELD_POWER4,current-current/(100+percent)*100);
+            }break;
         case SPELL_AURA_MOD_INCREASE_HEALTH_PERCENT:
-        {
-            uint32 percent = mod->GetAmount();
-            uint32 current = Field.GetU32(UNIT_FIELD_MAXHEALTH);
-            apply ? Field.SetU32(UNIT_FIELD_MAXHEALTH,current+current/100*percent) : Field.SetU32(UNIT_FIELD_MAXHEALTH,current-current/(100+percent)*100);
-        }break;
+            {
+                uint32 percent = mod->GetAmount();
+                uint32 current = Field.GetU32(UNIT_FIELD_MAXHEALTH);
+                apply ? Field.SetU32(UNIT_FIELD_MAXHEALTH,current+current/100*percent) : Field.SetU32(UNIT_FIELD_MAXHEALTH,current-current/(100+percent)*100);
+            }break;
         case SPELL_AURA_MOD_MANA_REGEN_INTERRUPT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_HEALING_DONE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_HEALING_DONE_PERCENT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_TOTAL_STAT_PERCENTAGE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_HASTE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_FORCE_REACTION:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DAMAGE_TAKEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RANGED_HASTE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RANGED_AMMO_HASTE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_BASE_RESISTANCE_PCT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RESISTANCE_EXCLUSIVE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_SAFE_FALL:
-        {
-            apply ? data.Initialize(SMSG_MOVE_FEATHER_FALL) : data.Initialize(SMSG_MOVE_NORMAL_FALL);
-            data << GetGUID();
-            SendToSet(&data,true);
-        }break;
+            {
+                apply ? data.Initialize(SMSG_MOVE_FEATHER_FALL) : data.Initialize(SMSG_MOVE_NORMAL_FALL);
+                data << GetGUID();
+                SendToSet(&data,true);
+            }break;
         case SPELL_AURA_CHARISMA:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PERSUADED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_ADD_CREATURE_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_RETAIN_COMBO_POINTS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_DAMAGE_SHIELD:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_STEALTH:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DETECT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INVISIBILITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INVISIBILITY_DETECTION:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POSSESS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RESISTANCE:
-        {
-            uint16 index = 0;
-            uint16 index2 = 0;
-            switch(mod->GetMiscValue())
             {
-                case 0:
+                uint16 index = 0;
+                uint16 index2 = 0;
+                switch(mod->GetMiscValue())
                 {
-                    index = UNIT_FIELD_RESISTANCES;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE;
-                }break;
-                case 1:
-                {
-                    index = UNIT_FIELD_RESISTANCES+1;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+1 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+1;
-                }break;
-                case 2:
-                {
-                    index = UNIT_FIELD_RESISTANCES+2;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+2 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+2;
-                }break;
-                case 3:
-                {
-                    index = UNIT_FIELD_RESISTANCES+3;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+3 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+3;
-                }break;
-                case 4:
-                {
-                    index = UNIT_FIELD_RESISTANCES+4;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+4 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+4;
-                }break;
-                case 5:
-                {
-                    index = UNIT_FIELD_RESISTANCES+5;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+5 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+5;
-                }break;
-                default:
-                {
-                    printf("WARNING: Misc Value for SPELL_AURA_MOD_STAT not valid\n");
-                    return;
-                }break;
-            }
+                    case 0:{
+                        index = UNIT_FIELD_RESISTANCES;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE;
+                    }break;
+                    case 1:{
+                        index = UNIT_FIELD_RESISTANCES+1;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+1 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+1;
+                    }break;
+                    case 2:{
+                        index = UNIT_FIELD_RESISTANCES+2;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+2 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+2;
+                    }break;
+                    case 3:{
+                        index = UNIT_FIELD_RESISTANCES+3;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+3 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+3;
+                    }break;
+                    case 4:{
+                        index = UNIT_FIELD_RESISTANCES+4;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+4 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+4;
+                    }break;
+                    case 5:{
+                        index = UNIT_FIELD_RESISTANCES+5;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_RESISTANCEBUFFMODSPOSITIVE+5 : index2 = PLAYER_FIELD_RESISTANCEBUFFMODSNEGATIVE+5;
+                    }break;
+                    default:{
+                        printf("WARNING: Misc Value for SPELL_AURA_MOD_STAT not valid\n");
+                        return;
+                    }break;
+                }
 
-            if(apply)
-            {
-                Field.SetU32(index,Field.GetU32(index)+mod->GetAmount());
-                if(GetTypeId() == TYPEID_PLAYER)
-                    Field.SetU32(index2,Field.GetU32(index2)+mod->GetAmount());
-            }
-            else
-            {
-                Field.SetU32(index,Field.GetU32(index)-mod->GetAmount());
-                if(GetTypeId() == TYPEID_PLAYER)
-                    Field.SetU32(index2,Field.GetU32(index2)-mod->GetAmount());
-            }
-        }break;
+                if(apply){
+                    Field.SetU32(index,Field.GetU32(index)+mod->GetAmount());
+                    if(GetTypeId() == TYPEID_PLAYER)
+                        Field.SetU32(index2,Field.GetU32(index2)+mod->GetAmount());
+                }else{
+                    Field.SetU32(index,Field.GetU32(index)-mod->GetAmount());
+                    if(GetTypeId() == TYPEID_PLAYER)
+                        Field.SetU32(index2,Field.GetU32(index2)-mod->GetAmount());
+                }
+            }break;
         case SPELL_AURA_PERIODIC_TRIGGER_SPELL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PERIODIC_ENERGIZE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_PACIFY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_ROOT:
-        {
-            apply ?
-                data.Initialize(MSG_MOVE_ROOT)
-                : data.Initialize(MSG_MOVE_UNROOT);
-            data << GetGUID();
-            SendToSet(&data,true);
-        }break;
+            {
+                apply ?
+               data.Initialize(MSG_MOVE_ROOT)
+               : data.Initialize(MSG_MOVE_UNROOT);
+                data << GetGUID();
+                SendToSet(&data,true);
+            }break;
         case SPELL_AURA_MOD_SILENCE:
-        {
-            apply ? m_silenced = true : m_silenced = false;
-        }break;
+            {
+                apply ? m_silenced = true : m_silenced = false;
+            }break;
         case SPELL_AURA_REFLECT_SPELLS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_STAT:
-        {
-            uint16 index = 0;
-            uint16 index2 = 0;
-            switch(mod->GetMiscValue())
             {
-                case 0:
+                uint16 index = 0;
+                uint16 index2 = 0;
+                switch(mod->GetMiscValue())
                 {
-                    index = UNIT_FIELD_STAT0;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT0 : index2 = PLAYER_FIELD_NEGSTAT0;
-                }break;
-                case 1:
-                {
-                    index = UNIT_FIELD_STAT1;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT1 : index2 = PLAYER_FIELD_NEGSTAT1;
-                }break;
-                case 2:
-                {
-                    index = UNIT_FIELD_STAT2;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT2 : index2 = PLAYER_FIELD_NEGSTAT2;
-                }break;
-                case 3:
-                {
-                    index = UNIT_FIELD_STAT3;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT3 : index2 = PLAYER_FIELD_NEGSTAT3;
-                }break;
-                case 4:
-                {
-                    index = UNIT_FIELD_STAT4;
-                    mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT4 : index2 = PLAYER_FIELD_NEGSTAT4;
-                }break;
-                default:
-                {
-                    printf("WARNING: Misc Value for SPELL_AURA_MOD_STAT not valid\n");
-                    return;
-                }break;
-            }
-            if(apply)
-            {
-                Field.SetU32(index,Field.GetU32(index)+mod->GetAmount());
-                if(GetTypeId() == TYPEID_PLAYER)
-                    Field.SetU32(index2,Field.GetU32(index2)+mod->GetAmount());
-            }
-            else
-            {
-                Field.SetU32(index,Field.GetU32(index)-mod->GetAmount());
-                if(GetTypeId() == TYPEID_PLAYER)
-                    Field.SetU32(index2,Field.GetU32(index2)-mod->GetAmount());
-            }
-        }break;
+                    case 0:{
+                        index = UNIT_FIELD_STAT0;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT0 : index2 = PLAYER_FIELD_NEGSTAT0;
+                    }break;
+                    case 1:{
+                        index = UNIT_FIELD_STAT1;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT1 : index2 = PLAYER_FIELD_NEGSTAT1;
+                    }break;
+                    case 2:{
+                        index = UNIT_FIELD_STAT2;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT2 : index2 = PLAYER_FIELD_NEGSTAT2;
+                    }break;
+                    case 3:{
+                        index = UNIT_FIELD_STAT3;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT3 : index2 = PLAYER_FIELD_NEGSTAT3;
+                    }break;
+                    case 4:{
+                        index = UNIT_FIELD_STAT4;
+                        mod->GetMiscValue2() == 0 ? index2 = PLAYER_FIELD_POSSTAT4 : index2 = PLAYER_FIELD_NEGSTAT4;
+                    }break;
+                    default:{
+                        printf("WARNING: Misc Value for SPELL_AURA_MOD_STAT not valid\n");
+                        return;
+                    }break;
+                }
+                if(apply){
+                    Field.SetU32(index,Field.GetU32(index)+mod->GetAmount());
+                    if(GetTypeId() == TYPEID_PLAYER)
+                        Field.SetU32(index2,Field.GetU32(index2)+mod->GetAmount());
+                }else{
+                    Field.SetU32(index,Field.GetU32(index)-mod->GetAmount());
+                    if(GetTypeId() == TYPEID_PLAYER)
+                        Field.SetU32(index2,Field.GetU32(index2)-mod->GetAmount());
+                }
+            }break;
         case SPELL_AURA_PERIODIC_DAMAGE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_SKILL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INCREASE_SPEED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INCREASE_MOUNTED_SPEED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DECREASE_SPEED:
-        {
-            data.Initialize(MSG_MOVE_SET_RUN_SPEED);
-            data << GetGUID();
-            apply ? data << float(7.5-7.5/100*mod->GetAmount()) : data << float(7.5);
-            SendToSet(&data,true);
-        }break;
+            {
+                data.Initialize(MSG_MOVE_SET_RUN_SPEED);
+                data << GetGUID();
+                apply ? data << float(7.5-7.5/100*mod->GetAmount()) : data << float(7.5);
+                SendToSet(&data,true);
+            }break;
         case SPELL_AURA_MOD_INCREASE_HEALTH:
-        {
-            uint32 newValue;
-            newValue = Field.GetU32(UNIT_FIELD_MAXHEALTH);
-            apply ? newValue += mod->GetAmount() : newValue -= mod->GetAmount();
-            Field.SetU32(UNIT_FIELD_MAXHEALTH,newValue);
-        }break;
+            {
+                uint32 newValue;
+                newValue = Field.GetU32(UNIT_FIELD_MAXHEALTH);
+                apply ? newValue += mod->GetAmount() : newValue -= mod->GetAmount();
+                Field.SetU32(UNIT_FIELD_MAXHEALTH,newValue);
+            }break;
         case SPELL_AURA_MOD_INCREASE_ENERGY:
-        {
-            uint32 powerField = 23;
-            uint8 powerType = (uint8)(Field.GetU32(UNIT_FIELD_BYTES_0) >> 24);
-            if(powerType == 0)                              // Mana
-                powerField = UNIT_FIELD_POWER1;
-            else if(powerType == 1)                         // Rage
-                powerField = UNIT_FIELD_POWER2;
-            else if(powerType == 3)                         // Energy
-                powerField = UNIT_FIELD_POWER4;
+            {
+                uint32 powerField = 23;
+                uint8 powerType = (uint8)(Field.GetU32(UNIT_FIELD_BYTES_0) >> 24);
+                if(powerType == 0) // Mana
+                    powerField = UNIT_FIELD_POWER1;
+                else if(powerType == 1) // Rage
+                    powerField = UNIT_FIELD_POWER2;
+                else if(powerType == 3) // Energy
+                    powerField = UNIT_FIELD_POWER4;
 
-            uint32 newValue = Field.GetU32(powerType);
-            apply ? newValue += mod->GetAmount() : newValue -= mod->GetAmount();
-            Field.SetU32(powerType,newValue);
-        }break;
+                uint32 newValue = Field.GetU32(powerType);
+                apply ? newValue += mod->GetAmount() : newValue -= mod->GetAmount();
+                Field.SetU32(powerType,newValue);
+            }break;
         case SPELL_AURA_MOD_SHAPESHIFT:
-        {
-            Affect* tmpAff;
-            uint32 spellId;
-            switch(mod->GetMiscValue())
             {
-                case FORM_CAT:
+                Affect* tmpAff;
+                uint32 spellId;
+                switch(mod->GetMiscValue())
                 {
-                    spellId = 3025;
-                } break;
-                case FORM_TREE:
-                {
-                    spellId = 3122;
-                } break;
-                case FORM_TRAVEL:
-                {
-                    spellId = 5419;
-                } break;
-                case FORM_AQUA:
-                {
-                    spellId = 5421;
-                } break;
-                case FORM_BEAR:
-                {
-                    spellId = 1178;
-                } break;
-                case FORM_AMBIENT:
-                {
-                    spellId = 0;
-                } break;
-                case FORM_GHOUL:
-                {
-                    spellId = 0;
-                } break;
-                case FORM_DIREBEAR:
-                {
-                    spellId = 9635;
-                } break;
-                case FORM_CREATUREBEAR:
-                {
-                    spellId = 2882;
-                } break;
-                case FORM_GHOSTWOLF:
-                {
-                    spellId = 0;
-                } break;
-                case FORM_BATTLESTANCE:
-                {
-                    spellId = 0;
-                } break;
-                case FORM_DEFENSIVESTANCE:
-                {
-                    spellId = 7376;
-                } break;
-                case FORM_BERSERKERSTANCE:
-                {
-                    spellId = 7381;
-                } break;
-                case FORM_SHADOW:
-                {
-                    spellId = 0;
-                } break;
-                case FORM_STEALTH:
-                {
-                    spellId = 3025;
-                } break;
-                default:
-                {
-                    printf("Unknown Shapeshift Type\n");
-                } break;
-            }
-            // check for spell id
-            SpellEntry *spellInfo = sSpellStore.LookupEntry( spellId );
+                    case FORM_CAT: {
+                        spellId = 3025;
+                    } break;
+                    case FORM_TREE:{
+                        spellId = 3122;
+                    } break;
+                    case FORM_TRAVEL:{
+                        spellId = 5419;
+                    } break;
+                    case FORM_AQUA:{
+                        spellId = 5421;
+                    } break;
+                    case FORM_BEAR:{
+                        spellId = 1178;
+                    } break;
+                    case FORM_AMBIENT:{
+                        spellId = 0;
+                    } break;
+                    case FORM_GHOUL:{
+                        spellId = 0;
+                    } break;
+                    case FORM_DIREBEAR:{
+                        spellId = 9635;
+                    } break;
+                    case FORM_CREATUREBEAR:{
+                        spellId = 2882;
+                    } break;
+                    case FORM_GHOSTWOLF:{
+                        spellId = 0;
+                    } break;
+                    case FORM_BATTLESTANCE:{
+                        spellId = 0;
+                    } break;
+                    case FORM_DEFENSIVESTANCE:{
+                        spellId = 7376;
+                    } break;
+                    case FORM_BERSERKERSTANCE:{
+                        spellId = 7381;
+                    } break;
+                    case FORM_SHADOW:{
+                        spellId = 0;
+                    } break;
+                    case FORM_STEALTH:{
+                        spellId = 3025;
+                    } break;
+                    default:{
+                        printf("Unknown Shapeshift Type\n");
+                    } break;
+                }
+                // check for spell id
+                SpellEntry *spellInfo = sSpellStore.LookupEntry( spellId );
 
-            if(!spellInfo)
-            {
-                Log::getSingleton( ).outError("WORLD: unknown spell id %i\n", spellId);
-                break;
-            }
-            tmpAff = new Affect(spellInfo,parent->GetDuration(),parent->GetCasterGUID());
-            for(uint8 i=0;i<3;i++)
-            {
-                if(spellInfo->Effect[i] == 6)
+                if(!spellInfo)
                 {
-                    uint32 value = 0;
-                    uint32 type = 0;
-                    uint32 damage = 0;
-                    if(spellInfo->EffectBasePoints[i] < 0)
-                    {
-                        tmpAff->SetNegative();
-                        type = 1;
-                    }
-                    uint32 sBasePoints = (uint32)sqrt((float)(spellInfo->EffectBasePoints[i]*spellInfo->EffectBasePoints[i]));
-                                                            // Periodic Trigger Damage
-                    if(spellInfo->EffectApplyAuraName[i] == 3)
-                    {
-                        damage = spellInfo->EffectBasePoints[i]+rand()%spellInfo->EffectDieSides[i]+1;
-                        //TODO: why the hell it takes uint16?
-                        tmpAff->SetDamagePerTick((uint16)damage, spellInfo->EffectAmplitude[i]);
-                        tmpAff->SetNegative();
-                                                            // Periodic Trigger Spell
-                    }else if(spellInfo->EffectApplyAuraName[i] == 23)
-                    tmpAff->SetPeriodicTriggerSpell(spellInfo->EffectTriggerSpell[i],spellInfo->EffectAmplitude[i]);
-                    else
-                    {
-                        if(spellInfo->EffectDieSides[i] != 0)
-                            value = sBasePoints+rand()%spellInfo->EffectDieSides[i];
-                        else
-                            value = sBasePoints;
-                        if(spellInfo->EffectDieSides[i] <= 1)
-                            value += 1;
-                        //TODO: why the hell it takes uint8?
-                        tmpAff->AddMod((uint8)spellInfo->EffectApplyAuraName[i],value,spellInfo->EffectMiscValue[i],type);
+                    Log::getSingleton( ).outError("WORLD: unknown spell id %i\n", spellId);
+                    break;
+                }
+                tmpAff = new Affect(spellInfo,parent->GetDuration(),parent->GetCasterGUID());
+                for(uint8 i=0;i<3;i++){
+                    if(spellInfo->Effect[i] == 6){
+                        uint32 value = 0;
+                        uint32 type = 0;
+                        uint32 damage = 0;
+                        if(spellInfo->EffectBasePoints[i] < 0){
+                            tmpAff->SetNegative();
+                            type = 1;
+                        }
+                        uint32 sBasePoints = (uint32)sqrt((float)(spellInfo->EffectBasePoints[i]*spellInfo->EffectBasePoints[i]));
+                        if(spellInfo->EffectApplyAuraName[i] == 3){       // Periodic Trigger Damage
+                            damage = spellInfo->EffectBasePoints[i]+rand()%spellInfo->EffectDieSides[i]+1;
+                            //TODO: why the hell it takes uint16?
+                            tmpAff->SetDamagePerTick((uint16)damage, spellInfo->EffectAmplitude[i]);
+                            tmpAff->SetNegative();
+                        }else if(spellInfo->EffectApplyAuraName[i] == 23)// Periodic Trigger Spell
+                            tmpAff->SetPeriodicTriggerSpell(spellInfo->EffectTriggerSpell[i],spellInfo->EffectAmplitude[i]);
+                        else{
+                            if(spellInfo->EffectDieSides[i] != 0)
+                                value = sBasePoints+rand()%spellInfo->EffectDieSides[i];
+                            else
+                                value = sBasePoints;
+                            if(spellInfo->EffectDieSides[i] <= 1)
+                                value += 1;
+                            //TODO: why the hell it takes uint8?
+                            tmpAff->AddMod((uint8)spellInfo->EffectApplyAuraName[i],value,spellInfo->EffectMiscValue[i],type);
+                        }
                     }
                 }
-            }
-            if(tmpAff)
-            {
-                parent->SetCoAffect(tmpAff);
-                AddAffect(tmpAff);
-            }
-        }break;
+                if(tmpAff){
+                    parent->SetCoAffect(tmpAff);
+                    AddAffect(tmpAff);
+                }
+            }break;
         case SPELL_AURA_EFFECT_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_STATE_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_SCHOOL_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_DAMAGE_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_DISPEL_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PROC_TRIGGER_SPELL:
-        {
-            apply ? m_triggerSpell = mod->GetAmount() : m_triggerSpell = 0;
-        }break;
+            {
+                apply ? m_triggerSpell = mod->GetAmount() : m_triggerSpell = 0;
+            }break;
         case SPELL_AURA_PROC_TRIGGER_DAMAGE:
-        {
-            apply ? m_triggerDamage = mod->GetAmount() : m_triggerDamage = 0;
-        }break;
+            {
+                apply ? m_triggerDamage = mod->GetAmount() : m_triggerDamage = 0;
+            }break;
         case SPELL_AURA_TRACK_CREATURES:
-        {
-            apply ? Field.SetU32(PLAYER_TRACK_CREATURES,mod->GetMiscValue()) : Field.SetU32(PLAYER_TRACK_CREATURES,0);
-        }break;
+            {
+                apply ? Field.SetU32(PLAYER_TRACK_CREATURES,mod->GetMiscValue()) : Field.SetU32(PLAYER_TRACK_CREATURES,0);
+            }break;
         case SPELL_AURA_TRACK_RESOURCES:
-        {
-            apply ? Field.SetU32(PLAYER_TRACK_RESOURCES,mod->GetMiscValue()) : Field.SetU32(PLAYER_TRACK_RESOURCES,0);
-        }break;
+            {
+                apply ? Field.SetU32(PLAYER_TRACK_RESOURCES,mod->GetMiscValue()) : Field.SetU32(PLAYER_TRACK_RESOURCES,0);
+            }break;
         case SPELL_AURA_MOD_PARRY_SKILL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_PARRY_PERCENT:
-        {
-            uint32 current = Field.GetU32(PLAYER_PARRY_PERCENTAGE);
-            apply ? Field.SetU32(PLAYER_PARRY_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_PARRY_PERCENTAGE,current-mod->GetAmount());
-        }break;
+            {
+                uint32 current = Field.GetU32(PLAYER_PARRY_PERCENTAGE);
+                apply ? Field.SetU32(PLAYER_PARRY_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_PARRY_PERCENTAGE,current-mod->GetAmount());
+            }break;
         case SPELL_AURA_MOD_DODGE_SKILL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DODGE_PERCENT:
-        {
-            uint32 current = Field.GetU32(PLAYER_DODGE_PERCENTAGE);
-            apply ? Field.SetU32(PLAYER_DODGE_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_DODGE_PERCENTAGE,current-mod->GetAmount());
-        }break;
+            {
+                uint32 current = Field.GetU32(PLAYER_DODGE_PERCENTAGE);
+                apply ? Field.SetU32(PLAYER_DODGE_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_DODGE_PERCENTAGE,current-mod->GetAmount());
+            }break;
         case SPELL_AURA_MOD_CONFUSE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_BLOCK_SKILL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_BLOCK_PERCENT:
-        {
-            uint32 current = Field.GetU32(PLAYER_BLOCK_PERCENTAGE);
-            apply ? Field.SetU32(PLAYER_BLOCK_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_BLOCK_PERCENTAGE,current-mod->GetAmount());
-        }break;
+            {
+                uint32 current = Field.GetU32(PLAYER_BLOCK_PERCENTAGE);
+                apply ? Field.SetU32(PLAYER_BLOCK_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_BLOCK_PERCENTAGE,current-mod->GetAmount());
+            }break;
         case SPELL_AURA_MOD_CRIT_PERCENT:
-        {
-            uint32 current = Field.GetU32(PLAYER_CRIT_PERCENTAGE);
-            apply ? Field.SetU32(PLAYER_CRIT_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_CRIT_PERCENTAGE,current-mod->GetAmount());
-        }break;
+            {
+                uint32 current = Field.GetU32(PLAYER_CRIT_PERCENTAGE);
+                apply ? Field.SetU32(PLAYER_CRIT_PERCENTAGE,current+mod->GetAmount()) : Field.SetU32(PLAYER_CRIT_PERCENTAGE,current-mod->GetAmount());
+            }break;
         case SPELL_AURA_PERIODIC_LEECH:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_HIT_CHANCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_SPELL_HIT_CHANCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_TRANSFORM:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_SPELL_CRIT_CHANCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_INCREASE_SWIM_SPEED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DAMAGE_DONE_CREATURE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_CHARM:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_PACIFY_SILENCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_SCALE:
-        {
-            float current = GetFloatValue(OBJECT_FIELD_SCALE_X);
-            apply ? SetFloatValue(OBJECT_FIELD_SCALE_X,current+current/100*10) : SetFloatValue(OBJECT_FIELD_SCALE_X,current-current/110*100);
-        }break;
+            {
+                float current = GetFloatValue(OBJECT_FIELD_SCALE_X);
+                apply ? SetFloatValue(OBJECT_FIELD_SCALE_X,current+current/100*10) : SetFloatValue(OBJECT_FIELD_SCALE_X,current-current/110*100);
+            }break;
         case SPELL_AURA_PERIODIC_HEALTH_FUNNEL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PERIODIC_MANA_FUNNEL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PERIODIC_MANA_LEECH:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_CASTING_SPEED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_FEIGN_DEATH:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DISARM:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_STALKED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_SCHOOL_ABSORB:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_FEAR:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_EXTRA_ATTACKS:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_SPELL_CRIT_CHANCE_SCHOOL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POWER_COST:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POWER_COST_SCHOOL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_REFLECT_SPELLS_SCHOOL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_LANGUAGE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_FAR_SIGHT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MECHANIC_IMMUNITY:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOUNTED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DAMAGE_PERCENT_DONE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PERIODIC_HEAL:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_PERCENT_STAT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_SPLIT_DAMAGE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_WATER_BREATHING:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_BASE_RESISTANCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_REGEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_POWER_REGEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_CHANNEL_DEATH_ITEM:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DAMAGE_PERCENT_TAKEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_PERCENT_REGEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PERIODIC_DAMAGE_PERCENT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_ATTACKSPEED:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_RESIST_CHANCE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_DETECT_RANGE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_PREVENTS_FLEEING:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_UNATTACKABLE:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_INTERRUPT_REGEN:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_GHOST:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_SPELL_MAGNET:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MANA_SHIELD:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_SKILL_TALENT:
-        {
-        }break;
+            {
+            }break;
         case SPELL_AURA_MOD_ATTACK_POWER:
-        {
-        }break;
+            {
+            }break;
         default:
-        {
-            Log::getSingleton().outError("Unknown affect id %u", (uint32)mod->GetType());
-        }
+            {
+                Log::getSingleton().outError("Unknown affect id %u", (uint32)mod->GetType());
+            }
     }
-    #endif
+#endif
 }
 
 #if 0
 void Unit::_UpdateAura()
 {
-    Player* pThis = objmgr.GetObject<Player>(GetGUID());
+   Player* pThis = objmgr.GetObject<Player>(GetGUID());
     if(!m_aura)
         return;
 
@@ -1197,37 +1152,34 @@ void Unit::_UpdateAura()
     Group* pGroup;
     if(pThis)
         pGroup = objmgr.GetGroupByLeader(pThis->GetGroupLeader());
-    else
-    {
+    else{
         if(!SetAffDuration(m_aura->GetId(),this,6000))
             AddAffect(m_aura);
         return;
     }
-    if(!pGroup)
-    {
+    if(!pGroup){
         if(!SetAffDuration(m_aura->GetId(),this,6000))
             AddAffect(m_aura);
         return;
     }else
-    for(uint32 i=0;i<pGroup->GetMembersCount();i++)
-    {
-        pGroupGuy = objmgr.GetObject<Player>(pGroup->GetMemberGUID(i));
-        if(!pGroupGuy)
-            continue;
-        if(sqrt(
-            (GetPositionX()-pGroupGuy->GetPositionX())*(GetPositionX()-pGroupGuy->GetPositionX())
-            +(GetPositionY()-pGroupGuy->GetPositionY())*(GetPositionY()-pGroupGuy->GetPositionY())
-            +(GetPositionZ()-pGroupGuy->GetPositionZ())*(GetPositionZ()-pGroupGuy->GetPositionZ())
-            ) <=30)
-            if(!pGroupGuy->SetAffDuration(m_aura->GetId(),this,6000))
-                pGroupGuy->AddAffect(m_aura);
-    }
+        for(uint32 i=0;i<pGroup->GetMembersCount();i++){
+            pGroupGuy = objmgr.GetObject<Player>(pGroup->GetMemberGUID(i));
+            if(!pGroupGuy)
+                continue;
+            if(sqrt(
+           (GetPositionX()-pGroupGuy->GetPositionX())*(GetPositionX()-pGroupGuy->GetPositionX())
+           +(GetPositionY()-pGroupGuy->GetPositionY())*(GetPositionY()-pGroupGuy->GetPositionY())
+           +(GetPositionZ()-pGroupGuy->GetPositionZ())*(GetPositionZ()-pGroupGuy->GetPositionZ())
+                   ) <=30)
+                if(!pGroupGuy->SetAffDuration(m_aura->GetId(),this,6000))
+                    pGroupGuy->AddAffect(m_aura);
+        }
 }
 #endif
 
 void Unit::UpdateSpells (uint32 iDeltaMs)
 {
-    #if 0
+#if 0
     if (CurrentSpell)
     {
         CurrentSpell->Update (time);
@@ -1285,7 +1237,7 @@ void Unit::UpdateSpells (uint32 iDeltaMs)
             RemoveAffect(aff);
         }
     }
-    #endif
+#endif
 }
 
 #if 0
@@ -1304,14 +1256,13 @@ void Unit::castSpell( Spell * pSpell )
 
 void Unit::InterruptSpell()
 {
-    #if 0
-    if(m_currentSpell)
-    {
+#if 0
+    if(m_currentSpell){
         m_currentSpell->SendInterrupted(0x1f);
         m_currentSpell->cancel();
         m_currentSpell = NULL;
     }
-    #endif
+#endif
 }
 
 #if 0
@@ -1398,6 +1349,7 @@ void Unit::_AddAura(Affect *aff)
     return;
 }
 
+
 void Unit::_RemoveAura(Affect *aff)
 {
     ASSERT(aff);
@@ -1446,12 +1398,9 @@ float Unit::getangle( float xe, float ye, float xz, float yz )
 {
     float w;
     w = RAD2DEG (atan ((yz - ye) / (xz - xe)));
-    if (xz>=xe)
-    {
+    if (xz>=xe) {
         w = 90+w;
-    }
-    else
-    {
+    } else {
         w = 270+w;
     }
     return w;
@@ -1471,17 +1420,13 @@ bool Unit::inarc( float radius,  float xM, float yM, float offnung, float orient
     float lborder = geteasyangle( ( orientation - (offnung/2) ) );
     float rborder = geteasyangle( ( orientation + (offnung/2) ) );
     if(radius>=distance &&( ( angle >= lborder ) &&
-        ( angle <= rborder ) ||
-        ( lborder > rborder && ( angle < rborder || angle > lborder ) ) ) )
-    {
+                           ( angle <= rborder ) ||
+                           ( lborder > rborder && ( angle < rborder || angle > lborder ) ) ) ) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
-
 #if 0
 bool Unit::isInFront(Unit* target,float distance)
 {

@@ -3,7 +3,7 @@
  *    \brief  Defines vectors used by packets of the world server protocol.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ struct Member
     uint32 Guidsno;
 
     ~Member ()
-        { delete [] Membername; }
+    { delete [] Membername; }
 };
 
 DECLARE_VECTOR (MembersVector, Member *, );
@@ -106,10 +106,10 @@ struct CharacterData
     DECLARE_VECTOR (SlotItemsVector, SlotItemData *, ) SlotItems;
 
     CharacterData ()
-        { Name = NULL; }
+    { Name = NULL; }
 
     ~CharacterData ()
-        { delete [] Name; }
+    { delete [] Name; }
 
     /**
      * Load character data from database, given the lower part of GUID
@@ -143,4 +143,5 @@ struct DamageInfo
 };
 
 DECLARE_VECTOR (DamageVector, DamageInfo *, );
+
 #endif // __PROTOCOL_VECTORS_H__

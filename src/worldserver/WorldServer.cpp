@@ -3,7 +3,7 @@
  *    \brief  Provides a basic implementation of the World server class.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,8 +42,8 @@ extern "C"
 // in two vectors at once: in Clients and in SortedClients.
 #undef IMPLEMENT_VECTOR
 #define IMPLEMENT_VECTOR(Namespace, VType, CType) \
-    Namespace VType::~VType () {} \
-    void Namespace VType::FreeItem (Some Item) const {}
+Namespace VType::~VType () {} \
+void Namespace VType::FreeItem (Some Item) const {}
 
 IMPLEMENT_VECTOR_SORTED_STRKEY (WorldServer::, SortedClientsVector, GameClient *, Login)
 
@@ -53,7 +53,7 @@ IMPLEMENT_VECTOR_SORTED_STRKEY (WorldServer::, SortedClientsVector, GameClient *
 WorldServer *World;
 
 WorldServer::WorldServer (uint iPort, Log *iLogger) : Server (iPort, 100, iLogger),
-GuidPool (16, 16)
+    GuidPool (16, 16)
 {
     World = this;
     RealmName = strnew ("Local realm");
@@ -138,7 +138,7 @@ bool WorldServer::Start ()
         return false;
     if (!Item::PreloadStaticData ())
     {
-        error1: Player::UnloadStaticData ();
+error1: Player::UnloadStaticData ();
         return false;
     }
     if (!LoadGuidPool ())
@@ -173,7 +173,7 @@ void WorldServer::UpdateRealm (bool Online)
     uint numpl = Online ? GetClientsConnected () : 0;
     uint color = ClientLimit ? ((float (numpl) / ClientLimit) > 0.75 ? 1 : 0) : 0;
     dbex->ExecuteF ("UPDATE realms SET players=%d,online=%d,color=%d WHERE name='%s'",
-        numpl, Online ? 1 : 0, color, RealmName);
+                    numpl, Online ? 1 : 0, color, RealmName);
     rdb->PutExecutor (dbex);
 }
 
@@ -186,9 +186,9 @@ void WorldServer::SendGlobalPacket (NetworkPacket *data, GameClient *Self)
     //@@@todo
     for (int i = Clients.Length () - 1; i >= 0; i--)
     {
-        //      GameClient *c = (GameClient *)Clients.Get (i);
-        //      if (c != Self && c->Authenticated ())
-        //          c->sock->SendData (data);
+//      GameClient *c = (GameClient *)Clients.Get (i);
+//      if (c != Self && c->Authenticated ())
+//          c->sock->SendData (data);
     }
 }
 
@@ -234,10 +234,10 @@ void WorldServer::SaveGuidPool ()
     DatabaseExecutor *dbex = db->GetExecutor ();
     for (int i = 0; i < GuidPool.Length (); i += 2)
         if ((dbex->ExecuteF ("UPDATE guid_pool SET guid_low=%lu WHERE guid_high=%lu",
-        GuidPool.Get (i + 1), GuidPool.Get (i)) != dbeOk)
-        || !dbex->GetAffectedRows ())
+                             GuidPool.Get (i + 1), GuidPool.Get (i)) != dbeOk)
+         || !dbex->GetAffectedRows ())
             dbex->ExecuteF ("INSERT INTO guid_pool (guid_high, guid_low) VALUES (%lu,%lu)",
-                GuidPool.Get (i), GuidPool.Get (i + 1));
+                            GuidPool.Get (i), GuidPool.Get (i + 1));
     db->PutExecutor (dbex);
 }
 
@@ -246,10 +246,10 @@ uint64 WorldServer::GenerateGUID (uint32 GuidHigh)
     int i;
     for (i = 0; i < GuidPool.Length (); i += 2)
         if (GuidPool.Get (i) == Some (GuidHigh))
-    {
-        uint32 *gl = (uint32 *)&GuidPool.Get (i + 1);
-        return ++*gl;
-    }
+        {
+            uint32 *gl = (uint32 *)&GuidPool.Get (i + 1);
+            return ++*gl;
+        }
 
     GuidPool.Push (Some (GuidHigh));
     // Don't start at zero... dunno why but maybe that could be useful later

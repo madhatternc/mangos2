@@ -3,7 +3,7 @@
  *    \brief  Defines object sizes and offsets into their data fields.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,11 +31,11 @@
 #define UNIT_BLOCKS     5
 #define UNIT_FIELDS     (UNIT_BLOCKS * 32)
 // Total fields in a player object
-// Here we update this sucker from 27*32 to 28*32 for 2.4.3 /Yellow
+// Here we update this sucker from 27*32 to 28*32 for 1.2.1 /Yellow
 #define PLAYER_BLOCKS   33
 #define PLAYER_FIELDS   (PLAYER_BLOCKS * 32)
 
-//  UPDATE FIELDS for 2.4.3
+//  UPDATE FIELDS for 1.3.0
 
 enum ObjectUpdateFields
 {
@@ -305,4 +305,5 @@ enum CorpseUpdateFields
     CORPSE_FIELD_FLAGS                      = 0x001D + CORPSE_START,
     CORPSE_END                              = 0x001E + CORPSE_START
 };
+
 #endif // __UPDATE_FIELDS_H__

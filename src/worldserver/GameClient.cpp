@@ -3,7 +3,7 @@
  *    \brief  Receives and dispatches all opcodes sent from and to the client.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,7 +93,7 @@ void GameClient::SocketEvent (uint mask)
         if (socket->Avail () + sizeof (header) < pktlen)
         {
             DEBUG_PRINTF ("Got incomplete packet [%02x %02x %02x %02x %02x %02x], waiting for packet tail\n",
-                header [0],header [1],header [2],header [3],header [4],header [5]);
+                          header [0],header [1],header [2],header [3],header [4],header [5]);
             RestoreRecvEncryptor ();
             break;
         }
@@ -107,7 +107,7 @@ void GameClient::SocketEvent (uint mask)
         {
             switch (opcode)
             {
-                #include "Opcodes.inc"
+#include "Parser.inc"
                 default:
                     LOG.Out (LOG_DEBUG, "Unhandled opcode %s\n", GetPacketName (opcode));
                     socket->Skip (pktlen - sizeof (header));
@@ -134,7 +134,7 @@ void GameClient::SocketEvent (uint mask)
                 }
                 default:
                     LOG.Out (LOG_DEBUG, "PRE-AUTH: Unhandled opcode: %s\n",
-                        GetPacketName (opcode));
+                             GetPacketName (opcode));
                     socket->Skip (pktlen - sizeof (header));
                     break;
             }
@@ -142,7 +142,7 @@ void GameClient::SocketEvent (uint mask)
 
         if (packet && socket->Chewed () != pktlen)
             LOG.Out (LOG_IMPORTANT, "BAD PACKET OR PARSER: Chewed %d bytes, packet is %d bytes - OpCode: %s\n",
-                socket->Chewed (), pktlen, GetPacketName (opcode));
+                                 socket->Chewed (), pktlen, GetPacketName (opcode));
 
         socket->Swallow ();
         if (packet)
@@ -152,8 +152,7 @@ void GameClient::SocketEvent (uint mask)
 
 void GameClient::GenSeed ()
 {
-    do
-    {
+    do {
         Seed = rand ();
     } while (!Seed);
 }
@@ -179,7 +178,7 @@ void GameClient::SaveAccountData ()
     for (uint i = 0; i < ARRAY_LEN (AccountData); i++)
     {
         ad [i] = !AccountData [i] ? NULL :
-        EncodeSQL (AccountData [i], sizeof (uint32) * 2 + 16 + GET_LE32 (AccountData [i] + 4));
+            EncodeSQL (AccountData [i], sizeof (uint32) * 2 + 16 + GET_LE32 (AccountData [i] + 4));
         delete [] AccountData [i];
         AccountData [i] = 0;
     }
@@ -188,7 +187,7 @@ void GameClient::SaveAccountData ()
     if (dbex)
     {
         dbex->ExecuteF ("UPDATE accounts SET data0='%s',data1='%s',data2='%s' WHERE login='%s'",
-            NN_STR (ad [0]), NN_STR (ad [1]), NN_STR (ad [2]), Login);
+                        NN_STR (ad [0]), NN_STR (ad [1]), NN_STR (ad [2]), Login);
         World->rdb->PutExecutor (dbex);
     }
 
@@ -260,7 +259,7 @@ void GameClient::HandleAuthSession (CMSG_AUTH_SESSION_t &inpkt)
     SaveAccountData ();
 
     Login = inpkt.Login;
-    inpkt.Login = NULL;                                     // steal this field from packet ;)
+    inpkt.Login = NULL; // steal this field from packet ;)
 
     DatabaseExecutor *dbex = World->rdb->GetExecutor ();
     if (!dbex ||
@@ -268,15 +267,15 @@ void GameClient::HandleAuthSession (CMSG_AUTH_SESSION_t &inpkt)
         !dbex->NextRow ())
     {
         FailAuth (WSE_UNKNOWN_ACCOUNT);
-        error:  if (dbex)
-        World->rdb->PutExecutor (dbex);
+error:  if (dbex)
+            World->rdb->PutExecutor (dbex);
         return;
     }
 
     uint level = dbex->GetU32 (0);
     const char *seskey = dbex->Get (1);
     if (!seskey
-        || !Hex2Bin (seskey, SessionKey, sizeof (SessionKey)))
+     || !Hex2Bin (seskey, SessionKey, sizeof (SessionKey)))
     {
         FailAuth (WSE_LOGIN_UNAVAILABLE);
         goto error;
@@ -354,14 +353,14 @@ void GameClient::HandleAuthSession (CMSG_AUTH_SESSION_t &inpkt)
         if (dbex->ExecuteF ("SELECT data0,data1,data2 FROM accounts WHERE login='%s'", Login) == dbeOk &&
             dbex->NextRow ())
             for (uint i = 0; i < 3; i++)
-        {
-            size_t sz = DecodeSQL (dbex->Get (i), NULL, 0);
-            if (sz)
             {
-                AccountData [i] = new uint8 [sz];
-                DecodeSQL (dbex->Get (i), AccountData [i], sz);
+                size_t sz = DecodeSQL (dbex->Get (i), NULL, 0);
+                if (sz)
+                {
+                    AccountData [i] = new uint8 [sz];
+                    DecodeSQL (dbex->Get (i), AccountData [i], sz);
+                }
             }
-        }
 
         World->rdb->PutExecutor (dbex);
     }
@@ -369,7 +368,7 @@ void GameClient::HandleAuthSession (CMSG_AUTH_SESSION_t &inpkt)
     World->UpdateRealm (true);
 
     LOG.Out (LOG_DEBUG, "%s '%s' logged in\n",
-        PrivName ? PrivName : "Stranger", Login);
+             PrivName ? PrivName : "Stranger", Login);
     delete [] PrivName;
 }
 

@@ -3,7 +3,7 @@
  *    \brief  The one, true World server.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,7 +83,7 @@ struct ServerOptions
             if (IS_ERR (wdb))
             {
                 CONSOLE.Out ("\axcERROR: \axeFailed to open database: %s\n",
-                    Database::ErrorString ((DatabaseError)PTR_ERR (wdb)));
+                                    Database::ErrorString ((DatabaseError)PTR_ERR (wdb)));
                 wdb = NULL;
                 return false;
             }
@@ -95,7 +95,7 @@ struct ServerOptions
             if (IS_ERR (rdb))
             {
                 CONSOLE.Out ("\axcERROR: \axeFailed to open database: %s\n",
-                    Database::ErrorString ((DatabaseError)PTR_ERR (rdb)));
+                                    Database::ErrorString ((DatabaseError)PTR_ERR (rdb)));
                 rdb = NULL;
                 return false;
             }
@@ -149,9 +149,21 @@ struct ServerOptions
 static void display_version ()
 {
     CONSOLE.Out (
-        "\ax9MaNGOS2 World Server\ax2, version \axf%s\ax2\n"
+        "\ax9World Server\ax2, version \axf%s\ax2\n"
         "Copyright \axf(C) \ax2%s\ax2\n",
         VERSION, COPYRIGHT);
+
+    /// GPL v3 notice
+    CONSOLE.Out (
+        "\n\ax2This is free software.  You may redistribute copies of it under the terms of\n"
+        "\ax2the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.\n"
+        "\ax2There is NO WARRANTY, to the extent permitted by law.\ax2\n");
+
+    /// SRP notice
+    CONSOLE.Out (
+        "\n\ax2This product includes software developed by Tom Wu and Eugene\n"
+        "\ax2Jhong for the SRP Distribution (http://srp.stanford.edu/).\n");
+
 }
 
 static void display_usage (const char *argv0, ServerOptions &srvopt)
@@ -170,7 +182,7 @@ static int cmdVersion (ServerOptions *srvopt)
 {
     (void)srvopt;
     CONSOLE.Out (
-        "\ax2** World Server **    \axa%s\ax2    for clients \axa%d..%d\ax2 **\n",
+        "\ax2** OpenWoW World Server **    \axa%s\ax2    for clients \axa%d..%d\ax2 **\n",
         FULLVERSION, MIN_CLIENT_BUILD, MAX_CLIENT_BUILD);
     return 0;
 }
@@ -284,7 +296,7 @@ static int cmdCinematics (ServerOptions *srvopt, uintptr Enable)
 {
     (void)srvopt;
     if (Enable != NO_ARG)
-        srvopt->ws->SetCinematics (Enable != 0);
+                srvopt->ws->SetCinematics (Enable != 0);
     CONSOLE.Out (
         "\ax3Server Cinematics are currently: \axa%s\ax2\n",
         srvopt->ws->GetCinematics () ? "on" : "off");
@@ -312,7 +324,7 @@ static int cmdLimit (ServerOptions *srvopt, uintptr Limit)
     else
         CONSOLE.Out (
             "\ax3Current player limit set to: \axa%u\ax2\n",
-            srvopt->ws->GetClientLimit ());
+                    srvopt->ws->GetClientLimit ());
     return 0;
 }
 
@@ -327,8 +339,8 @@ static int cmdLoad (ServerOptions *srvopt, char *File)
     if (s != 0)
     {
         CONSOLE.Out ("\ax6WARNING: \axe%s\n",
-            lua_tostring (srvopt->ws->Lua, -1));
-        lua_pop (srvopt->ws->Lua, 1);                       // remove error message
+                     lua_tostring (srvopt->ws->Lua, -1));
+        lua_pop (srvopt->ws->Lua, 1);  // remove error message
     }
     else
         CONSOLE.Out ("\axa%s\ax2 loaded\n", File);
@@ -350,140 +362,64 @@ int main (int argc, char **argv)
     // Initialize default server parameters
     ServerOptions srvopt;
 
-    while ((c = getopt_long(argc, argv, "c:hv", long_options, NULL)) != EOF)
-    {
-        switch (c)
-        {
-            case 'c':
-                delete [] srvopt.ConfigFile;
-                srvopt.ConfigFile = strnew (optarg);
-                break;
-            case 'h':
-                display_usage (argv[0], srvopt);
-                return 0;
-            case 'v':
-                display_version ();
-                return 0;
-            default:
-                abort ();
+    while ((c = getopt_long(argc, argv, "c:hv", long_options, NULL)) != EOF) {
+        switch (c) {
+        case 'c':
+            delete [] srvopt.ConfigFile;
+            srvopt.ConfigFile = strnew (optarg);
+            break;
+        case 'h':
+            display_usage (argv[0], srvopt);
+            return 0;
+        case 'v':
+            display_version ();
+            return 0;
+        default:
+            abort ();
         }
     }
 
     static CommandDesc Commands [] =
     {
-        {
-            "start",     0,
-            {
-            }, CMDFUNC (cmdStart),
-            "Start the server"
-        },
-        {
-            "stop",      0,
-            {
-            }, CMDFUNC (cmdStop),
-            "Stop and shutdown server"
-        },
-        {
-            "exit",      0,
-            {
-            }, CMDFUNC (cmdQuit),
-            "Exit and shutdown server"
-        },
-        {
-            "quit",      0,
-            {
-            }, CMDFUNC (cmdQuit),
-            "Quit and shutdown server"
-        },
-        {
-            "ver",       0,
-            {
-            }, CMDFUNC (cmdVersion),
-            "Display server and expected client version"
-        },
-        {
-            "realm",     1,
-            {
-                ARG_OSTR
-            }, CMDFUNC (cmdRealm),
-            "Set the World Server realm name"
-        },
-        {
-            "rdb",       2,
-            {
-                ARG_OSTR, ARG_STR
-            }, CMDFUNC (cmdRealmDB),
-            "Set the realm database type and address"
-        },
-        {
-            "wdb",       2,
-            {
-                ARG_OSTR, ARG_STR
-            }, CMDFUNC (cmdWorldDB),
-            "Set the world database type and address"
-        },
-        {
-            "bcast",     1,
-            {
-                ARG_OSTR
-            }, CMDFUNC (cmdBroadcast),
-            "Send a system message to all the players in the world"
-        },
-        {
-            "info",      0,
-            {
-            }, CMDFUNC (cmdInfo),
-            "Show miscelaneous information about current state of the server"
-        },
-        {
-            "motd",      1,
-            {
-                ARG_OSTR
-            }, CMDFUNC (cmdMotd),
-            "Set/display the current MOTD"
-        },
-        {
-            "log",       1,
-            {
-                ARG_OSTR
-            }, CMDFUNC (cmdLog),
-            "Set world server logging flags"
-        },
-        {
-            "cinematics",1,
-            {
-                ARG_OBOOL
-            }, CMDFUNC (cmdCinematics),
-            "Set/display server cinematics"
-        },
-        {
-            "stzone",    1,
-            {
-                ARG_OINT
-            }, CMDFUNC (cmdStartZone),
-            "Set/display the default start zone (0-Normal, 1-Human)"
-        },
-        {
-            "limit",     1,
-            {
-                ARG_OINT
-            }, CMDFUNC (cmdLimit),
-            "Set/display the player limit"
-        },
-        {
-            "load",     1,
-            {
-                ARG_STR
-            }, CMDFUNC (cmdLoad),
-            "Load a Lua script file"
-        },
+        { "start",     0, {}, CMDFUNC (cmdStart),
+          "Start the server" },
+        { "stop",      0, {}, CMDFUNC (cmdStop),
+          "Stop and shutdown server" },
+        { "exit",      0, {}, CMDFUNC (cmdQuit),
+          "Exit and shutdown server" },
+        { "quit",      0, {}, CMDFUNC (cmdQuit),
+          "Quit and shutdown server" },
+        { "ver",       0, {}, CMDFUNC (cmdVersion),
+          "Display server and expected client version" },
+        { "realm",     1, { ARG_OSTR }, CMDFUNC (cmdRealm),
+          "Set the World Server realm name" },
+        { "rdb",       2, { ARG_OSTR, ARG_STR }, CMDFUNC (cmdRealmDB),
+          "Set the realm database type and address" },
+        { "wdb",       2, { ARG_OSTR, ARG_STR }, CMDFUNC (cmdWorldDB),
+          "Set the world database type and address" },
+        { "bcast",     1, { ARG_OSTR }, CMDFUNC (cmdBroadcast),
+          "Send a system message to all the players in the world" },
+        { "info",      0, {}, CMDFUNC (cmdInfo),
+          "Show miscelaneous information about current state of the server" },
+        { "motd",      1, { ARG_OSTR }, CMDFUNC (cmdMotd),
+          "Set/display the current MOTD" },
+        { "log",       1, { ARG_OSTR }, CMDFUNC (cmdLog),
+          "Set world server logging flags" },
+        { "cinematics",1, { ARG_OBOOL }, CMDFUNC (cmdCinematics),
+          "Set/display server cinematics" },
+        { "stzone",    1, { ARG_OINT }, CMDFUNC (cmdStartZone),
+          "Set/display the default start zone (0-Normal, 1-Human)" },
+        { "limit",     1, { ARG_OINT }, CMDFUNC (cmdLimit),
+          "Set/display the player limit" },
+        { "load",     1, { ARG_STR }, CMDFUNC (cmdLoad),
+          "Load a Lua script file" },
     };
 
     display_version ();
 
     CommandInterpreter (srvopt.ConfigFile, &srvopt,
-        Commands, ARRAY_LEN (Commands),
-        "\ax1world\ax9srv\axf> \ax7");
+                Commands, ARRAY_LEN (Commands),
+                "\ax1world\ax9srv\axf> \ax7");
 
     return 0;
 }

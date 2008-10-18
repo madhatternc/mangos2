@@ -3,7 +3,7 @@
  *    \brief  Provides basic Player functions.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -151,7 +151,6 @@ struct PlayerCreateInfo
     float PositionX;
     float PositionY;
     float PositionZ;
-    float Orientation;
     uint16 DisplayId;
     uint8 Strength;
     uint8 Ability;
@@ -278,266 +277,267 @@ class Player : public Unit
     /// Destroy the object -- use DecRef
     virtual ~Player ();
 
-    public:
-        /// Current quest statuses
-        DECLARE_VECTOR_SORTED (QuestStatusVector, QuestStatus *, ) Quests;
-        /// Channels
-        DECLARE_VECTOR_SORTED (ChannelsVector, Channel *, ) Channels;
-        /// Player's mailbox
-        DECLARE_VECTOR_SORTED (MailVector, Mail *, ) MailBox;
-        /// Player spells
-        DECLARE_VECTOR (SpellsVector, Spell *, ) Spells;
+public:
+    /// Current quest statuses
+    DECLARE_VECTOR_SORTED (QuestStatusVector, QuestStatus *, ) Quests;
+    /// Channels
+    DECLARE_VECTOR_SORTED (ChannelsVector, Channel *, ) Channels;
+    /// Player's mailbox
+    DECLARE_VECTOR_SORTED (MailVector, Mail *, ) MailBox;
+    /// Player spells
+    DECLARE_VECTOR (SpellsVector, Spell *, ) Spells;
 
-        /// max 12 characters name (24 bytes for UTF-8)
-        char *Name;
-        /// The client object associated with this character
-        GameClient *Client;
-        /// Currently selected object
-        uint64 CurSelection;
-        /// Current target
-        uint64 CurTarget;
-        /// The group leader
-        uint64 GroupLeader;
-        /// True if player is already a member of a group
-        bool IsInGroup;
-        /// True if player is invited into a group
-        bool IsInvited;
-        /// The GUID of the (presumably dead :) creature we're looting
-        uint64 LootGuid;
-        /// Which taxi nodes we can use
-        uint8 TaxiMask [32];
-        /// Initially all zeros, it gets filled with ones as tutorials are passed
-        uint8 TutorMask [32];
-        /// Action buttons
-        uint32 Actions [120];
+    /// max 12 characters name (24 bytes for UTF-8)
+    char *Name;
+    /// The client object associated with this character
+    GameClient *Client;
+    /// Currently selected object
+    uint64 CurSelection;
+    /// Current target
+    uint64 CurTarget;
+    /// The group leader
+    uint64 GroupLeader;
+    /// True if player is already a member of a group
+    bool IsInGroup;
+    /// True if player is invited into a group
+    bool IsInvited;
+    /// The GUID of the (presumably dead :) creature we're looting
+    uint64 LootGuid;
+    /// Which taxi nodes we can use
+    uint8 TaxiMask [32];
+    /// Initially all zeros, it gets filled with ones as tutorials are passed
+    uint8 TutorMask [32];
+    /// Action buttons
+    uint32 Actions [120];
 
-        /// Create a (mostly) uninitialized player object
-        Player ();
+    /// Create a (mostly) uninitialized player object
+    Player ();
 
-        /**
-         * Handle the CHAR_CREATE message. Creates a new player object
-         * and initialize all fields to values appropiate for the corresponding
-         * race, class etc.
-         * @arg inpkt
-         *   The parset network data in a structure
-         * @return
-         *   One of WSE_XXX codes
-         */
-        uint32 Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient);
+    /**
+     * Handle the CHAR_CREATE message. Creates a new player object
+     * and initialize all fields to values appropiate for the corresponding
+     * race, class etc.
+     * @arg inpkt
+     *   The parset network data in a structure
+     * @return
+     *   One of WSE_XXX codes
+     */
+    uint32 Create (CMSG_CHAR_CREATE_t &inpkt, GameClient *iClient);
 
-        /// Start the session
-        void Login ();
+    /// Start the session
+    void Login ();
 
-        /**
-         * This is a no-op for Player since a) we can't be looted and
-         * b) we already have all the loot in our pockets.
-         */
-        virtual void GenerateLoot () {}
+    /**
+     * This is a no-op for Player since a) we can't be looted and
+     * b) we already have all the loot in our pockets.
+     */
+    virtual void GenerateLoot () {}
 
-        /// Update unit state depending on time passed
-        virtual void Update (uint32 iDeltaMs);
+    /// Update unit state depending on time passed
+    virtual void Update (uint32 iDeltaMs);
 
-        /// Player should override it to use POS/NEG fields
-        virtual void ApplyModifier (Modifier *iMod, bool iApply, Affect *iParent);
+    /// Player should override it to use POS/NEG fields
+    virtual void ApplyModifier (Modifier *iMod, bool iApply, Affect *iParent);
 
-        /**
-         * Receive damage from another unit. This is a important function
-         * which is overrided by most children classes because different
-         * creatures react differently to the damage they take. Also note
-         * that this is the ULTIMATE damage, e.g. all resistances, parry
-         * etc is already subtracted from the attack power. Also this function
-         * is responsible to call GiveXP() on the respective attacker unit
-         * after this unit is killed (and it is NOT neccessary that this is
-         * the iAttacker unit).
-         *
-         * @arg iAttacker
-         *   The attacker unit.
-         * @arg iDamage
-         *   The damage caused by the attacker unit.
-         */
-        virtual void ReceiveDamage (Unit *iAttacker, uint32 iDamage);
+    /**
+     * Receive damage from another unit. This is a important function
+     * which is overrided by most children classes because different
+     * creatures react differently to the damage they take. Also note
+     * that this is the ULTIMATE damage, e.g. all resistances, parry
+     * etc is already subtracted from the attack power. Also this function
+     * is responsible to call GiveXP() on the respective attacker unit
+     * after this unit is killed (and it is NOT neccessary that this is
+     * the iAttacker unit).
+     *
+     * @arg iAttacker
+     *   The attacker unit.
+     * @arg iDamage
+     *   The damage caused by the attacker unit.
+     */
+    virtual void ReceiveDamage (Unit *iAttacker, uint32 iDamage);
 
-        /**
-         * Give experience points to player
-         * @arg iXP
-         *   Amount of experience points to give.
-         * @arg iVictim
-         *   The creature that has been killed.
-         * @arg iGroup
-         *   true if XP should be distributed amongst all group members
-         *   (if player is part of group, otherwise this is ignored).
-         *   If this is false, the whole XP is given only to this player.
-         */
-        virtual void GiveXP (uint32 iXP, Unit *iVictim, bool iGroup = true);
+    /**
+     * Give experience points to player
+     * @arg iXP
+     *   Amount of experience points to give.
+     * @arg iVictim
+     *   The creature that has been killed.
+     * @arg iGroup
+     *   true if XP should be distributed amongst all group members
+     *   (if player is part of group, otherwise this is ignored).
+     *   If this is false, the whole XP is given only to this player.
+     */
+    virtual void GiveXP (uint32 iXP, Unit *iVictim, bool iGroup = true);
 
-        //----------------// Player saving & loading //----------------//
+    //----------------// Player saving & loading //----------------//
 
-        /// Save this object to database
-        virtual bool SaveToDB ();
-        /// Load this object from database
-        bool LoadFromDB (uint32 iLowGuid);
-        /// Delete this object from database
-        virtual bool DeleteFromDB ();
+    /// Save this object to database
+    virtual bool SaveToDB ();
+    /// Load this object from database
+    bool LoadFromDB (uint32 iLowGuid);
+    /// Delete this object from database
+    virtual bool DeleteFromDB ();
 
-        void AddToWorld ();
-        void RemoveFromWorld ();
+    void AddToWorld ();
+    void RemoveFromWorld ();
 
-        /// Toggle Away-From-Keyboard flag and return the new state.
-        bool ToggleAFK ()
-            { return (AFK = !AFK); };
-        /// Get character name
-        const char *GetName ()
-            { return Name; };
+    /// Toggle Away-From-Keyboard flag and return the new state.
+    bool ToggleAFK ()
+    { return (AFK = !AFK); };
+    /// Get character name
+    const char *GetName ()
+    { return Name; };
 
-        /// Notification of monster kill: update quest flags, if needed
-        void KilledMonster (uint32 iEntry, const uint64 &iGuid);
+    /// Notification of monster kill: update quest flags, if needed
+    void KilledMonster (uint32 iEntry, const uint64 &iGuid);
 
-        /**
-         * Give some XP points to this character for killing the creature
-         * with given GUID; if it is is 0, experience comes from another
-         * source (e.g. quest completion) and no purple XP message is printed.
-         * @arg iXP
-         *   Amount of eXperience Points to give
-         * @arg iGuid
-         *   The identifier of killed creature
-         */
-        void GiveXP (uint32 iXP, uint64 iGuid);
+    /**
+     * Give some XP points to this character for killing the creature
+     * with given GUID; if it is is 0, experience comes from another
+     * source (e.g. quest completion) and no purple XP message is printed.
+     * @arg iXP
+     *   Amount of eXperience Points to give
+     * @arg iGuid
+     *   The identifier of killed creature
+     */
+    void GiveXP (uint32 iXP, uint64 iGuid);
 
-        /// These functions build a specific type of A9 packet
-        //virtual void BuildCreateUpdateBlockForPlayer (BitVector *Bits, Player *target) const;
-        /// Destroy this player and all items in inventory for other player
-        //virtual void DestroyForPlayer (Player *target) const;
+    /// These functions build a specific type of A9 packet
+    //virtual void BuildCreateUpdateBlockForPlayer (BitVector *Bits, Player *target) const;
+    /// Destroy this player and all items in inventory for other player
+    //virtual void DestroyForPlayer (Player *target) const;
 
-        //----------// Taxi handling //----------//
+    //----------// Taxi handling //----------//
 
-        void SetDismountTimer (uint32 time)
-            { DismountTimer = time; };
-        void SetDismountCost (uint32 money)
-            { DismountCost = money; };
-        void SetDismountPos (float x, float y, float z)
-            { DismountPosX = x; DismountPosY = y; DismountPosZ = z; }
+    void SetDismountTimer (uint32 time)
+    { DismountTimer = time; };
+    void SetDismountCost (uint32 money)
+    { DismountCost = money; };
+    void SetDismountPos (float x, float y, float z)
+    { DismountPosX = x; DismountPosY = y; DismountPosZ = z; }
 
-        //----------// Quest handling //----------//
+    //----------// Quest handling //----------//
 
-        uint32 GetQuestStatus (uint32 iQuestId);
-        uint32 AddNewQuest (uint32 iQuestId, uint32 iStatus = 4);
-        void LoadExistingQuest (QuestStatus &iQS);
-        void SetQuestStatus (uint32 iQuestId, uint32 iNewStatus);
-        bool CheckQuestStatus (uint32 iQuestId);
-        uint16 GetOpenQuestSlot ();
-        uint16 GetQuestSlot (uint32 iQuestId);
+    uint32 GetQuestStatus (uint32 iQuestId);
+    uint32 AddNewQuest (uint32 iQuestId, uint32 iStatus = 4);
+    void LoadExistingQuest (QuestStatus &iQS);
+    void SetQuestStatus (uint32 iQuestId, uint32 iNewStatus);
+    bool CheckQuestStatus (uint32 iQuestId);
+    uint16 GetOpenQuestSlot ();
+    uint16 GetQuestSlot (uint32 iQuestId);
 
-        //----------// Mail handling //----------//
+    //----------// Mail handling //----------//
 
-        /// Add a message to player's mailbox
-        void AddMail (Mail *m);
-        /// Get number of messages in the mailbox
-        uint32 GetMailSize ()
-            { return MailBox.Length (); }
-        /// Get a specific message by identifier
-        Mail *GetMail (uint32 iId)
-            { return MailBox.GetByKey (ConstSome (iId)); }
-        /// Remove a message by its identifier
-        void RemoveMail (uint32 iId)
-        {
-            int idx = MailBox.FindSortedKey (ConstSome (iId));
-            if (idx >= 0) MailBox.Delete (idx);
-        }
+    /// Add a message to player's mailbox
+    void AddMail (Mail *m);
+    /// Get number of messages in the mailbox
+    uint32 GetMailSize ()
+    { return MailBox.Length (); }
+    /// Get a specific message by identifier
+    Mail *GetMail (uint32 iId)
+    { return MailBox.GetByKey (ConstSome (iId)); }
+    /// Remove a message by its identifier
+    void RemoveMail (uint32 iId)
+    {
+        int idx = MailBox.FindSortedKey (ConstSome (iId));
+        if (idx >= 0) MailBox.Delete (idx);
+    }
 
-        //----------// Handle spells //----------//
+    //----------// Handle spells //----------//
 
-        bool HasSpell (uint32 iSpell);
-        void InitialSpells ();
-        void AddSpell (uint iSpellId, uint iSlotId = 0xffff);
+    bool HasSpell (uint32 iSpell);
+    void InitialSpells ();
+    void AddSpell (uint iSpellId, uint iSlotId = 0xffff);
 
-        //----------// Handle equipment & inventory //----------//
+    //----------// Handle equipment & inventory //----------//
 
-        /// Get the item placed in the given character slot
-        Item *GetItem (uint iSlot)
-        {
-            DEBUG_BREAK_IF (iSlot >= INVENTORY_SLOT_ITEM_END);
-            return Items [iSlot];
-        }
+    /// Get the item placed in the given character slot
+    Item *GetItem (uint iSlot)
+    {
+        DEBUG_BREAK_IF (iSlot >= INVENTORY_SLOT_ITEM_END);
+        return Items [iSlot];
+    }
 
-        /// Swap two items and send notifications to anyone worth it
-        void SwapItemSlots (uint8 iSrcSlot, uint8 iDstSlot);
+    /// Swap two items and send notifications to anyone worth it
+    void SwapItemSlots (uint8 iSrcSlot, uint8 iDstSlot);
 
-        /**
-         * Find the slot where the item with given identifier is placed.
-         * Does not look in equipment and bag slots.
-         * @return
-         *   Item slot number or -1 on error.
-         */
-        int GetSlotByItemID (uint32 iId);
+    /**
+     * Find the slot where the item with given identifier is placed.
+     * Does not look in equipment and bag slots.
+     * @return
+     *   Item slot number or -1 on error.
+     */
+    int GetSlotByItemID (uint32 iId);
 
-        /**
-         * Find the slot where the item with given GUID is placed.
-         * The search includes all slots (equipment, bag slots and inventory).
-         */
-        int GetSlotByItemGUID (uint64 iGuid);
+    /**
+     * Find the slot where the item with given GUID is placed.
+     * The search includes all slots (equipment, bag slots and inventory).
+     */
+    int GetSlotByItemGUID (uint64 iGuid);
 
-        /**
-         * Insert a item into the specified slot.
-         * @arg iSlot
-         *   Slot number to place item into
-         * @arg iItem
-         *   The item to place into the slot
-         */
-        void AddItemToSlot (uint8 iSlot, Item *iItem);
+    /**
+     * Insert a item into the specified slot.
+     * @arg iSlot
+     *   Slot number to place item into
+     * @arg iItem
+     *   The item to place into the slot
+     */
+    void AddItemToSlot (uint8 iSlot, Item *iItem);
 
-        /**
-         * Remove a item from indicated slot.
-         * Does NOT decrement reference counter on the item,
-         * so if you don't need the item anymore you must
-         * DecRef() it yourself.
-         */
-        Item *RemoveItemFromSlot (uint8 iSlot);
+    /**
+     * Remove a item from indicated slot.
+     * Does NOT decrement reference counter on the item,
+     * so if you don't need the item anymore you must
+     * DecRef() it yourself.
+     */
+    Item *RemoveItemFromSlot (uint8 iSlot);
 
-        /**
-         * Find a free equipment slot for an item of the specified type.
-         * @iInvType
-         *   Inventory type (see INVTYPE_XXX constants).
-         * @return
-         *   This function returns the target slot number, or -1 if there
-         *   are no free equipment slots for this type of items. Also the
-         *   function returns -2 if item is of the 'ammo' type (e.g. bullets,
-         *   arrows, thrown and such).
-         */
-        int FindFreeItemSlot (uint32 iInvType);
+    /**
+     * Find a free equipment slot for an item of the specified type.
+     * @iInvType
+     *   Inventory type (see INVTYPE_XXX constants).
+     * @return
+     *   This function returns the target slot number, or -1 if there
+     *   are no free equipment slots for this type of items. Also the
+     *   function returns -2 if item is of the 'ammo' type (e.g. bullets,
+     *   arrows, thrown and such).
+     */
+    int FindFreeItemSlot (uint32 iInvType);
 
-        /**
-         * Check if it is possible to place an item of given type
-         * into the indicated slot.
-         * @arg iSlot
-         *   Target slot number
-         * @arg iInvType
-         *   Inventory type (see INVTYPE_XXX constants).
-         * @return
-         *   true if item can be placed into the indicated slot.
-         */
-        bool CanEquipItemInSlot (uint8 iSlot, uint32 iInvType);
+    /**
+     * Check if it is possible to place an item of given type
+     * into the indicated slot.
+     * @arg iSlot
+     *   Target slot number
+     * @arg iInvType
+     *   Inventory type (see INVTYPE_XXX constants).
+     * @return
+     *   true if item can be placed into the indicated slot.
+     */
+    bool CanEquipItemInSlot (uint8 iSlot, uint32 iInvType);
 
-        //----------// Death Stuff //----------//
+    //----------// Death Stuff //----------//
 
-        void SpawnCorpseBody ();
-        void SpawnCorpseBones ();
-        void CreateCorpse ();
-        void KillPlayer ();
-        void ResurrectPlayer ();
-        void BuildPlayerRepop ();
-        /// iPercent = 24.8 fixed-point (256 = 1, 128 = 0.5 etc)
-        void DeathDurabilityLoss (uint iPercent);
-        void RepopAtGraveyard ();
+    void SpawnCorpseBody ();
+    void SpawnCorpseBones ();
+    void CreateCorpse ();
+    void KillPlayer ();
+    void ResurrectPlayer ();
+    void BuildPlayerRepop ();
+    /// iPercent = 24.8 fixed-point (256 = 1, 128 = 0.5 etc)
+    void DeathDurabilityLoss (uint iPercent);
+    void RepopAtGraveyard ();
 
-        //----------// Movement stuff //----------//
+    //----------// Movement stuff //----------//
 
-        void SetMovement (uint8 pType);
-        void SetPlayerSpeed (uint8 SpeedType, float value, bool forced = false);
+    void SetMovement (uint8 pType);
+    void SetPlayerSpeed (uint8 SpeedType, float value, bool forced = false);
 
-        //----------// Channel stuff //----------//
+    //----------// Channel stuff //----------//
 
-        void JoinedChannel (Channel *iChan);
-        void LeftChannel (Channel *iChan);
-        void CleanupChannels ();
+    void JoinedChannel (Channel *iChan);
+    void LeftChannel (Channel *iChan);
+    void CleanupChannels ();
 };
+
 #endif // __PLAYER_H__

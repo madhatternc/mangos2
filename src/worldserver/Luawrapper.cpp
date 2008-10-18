@@ -1,6 +1,6 @@
 /*
-** Lua binding: worldsrv
-** Generated automatically by tolua++-1.0.5 on Wed May 11 04:25:02 2005.
+** Lua binding: worldserver
+** Generated automatically by tolua++-1.0.5 on Fri Oct 17 16:35:02 2008.
 */
 
 #ifndef __cplusplus
@@ -11,7 +11,7 @@
 #include "tolua++.h"
 
 /* Exported function */
-TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S);
+TOLUA_API int tolua_worldserver_open (lua_State* tolua_S);
 
 #include "WorldServer.h"
 #include "GameClient.h"
@@ -33,71 +33,71 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S);
 static int tolua_collect_WorldServer (lua_State* tolua_S)
 {
  WorldServer* self = (WorldServer*) tolua_tousertype(tolua_S,1,0);
-    self->DecRef();
-    return 0;
+  self->DecRef();
+ return 0;
 }
 
 static int tolua_collect_GameClient (lua_State* tolua_S)
 {
  GameClient* self = (GameClient*) tolua_tousertype(tolua_S,1,0);
-    delete self;
-    return 0;
+  delete self;
+ return 0;
 }
 
 static int tolua_collect_time_t (lua_State* tolua_S)
 {
  time_t* self = (time_t*) tolua_tousertype(tolua_S,1,0);
-    delete self;
-    return 0;
+  delete self;
+ return 0;
 }
 
 static int tolua_collect_ItemPrototype (lua_State* tolua_S)
 {
  ItemPrototype* self = (ItemPrototype*) tolua_tousertype(tolua_S,1,0);
-    delete self;
-    return 0;
+  delete self;
+ return 0;
 }
 
 static int tolua_collect_NetworkPacket (lua_State* tolua_S)
 {
  NetworkPacket* self = (NetworkPacket*) tolua_tousertype(tolua_S,1,0);
-    self->DecRef();
-    return 0;
+  self->DecRef();
+ return 0;
 }
 
 static int tolua_collect_Modifier (lua_State* tolua_S)
 {
  Modifier* self = (Modifier*) tolua_tousertype(tolua_S,1,0);
-    delete self;
-    return 0;
+  delete self;
+ return 0;
 }
 
 static int tolua_collect_Item (lua_State* tolua_S)
 {
  Item* self = (Item*) tolua_tousertype(tolua_S,1,0);
-    self->DecRef();
-    return 0;
+  self->DecRef();
+ return 0;
 }
 
 static int tolua_collect_Unit (lua_State* tolua_S)
 {
  Unit* self = (Unit*) tolua_tousertype(tolua_S,1,0);
-    delete self;
-    return 0;
+  delete self;
+ return 0;
 }
 
 static int tolua_collect_Base (lua_State* tolua_S)
 {
  Base* self = (Base*) tolua_tousertype(tolua_S,1,0);
-    self->DecRef();
-    return 0;
+  self->DecRef();
+ return 0;
 }
 
 static int tolua_collect_Affect (lua_State* tolua_S)
 {
  Affect* self = (Affect*) tolua_tousertype(tolua_S,1,0);
-    delete self;
-    return 0;
+  delete self;
+ return 0;
 }
 #endif
 
@@ -130,7 +130,7 @@ static void tolua_reg_types (lua_State* tolua_S)
 }
 
 /* method: new of class  Base */
-static int tolua_worldsrv_Base_new00(lua_State* tolua_S)
+static int tolua_worldserver_Base_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -156,7 +156,7 @@ static int tolua_worldsrv_Base_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  Base */
-static int tolua_worldsrv_Base_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_Base_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -182,7 +182,7 @@ static int tolua_worldsrv_Base_new00_local(lua_State* tolua_S)
 }
 
 /* method: IncRef of class  Base */
-static int tolua_worldsrv_Base_IncRef00(lua_State* tolua_S)
+static int tolua_worldserver_Base_IncRef00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -211,7 +211,7 @@ static int tolua_worldsrv_Base_IncRef00(lua_State* tolua_S)
 }
 
 /* method: DecRef of class  Base */
-static int tolua_worldsrv_Base_DecRef00(lua_State* tolua_S)
+static int tolua_worldserver_Base_DecRef00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -240,7 +240,7 @@ static int tolua_worldsrv_Base_DecRef00(lua_State* tolua_S)
 }
 
 /* method: GetRefCount of class  Base */
-static int tolua_worldsrv_Base_GetRefCount00(lua_State* tolua_S)
+static int tolua_worldserver_Base_GetRefCount00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -295,7 +295,7 @@ static int tolua_set_NetworkPacket_unsigned_length(lua_State* tolua_S)
 }
 
 /* method: new of class  NetworkPacket */
-static int tolua_worldsrv_NetworkPacket_new00(lua_State* tolua_S)
+static int tolua_worldserver_NetworkPacket_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -321,7 +321,7 @@ static int tolua_worldsrv_NetworkPacket_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  NetworkPacket */
-static int tolua_worldsrv_NetworkPacket_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_NetworkPacket_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -347,7 +347,7 @@ static int tolua_worldsrv_NetworkPacket_new00_local(lua_State* tolua_S)
 }
 
 /* method: new of class  NetworkPacket */
-static int tolua_worldsrv_NetworkPacket_new01(lua_State* tolua_S)
+static int tolua_worldserver_NetworkPacket_new01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -366,11 +366,11 @@ static int tolua_worldsrv_NetworkPacket_new01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_worldsrv_NetworkPacket_new00(tolua_S);
+ return tolua_worldserver_NetworkPacket_new00(tolua_S);
 }
 
 /* method: new_local of class  NetworkPacket */
-static int tolua_worldsrv_NetworkPacket_new01_local(lua_State* tolua_S)
+static int tolua_worldserver_NetworkPacket_new01_local(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -389,11 +389,11 @@ static int tolua_worldsrv_NetworkPacket_new01_local(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_worldsrv_NetworkPacket_new00_local(tolua_S);
+ return tolua_worldserver_NetworkPacket_new00_local(tolua_S);
 }
 
 /* method: SetLength of class  NetworkPacket */
-static int tolua_worldsrv_NetworkPacket_SetLength00(lua_State* tolua_S)
+static int tolua_worldserver_NetworkPacket_SetLength00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -424,7 +424,7 @@ static int tolua_worldsrv_NetworkPacket_SetLength00(lua_State* tolua_S)
 }
 
 /* method: Assemble of class  NetworkPacket */
-static int tolua_worldsrv_NetworkPacket_Assemble00(lua_State* tolua_S)
+static int tolua_worldserver_NetworkPacket_Assemble00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -453,7 +453,7 @@ static int tolua_worldsrv_NetworkPacket_Assemble00(lua_State* tolua_S)
 }
 
 /* method: Listen of class  Socket */
-static int tolua_worldsrv_Socket_Listen00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Listen00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -483,7 +483,7 @@ static int tolua_worldsrv_Socket_Listen00(lua_State* tolua_S)
 }
 
 /* method: Connect of class  Socket */
-static int tolua_worldsrv_Socket_Connect00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Connect00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -515,7 +515,7 @@ static int tolua_worldsrv_Socket_Connect00(lua_State* tolua_S)
 }
 
 /* method: ErrorString of class  Socket */
-static int tolua_worldsrv_Socket_ErrorString00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_ErrorString00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -543,7 +543,7 @@ static int tolua_worldsrv_Socket_ErrorString00(lua_State* tolua_S)
 }
 
 /* method: ReceiveData of class  Socket */
-static int tolua_worldsrv_Socket_ReceiveData00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_ReceiveData00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -573,7 +573,7 @@ static int tolua_worldsrv_Socket_ReceiveData00(lua_State* tolua_S)
 }
 
 /* method: SendData of class  Socket */
-static int tolua_worldsrv_Socket_SendData00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_SendData00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -604,7 +604,7 @@ static int tolua_worldsrv_Socket_SendData00(lua_State* tolua_S)
 }
 
 /* method: SendData of class  Socket */
-static int tolua_worldsrv_Socket_SendData01(lua_State* tolua_S)
+static int tolua_worldserver_Socket_SendData01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -628,11 +628,11 @@ static int tolua_worldsrv_Socket_SendData01(lua_State* tolua_S)
  }
  return 0;
 tolua_lerror:
- return tolua_worldsrv_Socket_SendData00(tolua_S);
+ return tolua_worldserver_Socket_SendData00(tolua_S);
 }
 
 /* method: SendPending of class  Socket */
-static int tolua_worldsrv_Socket_SendPending00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_SendPending00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -661,7 +661,7 @@ static int tolua_worldsrv_Socket_SendPending00(lua_State* tolua_S)
 }
 
 /* method: Accept of class  Socket */
-static int tolua_worldsrv_Socket_Accept00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Accept00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -691,7 +691,7 @@ static int tolua_worldsrv_Socket_Accept00(lua_State* tolua_S)
 }
 
 /* method: InterestedEvents of class  Socket */
-static int tolua_worldsrv_Socket_InterestedEvents00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_InterestedEvents00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -721,7 +721,7 @@ static int tolua_worldsrv_Socket_InterestedEvents00(lua_State* tolua_S)
 }
 
 /* method: Connected of class  Socket */
-static int tolua_worldsrv_Socket_Connected00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Connected00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -751,7 +751,7 @@ static int tolua_worldsrv_Socket_Connected00(lua_State* tolua_S)
 }
 
 /* method: GetIP of class  Socket */
-static int tolua_worldsrv_Socket_GetIP00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetIP00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -781,7 +781,7 @@ static int tolua_worldsrv_Socket_GetIP00(lua_State* tolua_S)
 }
 
 /* method: SetLogger of class  Socket */
-static int tolua_worldsrv_Socket_SetLogger00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_SetLogger00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -812,7 +812,7 @@ static int tolua_worldsrv_Socket_SetLogger00(lua_State* tolua_S)
 }
 
 /* method: Rewind of class  Socket */
-static int tolua_worldsrv_Socket_Rewind00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Rewind00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -841,7 +841,7 @@ static int tolua_worldsrv_Socket_Rewind00(lua_State* tolua_S)
 }
 
 /* method: Avail of class  Socket */
-static int tolua_worldsrv_Socket_Avail00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Avail00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -871,7 +871,7 @@ static int tolua_worldsrv_Socket_Avail00(lua_State* tolua_S)
 }
 
 /* method: Chewed of class  Socket */
-static int tolua_worldsrv_Socket_Chewed00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Chewed00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -901,7 +901,7 @@ static int tolua_worldsrv_Socket_Chewed00(lua_State* tolua_S)
 }
 
 /* method: Swallow of class  Socket */
-static int tolua_worldsrv_Socket_Swallow00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Swallow00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -930,7 +930,7 @@ static int tolua_worldsrv_Socket_Swallow00(lua_State* tolua_S)
 }
 
 /* method: Skip of class  Socket */
-static int tolua_worldsrv_Socket_Skip00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Skip00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -962,7 +962,7 @@ static int tolua_worldsrv_Socket_Skip00(lua_State* tolua_S)
 }
 
 /* method: Get of class  Socket */
-static int tolua_worldsrv_Socket_Get00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Get00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -996,7 +996,7 @@ static int tolua_worldsrv_Socket_Get00(lua_State* tolua_S)
 }
 
 /* method: Get of class  Socket */
-static int tolua_worldsrv_Socket_Get01(lua_State* tolua_S)
+static int tolua_worldserver_Socket_Get01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -1020,11 +1020,11 @@ static int tolua_worldsrv_Socket_Get01(lua_State* tolua_S)
  }
  return 2;
 tolua_lerror:
- return tolua_worldsrv_Socket_Get00(tolua_S);
+ return tolua_worldserver_Socket_Get00(tolua_S);
 }
 
 /* method: GetLE of class  Socket */
-static int tolua_worldsrv_Socket_GetLE00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetLE00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1057,7 +1057,7 @@ static int tolua_worldsrv_Socket_GetLE00(lua_State* tolua_S)
 }
 
 /* method: GetLE of class  Socket */
-static int tolua_worldsrv_Socket_GetLE01(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetLE01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -1081,11 +1081,11 @@ static int tolua_worldsrv_Socket_GetLE01(lua_State* tolua_S)
  }
  return 2;
 tolua_lerror:
- return tolua_worldsrv_Socket_GetLE00(tolua_S);
+ return tolua_worldserver_Socket_GetLE00(tolua_S);
 }
 
 /* method: GetLE of class  Socket */
-static int tolua_worldsrv_Socket_GetLE02(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetLE02(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -1109,11 +1109,11 @@ static int tolua_worldsrv_Socket_GetLE02(lua_State* tolua_S)
  }
  return 2;
 tolua_lerror:
- return tolua_worldsrv_Socket_GetLE01(tolua_S);
+ return tolua_worldserver_Socket_GetLE01(tolua_S);
 }
 
 /* method: GetLE of class  Socket */
-static int tolua_worldsrv_Socket_GetLE03(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetLE03(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -1137,11 +1137,11 @@ static int tolua_worldsrv_Socket_GetLE03(lua_State* tolua_S)
  }
  return 2;
 tolua_lerror:
- return tolua_worldsrv_Socket_GetLE02(tolua_S);
+ return tolua_worldserver_Socket_GetLE02(tolua_S);
 }
 
 /* method: GetBE of class  Socket */
-static int tolua_worldsrv_Socket_GetBE00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetBE00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1174,7 +1174,7 @@ static int tolua_worldsrv_Socket_GetBE00(lua_State* tolua_S)
 }
 
 /* method: GetBE of class  Socket */
-static int tolua_worldsrv_Socket_GetBE01(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetBE01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -1198,11 +1198,11 @@ static int tolua_worldsrv_Socket_GetBE01(lua_State* tolua_S)
  }
  return 2;
 tolua_lerror:
- return tolua_worldsrv_Socket_GetBE00(tolua_S);
+ return tolua_worldserver_Socket_GetBE00(tolua_S);
 }
 
 /* method: GetCStr of class  Socket */
-static int tolua_worldsrv_Socket_GetCStr00(lua_State* tolua_S)
+static int tolua_worldserver_Socket_GetCStr00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1257,7 +1257,7 @@ static int tolua_set_Database_Logger_ptr(lua_State* tolua_S)
 }
 
 /* method: Create of class  Database */
-static int tolua_worldsrv_Database_Create00(lua_State* tolua_S)
+static int tolua_worldserver_Database_Create00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1287,7 +1287,7 @@ static int tolua_worldsrv_Database_Create00(lua_State* tolua_S)
 }
 
 /* method: ParseType of class  Database */
-static int tolua_worldsrv_Database_ParseType00(lua_State* tolua_S)
+static int tolua_worldserver_Database_ParseType00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1315,7 +1315,7 @@ static int tolua_worldsrv_Database_ParseType00(lua_State* tolua_S)
 }
 
 /* method: ErrorString of class  Database */
-static int tolua_worldsrv_Database_ErrorString00(lua_State* tolua_S)
+static int tolua_worldserver_Database_ErrorString00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1343,7 +1343,7 @@ static int tolua_worldsrv_Database_ErrorString00(lua_State* tolua_S)
 }
 
 /* method: GetExecutor of class  Database */
-static int tolua_worldsrv_Database_GetExecutor00(lua_State* tolua_S)
+static int tolua_worldserver_Database_GetExecutor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1373,7 +1373,7 @@ static int tolua_worldsrv_Database_GetExecutor00(lua_State* tolua_S)
 }
 
 /* method: PutExecutor of class  Database */
-static int tolua_worldsrv_Database_PutExecutor00(lua_State* tolua_S)
+static int tolua_worldserver_Database_PutExecutor00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1404,7 +1404,7 @@ static int tolua_worldsrv_Database_PutExecutor00(lua_State* tolua_S)
 }
 
 /* method: SetLogger of class  Database */
-static int tolua_worldsrv_Database_SetLogger00(lua_State* tolua_S)
+static int tolua_worldserver_Database_SetLogger00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1435,7 +1435,7 @@ static int tolua_worldsrv_Database_SetLogger00(lua_State* tolua_S)
 }
 
 /* method: GetParent of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetParent00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetParent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1465,7 +1465,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetParent00(lua_State* tolua_S)
 }
 
 /* method: Ok of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_Ok00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_Ok00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1495,7 +1495,7 @@ static int tolua_worldsrv_DatabaseExecutor_Ok00(lua_State* tolua_S)
 }
 
 /* method: Free of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_Free00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_Free00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1524,7 +1524,7 @@ static int tolua_worldsrv_DatabaseExecutor_Free00(lua_State* tolua_S)
 }
 
 /* method: Execute of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_Execute00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_Execute00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1556,7 +1556,7 @@ static int tolua_worldsrv_DatabaseExecutor_Execute00(lua_State* tolua_S)
 }
 
 /* method: NumFields of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_NumFields00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_NumFields00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1586,7 +1586,7 @@ static int tolua_worldsrv_DatabaseExecutor_NumFields00(lua_State* tolua_S)
 }
 
 /* method: NumRows of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_NumRows00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_NumRows00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1616,7 +1616,7 @@ static int tolua_worldsrv_DatabaseExecutor_NumRows00(lua_State* tolua_S)
 }
 
 /* method: NextRow of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_NextRow00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_NextRow00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1646,7 +1646,7 @@ static int tolua_worldsrv_DatabaseExecutor_NextRow00(lua_State* tolua_S)
 }
 
 /* method: Get of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_Get00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_Get00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1678,7 +1678,7 @@ static int tolua_worldsrv_DatabaseExecutor_Get00(lua_State* tolua_S)
 }
 
 /* method: GetLength of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetLength00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetLength00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1710,7 +1710,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetLength00(lua_State* tolua_S)
 }
 
 /* method: GetI32 of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetI3200(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetI3200(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1742,7 +1742,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetI3200(lua_State* tolua_S)
 }
 
 /* method: GetU32 of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetU3200(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetU3200(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1774,7 +1774,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetU3200(lua_State* tolua_S)
 }
 
 /* method: GetU64 of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetU6400(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetU6400(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1806,7 +1806,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetU6400(lua_State* tolua_S)
 }
 
 /* method: GetFloat of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetFloat00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetFloat00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1838,7 +1838,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetFloat00(lua_State* tolua_S)
 }
 
 /* method: GetID of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetID00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetID00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1868,7 +1868,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetID00(lua_State* tolua_S)
 }
 
 /* method: GetAffectedRows of class  DatabaseExecutor */
-static int tolua_worldsrv_DatabaseExecutor_GetAffectedRows00(lua_State* tolua_S)
+static int tolua_worldserver_DatabaseExecutor_GetAffectedRows00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1898,7 +1898,7 @@ static int tolua_worldsrv_DatabaseExecutor_GetAffectedRows00(lua_State* tolua_S)
 }
 
 /* method: SocketEvent of class  Client */
-static int tolua_worldsrv_Client_SocketEvent00(lua_State* tolua_S)
+static int tolua_worldserver_Client_SocketEvent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -1979,7 +1979,7 @@ static int tolua_set_GameClient_Character_ptr(lua_State* tolua_S)
 }
 
 /* method: new of class  GameClient */
-static int tolua_worldsrv_GameClient_new00(lua_State* tolua_S)
+static int tolua_worldserver_GameClient_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2007,7 +2007,7 @@ static int tolua_worldsrv_GameClient_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  GameClient */
-static int tolua_worldsrv_GameClient_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_GameClient_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2035,7 +2035,7 @@ static int tolua_worldsrv_GameClient_new00_local(lua_State* tolua_S)
 }
 
 /* method: delete of class  GameClient */
-static int tolua_worldsrv_GameClient_delete00(lua_State* tolua_S)
+static int tolua_worldserver_GameClient_delete00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2062,7 +2062,7 @@ static int tolua_worldsrv_GameClient_delete00(lua_State* tolua_S)
 }
 
 /* method: SocketEvent of class  GameClient */
-static int tolua_worldsrv_GameClient_SocketEvent00(lua_State* tolua_S)
+static int tolua_worldserver_GameClient_SocketEvent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2093,7 +2093,7 @@ static int tolua_worldsrv_GameClient_SocketEvent00(lua_State* tolua_S)
 }
 
 /* method: Authenticated of class  GameClient */
-static int tolua_worldsrv_GameClient_Authenticated00(lua_State* tolua_S)
+static int tolua_worldserver_GameClient_Authenticated00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2123,7 +2123,7 @@ static int tolua_worldsrv_GameClient_Authenticated00(lua_State* tolua_S)
 }
 
 /* method: Send of class  GameClient */
-static int tolua_worldsrv_GameClient_Send00(lua_State* tolua_S)
+static int tolua_worldserver_GameClient_Send00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2254,7 +2254,7 @@ static int tolua_set_Modifier_unsigned_MiscValue2(lua_State* tolua_S)
 }
 
 /* method: new of class  Modifier */
-static int tolua_worldsrv_Modifier_new00(lua_State* tolua_S)
+static int tolua_worldserver_Modifier_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2288,7 +2288,7 @@ static int tolua_worldsrv_Modifier_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  Modifier */
-static int tolua_worldsrv_Modifier_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_Modifier_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2547,7 +2547,7 @@ static int tolua_set_Affect_CoAffect_ptr(lua_State* tolua_S)
 }
 
 /* method: new of class  Affect */
-static int tolua_worldsrv_Affect_new00(lua_State* tolua_S)
+static int tolua_worldserver_Affect_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2579,7 +2579,7 @@ static int tolua_worldsrv_Affect_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  Affect */
-static int tolua_worldsrv_Affect_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_Affect_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2611,7 +2611,7 @@ static int tolua_worldsrv_Affect_new00_local(lua_State* tolua_S)
 }
 
 /* method: AddMod of class  Affect */
-static int tolua_worldsrv_Affect_AddMod00(lua_State* tolua_S)
+static int tolua_worldserver_Affect_AddMod00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2648,7 +2648,7 @@ static int tolua_worldsrv_Affect_AddMod00(lua_State* tolua_S)
 }
 
 /* method: SetDamagePerTick of class  Affect */
-static int tolua_worldsrv_Affect_SetDamagePerTick00(lua_State* tolua_S)
+static int tolua_worldserver_Affect_SetDamagePerTick00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2681,7 +2681,7 @@ static int tolua_worldsrv_Affect_SetDamagePerTick00(lua_State* tolua_S)
 }
 
 /* method: SetPeriodicTriggerSpell of class  Affect */
-static int tolua_worldsrv_Affect_SetPeriodicTriggerSpell00(lua_State* tolua_S)
+static int tolua_worldserver_Affect_SetPeriodicTriggerSpell00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2714,7 +2714,7 @@ static int tolua_worldsrv_Affect_SetPeriodicTriggerSpell00(lua_State* tolua_S)
 }
 
 /* method: Update of class  Affect */
-static int tolua_worldsrv_Affect_Update00(lua_State* tolua_S)
+static int tolua_worldserver_Affect_Update00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2746,7 +2746,7 @@ static int tolua_worldsrv_Affect_Update00(lua_State* tolua_S)
 }
 
 /* method: delete of class  Unit */
-static int tolua_worldsrv_Unit_delete00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_delete00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2773,7 +2773,7 @@ static int tolua_worldsrv_Unit_delete00(lua_State* tolua_S)
 }
 
 /* method: Update of class  Unit */
-static int tolua_worldsrv_Unit_Update00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_Update00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2804,7 +2804,7 @@ static int tolua_worldsrv_Unit_Update00(lua_State* tolua_S)
 }
 
 /* method: ApplyModifier of class  Unit */
-static int tolua_worldsrv_Unit_ApplyModifier00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_ApplyModifier00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2839,7 +2839,7 @@ static int tolua_worldsrv_Unit_ApplyModifier00(lua_State* tolua_S)
 }
 
 /* method: ReceiveDamage of class  Unit */
-static int tolua_worldsrv_Unit_ReceiveDamage00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_ReceiveDamage00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2872,7 +2872,7 @@ static int tolua_worldsrv_Unit_ReceiveDamage00(lua_State* tolua_S)
 }
 
 /* method: GenerateLoot of class  Unit */
-static int tolua_worldsrv_Unit_GenerateLoot00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GenerateLoot00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2901,7 +2901,7 @@ static int tolua_worldsrv_Unit_GenerateLoot00(lua_State* tolua_S)
 }
 
 /* method: GiveXP of class  Unit */
-static int tolua_worldsrv_Unit_GiveXP00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GiveXP00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2936,7 +2936,7 @@ static int tolua_worldsrv_Unit_GiveXP00(lua_State* tolua_S)
 }
 
 /* method: RemoveInRangeObject of class  Unit */
-static int tolua_worldsrv_Unit_RemoveInRangeObject00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_RemoveInRangeObject00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2967,7 +2967,7 @@ static int tolua_worldsrv_Unit_RemoveInRangeObject00(lua_State* tolua_S)
 }
 
 /* method: SetAttackTimer of class  Unit */
-static int tolua_worldsrv_Unit_SetAttackTimer00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_SetAttackTimer00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -2996,7 +2996,7 @@ static int tolua_worldsrv_Unit_SetAttackTimer00(lua_State* tolua_S)
 }
 
 /* method: IsAttackReady of class  Unit */
-static int tolua_worldsrv_Unit_IsAttackReady00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_IsAttackReady00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3026,7 +3026,7 @@ static int tolua_worldsrv_Unit_IsAttackReady00(lua_State* tolua_S)
 }
 
 /* method: CanReachWithAttack of class  Unit */
-static int tolua_worldsrv_Unit_CanReachWithAttack00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_CanReachWithAttack00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3058,7 +3058,7 @@ static int tolua_worldsrv_Unit_CanReachWithAttack00(lua_State* tolua_S)
 }
 
 /* method: RemoveAttacker of class  Unit */
-static int tolua_worldsrv_Unit_RemoveAttacker00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_RemoveAttacker00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3089,7 +3089,7 @@ static int tolua_worldsrv_Unit_RemoveAttacker00(lua_State* tolua_S)
 }
 
 /* method: GetLevel of class  Unit */
-static int tolua_worldsrv_Unit_GetLevel00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GetLevel00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3119,7 +3119,7 @@ static int tolua_worldsrv_Unit_GetLevel00(lua_State* tolua_S)
 }
 
 /* method: GetRace of class  Unit */
-static int tolua_worldsrv_Unit_GetRace00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GetRace00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3149,7 +3149,7 @@ static int tolua_worldsrv_Unit_GetRace00(lua_State* tolua_S)
 }
 
 /* method: GetClass of class  Unit */
-static int tolua_worldsrv_Unit_GetClass00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GetClass00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3179,7 +3179,7 @@ static int tolua_worldsrv_Unit_GetClass00(lua_State* tolua_S)
 }
 
 /* method: GetGender of class  Unit */
-static int tolua_worldsrv_Unit_GetGender00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GetGender00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3209,7 +3209,7 @@ static int tolua_worldsrv_Unit_GetGender00(lua_State* tolua_S)
 }
 
 /* method: DealDamage of class  Unit */
-static int tolua_worldsrv_Unit_DealDamage00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_DealDamage00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3242,7 +3242,7 @@ static int tolua_worldsrv_Unit_DealDamage00(lua_State* tolua_S)
 }
 
 /* method: AttackerStateUpdate of class  Unit */
-static int tolua_worldsrv_Unit_AttackerStateUpdate00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_AttackerStateUpdate00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3277,7 +3277,7 @@ static int tolua_worldsrv_Unit_AttackerStateUpdate00(lua_State* tolua_S)
 }
 
 /* method: SpellNonMeleeDamageLog of class  Unit */
-static int tolua_worldsrv_Unit_SpellNonMeleeDamageLog00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_SpellNonMeleeDamageLog00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3312,7 +3312,7 @@ static int tolua_worldsrv_Unit_SpellNonMeleeDamageLog00(lua_State* tolua_S)
 }
 
 /* method: PeriodicAuraLog of class  Unit */
-static int tolua_worldsrv_Unit_PeriodicAuraLog00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_PeriodicAuraLog00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3349,7 +3349,7 @@ static int tolua_worldsrv_Unit_PeriodicAuraLog00(lua_State* tolua_S)
 }
 
 /* method: AttackStart of class  Unit */
-static int tolua_worldsrv_Unit_AttackStart00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_AttackStart00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3380,7 +3380,7 @@ static int tolua_worldsrv_Unit_AttackStart00(lua_State* tolua_S)
 }
 
 /* method: AttackStop of class  Unit */
-static int tolua_worldsrv_Unit_AttackStop00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_AttackStop00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3411,7 +3411,7 @@ static int tolua_worldsrv_Unit_AttackStop00(lua_State* tolua_S)
 }
 
 /* method: IsAlive of class  Unit */
-static int tolua_worldsrv_Unit_IsAlive00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_IsAlive00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3441,7 +3441,7 @@ static int tolua_worldsrv_Unit_IsAlive00(lua_State* tolua_S)
 }
 
 /* method: IsDead of class  Unit */
-static int tolua_worldsrv_Unit_IsDead00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_IsDead00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3471,7 +3471,7 @@ static int tolua_worldsrv_Unit_IsDead00(lua_State* tolua_S)
 }
 
 /* method: SetDeathState of class  Unit */
-static int tolua_worldsrv_Unit_SetDeathState00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_SetDeathState00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3502,7 +3502,7 @@ static int tolua_worldsrv_Unit_SetDeathState00(lua_State* tolua_S)
 }
 
 /* method: GetDeathState of class  Unit */
-static int tolua_worldsrv_Unit_GetDeathState00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_GetDeathState00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3532,7 +3532,7 @@ static int tolua_worldsrv_Unit_GetDeathState00(lua_State* tolua_S)
 }
 
 /* method: AddAffect of class  Unit */
-static int tolua_worldsrv_Unit_AddAffect00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_AddAffect00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3566,7 +3566,7 @@ static int tolua_worldsrv_Unit_AddAffect00(lua_State* tolua_S)
 }
 
 /* method: RemoveAffect of class  Unit */
-static int tolua_worldsrv_Unit_RemoveAffect00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_RemoveAffect00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3597,7 +3597,7 @@ static int tolua_worldsrv_Unit_RemoveAffect00(lua_State* tolua_S)
 }
 
 /* method: RemoveAffect of class  Unit */
-static int tolua_worldsrv_Unit_RemoveAffect01(lua_State* tolua_S)
+static int tolua_worldserver_Unit_RemoveAffect01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -3620,11 +3620,11 @@ static int tolua_worldsrv_Unit_RemoveAffect01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_worldsrv_Unit_RemoveAffect00(tolua_S);
+ return tolua_worldserver_Unit_RemoveAffect00(tolua_S);
 }
 
 /* method: RemoveAffectById of class  Unit */
-static int tolua_worldsrv_Unit_RemoveAffectById00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_RemoveAffectById00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3655,7 +3655,7 @@ static int tolua_worldsrv_Unit_RemoveAffectById00(lua_State* tolua_S)
 }
 
 /* method: RemoveAllAffects of class  Unit */
-static int tolua_worldsrv_Unit_RemoveAllAffects00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_RemoveAllAffects00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -3684,7 +3684,7 @@ static int tolua_worldsrv_Unit_RemoveAllAffects00(lua_State* tolua_S)
 }
 
 /* method: SetAura of class  Unit */
-static int tolua_worldsrv_Unit_SetAura00(lua_State* tolua_S)
+static int tolua_worldserver_Unit_SetAura00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -4890,7 +4890,7 @@ static int tolua_set_ItemPrototype_unsigned_MaxDurability(lua_State* tolua_S)
 }
 
 /* method: delete of class  ItemPrototype */
-static int tolua_worldsrv_ItemPrototype_delete00(lua_State* tolua_S)
+static int tolua_worldserver_ItemPrototype_delete00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -4942,7 +4942,7 @@ static int tolua_set_Item_Owner_ptr(lua_State* tolua_S)
 }
 
 /* method: new of class  Item */
-static int tolua_worldsrv_Item_new00(lua_State* tolua_S)
+static int tolua_worldserver_Item_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -4968,7 +4968,7 @@ static int tolua_worldsrv_Item_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  Item */
-static int tolua_worldsrv_Item_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_Item_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -4994,7 +4994,7 @@ static int tolua_worldsrv_Item_new00_local(lua_State* tolua_S)
 }
 
 /* method: Create of class  Item */
-static int tolua_worldsrv_Item_Create00(lua_State* tolua_S)
+static int tolua_worldserver_Item_Create00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5028,7 +5028,7 @@ static int tolua_worldsrv_Item_Create00(lua_State* tolua_S)
 }
 
 /* method: Create of class  Item */
-static int tolua_worldsrv_Item_Create01(lua_State* tolua_S)
+static int tolua_worldserver_Item_Create01(lua_State* tolua_S)
 {
  tolua_Error tolua_err;
  if (
@@ -5055,11 +5055,11 @@ static int tolua_worldsrv_Item_Create01(lua_State* tolua_S)
  }
  return 1;
 tolua_lerror:
- return tolua_worldsrv_Item_Create00(tolua_S);
+ return tolua_worldserver_Item_Create00(tolua_S);
 }
 
 /* method: GetProto of class  Item */
-static int tolua_worldsrv_Item_GetProto00(lua_State* tolua_S)
+static int tolua_worldserver_Item_GetProto00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5089,7 +5089,7 @@ static int tolua_worldsrv_Item_GetProto00(lua_State* tolua_S)
 }
 
 /* method: FindProto of class  Item */
-static int tolua_worldsrv_Item_FindProto00(lua_State* tolua_S)
+static int tolua_worldserver_Item_FindProto00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5117,7 +5117,7 @@ static int tolua_worldsrv_Item_FindProto00(lua_State* tolua_S)
 }
 
 /* method: SaveToDB of class  Item */
-static int tolua_worldsrv_Item_SaveToDB00(lua_State* tolua_S)
+static int tolua_worldserver_Item_SaveToDB00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5147,7 +5147,7 @@ static int tolua_worldsrv_Item_SaveToDB00(lua_State* tolua_S)
 }
 
 /* method: LoadFromDB of class  Item */
-static int tolua_worldsrv_Item_LoadFromDB00(lua_State* tolua_S)
+static int tolua_worldserver_Item_LoadFromDB00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5179,7 +5179,7 @@ static int tolua_worldsrv_Item_LoadFromDB00(lua_State* tolua_S)
 }
 
 /* method: DeleteFromDB of class  Item */
-static int tolua_worldsrv_Item_DeleteFromDB00(lua_State* tolua_S)
+static int tolua_worldserver_Item_DeleteFromDB00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5259,7 +5259,7 @@ static int tolua_set_Server_Logger_ptr(lua_State* tolua_S)
 }
 
 /* method: Start of class  Server */
-static int tolua_worldsrv_Server_Start00(lua_State* tolua_S)
+static int tolua_worldserver_Server_Start00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5289,7 +5289,7 @@ static int tolua_worldsrv_Server_Start00(lua_State* tolua_S)
 }
 
 /* method: Stop of class  Server */
-static int tolua_worldsrv_Server_Stop00(lua_State* tolua_S)
+static int tolua_worldserver_Server_Stop00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5318,7 +5318,7 @@ static int tolua_worldsrv_Server_Stop00(lua_State* tolua_S)
 }
 
 /* method: IsRunning of class  Server */
-static int tolua_worldsrv_Server_IsRunning00(lua_State* tolua_S)
+static int tolua_worldserver_Server_IsRunning00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5348,7 +5348,7 @@ static int tolua_worldsrv_Server_IsRunning00(lua_State* tolua_S)
 }
 
 /* method: AddClient of class  Server */
-static int tolua_worldsrv_Server_AddClient00(lua_State* tolua_S)
+static int tolua_worldserver_Server_AddClient00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5379,7 +5379,7 @@ static int tolua_worldsrv_Server_AddClient00(lua_State* tolua_S)
 }
 
 /* method: SocketEvent of class  Server */
-static int tolua_worldsrv_Server_SocketEvent00(lua_State* tolua_S)
+static int tolua_worldserver_Server_SocketEvent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5410,7 +5410,7 @@ static int tolua_worldsrv_Server_SocketEvent00(lua_State* tolua_S)
 }
 
 /* method: SetLogger of class  Server */
-static int tolua_worldsrv_Server_SetLogger00(lua_State* tolua_S)
+static int tolua_worldserver_Server_SetLogger00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5516,7 +5516,7 @@ static int tolua_set_WorldServer_unsigned_GameFeatures(lua_State* tolua_S)
 }
 
 /* method: new of class  WorldServer */
-static int tolua_worldsrv_WorldServer_new00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_new00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5546,7 +5546,7 @@ static int tolua_worldsrv_WorldServer_new00(lua_State* tolua_S)
 }
 
 /* method: new_local of class  WorldServer */
-static int tolua_worldsrv_WorldServer_new00_local(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_new00_local(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5576,7 +5576,7 @@ static int tolua_worldsrv_WorldServer_new00_local(lua_State* tolua_S)
 }
 
 /* method: UpdateRealm of class  WorldServer */
-static int tolua_worldsrv_WorldServer_UpdateRealm00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_UpdateRealm00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5607,7 +5607,7 @@ static int tolua_worldsrv_WorldServer_UpdateRealm00(lua_State* tolua_S)
 }
 
 /* method: SocketEvent of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SocketEvent00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SocketEvent00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5638,7 +5638,7 @@ static int tolua_worldsrv_WorldServer_SocketEvent00(lua_State* tolua_S)
 }
 
 /* method: Start of class  WorldServer */
-static int tolua_worldsrv_WorldServer_Start00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_Start00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5668,7 +5668,7 @@ static int tolua_worldsrv_WorldServer_Start00(lua_State* tolua_S)
 }
 
 /* method: Stop of class  WorldServer */
-static int tolua_worldsrv_WorldServer_Stop00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_Stop00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5697,7 +5697,7 @@ static int tolua_worldsrv_WorldServer_Stop00(lua_State* tolua_S)
 }
 
 /* method: Update of class  WorldServer */
-static int tolua_worldsrv_WorldServer_Update00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_Update00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5728,7 +5728,7 @@ static int tolua_worldsrv_WorldServer_Update00(lua_State* tolua_S)
 }
 
 /* method: SetDatabase of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SetDatabase00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SetDatabase00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5761,7 +5761,7 @@ static int tolua_worldsrv_WorldServer_SetDatabase00(lua_State* tolua_S)
 }
 
 /* method: GetRealmName of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetRealmName00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetRealmName00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5791,7 +5791,7 @@ static int tolua_worldsrv_WorldServer_GetRealmName00(lua_State* tolua_S)
 }
 
 /* method: SetRealmName of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SetRealmName00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SetRealmName00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5822,7 +5822,7 @@ static int tolua_worldsrv_WorldServer_SetRealmName00(lua_State* tolua_S)
 }
 
 /* method: GetGameTime of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetGameTime00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetGameTime00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5860,7 +5860,7 @@ static int tolua_worldsrv_WorldServer_GetGameTime00(lua_State* tolua_S)
 }
 
 /* method: GetClientLimit of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetClientLimit00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetClientLimit00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5890,7 +5890,7 @@ static int tolua_worldsrv_WorldServer_GetClientLimit00(lua_State* tolua_S)
 }
 
 /* method: SetClientLimit of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SetClientLimit00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SetClientLimit00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5921,7 +5921,7 @@ static int tolua_worldsrv_WorldServer_SetClientLimit00(lua_State* tolua_S)
 }
 
 /* method: GetStartZone of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetStartZone00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetStartZone00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5951,7 +5951,7 @@ static int tolua_worldsrv_WorldServer_GetStartZone00(lua_State* tolua_S)
 }
 
 /* method: SetStartZone of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SetStartZone00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SetStartZone00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -5982,7 +5982,7 @@ static int tolua_worldsrv_WorldServer_SetStartZone00(lua_State* tolua_S)
 }
 
 /* method: GetCinematics of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetCinematics00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetCinematics00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6012,7 +6012,7 @@ static int tolua_worldsrv_WorldServer_GetCinematics00(lua_State* tolua_S)
 }
 
 /* method: SetCinematics of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SetCinematics00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SetCinematics00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6043,7 +6043,7 @@ static int tolua_worldsrv_WorldServer_SetCinematics00(lua_State* tolua_S)
 }
 
 /* method: SetMotd of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SetMotd00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SetMotd00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6074,7 +6074,7 @@ static int tolua_worldsrv_WorldServer_SetMotd00(lua_State* tolua_S)
 }
 
 /* method: GetMotd of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetMotd00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetMotd00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6104,7 +6104,7 @@ static int tolua_worldsrv_WorldServer_GetMotd00(lua_State* tolua_S)
 }
 
 /* method: GetClientsConnected of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GetClientsConnected00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GetClientsConnected00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6134,7 +6134,7 @@ static int tolua_worldsrv_WorldServer_GetClientsConnected00(lua_State* tolua_S)
 }
 
 /* method: SendGlobalPacket of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SendGlobalPacket00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SendGlobalPacket00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6167,7 +6167,7 @@ static int tolua_worldsrv_WorldServer_SendGlobalPacket00(lua_State* tolua_S)
 }
 
 /* method: SendGlobalMessage of class  WorldServer */
-static int tolua_worldsrv_WorldServer_SendGlobalMessage00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_SendGlobalMessage00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6200,7 +6200,7 @@ static int tolua_worldsrv_WorldServer_SendGlobalMessage00(lua_State* tolua_S)
 }
 
 /* method: GenerateGUID of class  WorldServer */
-static int tolua_worldsrv_WorldServer_GenerateGUID00(lua_State* tolua_S)
+static int tolua_worldserver_WorldServer_GenerateGUID00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -6232,7 +6232,7 @@ static int tolua_worldsrv_WorldServer_GenerateGUID00(lua_State* tolua_S)
 }
 
 /* Open function */
-TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
+TOLUA_API int tolua_worldserver_open (lua_State* tolua_S)
 {
  tolua_open(tolua_S);
  tolua_reg_types(tolua_S);
@@ -6244,12 +6244,12 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_cclass(tolua_S,"Base","Base","",NULL);
 #endif
  tolua_beginmodule(tolua_S,"Base");
- tolua_function(tolua_S,"new",tolua_worldsrv_Base_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_Base_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_Base_new00_local, "Base");
- tolua_function(tolua_S,"IncRef",tolua_worldsrv_Base_IncRef00);
- tolua_function(tolua_S,"DecRef",tolua_worldsrv_Base_DecRef00);
- tolua_function(tolua_S,"GetRefCount",tolua_worldsrv_Base_GetRefCount00);
+ tolua_function(tolua_S,"new",tolua_worldserver_Base_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_Base_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_Base_new00_local, "Base");
+ tolua_function(tolua_S,"IncRef",tolua_worldserver_Base_IncRef00);
+ tolua_function(tolua_S,"DecRef",tolua_worldserver_Base_DecRef00);
+ tolua_function(tolua_S,"GetRefCount",tolua_worldserver_Base_GetRefCount00);
  tolua_endmodule(tolua_S);
 #ifdef __cplusplus
  tolua_cclass(tolua_S,"NetworkPacket","NetworkPacket","Base",tolua_collect_NetworkPacket);
@@ -6258,14 +6258,14 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
 #endif
  tolua_beginmodule(tolua_S,"NetworkPacket");
  tolua_variable(tolua_S,"length",tolua_get_NetworkPacket_unsigned_length,tolua_set_NetworkPacket_unsigned_length);
- tolua_function(tolua_S,"new",tolua_worldsrv_NetworkPacket_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_NetworkPacket_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_NetworkPacket_new00_local, "NetworkPacket");
- tolua_function(tolua_S,"new",tolua_worldsrv_NetworkPacket_new01);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_NetworkPacket_new01_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_NetworkPacket_new01_local, "NetworkPacket");
- tolua_function(tolua_S,"SetLength",tolua_worldsrv_NetworkPacket_SetLength00);
- tolua_function(tolua_S,"Assemble",tolua_worldsrv_NetworkPacket_Assemble00);
+ tolua_function(tolua_S,"new",tolua_worldserver_NetworkPacket_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_NetworkPacket_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_NetworkPacket_new00_local, "NetworkPacket");
+ tolua_function(tolua_S,"new",tolua_worldserver_NetworkPacket_new01);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_NetworkPacket_new01_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_NetworkPacket_new01_local, "NetworkPacket");
+ tolua_function(tolua_S,"SetLength",tolua_worldserver_NetworkPacket_SetLength00);
+ tolua_function(tolua_S,"Assemble",tolua_worldserver_NetworkPacket_Assemble00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"RECVB_SIZE",RECVB_SIZE);
  tolua_constant(tolua_S,"RECVB_MASK",RECVB_MASK);
@@ -6276,32 +6276,32 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_constant(tolua_S,"PF_EXCEPT",PF_EXCEPT);
  tolua_cclass(tolua_S,"Socket","Socket","Base",NULL);
  tolua_beginmodule(tolua_S,"Socket");
- tolua_function(tolua_S,"Listen",tolua_worldsrv_Socket_Listen00);
- tolua_function(tolua_S,"Connect",tolua_worldsrv_Socket_Connect00);
- tolua_function(tolua_S,"ErrorString",tolua_worldsrv_Socket_ErrorString00);
- tolua_function(tolua_S,"ReceiveData",tolua_worldsrv_Socket_ReceiveData00);
- tolua_function(tolua_S,"SendData",tolua_worldsrv_Socket_SendData00);
- tolua_function(tolua_S,"SendData",tolua_worldsrv_Socket_SendData01);
- tolua_function(tolua_S,"SendPending",tolua_worldsrv_Socket_SendPending00);
- tolua_function(tolua_S,"Accept",tolua_worldsrv_Socket_Accept00);
- tolua_function(tolua_S,"InterestedEvents",tolua_worldsrv_Socket_InterestedEvents00);
- tolua_function(tolua_S,"Connected",tolua_worldsrv_Socket_Connected00);
- tolua_function(tolua_S,"GetIP",tolua_worldsrv_Socket_GetIP00);
- tolua_function(tolua_S,"SetLogger",tolua_worldsrv_Socket_SetLogger00);
- tolua_function(tolua_S,"Rewind",tolua_worldsrv_Socket_Rewind00);
- tolua_function(tolua_S,"Avail",tolua_worldsrv_Socket_Avail00);
- tolua_function(tolua_S,"Chewed",tolua_worldsrv_Socket_Chewed00);
- tolua_function(tolua_S,"Swallow",tolua_worldsrv_Socket_Swallow00);
- tolua_function(tolua_S,"Skip",tolua_worldsrv_Socket_Skip00);
- tolua_function(tolua_S,"Get",tolua_worldsrv_Socket_Get00);
- tolua_function(tolua_S,"Get",tolua_worldsrv_Socket_Get01);
- tolua_function(tolua_S,"GetLE",tolua_worldsrv_Socket_GetLE00);
- tolua_function(tolua_S,"GetLE",tolua_worldsrv_Socket_GetLE01);
- tolua_function(tolua_S,"GetLE",tolua_worldsrv_Socket_GetLE02);
- tolua_function(tolua_S,"GetLE",tolua_worldsrv_Socket_GetLE03);
- tolua_function(tolua_S,"GetBE",tolua_worldsrv_Socket_GetBE00);
- tolua_function(tolua_S,"GetBE",tolua_worldsrv_Socket_GetBE01);
- tolua_function(tolua_S,"GetCStr",tolua_worldsrv_Socket_GetCStr00);
+ tolua_function(tolua_S,"Listen",tolua_worldserver_Socket_Listen00);
+ tolua_function(tolua_S,"Connect",tolua_worldserver_Socket_Connect00);
+ tolua_function(tolua_S,"ErrorString",tolua_worldserver_Socket_ErrorString00);
+ tolua_function(tolua_S,"ReceiveData",tolua_worldserver_Socket_ReceiveData00);
+ tolua_function(tolua_S,"SendData",tolua_worldserver_Socket_SendData00);
+ tolua_function(tolua_S,"SendData",tolua_worldserver_Socket_SendData01);
+ tolua_function(tolua_S,"SendPending",tolua_worldserver_Socket_SendPending00);
+ tolua_function(tolua_S,"Accept",tolua_worldserver_Socket_Accept00);
+ tolua_function(tolua_S,"InterestedEvents",tolua_worldserver_Socket_InterestedEvents00);
+ tolua_function(tolua_S,"Connected",tolua_worldserver_Socket_Connected00);
+ tolua_function(tolua_S,"GetIP",tolua_worldserver_Socket_GetIP00);
+ tolua_function(tolua_S,"SetLogger",tolua_worldserver_Socket_SetLogger00);
+ tolua_function(tolua_S,"Rewind",tolua_worldserver_Socket_Rewind00);
+ tolua_function(tolua_S,"Avail",tolua_worldserver_Socket_Avail00);
+ tolua_function(tolua_S,"Chewed",tolua_worldserver_Socket_Chewed00);
+ tolua_function(tolua_S,"Swallow",tolua_worldserver_Socket_Swallow00);
+ tolua_function(tolua_S,"Skip",tolua_worldserver_Socket_Skip00);
+ tolua_function(tolua_S,"Get",tolua_worldserver_Socket_Get00);
+ tolua_function(tolua_S,"Get",tolua_worldserver_Socket_Get01);
+ tolua_function(tolua_S,"GetLE",tolua_worldserver_Socket_GetLE00);
+ tolua_function(tolua_S,"GetLE",tolua_worldserver_Socket_GetLE01);
+ tolua_function(tolua_S,"GetLE",tolua_worldserver_Socket_GetLE02);
+ tolua_function(tolua_S,"GetLE",tolua_worldserver_Socket_GetLE03);
+ tolua_function(tolua_S,"GetBE",tolua_worldserver_Socket_GetBE00);
+ tolua_function(tolua_S,"GetBE",tolua_worldserver_Socket_GetBE01);
+ tolua_function(tolua_S,"GetCStr",tolua_worldserver_Socket_GetCStr00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"dbeOk",dbeOk);
  tolua_constant(tolua_S,"dbeBadArguments",dbeBadArguments);
@@ -6320,30 +6320,30 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_cclass(tolua_S,"Database","Database","Base",NULL);
  tolua_beginmodule(tolua_S,"Database");
  tolua_variable(tolua_S,"Logger",tolua_get_Database_Logger_ptr,tolua_set_Database_Logger_ptr);
- tolua_function(tolua_S,"Create",tolua_worldsrv_Database_Create00);
- tolua_function(tolua_S,"ParseType",tolua_worldsrv_Database_ParseType00);
- tolua_function(tolua_S,"ErrorString",tolua_worldsrv_Database_ErrorString00);
- tolua_function(tolua_S,"GetExecutor",tolua_worldsrv_Database_GetExecutor00);
- tolua_function(tolua_S,"PutExecutor",tolua_worldsrv_Database_PutExecutor00);
- tolua_function(tolua_S,"SetLogger",tolua_worldsrv_Database_SetLogger00);
+ tolua_function(tolua_S,"Create",tolua_worldserver_Database_Create00);
+ tolua_function(tolua_S,"ParseType",tolua_worldserver_Database_ParseType00);
+ tolua_function(tolua_S,"ErrorString",tolua_worldserver_Database_ErrorString00);
+ tolua_function(tolua_S,"GetExecutor",tolua_worldserver_Database_GetExecutor00);
+ tolua_function(tolua_S,"PutExecutor",tolua_worldserver_Database_PutExecutor00);
+ tolua_function(tolua_S,"SetLogger",tolua_worldserver_Database_SetLogger00);
  tolua_endmodule(tolua_S);
  tolua_cclass(tolua_S,"DatabaseExecutor","DatabaseExecutor","Base",NULL);
  tolua_beginmodule(tolua_S,"DatabaseExecutor");
- tolua_function(tolua_S,"GetParent",tolua_worldsrv_DatabaseExecutor_GetParent00);
- tolua_function(tolua_S,"Ok",tolua_worldsrv_DatabaseExecutor_Ok00);
- tolua_function(tolua_S,"Free",tolua_worldsrv_DatabaseExecutor_Free00);
- tolua_function(tolua_S,"Execute",tolua_worldsrv_DatabaseExecutor_Execute00);
- tolua_function(tolua_S,"NumFields",tolua_worldsrv_DatabaseExecutor_NumFields00);
- tolua_function(tolua_S,"NumRows",tolua_worldsrv_DatabaseExecutor_NumRows00);
- tolua_function(tolua_S,"NextRow",tolua_worldsrv_DatabaseExecutor_NextRow00);
- tolua_function(tolua_S,"Get",tolua_worldsrv_DatabaseExecutor_Get00);
- tolua_function(tolua_S,"GetLength",tolua_worldsrv_DatabaseExecutor_GetLength00);
- tolua_function(tolua_S,"GetI32",tolua_worldsrv_DatabaseExecutor_GetI3200);
- tolua_function(tolua_S,"GetU32",tolua_worldsrv_DatabaseExecutor_GetU3200);
- tolua_function(tolua_S,"GetU64",tolua_worldsrv_DatabaseExecutor_GetU6400);
- tolua_function(tolua_S,"GetFloat",tolua_worldsrv_DatabaseExecutor_GetFloat00);
- tolua_function(tolua_S,"GetID",tolua_worldsrv_DatabaseExecutor_GetID00);
- tolua_function(tolua_S,"GetAffectedRows",tolua_worldsrv_DatabaseExecutor_GetAffectedRows00);
+ tolua_function(tolua_S,"GetParent",tolua_worldserver_DatabaseExecutor_GetParent00);
+ tolua_function(tolua_S,"Ok",tolua_worldserver_DatabaseExecutor_Ok00);
+ tolua_function(tolua_S,"Free",tolua_worldserver_DatabaseExecutor_Free00);
+ tolua_function(tolua_S,"Execute",tolua_worldserver_DatabaseExecutor_Execute00);
+ tolua_function(tolua_S,"NumFields",tolua_worldserver_DatabaseExecutor_NumFields00);
+ tolua_function(tolua_S,"NumRows",tolua_worldserver_DatabaseExecutor_NumRows00);
+ tolua_function(tolua_S,"NextRow",tolua_worldserver_DatabaseExecutor_NextRow00);
+ tolua_function(tolua_S,"Get",tolua_worldserver_DatabaseExecutor_Get00);
+ tolua_function(tolua_S,"GetLength",tolua_worldserver_DatabaseExecutor_GetLength00);
+ tolua_function(tolua_S,"GetI32",tolua_worldserver_DatabaseExecutor_GetI3200);
+ tolua_function(tolua_S,"GetU32",tolua_worldserver_DatabaseExecutor_GetU3200);
+ tolua_function(tolua_S,"GetU64",tolua_worldserver_DatabaseExecutor_GetU6400);
+ tolua_function(tolua_S,"GetFloat",tolua_worldserver_DatabaseExecutor_GetFloat00);
+ tolua_function(tolua_S,"GetID",tolua_worldserver_DatabaseExecutor_GetID00);
+ tolua_function(tolua_S,"GetAffectedRows",tolua_worldserver_DatabaseExecutor_GetAffectedRows00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"HIGHGUID_PLAYER",HIGHGUID_PLAYER);
  tolua_constant(tolua_S,"HIGHGUID_THING",HIGHGUID_THING);
@@ -6400,7 +6400,7 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_endmodule(tolua_S);
  tolua_cclass(tolua_S,"Client","Client","Base",NULL);
  tolua_beginmodule(tolua_S,"Client");
- tolua_function(tolua_S,"SocketEvent",tolua_worldsrv_Client_SocketEvent00);
+ tolua_function(tolua_S,"SocketEvent",tolua_worldserver_Client_SocketEvent00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"CAPS_MAKEITEMS",CAPS_MAKEITEMS);
  tolua_constant(tolua_S,"CAPS_MAKECREATURES",CAPS_MAKECREATURES);
@@ -6415,13 +6415,13 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_beginmodule(tolua_S,"GameClient");
  tolua_variable(tolua_S,"Login",tolua_get_GameClient_Login,tolua_set_GameClient_Login);
  tolua_variable(tolua_S,"Character",tolua_get_GameClient_Character_ptr,tolua_set_GameClient_Character_ptr);
- tolua_function(tolua_S,"new",tolua_worldsrv_GameClient_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_GameClient_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_GameClient_new00_local, "GameClient");
- tolua_function(tolua_S,"delete",tolua_worldsrv_GameClient_delete00);
- tolua_function(tolua_S,"SocketEvent",tolua_worldsrv_GameClient_SocketEvent00);
- tolua_function(tolua_S,"Authenticated",tolua_worldsrv_GameClient_Authenticated00);
- tolua_function(tolua_S,"Send",tolua_worldsrv_GameClient_Send00);
+ tolua_function(tolua_S,"new",tolua_worldserver_GameClient_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_GameClient_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_GameClient_new00_local, "GameClient");
+ tolua_function(tolua_S,"delete",tolua_worldserver_GameClient_delete00);
+ tolua_function(tolua_S,"SocketEvent",tolua_worldserver_GameClient_SocketEvent00);
+ tolua_function(tolua_S,"Authenticated",tolua_worldserver_GameClient_Authenticated00);
+ tolua_function(tolua_S,"Send",tolua_worldserver_GameClient_Send00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"MAX_POSITIVE_AURAS",MAX_POSITIVE_AURAS);
  tolua_constant(tolua_S,"MAX_AURAS",MAX_AURAS);
@@ -6586,9 +6586,9 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_variable(tolua_S,"Amount",tolua_get_Modifier_Amount,tolua_set_Modifier_Amount);
  tolua_variable(tolua_S,"MiscValue",tolua_get_Modifier_unsigned_MiscValue,tolua_set_Modifier_unsigned_MiscValue);
  tolua_variable(tolua_S,"MiscValue2",tolua_get_Modifier_unsigned_MiscValue2,tolua_set_Modifier_unsigned_MiscValue2);
- tolua_function(tolua_S,"new",tolua_worldsrv_Modifier_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_Modifier_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_Modifier_new00_local, "Modifier");
+ tolua_function(tolua_S,"new",tolua_worldserver_Modifier_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_Modifier_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_Modifier_new00_local, "Modifier");
  tolua_endmodule(tolua_S);
 #ifdef __cplusplus
  tolua_cclass(tolua_S,"Affect","Affect","",tolua_collect_Affect);
@@ -6605,13 +6605,13 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_variable(tolua_S,"SpellTimer",tolua_get_Affect_SpellTimer,tolua_set_Affect_SpellTimer);
  tolua_variable(tolua_S,"Positive",tolua_get_Affect_Positive,tolua_set_Affect_Positive);
  tolua_variable(tolua_S,"CoAffect",tolua_get_Affect_CoAffect_ptr,tolua_set_Affect_CoAffect_ptr);
- tolua_function(tolua_S,"new",tolua_worldsrv_Affect_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_Affect_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_Affect_new00_local, "Affect");
- tolua_function(tolua_S,"AddMod",tolua_worldsrv_Affect_AddMod00);
- tolua_function(tolua_S,"SetDamagePerTick",tolua_worldsrv_Affect_SetDamagePerTick00);
- tolua_function(tolua_S,"SetPeriodicTriggerSpell",tolua_worldsrv_Affect_SetPeriodicTriggerSpell00);
- tolua_function(tolua_S,"Update",tolua_worldsrv_Affect_Update00);
+ tolua_function(tolua_S,"new",tolua_worldserver_Affect_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_Affect_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_Affect_new00_local, "Affect");
+ tolua_function(tolua_S,"AddMod",tolua_worldserver_Affect_AddMod00);
+ tolua_function(tolua_S,"SetDamagePerTick",tolua_worldserver_Affect_SetDamagePerTick00);
+ tolua_function(tolua_S,"SetPeriodicTriggerSpell",tolua_worldserver_Affect_SetPeriodicTriggerSpell00);
+ tolua_function(tolua_S,"Update",tolua_worldserver_Affect_Update00);
  tolua_endmodule(tolua_S);
 #ifdef __cplusplus
  tolua_cclass(tolua_S,"Affect","Affect","",tolua_collect_Affect);
@@ -6656,37 +6656,37 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_cclass(tolua_S,"Unit","Unit","Object",NULL);
 #endif
  tolua_beginmodule(tolua_S,"Unit");
- tolua_function(tolua_S,"delete",tolua_worldsrv_Unit_delete00);
- tolua_function(tolua_S,"Update",tolua_worldsrv_Unit_Update00);
- tolua_function(tolua_S,"ApplyModifier",tolua_worldsrv_Unit_ApplyModifier00);
- tolua_function(tolua_S,"ReceiveDamage",tolua_worldsrv_Unit_ReceiveDamage00);
- tolua_function(tolua_S,"GenerateLoot",tolua_worldsrv_Unit_GenerateLoot00);
- tolua_function(tolua_S,"GiveXP",tolua_worldsrv_Unit_GiveXP00);
- tolua_function(tolua_S,"RemoveInRangeObject",tolua_worldsrv_Unit_RemoveInRangeObject00);
- tolua_function(tolua_S,"SetAttackTimer",tolua_worldsrv_Unit_SetAttackTimer00);
- tolua_function(tolua_S,"IsAttackReady",tolua_worldsrv_Unit_IsAttackReady00);
- tolua_function(tolua_S,"CanReachWithAttack",tolua_worldsrv_Unit_CanReachWithAttack00);
- tolua_function(tolua_S,"RemoveAttacker",tolua_worldsrv_Unit_RemoveAttacker00);
- tolua_function(tolua_S,"GetLevel",tolua_worldsrv_Unit_GetLevel00);
- tolua_function(tolua_S,"GetRace",tolua_worldsrv_Unit_GetRace00);
- tolua_function(tolua_S,"GetClass",tolua_worldsrv_Unit_GetClass00);
- tolua_function(tolua_S,"GetGender",tolua_worldsrv_Unit_GetGender00);
- tolua_function(tolua_S,"DealDamage",tolua_worldsrv_Unit_DealDamage00);
- tolua_function(tolua_S,"AttackerStateUpdate",tolua_worldsrv_Unit_AttackerStateUpdate00);
- tolua_function(tolua_S,"SpellNonMeleeDamageLog",tolua_worldsrv_Unit_SpellNonMeleeDamageLog00);
- tolua_function(tolua_S,"PeriodicAuraLog",tolua_worldsrv_Unit_PeriodicAuraLog00);
- tolua_function(tolua_S,"AttackStart",tolua_worldsrv_Unit_AttackStart00);
- tolua_function(tolua_S,"AttackStop",tolua_worldsrv_Unit_AttackStop00);
- tolua_function(tolua_S,"IsAlive",tolua_worldsrv_Unit_IsAlive00);
- tolua_function(tolua_S,"IsDead",tolua_worldsrv_Unit_IsDead00);
- tolua_function(tolua_S,"SetDeathState",tolua_worldsrv_Unit_SetDeathState00);
- tolua_function(tolua_S,"GetDeathState",tolua_worldsrv_Unit_GetDeathState00);
- tolua_function(tolua_S,"AddAffect",tolua_worldsrv_Unit_AddAffect00);
- tolua_function(tolua_S,"RemoveAffect",tolua_worldsrv_Unit_RemoveAffect00);
- tolua_function(tolua_S,"RemoveAffect",tolua_worldsrv_Unit_RemoveAffect01);
- tolua_function(tolua_S,"RemoveAffectById",tolua_worldsrv_Unit_RemoveAffectById00);
- tolua_function(tolua_S,"RemoveAllAffects",tolua_worldsrv_Unit_RemoveAllAffects00);
- tolua_function(tolua_S,"SetAura",tolua_worldsrv_Unit_SetAura00);
+ tolua_function(tolua_S,"delete",tolua_worldserver_Unit_delete00);
+ tolua_function(tolua_S,"Update",tolua_worldserver_Unit_Update00);
+ tolua_function(tolua_S,"ApplyModifier",tolua_worldserver_Unit_ApplyModifier00);
+ tolua_function(tolua_S,"ReceiveDamage",tolua_worldserver_Unit_ReceiveDamage00);
+ tolua_function(tolua_S,"GenerateLoot",tolua_worldserver_Unit_GenerateLoot00);
+ tolua_function(tolua_S,"GiveXP",tolua_worldserver_Unit_GiveXP00);
+ tolua_function(tolua_S,"RemoveInRangeObject",tolua_worldserver_Unit_RemoveInRangeObject00);
+ tolua_function(tolua_S,"SetAttackTimer",tolua_worldserver_Unit_SetAttackTimer00);
+ tolua_function(tolua_S,"IsAttackReady",tolua_worldserver_Unit_IsAttackReady00);
+ tolua_function(tolua_S,"CanReachWithAttack",tolua_worldserver_Unit_CanReachWithAttack00);
+ tolua_function(tolua_S,"RemoveAttacker",tolua_worldserver_Unit_RemoveAttacker00);
+ tolua_function(tolua_S,"GetLevel",tolua_worldserver_Unit_GetLevel00);
+ tolua_function(tolua_S,"GetRace",tolua_worldserver_Unit_GetRace00);
+ tolua_function(tolua_S,"GetClass",tolua_worldserver_Unit_GetClass00);
+ tolua_function(tolua_S,"GetGender",tolua_worldserver_Unit_GetGender00);
+ tolua_function(tolua_S,"DealDamage",tolua_worldserver_Unit_DealDamage00);
+ tolua_function(tolua_S,"AttackerStateUpdate",tolua_worldserver_Unit_AttackerStateUpdate00);
+ tolua_function(tolua_S,"SpellNonMeleeDamageLog",tolua_worldserver_Unit_SpellNonMeleeDamageLog00);
+ tolua_function(tolua_S,"PeriodicAuraLog",tolua_worldserver_Unit_PeriodicAuraLog00);
+ tolua_function(tolua_S,"AttackStart",tolua_worldserver_Unit_AttackStart00);
+ tolua_function(tolua_S,"AttackStop",tolua_worldserver_Unit_AttackStop00);
+ tolua_function(tolua_S,"IsAlive",tolua_worldserver_Unit_IsAlive00);
+ tolua_function(tolua_S,"IsDead",tolua_worldserver_Unit_IsDead00);
+ tolua_function(tolua_S,"SetDeathState",tolua_worldserver_Unit_SetDeathState00);
+ tolua_function(tolua_S,"GetDeathState",tolua_worldserver_Unit_GetDeathState00);
+ tolua_function(tolua_S,"AddAffect",tolua_worldserver_Unit_AddAffect00);
+ tolua_function(tolua_S,"RemoveAffect",tolua_worldserver_Unit_RemoveAffect00);
+ tolua_function(tolua_S,"RemoveAffect",tolua_worldserver_Unit_RemoveAffect01);
+ tolua_function(tolua_S,"RemoveAffectById",tolua_worldserver_Unit_RemoveAffectById00);
+ tolua_function(tolua_S,"RemoveAllAffects",tolua_worldserver_Unit_RemoveAllAffects00);
+ tolua_function(tolua_S,"SetAura",tolua_worldserver_Unit_SetAura00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"HEALTH",HEALTH);
  tolua_constant(tolua_S,"UNKNOWN",UNKNOWN);
@@ -6706,6 +6706,13 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_constant(tolua_S,"ON_EQUIP",ON_EQUIP);
  tolua_constant(tolua_S,"CHANCE_ON_HIT",CHANCE_ON_HIT);
  tolua_constant(tolua_S,"SOULSTONE",SOULSTONE);
+ tolua_constant(tolua_S,"ITEM_QUALITY_POOR_GREY",ITEM_QUALITY_POOR_GREY);
+ tolua_constant(tolua_S,"ITEM_QUALITY_NORMAL_WHITE",ITEM_QUALITY_NORMAL_WHITE);
+ tolua_constant(tolua_S,"ITEM_QUALITY_UNCOMMON_GREEN",ITEM_QUALITY_UNCOMMON_GREEN);
+ tolua_constant(tolua_S,"ITEM_QUALITY_RARE_BLUE",ITEM_QUALITY_RARE_BLUE);
+ tolua_constant(tolua_S,"ITEM_QUALITY_EPIC_PURPLE",ITEM_QUALITY_EPIC_PURPLE);
+ tolua_constant(tolua_S,"ITEM_QUALITY_LEGENDARY_ORANGE",ITEM_QUALITY_LEGENDARY_ORANGE);
+ tolua_constant(tolua_S,"ITEM_QUALITY_ARTIFACT_LIGHT_YELLOW",ITEM_QUALITY_ARTIFACT_LIGHT_YELLOW);
  tolua_constant(tolua_S,"NO_BIND",NO_BIND);
  tolua_constant(tolua_S,"BIND_WHEN_PICKED_UP",BIND_WHEN_PICKED_UP);
  tolua_constant(tolua_S,"BIND_WHEN_EQUIPED",BIND_WHEN_EQUIPED);
@@ -6737,6 +6744,18 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_constant(tolua_S,"INVTYPE_THROWN",INVTYPE_THROWN);
  tolua_constant(tolua_S,"INVTYPE_RANGEDRIGHT",INVTYPE_RANGEDRIGHT);
  tolua_constant(tolua_S,"NUM_INVENTORY_TYPES",NUM_INVENTORY_TYPES);
+ tolua_constant(tolua_S,"ITEM_CLASS_CONSUMABLE",ITEM_CLASS_CONSUMABLE);
+ tolua_constant(tolua_S,"ITEM_CLASS_CONTAINER",ITEM_CLASS_CONTAINER);
+ tolua_constant(tolua_S,"ITEM_CLASS_WEAPON",ITEM_CLASS_WEAPON);
+ tolua_constant(tolua_S,"ITEM_CLASS_ARMOR",ITEM_CLASS_ARMOR);
+ tolua_constant(tolua_S,"ITEM_CLASS_REAGENT",ITEM_CLASS_REAGENT);
+ tolua_constant(tolua_S,"ITEM_CLASS_PROJECTILE",ITEM_CLASS_PROJECTILE);
+ tolua_constant(tolua_S,"ITEM_CLASS_TRADE_GOODS",ITEM_CLASS_TRADE_GOODS);
+ tolua_constant(tolua_S,"ITEM_CLASS_RECIPE",ITEM_CLASS_RECIPE);
+ tolua_constant(tolua_S,"ITEM_CLASS_QUIVER",ITEM_CLASS_QUIVER);
+ tolua_constant(tolua_S,"ITEM_CLASS_QUEST",ITEM_CLASS_QUEST);
+ tolua_constant(tolua_S,"ITEM_CLASS_KEY",ITEM_CLASS_KEY);
+ tolua_constant(tolua_S,"ITEM_CLASS_MISC",ITEM_CLASS_MISC);
 #ifdef __cplusplus
  tolua_cclass(tolua_S,"ItemPrototype","ItemPrototype","",tolua_collect_ItemPrototype);
 #else
@@ -6790,7 +6809,7 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_variable(tolua_S,"Field110",tolua_get_ItemPrototype_unsigned_Field110,tolua_set_ItemPrototype_unsigned_Field110);
  tolua_variable(tolua_S,"Field111",tolua_get_ItemPrototype_unsigned_Field111,tolua_set_ItemPrototype_unsigned_Field111);
  tolua_variable(tolua_S,"MaxDurability",tolua_get_ItemPrototype_unsigned_MaxDurability,tolua_set_ItemPrototype_unsigned_MaxDurability);
- tolua_function(tolua_S,"delete",tolua_worldsrv_ItemPrototype_delete00);
+ tolua_function(tolua_S,"delete",tolua_worldserver_ItemPrototype_delete00);
  tolua_endmodule(tolua_S);
 #ifdef __cplusplus
  tolua_cclass(tolua_S,"Unit","Unit","",tolua_collect_Unit);
@@ -6806,27 +6825,27 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
 #endif
  tolua_beginmodule(tolua_S,"Item");
  tolua_variable(tolua_S,"Owner",tolua_get_Item_Owner_ptr,tolua_set_Item_Owner_ptr);
- tolua_function(tolua_S,"new",tolua_worldsrv_Item_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_Item_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_Item_new00_local, "Item");
- tolua_function(tolua_S,"Create",tolua_worldsrv_Item_Create00);
- tolua_function(tolua_S,"Create",tolua_worldsrv_Item_Create01);
- tolua_function(tolua_S,"GetProto",tolua_worldsrv_Item_GetProto00);
- tolua_function(tolua_S,"FindProto",tolua_worldsrv_Item_FindProto00);
- tolua_function(tolua_S,"SaveToDB",tolua_worldsrv_Item_SaveToDB00);
- tolua_function(tolua_S,"LoadFromDB",tolua_worldsrv_Item_LoadFromDB00);
- tolua_function(tolua_S,"DeleteFromDB",tolua_worldsrv_Item_DeleteFromDB00);
+ tolua_function(tolua_S,"new",tolua_worldserver_Item_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_Item_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_Item_new00_local, "Item");
+ tolua_function(tolua_S,"Create",tolua_worldserver_Item_Create00);
+ tolua_function(tolua_S,"Create",tolua_worldserver_Item_Create01);
+ tolua_function(tolua_S,"GetProto",tolua_worldserver_Item_GetProto00);
+ tolua_function(tolua_S,"FindProto",tolua_worldserver_Item_FindProto00);
+ tolua_function(tolua_S,"SaveToDB",tolua_worldserver_Item_SaveToDB00);
+ tolua_function(tolua_S,"LoadFromDB",tolua_worldserver_Item_LoadFromDB00);
+ tolua_function(tolua_S,"DeleteFromDB",tolua_worldserver_Item_DeleteFromDB00);
  tolua_endmodule(tolua_S);
  tolua_cclass(tolua_S,"Server","Server","Client",NULL);
  tolua_beginmodule(tolua_S,"Server");
  tolua_variable(tolua_S,"Tick",tolua_get_Server_unsigned_Tick,tolua_set_Server_unsigned_Tick);
  tolua_variable(tolua_S,"Logger",tolua_get_Server_Logger_ptr,tolua_set_Server_Logger_ptr);
- tolua_function(tolua_S,"Start",tolua_worldsrv_Server_Start00);
- tolua_function(tolua_S,"Stop",tolua_worldsrv_Server_Stop00);
- tolua_function(tolua_S,"IsRunning",tolua_worldsrv_Server_IsRunning00);
- tolua_function(tolua_S,"AddClient",tolua_worldsrv_Server_AddClient00);
- tolua_function(tolua_S,"SocketEvent",tolua_worldsrv_Server_SocketEvent00);
- tolua_function(tolua_S,"SetLogger",tolua_worldsrv_Server_SetLogger00);
+ tolua_function(tolua_S,"Start",tolua_worldserver_Server_Start00);
+ tolua_function(tolua_S,"Stop",tolua_worldserver_Server_Stop00);
+ tolua_function(tolua_S,"IsRunning",tolua_worldserver_Server_IsRunning00);
+ tolua_function(tolua_S,"AddClient",tolua_worldserver_Server_AddClient00);
+ tolua_function(tolua_S,"SocketEvent",tolua_worldserver_Server_SocketEvent00);
+ tolua_function(tolua_S,"SetLogger",tolua_worldserver_Server_SetLogger00);
  tolua_endmodule(tolua_S);
  tolua_constant(tolua_S,"GF_PLAYER_AUTOATTACK",GF_PLAYER_AUTOATTACK);
  tolua_cclass(tolua_S,"Database","Database","",NULL);
@@ -6848,30 +6867,30 @@ TOLUA_API int tolua_worldsrv_open (lua_State* tolua_S)
  tolua_variable(tolua_S,"db",tolua_get_WorldServer_db_ptr,tolua_set_WorldServer_db_ptr);
  tolua_variable(tolua_S,"rdb",tolua_get_WorldServer_rdb_ptr,tolua_set_WorldServer_rdb_ptr);
  tolua_variable(tolua_S,"GameFeatures",tolua_get_WorldServer_unsigned_GameFeatures,tolua_set_WorldServer_unsigned_GameFeatures);
- tolua_function(tolua_S,"new",tolua_worldsrv_WorldServer_new00);
- tolua_function(tolua_S,"new_local",tolua_worldsrv_WorldServer_new00_local);
- tolua_set_call_event(tolua_S,tolua_worldsrv_WorldServer_new00_local, "WorldServer");
- tolua_function(tolua_S,"UpdateRealm",tolua_worldsrv_WorldServer_UpdateRealm00);
- tolua_function(tolua_S,"SocketEvent",tolua_worldsrv_WorldServer_SocketEvent00);
- tolua_function(tolua_S,"Start",tolua_worldsrv_WorldServer_Start00);
- tolua_function(tolua_S,"Stop",tolua_worldsrv_WorldServer_Stop00);
- tolua_function(tolua_S,"Update",tolua_worldsrv_WorldServer_Update00);
- tolua_function(tolua_S,"SetDatabase",tolua_worldsrv_WorldServer_SetDatabase00);
- tolua_function(tolua_S,"GetRealmName",tolua_worldsrv_WorldServer_GetRealmName00);
- tolua_function(tolua_S,"SetRealmName",tolua_worldsrv_WorldServer_SetRealmName00);
- tolua_function(tolua_S,"GetGameTime",tolua_worldsrv_WorldServer_GetGameTime00);
- tolua_function(tolua_S,"GetClientLimit",tolua_worldsrv_WorldServer_GetClientLimit00);
- tolua_function(tolua_S,"SetClientLimit",tolua_worldsrv_WorldServer_SetClientLimit00);
- tolua_function(tolua_S,"GetStartZone",tolua_worldsrv_WorldServer_GetStartZone00);
- tolua_function(tolua_S,"SetStartZone",tolua_worldsrv_WorldServer_SetStartZone00);
- tolua_function(tolua_S,"GetCinematics",tolua_worldsrv_WorldServer_GetCinematics00);
- tolua_function(tolua_S,"SetCinematics",tolua_worldsrv_WorldServer_SetCinematics00);
- tolua_function(tolua_S,"SetMotd",tolua_worldsrv_WorldServer_SetMotd00);
- tolua_function(tolua_S,"GetMotd",tolua_worldsrv_WorldServer_GetMotd00);
- tolua_function(tolua_S,"GetClientsConnected",tolua_worldsrv_WorldServer_GetClientsConnected00);
- tolua_function(tolua_S,"SendGlobalPacket",tolua_worldsrv_WorldServer_SendGlobalPacket00);
- tolua_function(tolua_S,"SendGlobalMessage",tolua_worldsrv_WorldServer_SendGlobalMessage00);
- tolua_function(tolua_S,"GenerateGUID",tolua_worldsrv_WorldServer_GenerateGUID00);
+ tolua_function(tolua_S,"new",tolua_worldserver_WorldServer_new00);
+ tolua_function(tolua_S,"new_local",tolua_worldserver_WorldServer_new00_local);
+ tolua_set_call_event(tolua_S,tolua_worldserver_WorldServer_new00_local, "WorldServer");
+ tolua_function(tolua_S,"UpdateRealm",tolua_worldserver_WorldServer_UpdateRealm00);
+ tolua_function(tolua_S,"SocketEvent",tolua_worldserver_WorldServer_SocketEvent00);
+ tolua_function(tolua_S,"Start",tolua_worldserver_WorldServer_Start00);
+ tolua_function(tolua_S,"Stop",tolua_worldserver_WorldServer_Stop00);
+ tolua_function(tolua_S,"Update",tolua_worldserver_WorldServer_Update00);
+ tolua_function(tolua_S,"SetDatabase",tolua_worldserver_WorldServer_SetDatabase00);
+ tolua_function(tolua_S,"GetRealmName",tolua_worldserver_WorldServer_GetRealmName00);
+ tolua_function(tolua_S,"SetRealmName",tolua_worldserver_WorldServer_SetRealmName00);
+ tolua_function(tolua_S,"GetGameTime",tolua_worldserver_WorldServer_GetGameTime00);
+ tolua_function(tolua_S,"GetClientLimit",tolua_worldserver_WorldServer_GetClientLimit00);
+ tolua_function(tolua_S,"SetClientLimit",tolua_worldserver_WorldServer_SetClientLimit00);
+ tolua_function(tolua_S,"GetStartZone",tolua_worldserver_WorldServer_GetStartZone00);
+ tolua_function(tolua_S,"SetStartZone",tolua_worldserver_WorldServer_SetStartZone00);
+ tolua_function(tolua_S,"GetCinematics",tolua_worldserver_WorldServer_GetCinematics00);
+ tolua_function(tolua_S,"SetCinematics",tolua_worldserver_WorldServer_SetCinematics00);
+ tolua_function(tolua_S,"SetMotd",tolua_worldserver_WorldServer_SetMotd00);
+ tolua_function(tolua_S,"GetMotd",tolua_worldserver_WorldServer_GetMotd00);
+ tolua_function(tolua_S,"GetClientsConnected",tolua_worldserver_WorldServer_GetClientsConnected00);
+ tolua_function(tolua_S,"SendGlobalPacket",tolua_worldserver_WorldServer_SendGlobalPacket00);
+ tolua_function(tolua_S,"SendGlobalMessage",tolua_worldserver_WorldServer_SendGlobalMessage00);
+ tolua_function(tolua_S,"GenerateGUID",tolua_worldserver_WorldServer_GenerateGUID00);
  tolua_endmodule(tolua_S);
  tolua_endmodule(tolua_S);
  return 1;

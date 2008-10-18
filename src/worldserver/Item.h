@@ -3,7 +3,7 @@
  *    \brief  Provides basic Item functions.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -106,20 +106,19 @@ enum INVENTORY_TYPES
 
 enum ITEM_CLASS
 {
-    ITEM_CLASS_CONSUMABLE    = 0,
-    ITEM_CLASS_CONTAINER     = 1,
-    ITEM_CLASS_WEAPON        = 2,
-    ITEM_CLASS_ARMOR         = 4,
-    ITEM_CLASS_REAGENT       = 5,
-    ITEM_CLASS_PROJECTILE    = 6,
-    ITEM_CLASS_TRADE_GOODS   = 7,
-    ITEM_CLASS_RECIPE        = 9,
-    ITEM_CLASS_QUIVER        = 11,
-    ITEM_CLASS_QUEST         = 12,
-    ITEM_CLASS_KEY           = 13,
-    ITEM_CLASS_MISC          = 15,
+    ITEM_CLASS_CONSUMABLE   = 0,
+    ITEM_CLASS_CONTAINER    = 1,
+    ITEM_CLASS_WEAPON       = 2,
+    ITEM_CLASS_ARMOR        = 4,
+    ITEM_CLASS_REAGENT      = 5,
+    ITEM_CLASS_PROJECTILE   = 6,
+    ITEM_CLASS_TRADE_GOODS  = 7,
+    ITEM_CLASS_RECIPE       = 9,
+    ITEM_CLASS_QUIVER       = 11,
+    ITEM_CLASS_QUEST        = 12,
+    ITEM_CLASS_KEY          = 13,
+    ITEM_CLASS_MISC         = 15,
 };
-
 struct ItemPrototype
 {
     uint32 ItemId;
@@ -151,7 +150,7 @@ struct ItemPrototype
     uint32 ItemStatValue [10]; //tolua_hide
     float DamageMin [5]; //tolua_hide
     float DamageMax [5]; //tolua_hide
-    uint32 DamageType [5]; //tolua_hide
+    uint32 DamageType [5];//tolua_hide
     uint32 Armor;
     uint32 Field62;
     uint32 FireRes;
@@ -161,12 +160,12 @@ struct ItemPrototype
     uint32 ArcaneRes;
     uint32 Delay;
     uint32 Field69;
-    uint32 SpellId [5]; //tolua_hide
+    uint32 SpellId [5];   //tolua_hide
     uint32 SpellTrigger [5]; //tolua_hide
     uint32 SpellCharges [5]; //tolua_hide
-    uint32 SpellCooldown [5]; //tolua_hide
-    uint32 SpellCategory [5]; //tolua_hide
-    uint32 SpellCategoryCooldown [5]; //tolua_hide
+    uint32 SpellCooldown [5];//tolua_hide
+    uint32 SpellCategory [5];//tolua_hide
+    uint32 SpellCategoryCooldown [5];//tolua_hide
     uint32 Bonding;
     char *Description;
     uint32 Field102;
@@ -199,56 +198,57 @@ class Unit;
  */
 class Item : public Object
 {
-    protected:
-        friend class WorldServer;
-        friend class Player;
+protected:
+    friend class WorldServer;
+    friend class Player;
 
-        /// Item prototype data
-        ItemPrototype *ItemProto;
+    /// Item prototype data
+    ItemPrototype *ItemProto;
 
-        /// Item prototype data
-        static DECLARE_VECTOR_SORTED (ItemProtoVector, ItemPrototype *, ) ItemPrototypes; //tolua_hide
+    /// Item prototype data
+    static DECLARE_VECTOR_SORTED (ItemProtoVector, ItemPrototype *, ) ItemPrototypes; //tolua_hide
 
-        /// Preload all static data from database
-        static bool PreloadStaticData ();
-        /// Unload any static data we loaded before
-        static void UnloadStaticData ();
+    /// Preload all static data from database
+    static bool PreloadStaticData ();
+    /// Unload any static data we loaded before
+    static void UnloadStaticData ();
 
-    protected:
-        /// Private destructor -- use DecRef
-        virtual ~Item ();
+protected:
+    /// Private destructor -- use DecRef
+    virtual ~Item ();
 
-    public:
-        /// Owner unit
-        Unit *Owner;
+public:
+    /// Owner unit
+    Unit *Owner;
 
-        /// Create an empty item
-        Item ();
+    /// Create an empty item
+    Item ();
 
-        /// Create a new item and assign it a newly allocated GUID
-        bool Create (uint32 iItemId, Unit *iOwner);
+    /// Create a new item and assign it a newly allocated GUID
+    bool Create (uint32 iItemId, Unit *iOwner);
 
-        /// Create the item with known GUID
-        bool Create (uint32 iLowGuid, uint32 iItemId, Unit *iOwner);
+    /// Create the item with known GUID
+    bool Create (uint32 iLowGuid, uint32 iItemId, Unit *iOwner);
 
-        /// Query item prototype data
-        ItemPrototype *GetProto ()
-            { return ItemProto; }
+    /// Query item prototype data
+    ItemPrototype *GetProto ()
+    { return ItemProto; }
 
-        /// Return the prototype of the idem with given identifier
-        static ItemPrototype *FindProto (uint iItemId);
+    /// Return the prototype of the idem with given identifier
+    static ItemPrototype *FindProto (uint iItemId);
 
-        /// Item Properties
-        void SetDurability (uint32 Value); //tolua_hide
-        void SetDurabilityToMax (); //tolua_hide
+    /// Item Properties
+    void SetDurability (uint32 Value); //tolua_hide
+    void SetDurabilityToMax (); //tolua_hide
 
-        //----------------// Object saving & loading //----------------//
+    //----------------// Object saving & loading //----------------//
 
-        /// Save this object to database
-        virtual bool SaveToDB ();
-        /// Load this object from database
-        bool LoadFromDB (uint32 iLowGuid);
-        /// Delete this object from database
-        virtual bool DeleteFromDB ();
+    /// Save this object to database
+    virtual bool SaveToDB ();
+    /// Load this object from database
+    bool LoadFromDB (uint32 iLowGuid);
+    /// Delete this object from database
+    virtual bool DeleteFromDB ();
 };
+
 #endif // __ITEM_H__

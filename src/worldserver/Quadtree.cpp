@@ -3,7 +3,7 @@
  *    \brief  Provides a basic quad tree implementation.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "Quadtree.h"
 
 QuadTree::Node::Node (float _minx, float _miny, float _maxx, float _maxy,
-Node *_parent)
+                      Node *_parent)
 {
     nw = 0;
     ne = 0;
@@ -221,7 +221,7 @@ void QuadTree::_Insert (Node *_root, Object *data)
                 _Insert (_root->nw, existing);
             }
             else if (existing->PositionX >= dividerx && existing->PositionX < _root->maxx &&
-                existing->PositionY >= _root->miny && existing->PositionY < dividery)
+                     existing->PositionY >= _root->miny && existing->PositionY < dividery)
             {
                 if (!_root->ne)
                     _root->ne = new Node (dividerx, _root->miny, _root->maxx, dividery, _root);
@@ -229,16 +229,15 @@ void QuadTree::_Insert (Node *_root, Object *data)
                 _Insert (_root->ne, existing);
             }
             else if (existing->PositionX >= _root->minx && existing->PositionX < dividerx &&
-                existing->PositionY >= dividery && existing->PositionY < _root->maxy)
+                     existing->PositionY >= dividery && existing->PositionY < _root->maxy)
             {
                 if (!_root->sw)
                     _root->sw = new Node (_root->minx, dividery, dividerx, _root->maxy, _root);
 
                 _Insert (_root->sw, existing);
             }
-            else
-                /*if (existing->PositionX >= dividerx && existing->PositionX < _root->maxx &&
-                                     existing->PositionY >= dividery && existing->PositionY < _root->maxy)*/
+            else /*if (existing->PositionX >= dividerx && existing->PositionX < _root->maxx &&
+                     existing->PositionY >= dividery && existing->PositionY < _root->maxy)*/
             {
                 if (!_root->se)
                     _root->se = new Node (dividerx, dividery, _root->maxx, _root->maxy, _root);
@@ -257,9 +256,9 @@ void QuadTree::_Insert (Node *_root, Object *data)
      */
 
     if ((data->PositionX + data->Radius > dividerx &&
-        data->PositionX - data->Radius < dividerx) ||
+         data->PositionX - data->Radius < dividerx) ||
         (data->PositionY + data->Radius > dividery &&
-        data->PositionY - data->Radius < dividery))
+         data->PositionY - data->Radius < dividery))
     {
         data->QTreeData.Bounding = true;
         _root->AddObject (data);
@@ -282,7 +281,7 @@ void QuadTree::_Insert (Node *_root, Object *data)
             _Insert (_root->nw, data);
         }
         else if (data->PositionX >= dividerx && data->PositionX < _root->maxx &&
-            data->PositionY >= _root->miny && data->PositionY < dividery)
+                 data->PositionY >= _root->miny && data->PositionY < dividery)
         {
             if (!_root->ne)
                 _root->ne = new Node (dividerx, _root->miny, _root->maxx, dividery, _root);
@@ -290,16 +289,15 @@ void QuadTree::_Insert (Node *_root, Object *data)
             _Insert (_root->ne, data);
         }
         else if (data->PositionX >= _root->minx && data->PositionX < dividerx &&
-            data->PositionY >= dividery && data->PositionY < _root->maxy)
+                 data->PositionY >= dividery && data->PositionY < _root->maxy)
         {
             if (!_root->sw)
                 _root->sw = new Node (_root->minx, dividery, dividerx, _root->maxy, _root);
 
             _Insert (_root->sw, data);
         }
-        else
-            /*if (data->PositionX >= dividerx && data->PositionX < _root->maxx &&
-                             data->PositionY >= dividery && data->PositionY < _root->maxy)*/
+        else /*if (data->PositionX >= dividerx && data->PositionX < _root->maxx &&
+                 data->PositionY >= dividery && data->PositionY < _root->maxy)*/
         {
             if (!_root->se)
                 _root->se = new Node (dividerx, dividery, _root->maxx, _root->maxy, _root);
@@ -346,7 +344,7 @@ bool QuadTree::_Update (QuadTree::Node *_root, Object *data)
 }
 
 void QuadTree::_InRange (QuadTree::Node *_root, float x, float y, float range,
-ObjectVector *Results, uint TypeMask, uint TypeValue)
+                           ObjectVector *Results, uint TypeMask, uint TypeValue)
 {
     float rangesq = range * range;
     for (int i = 0; i < _root->objects.Length (); i++)

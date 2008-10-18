@@ -4,9 +4,9 @@
 # on commands and their arguments by using the 'help' command).
 
 # Database to connect to: type address:port,user,password,database
-wdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-world
+wdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-worlddata
 # Realm Server database
-rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realm
+rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realmlist
 
 # Enable/disable world server requests logging to a file
 log SFDCI
@@ -14,7 +14,12 @@ log SFDCI
 # Set realm name (MUST BE IN DATABASE)
 realm "Aerie Peak"
 # And the Message Of The Day
-motd "Welcome to the official MaNGOS2 server."
+# ... for RP realms:
+# motd "Hail thee Adventurer!\nThis is a Roleplaying Realm. Please respect the additional policies.\n You can find them here: http://getmangos.com/en/policy/roleplaying.html"
+# ... for PvP realms:
+# motd "Welcome to the MaNGOS2 Realm.\nThis is a PvP Realm. Please respect the additional policies.\n You can find them here: http://getmangos.com/policy/pvp.html"
+# ... for PvE realms.
+motd "Welcome to the MaNGOS2 Realm."
 
 # Now start the server
 start

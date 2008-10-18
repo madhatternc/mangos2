@@ -2,7 +2,7 @@
 # Converts .DBC files to .SQL format
 # Copyright (C) 2005 Team OpenWoW
 # Copyright (C) 2005 by rischwa, Python version by zap
-# Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+# Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

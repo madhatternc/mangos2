@@ -3,7 +3,7 @@
  *    \brief  Provides a basic realm list server class.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,15 +78,15 @@ RealmVector *RealmListSrv::GetRealms ()
 
     RealmVector *rv = NULL;
     if (dbex->Execute ("SELECT name,address,population,type,locked,color,language,online "
-        "FROM realms") == dbeOk)
+                       "FROM realms") == dbeOk)
     {
         rv = new RealmVector (9, 9);
         while (dbex->NextRow ())
         {
             Realm *r = new Realm (dbex->Get (0), dbex->Get (1),
-                atof (dbex->Get (2)), atoi (dbex->Get (3)),
-                atoi (dbex->Get (4)), atoi (dbex->Get (5)),
-                atoi (dbex->Get (6)));
+                                  atof (dbex->Get (2)), atoi (dbex->Get (3)),
+                                  atoi (dbex->Get (4)), atoi (dbex->Get (5)),
+                                  atoi (dbex->Get (6)));
             // Mark server with the 'offline' color if it is offline
             if (!atoi (dbex->Get (7)))
                 r->Color = 2;

@@ -3,7 +3,7 @@
  *    \brief  Provides a basic realm list server class.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ struct Realm
     float Population;
     /// 0 - Normal, 1 - PvP, 2 - Offline
     uint32 Type;
-    /// 0 - Unlocked, 1- Locked
+    /// 0 - Unlocked, 1 - Locked
     uint8 Locked;
     /// 0 - Orange, 1 - Red, 2 - Disabled
     uint8 Color;
@@ -47,7 +47,7 @@ struct Realm
     uint8 NumChars;
 
     Realm (const char *name, const char *address, float population, uint32 type,
-        uint8 locked, uint8 color, uint8 language)
+           uint8 locked, uint8 color, uint8 language)
     {
         Name = strnew (name);
         Address = strnew (address);
@@ -71,53 +71,54 @@ DECLARE_VECTOR_SORTED (RealmVector, Realm *, );
 
 class RealmListSrv : public Server
 {
-    protected:
-        // Private destructor (use DecRef ())
-        virtual ~RealmListSrv();
+protected:
+    // Private destructor (use DecRef ())
+    virtual ~RealmListSrv();
 
-    public:
-        /// The realm database
-        Database *db;
+public:
+    /// The realm database
+    Database *db;
 
-    public:
-        /**
-         * Initialize the realm list server
-         * @arg iPort
-         *   Port number to listen on
-         * @arg iLogger
-         *   The logger used to log interesting events
-         */
-        RealmListSrv (uint iPort, Log *iLogger);
+public:
+    /**
+     * Initialize the realm list server
+     * @arg iPort
+     *   Port number to listen on
+     * @arg iLogger
+     *   The logger used to log interesting events
+     */
+    RealmListSrv (uint iPort, Log *iLogger);
 
-        /**
-         * Set the database object used to check accounts/passwords.
-         * @arg iDb
-         *   The database interface object
-         */
-        void SetDatabase (Database *iDb);
+    /**
+     * Set the database object used to check accounts/passwords.
+     * @arg iDb
+     *   The database interface object
+     */
+    void SetDatabase (Database *iDb);
 
-        /**
-         * Called when any event (one of those requested by socket->InterestedEvents())
-         * happens with the socket.
-         * @arg mask
-         *   Event mask (a combination of PF_XXX flags)
-         */
-        virtual void SocketEvent (uint mask);
+    /**
+     * Called when any event (one of those requested by socket->InterestedEvents())
+     * happens with the socket.
+     * @arg mask
+     *   Event mask (a combination of PF_XXX flags)
+     */
+    virtual void SocketEvent (uint mask);
 
-        /**
-         * Override the Server::Start() method to perform additional
-         * initialization before server actually starts
-         */
-        virtual bool Start ();
+    /**
+     * Override the Server::Start() method to perform additional
+     * initialization before server actually starts
+     */
+    virtual bool Start ();
 
-        /**
-         * Get a list of currently active realms (as seen by currently logging on users).
-         * The active realms may go on and off, so the list returned by this function
-         * is not guaranteed to be the same if you call it twice in a row.
-         * @return
-         *   A list of currently active realms.
-         *   NULL on errors (mostly if database-related errors).
-         */
-        RealmVector *GetRealms ();
+    /**
+     * Get a list of currently active realms (as seen by currently logging on users).
+     * The active realms may go on and off, so the list returned by this function
+     * is not guaranteed to be the same if you call it twice in a row.
+     * @return
+     *   A list of currently active realms.
+     *   NULL on errors (mostly if database-related errors).
+     */
+    RealmVector *GetRealms ();
 };
+
 #endif // __REALM_LIST_SRV_H__

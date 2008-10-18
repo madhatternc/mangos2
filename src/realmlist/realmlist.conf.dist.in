@@ -4,7 +4,7 @@
 # on commands and their arguments by using the 'help' command).
 
 # MySQL database used for logins: type address:port,user,password,database
-rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realm
+rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realmlist
 # Enable/disable logging of all events to a file
 log SFDCI
 

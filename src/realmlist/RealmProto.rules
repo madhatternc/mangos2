@@ -1,5 +1,4 @@
---- #YAML:1.0
-# Realm list protocol definition, version 2.4.3
+# Realm protocol opcodes 2.4.3
 # This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
 -
     name: header_start
@@ -60,112 +59,99 @@
     code: |
         CONSOLE.TextOutput ("\axeWARNING: \ax6Unhandled packet %(name)s\n");
 
-# The list of realm server errors
+###############################################################################
+#                              Realm List errors                              #
+###############################################################################
 -
     name: CE_SUCCESS
     type: const
     value: 0
     enum: RealmErrors
     info: Authentication successful.
-
 -
     name: CE_FAILURE
     type: const
     value: 1
     enum: RealmErrors
     info: Unable to connect.
-
 -
     name: CE_UNKNOWN1
     type: const
     value: 2
     enum: RealmErrors
     info: Unable to connect.
-
 -
     name: CE_ACCOUNT_CLOSED
     type: const
     value: 3
     enum: RealmErrors
     info: This <game> account has been closed and is no longer available for use. Please go to <site>/banned.html for further information.
-
 -
     name: CE_BAD_CREDENTIALS
     type: const
     value: 4
     enum: RealmErrors
     info: The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information.
-
 -
     name: CE_BAD_CREDENTIALS_DUP
     type: const
     value: 5
     enum: RealmErrors
     info: The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information.
-
 -
     name: CE_ALREADY_LOGGED_IN
     type: const
     value: 6
     enum: RealmErrors
     info: This account is already logged into <game>. Please check the spelling and try again.
-
 -
     name: CE_PREPAID_TIME_EXPIRED
     type: const
     value: 7
     enum: RealmErrors
     info: You have used up your prepaid time for this account. Please purchase more to continue playing.
-
 -
     name: CE_CANNOT_LOGIN
     type: const
     value: 8
     enum: RealmErrors
     info: Could not log in to <game> at this time. Please try again later.
-
 -
     name: CE_BAD_VERSION
     type: const
     value: 9
     enum: RealmErrors
     info: Unable to validate game version. This may be caused by file corruption or interference of another program. Please visit <site> for more information and possible solutions to this issue.
-
 -
     name: CE_UPDATE_CLIENT
     type: const
     value: 10
     enum: RealmErrors
     info: Downloading.
-
 -
     name: CE_UNKNOWN3
     type: const
     value: 11
     enum: RealmErrors
     info: Unable to connect.
-
 -
-    name: CE_ACCOUNT_FREEZED
+    name: CE_ACCOUNT_FROZEN
     type: const
     value: 12
     enum: RealmErrors
     info: This <game> account has been temporarily suspended. Please go to <site>/banned.html for further information.
-
 -
     name: CE_UNKNOWN4
     type: const
     value: 13
     enum: RealmErrors
     info: Unable to connect.
-
 -
     name: CE_UNKNOWN5
     type: const
     value: 14
     enum: RealmErrors
     info: Connected.
-
 -
     name: CE_PARENTAL_CONTROL
     type: const
@@ -173,7 +159,10 @@
     enum: RealmErrors
     info: Access to this account has been blocked by parental controls. Your settings may be changed in your account preferences at <site>.
 
-# Realm server packet opcodes
+###############################################################################
+#                                Packet opcodes                               #
+###############################################################################
+
 -
     name: CMSG_LOGON_CHALLENGE
     opcode: 0x00
@@ -183,7 +172,7 @@
     structure:
       - ErrorCode:
             type: uint8
-            info: The error code contains a random value
+            info: The error code contains a random value, and can be ignored
       - Length:
             type: uint16
             info: Size of the packet, excluding error code and opcode
@@ -220,7 +209,7 @@
       - UserName:
             type: pstring
             ltype: uint8
-            info: Account name in uppersized letters (not zero-terminated)
+            info: Account name in uppersized letters. Not zero-terminated
 
 -
     name: SMSG_LOGON_CHALLENGE
@@ -228,41 +217,41 @@
     type: packet
     direction: out
     structure:
-      - unknown1:
-            type: uint8
-            const: 0x00
-            info: Unknown, always 0x00
       - ErrorCode:
             type: uint8
             init: CE_SUCCESS
-            info: packet ends here, if ErrorCode is not CE_SUCCESS
       - if ErrorCode == CE_SUCCESS:
-          - BR:
-                type: uint8
-                array: 32
-          - g_len:
-                type: uint8
-                const: 1
-          - g:
-                type: uint8
-          - N_len:
-                type: uint8
-                const: 32
-          - N:
-                type: uint8
-                array: 32
-          - Salt:
-                type: uint8
-                array: 32
-          - unknown2:
-                type: uint8
-                array: 16
-                const: 0
-                info: SetRand(16*8)
-          - unknown4:
-                type: uint8
-                const: 0x00
-                info: Unknown, always 0x00. Introduced in 1.12.
+            - unknown1:
+                  type: uint8
+                  const: 0x00
+                  info: Unknown, alway 0x00
+            - BR:
+                  type: uint8
+                  array: 32
+            - g_len:
+                  type: uint8
+                  const: 1
+            - g:
+                  type: uint8
+                  const: 7
+            - N_len:
+                  type: uint8
+                  const: 32
+            - N:
+                  type: uint8
+                  array: 32
+            - Salt:
+                  type: uint8
+                  array: 32
+            - unknown2:
+                  type: uint8
+                  array: 16
+                  const: 0
+                  info: SetRand(16*8)
+            - unknown3:
+                  type: uint8
+                  const: 0x00
+                  info: Unknown, always 0x00 (added in client version 1.12.0, build 5595)
 
 -
     name: CMSG_LOGON_PROOF
@@ -309,7 +298,7 @@
     structure:
       - ErrorCode:
             type: uint8
-            info: The error code contains a random value
+            info: The error code contains a random value, and can be ignored
       - Length:
             type: uint16
             info: Size of the packet, excluding error code and opcode
@@ -346,7 +335,7 @@
       - UserName:
             type: pstring
             ltype: uint8
-            info: Account name in uppersized letters (not zero-terminated)
+            info: Account name in uppersized letters. Not zero-terminated
 
 -
     name: CMSG_RECONNECT_PROOF
@@ -354,18 +343,17 @@
     type: packet
     direction: in
     structure:
-      - A:
-            type: uint8
-            array: 32
-      - M1:
-            type: uint8
-            array: 20
-      - CRC:
-            type: uint8
-            array: 20
-      - NumKeys:
-            type: uint8
-
+          - A:
+                type: uint8
+                array: 32
+          - M1:
+                type: uint8
+                array: 20
+          - CRC:
+                type: uint8
+                array: 20
+          - NumKeys:
+                type: uint8
 -
     name: CMSG_REALMLIST
     opcode: 0x10
@@ -387,7 +375,7 @@
       - Request:
             type: uint32
       - NumRealms:
-            type: uint16
+            type: uint8
       - RealmList:
             type: vector
             vtype: RealmVector
@@ -423,31 +411,26 @@
       - RealmListEnd:
             type: uint16
             const: 15
-
 -
     name: SMSG_UPDATE_INITIATE
     opcode: 0x30
     type: packet
     direction: out
-
 -
     name: SMSG_UPDATE_TRANSFER
     opcode: 0x31
     type: packet
     direction: out
-
 -
     name: CMSG_UPDATE_ACCEPT
     opcode: 0x32
     type: packet
     direction: in
-
 -
     name: CMSG_UPDATE_RESUME
     opcode: 0x33
     type: packet
     direction: in
-
 -
     name: CMSG_UPDATE_CANCEL
     opcode: 0x34

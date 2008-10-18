@@ -3,7 +3,7 @@
  *    \brief  Receives all messages related to authentication and ream list serving.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ void RealmClient::SocketEvent (uint mask)
 
         switch (opcode)
         {
-            #include "RealmProto.inc"
+#include "RealmProto.inc"
             default:
                 Server->Logger->Out (LOG_COMMON, "\axcWARNING: \ax6Unknown packet type: 0x%02X\n", opcode);
         };
@@ -92,6 +92,7 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
 
     printf ("Error Start Byte: %d\n", inpkt.ErrorCode);
     printf ("Packet size: %d\n", inpkt.Length);
+    printf ("Username: %s\n", inpkt.UserName);
     printf ("Game ID: %s\n", str4 (inpkt.GameID));
     printf ("Client Version: %d.%d.%d\n", inpkt.ClientVersion [0],
         inpkt.ClientVersion [1], inpkt.ClientVersion [2]);
@@ -100,7 +101,7 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
     printf ("Platform: %s\n", str4 (inpkt.OS));
     printf ("Language: %s\n", str4 (inpkt.Lang));
     printf ("Client time zone: GMT%c%d\n",
-        inpkt.TimeZone >= 0 ? '+' : '-', inpkt.TimeZone / 60);
+            inpkt.TimeZone >= 0 ? '+' : '-', inpkt.TimeZone / 60);
     printf ("Client internal IP address: %s\n",
         inet_ntoa (*(struct in_addr *)&inpkt.ClientIP));
     printf ("Username: %s\n", inpkt.UserName);
@@ -132,10 +133,10 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
 
     switch (rc)
     {
-        case 1:                                             // general failure
+        case 1:   // general failure
             FailChallenge (CE_CANNOT_LOGIN, "could not log in");
             return;
-        case 2:                                             // bad username
+        case 2:   // bad username
             FailChallenge (CE_BAD_CREDENTIALS, "no such account");
             return;
     }
@@ -160,10 +161,10 @@ void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
 
     Proof (inpkt.A);
 
-    #ifdef SRP_DEBUG
+#ifdef SRP_DEBUG
     printBytes (inpkt.M1, 20, "in-M1");
     printBytes (SS_Hash, 40, "SS_Hash");
-    #endif
+#endif
 
     // if they differ, wrong pass
     if (memcmp (inpkt.M1, M1, 20))
@@ -182,7 +183,7 @@ void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
     char sshash [81];
     Bin2Hex (sshash, SS_Hash, 40);
     if (dbex->ExecuteF ("UPDATE accounts SET authip='%s',sessionkey='%s',lastlogin=NOW() WHERE login='%s'",
-        socket->GetIP (), sshash, UserName) != dbeOk)
+                        socket->GetIP (), sshash, UserName) != dbeOk)
     {
         Server->db->PutExecutor (dbex);
         FailLogin (CE_CANNOT_LOGIN, "could not log in");
@@ -214,7 +215,7 @@ void RealmClient::HandleRealmList (CMSG_REALMLIST_t &inpkt)
             char *qlogin = QuoteSQL (UserName);
             char *qrealm = QuoteSQL (rv->Get (i)->Name);
             if ((dbex->ExecuteF ("SELECT numchars FROM accountchars WHERE login='%s' AND realm='%s'",
-                qlogin, qrealm) == dbeOk) && dbex->NextRow ())
+                                 qlogin, qrealm) == dbeOk) && dbex->NextRow ())
                 rv->Get (i)->NumChars = atoi (dbex->Get (0));
             if (qlogin != UserName)
                 delete [] qlogin;

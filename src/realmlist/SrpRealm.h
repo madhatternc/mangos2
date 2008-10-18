@@ -3,7 +3,7 @@
  *    \brief  Provides basic calculations for SRP based client authentication.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,22 +30,22 @@
 
 class SrpRealm
 {
-    protected:
-        char *UserName;
-        uint8 b [32];
-        uint8 v [32];
-        uint8 BR [32];
-        uint8 N [32];
-        uint8 M1 [20];
-        uint8 M2 [20];
-        uint8 SS_Hash [40];
-        uint8 salt [32];
-    public:
-        SrpRealm ();
-        ~SrpRealm ();
+protected:
+    char *UserName;
+    uint8 b [32];
+    uint8 v [32];
+    uint8 BR [32];
+    uint8 N [32];
+    uint8 M1 [20];
+    uint8 M2 [20];
+    uint8 SS_Hash [40];
+    uint8 salt [32];
+public:
+    SrpRealm ();
+    ~SrpRealm ();
 
-        void Challenge (const char *userName, char *passwd);
-        void Proof (uint8 *A);
+    void Challenge (const char *userName, char *passwd);
+    void Proof (uint8 *A);
 };
 
 /**
@@ -69,4 +69,5 @@ void Hex2Bin (uint8 *dst, size_t size, char *src);
  *   Source binary array length in bytes
  */
 void Bin2Hex (char *dst, uint8 *src, size_t size);
+
 #endif // __SRP_REALM_H__

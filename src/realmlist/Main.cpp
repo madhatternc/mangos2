@@ -3,7 +3,7 @@
  *    \brief  Realm list server
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,7 +64,7 @@ struct ServerOptions
             if (IS_ERR (db))
             {
                 CONSOLE.Out ("\axcERROR: \axeFailed to open database: %s\n",
-                    Database::ErrorString ((DatabaseError)PTR_ERR (db)));
+                            Database::ErrorString ((DatabaseError)PTR_ERR (db)));
                 db = NULL;
                 return false;
             }
@@ -113,17 +113,17 @@ struct ServerOptions
 static void display_version ()
 {
     CONSOLE.Out (
-        "\ax9MaNGOS2 Realm List Server\ax2, version \axf%s\ax2\n"
+        "\ax9RealmList Server\ax2, version \axf%s\ax2\n"
         "Copyright \axf(C) \ax2%s\ax2\n",
         VERSION, COPYRIGHT);
 
-    /// GPL notice
+    /// GPL v3 notice
     CONSOLE.Out (
         "\n\ax2This is free software.  You may redistribute copies of it under the terms of\n"
         "\ax2the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.\n"
         "\ax2There is NO WARRANTY, to the extent permitted by law.\ax2\n");
 
-    /// SRP project notice
+    /// SRP notice
     CONSOLE.Out (
         "\n\ax2This product includes software developed by Tom Wu and Eugene\n"
         "\ax2Jhong for the SRP Distribution (http://srp.stanford.edu/).\n");
@@ -144,14 +144,16 @@ static void display_usage (const char *argv0, ServerOptions &srvopt)
 
 static int cmdVersion (ServerOptions *srvopt)
 {
+    /// (void)srvopt;
     CONSOLE.Out (
-        "\ax2** Realm List Server **  \axa%s\ax2  for build \axa%d..%d\ax2 **\n",
+        "\ax2** OpenWoW Realm Server **  \axa%s\ax2  for build \axa%d..%d\ax2 **\n",
         FULLVERSION, MIN_CLIENT_BUILD, MAX_CLIENT_BUILD);
     return 0;
 }
 
 static int cmdQuit (ServerOptions *srvopt)
 {
+    /// (void)srvopt;
     return 1;
 }
 
@@ -180,9 +182,9 @@ static int cmdRealmList (ServerOptions *srvopt)
     {
         Realm *r = rv->Get (i);
         CONSOLE.Out ("\ax7%s\t%s\ax6%s\t\ax2%g\t\ax3%d\t\ax5%d\t\ax1%d\n",
-            r->Name, strlen (r->Name) > 7 ? "" : "\t",
-            r->Address, r->Population,
-            r->Color, r->Type, r->Language);
+                            r->Name, strlen (r->Name) > 7 ? "" : "\t",
+                            r->Address, r->Population,
+                            r->Color, r->Type, r->Language);
     }
     return 0;
 }
@@ -229,8 +231,7 @@ static int cmdRealmDb (ServerOptions *srvopt, char *Type, char *Address)
 int main (int argc, char **argv)
 {
     int c;
-    static struct option long_options[] =
-    {
+    static struct option long_options[] = {
         {"config", required_argument, NULL, 'c'},
         {"help", no_argument, NULL, 'h'},
         {"version", no_argument, NULL, 'V'},
@@ -238,86 +239,50 @@ int main (int argc, char **argv)
     };
 
     // Initialize default server parameters
-    ServerOptions srvopt;
+        ServerOptions srvopt;
 
-    while ((c = getopt_long(argc, argv, "c:hv", long_options, NULL)) != EOF)
-    {
-        switch (c)
-        {
-            case 'c':
-                delete [] srvopt.configFile;
-                srvopt.configFile = strnew (optarg);
-                break;
-            case 'h':
-                display_usage (argv[0], srvopt);
-                return 0;
-            case 'v':
-                display_version ();
-                return 0;
-            default:
-                abort ();
+    while ((c = getopt_long(argc, argv, "c:hv", long_options, NULL)) != EOF) {
+        switch (c) {
+        case 'c':
+            delete [] srvopt.configFile;
+            srvopt.configFile = strnew (optarg);
+            break;
+        case 'h':
+            display_usage (argv[0], srvopt);
+            return 0;
+        case 'v':
+            display_version ();
+            return 0;
+        default:
+            abort ();
         }
     }
 
     static CommandDesc Commands [] =
     {
-        {
-            "start",     0,
-            {
-            }, CMDFUNC (cmdStart),
-            "Starts the server"
-        },
-        {
-            "stop",      0,
-            {
-            }, CMDFUNC (cmdStop),
-            "Stop the server"
-        },
-        {
-            "quit",      0,
-            {
-            }, CMDFUNC (cmdQuit),
-            "Quit and shutdown server"
-        },
-        {
-            "exit",      0,
-            {
-            }, CMDFUNC (cmdQuit),
-            "Exit and shutdown server"
-        },
-        {
-            "ver",       0,
-            {
-            }, CMDFUNC (cmdVersion),
-            "Display server and expected client version"
-        },
-        {
-            "realms",    0,
-            {
-            }, CMDFUNC (cmdRealmList),
-            "Print the realmlist"
-        },
-        {
-            "log",       1,
-            {
-                ARG_OSTR
-            }, CMDFUNC (cmdLog),
-            "Set/display logging options for Realm List server"
-        },
-        {
-            "rdb",       2,
-            {
-                ARG_STR, ARG_STR
-            }, CMDFUNC (cmdRealmDb),
-            "Set up the SQL database"
-        },
+        { "start",     0, {}, CMDFUNC (cmdStart),
+          "Starts the server" },
+        { "stop",      0, {}, CMDFUNC (cmdStop),
+          "Stop the server" },
+        { "quit",      0, {}, CMDFUNC (cmdQuit),
+          "Quit and shutdown server" },
+        { "exit",      0, {}, CMDFUNC (cmdQuit),
+          "Exit and shutdown server" },
+        { "ver",       0, {}, CMDFUNC (cmdVersion),
+          "Display server and expected client version" },
+        { "realms",    0, {}, CMDFUNC (cmdRealmList),
+          "Print the realmlist" },
+        { "log",       1, { ARG_OSTR }, CMDFUNC (cmdLog),
+          "Set/display logging options for Realm List server" },
+        { "rdb",       2, { ARG_STR, ARG_STR }, CMDFUNC (cmdRealmDb),
+          "Set up the SQL database" },
     };
 
     display_version ();
 
     CommandInterpreter (srvopt.configFile, &srvopt,
-        Commands, ARRAY_LEN (Commands),
-        "\ax1realm\ax9list\axf> \ax7");
+                Commands, ARRAY_LEN (Commands),
+                "\ax1realm\ax9list\axf> \ax7");
 
     return 0;
 }

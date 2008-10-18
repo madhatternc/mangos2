@@ -1,5 +1,5 @@
 # Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
-# Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+# Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,9 +21,10 @@
 #  Autoconf version:   Autoconf 2.60 or newer
 #  PACKAGE:            mangos2
 #  VERSION:            0.5.0.02
-#  BUG-REPORT-ADDRESS: http://www.getmangos.com/
-AC_PREREQ(2.60)
-AC_INIT( [mangos2], [0.5.0.02], [http://www.getmangos.com/])
+#  BUG-REPORT-ADDRESS: http://mangos.lighthouseapp.com/
+AC_PREREQ(2.61)
+AC_INIT( [mangos2], [0.5.0.02], [http://mangos.lighthouseapp.com/])
+AC_DEFINE([PACKAGE_URL],["http://getmangos.com/wiki/"],[project url])
 AC_CONFIG_SRCDIR([src/shared/Base.cpp])
 
 ## Prelude, basic settings for Automake
@@ -44,17 +45,31 @@ AM_MAINTAINER_MODE
 AC_LANG_CPLUSPLUS
 AC_PROG_CXX
 AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
 AC_PROG_MAKE_SET
 AC_PROG_LIBTOOL
-AC_PROG_INSTALL
 
 LPATH="$PATH:/usr/local/bin"
 
+# {{{ LIBMANGOS2_VERSION / LIBMANGOS2_VERSION_INFO
+LIBMANGOS2_MAJOR_VERSION="$(echo $PACKAGE_VERSION | cut -d. -f1)"
+LIBMANGOS2_MINOR_VERSION="$(echo $PACKAGE_VERSION | cut -d. -f2)"
+LIBMANGOS2_MICRO_VERSION="$(echo $PACKAGE_VERSION | cut -d. -f3)"
+
+LIBMANGOS2_VERSION="$PACKAGE_VERSION"
+LIBMANGOS2_VERSION_INFO=`expr $LIBMANGOS2_MAJOR_VERSION + $LIBMANGOS2_MINOR_VERSION`:$LIBMANGOS2_MICRO_VERSION:$LIBMANGOS2_MINOR_VERSION
+PACKAGE_RELEASE="$LIBMANGOS2_MAJOR_VERSION.$LIBMANGOS2_MINOR_VERSION"
+# }}}
+
+# {{{ CHECK FOR CODE GENERATION
 AC_PATH_PROG(PYTHONPATH, python)
 if test "_$PYTHONPATH" = _ ; then
     AC_MSG_WARN([python is required to build, when the packet rule files change.])
 fi
 AM_CONDITIONAL([USE_CODEGEN], [test "_$PYTHONPATH" != _])
+# }}}
 
 ## Check for required libraries.
 AC_CHECK_LIB( pthread, pthread_create, [],
@@ -64,7 +79,6 @@ AC_CHECK_LIB( pthread, pthread_create, [],
          [], [AC_MSG_ERROR([Missing pthread])])
     ])
 AC_CHECK_LIB( z, compress, [ZLIB=-lz],[AC_MSG_ERROR([Missing zlib])] )
-#AC_CHECK_LIB( mysqlclient, mysql_init, [],[AC_CHECK_LIB(mysql, mysql_init,[],[AC_MSG_ERROR([Missing mysql])])])
 AC_CHECK_LIB( compat, ftime, [COMPATLIB=-lcompat] )
 AC_CHECK_LIB( ssl, BN_cmp, [SSLLIB=-lssl], [AC_MSG_ERROR([Missing openssl])])
 AC_CHECK_LIB( termcap, tgetent, [TERMLIB=-ltermcap],
@@ -72,13 +86,13 @@ AC_CHECK_LIB( termcap, tgetent, [TERMLIB=-ltermcap],
          [AC_MSG_ERROR([Either termcap or ncurses is required])]
     )]
 )
-
+# {{{ CHECK FOR WORKING MYSQL INSTALLATION
 AC_ARG_WITH(mysql-libs,
-[  --with-mysql-libs=DIR     Look for mysql libs in this dir ],
+[--with-mysql-libs=DIR Look for mysql libs in this dir ],
     MYSQL_LIBS="-L$withval -lmysqlclient"
 )
 AC_ARG_WITH(mysql-includes,
-[  --with-mysql-includes=DIR Look for mysql includes in this dir ],
+[--with-mysql-includes=DIR Look for mysql includes in this dir ],
     MYSQL_INCLUDES="-I$withval"
 )
 
@@ -90,26 +104,21 @@ then
         MYSQL_INCLUDES="`$MYSQL_CONFIG --cflags`"
     MYSQL_LIBS="`$MYSQL_CONFIG --libs_r`"
 fi
+# }}}
 
 ## Development settings
 #  Default compiler flags
-CFLAGS=${CFLAGS:--O2 -Wall -Weffc++}
-CXXFLAGS=${CXXFLAGS:--O2 -Wall -Weffc++}
+CFLAGS=${CFLAGS:--s -O3 -ffast-math -Wall -Wno-long-long}
+CPPFLAGS=${CPPFLAGS:--s -O3 -ffast-math -Wall -Wno-long-long -fomit-frame-pointer -fno-exceptions}
 
-AC_ARG_ENABLE(debug,
-    [  --enable-debug          Turn on debugging],
-        [case "${enableval}" in
-            yes) debug=true ;;
-            no)  debug=false ;;
-            *) AC_MSG_ERROR(bad value ${enableval} for --enable-debug) ;;
-         esac],[debug=false])
-#AM_CONDITIONAL(DEBUG, test x$debug = xtrue)
-if test x$debug = xtrue; then
-    AC_DEFINE(DEBUG, 1, Enable this to include additional debugging code in executable)
-    CFLAGS=${CFLAGS:--O2 -g -Wall -Weffc++}
-    CXXFLAGS=${CXXFLAGS:--O2 -g -Wall -Weffc++}
-fi
-AM_CONDITIONAL([DEBUG], [test "_$debug" != _])
+# provide flag --enable-debug
+AC_ARG_ENABLE(debug, AC_HELP_STRING([[--enable-debug]], [enable debugging output to stdout]),
+[if test "$enableval" = "yes"; then
+		 AC_DEFINE(DEBUG, 1, Enable this to include additional debugging code in executable)
+		 CFLAGS="$CFLAGS -DDEBUG -O2 -g -Wall"
+		 CPPFLAGS="$CPPFLAGS -DDEBUG -O2 -g -Wall"
+fi]
+)
 
 ## Check for required header files.
 AC_FUNC_ALLOCA
@@ -156,6 +165,9 @@ AC_SUBST(MYSQL_INCLUDES)
 AC_SUBST(MYSQL_LIBS)
 AC_SUBST(PYTHONPATH)
 AC_SUBST(USE_CODEGEN)
+AC_SUBST(LIBMANGOS2_VERSION)
+AC_SUBST(LIBMANGOS2_VERSION_INFO)
+AC_SUBST(PACKAGE_RELEASE)
 
 ## Set output files.
 AC_CONFIG_HEADER([config.h])
@@ -173,7 +185,7 @@ AC_CONFIG_FILES([Makefile
          doc/Makefile
          sql/Makefile
          sql/realmlist/Makefile
-         sql/worldserver/Makefile
+         sql/worlddata/Makefile
          src/Makefile
          src/realmlist/Makefile
          src/realmlist/realmlist.conf.dist

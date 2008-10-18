@@ -1,5 +1,5 @@
 # Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
-# Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+# Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,21 +19,8 @@
 ## Sub directories to parse
 SUBDIRS = lua
 
-## libmangos2 API version
-#  API versioning
-#  How to increase version info:
-#  - only bug fixes implemented:
-#    bump the version to LTMANGOS2_CURRENT:LTMANGOS2_REVISION+1:LTMANGOS2_AGE
-#  - augmented the interface:
-#    bump the version to LTMANGOS2_CURRENT+1:0:LTMANGOS2_AGE+1
-#  - broken old interface:
-#    bump the version to LTMANGOS2_CURRENT+1:0:0
-LTMANGOS2_CURRENT = 0
-LTMANGOS2_REVISION = 3
-LTMANGOS2_AGE = 0
-
 ## CPP flags for includes, defines, etc.
-AM_CPPFLAGS = $(MYSQL_INCLUDES) -I$(srcdir)
+AM_CPPFLAGS = $(MYSQL_INCLUDES) -I$(srcdir) -DLIBMANGOS2_VERSION="\"@PACKAGE_VERSION@\""
 
 ## Build shared sources as shared library.
 #  libmangos2 shared library will later be reused by realm list daemon
@@ -123,7 +110,7 @@ libmangos2_ladir = $(includedir)/mangos2
 
 ## libtool settings
 #  Link against dependencies
-libmangos2_la_LDFLAGS = -version-info $(LTMANGOS2_CURRENT):$(LTMANGOS2_REVISION):$(LTMANGOS2_AGE)
+libmangos2_la_LDFLAGS = -version-info $(LIBMANGOS2_VERSION_INFO)
 
 # Link against MySQL library
 libmangos2_la_LIBADD = $(MYSQL_LIBS)

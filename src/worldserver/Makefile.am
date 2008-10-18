@@ -1,5 +1,5 @@
 # Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
-# Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+# Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ EXTRA_DIST = \
 	Opcodes.inc \
 	Protocol.rules \
 	worldsrv.lua \
-	worldsrv.pkg \
+	worldserver.pkg \
 	worldserver.conf.dist
 
 ## Link realm list daemon against the shared library
@@ -91,9 +91,9 @@ mangos2_worldserver_LDFLAGS = \
 
 GameClient.o: Opcodes.inc
 
-Luawrapper.cpp: Opcodes.h worldsrv.pkg
+Luawrapper.cpp: Opcodes.h worldserver.pkg
 	@echo "Generating LUA wrapper"
-	$(srcdir)/../tools/tolua/bin/tolua -1 -L worldsrv.lua -o Luawrapper.cpp worldsrv.pkg
+	$(srcdir)/../tools/tolua/bin/tolua -1 -L worldserver.lua -o Luawrapper.cpp worldserver.pkg
 
 if USE_CODEGEN
 

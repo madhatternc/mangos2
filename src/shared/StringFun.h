@@ -3,7 +3,7 @@
  *    \brief  Miscellaneous functions for handling C strings
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,6 +117,7 @@ int HexVal (char c);
  */
 bool Hex2Bin (const char *iXstr, void *oDest, size_t iDestSize);
 
+
 /**
  * Encode the data array into a text string that can be stored into
  * the SQL database.
@@ -166,16 +167,16 @@ size_t DecodeSQL (const char *iSqlStr, void *oData, size_t oDataSize);
  * Quote a string so that it can be inserted into a SQL '%s' sequence without
  * fear for SQL insertion attacks. For example, imagine you have the following
  * sequence:
- * \verbatim
+ * \Verbatim
  *      INSERT INTO mail (body) VALUES ('%s')
- * \endverbatim
+ * \EndVerbatim
  * where %s is replaced by letter's body as entered by the user. Now I can write
  * a letter like:
- * \verbatim
+ * \Verbatim
  *      Hello John!');
  *      DELETE FROM characters WHERE name=%;
  *      INSERT INTO MAIL (body) VALUES ('
- * \endverbatim
+ * \EndVerbatim
  * This function replaces ' with \' and \ with \\. These two simple changes
  * are enough to render such attacks useless.
  * @arg iString
@@ -244,4 +245,5 @@ void u8strupr (char *oDestString, const char *iSrcString);
  *   Source string
  */
 void u8strlwr (char *oDestString, const char *iSrcString);
+
 #endif // __STRING_FUN_H__

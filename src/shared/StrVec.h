@@ -4,7 +4,7 @@
  *
  * Copyright (C) 1998,1999 by Andrew Zabolotny <zap@homelink.ru>
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,57 +26,32 @@
 #include "Vector.h"
 
 /**
- *  \addtogroup FoundationClasses
- *
- *  @{
- */
-
-/**
- *  \class StrVector
- *  \brief StrVector is version of Vector assuming its components were allocated with 'new char *[]'.
- *
- *  \par
- *  StrVector is a version of Vector which assumes its components
- *  were allocated with 'new char *[]'. FreeItem () deletes vector elements
- *  using 'delete [] (char *)' operator.
+ * StrVector is a version of Vector which assumes its components
+ * were allocated with 'new char *[]'. FreeItem () deletes vector elements
+ * using 'delete [] (char *)' operator.
  */
 class StrVector : public Vector
 {
-    public:
-        /**
-         *  \brief Constructor just passes control to Vector's
-         */
-        StrVector (int ilimit = 64, int ithreshold = 64) :
+public:
+    /// Constructor just passes control to Vector's
+    StrVector (int ilimit = 64, int ithreshold = 64) :
         Vector (ilimit, ithreshold) {}
 
-        /**
-         *  \brief Delete all inserted strings before deleting the object itself
-         */
-        virtual ~StrVector ();
+    /// Delete all inserted strings before deleting the object itself
+    virtual ~StrVector ();
 
-        /**
-         *  \brief FreeItem deletes Item as if it was allocated by 'new char *[]'
-         */
-        virtual void FreeItem (Some Item) const;
+    /// FreeItem deletes Item as if it was allocated by 'new char *[]'
+    virtual void FreeItem (Some Item) const;
 
-        /**
-         *  \brief Compare two array elements in given Mode
-         */
-        virtual int Compare (Some Item1, Some Item2, int Mode) const;
+    /// Compare two array elements in given Mode
+    virtual int Compare (Some Item1, Some Item2, int Mode) const;
 
-        /**
-         *  \brief Compare two strings for equality (case-sensitive)
-         */
-        virtual int CompareKey (Some Item, ConstSome Key, int Mode) const;
+    /// Compare two strings for equality (case-sensitive)
+    virtual int CompareKey (Some Item, ConstSome Key, int Mode) const;
 
-        /**
-         *  \brief Override Get() to avoid explicit typecasting
-         */
-        inline char *Get (int iIndex) const
-            { return (char *)Vector::Get (iIndex); }
+    /// Override Get() to avoid explicit typecasting
+    inline char *Get (int iIndex) const
+    { return (char *)Vector::Get (iIndex); }
 };
 
-/**
- *  @}
- */
 #endif // __STR_VEC_H__

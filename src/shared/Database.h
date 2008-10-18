@@ -3,7 +3,7 @@
  *    \brief  General database interface
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,20 +26,6 @@
 #include "BaseVector.h"
 #include "ThreadFun.h"
 
-/**
- *  \defgroup DatabaseClasses Database Classes
- */
-
-/**
- *  \addtogroup DatabaseClasses
- *
- *  @{
- */
-
-/**
- *  \enum DatabaseError
- *  \brief Error codes for database operations.
- */
 enum DatabaseError
 {
     dbeOk = 0,
@@ -249,7 +235,4 @@ public:
     virtual uint GetAffectedRows () = 0;
 };
 
-/**
- *  @}
- */
 #endif // __DATABASE_H__

@@ -3,7 +3,7 @@
  *    \brief  Version info and basic definitions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #define __VERSION_H__
 
 // Server Settings [ Connection ]
-#define COPYRIGHT           "2008 MaNGOS foundation <http://www.getmangos.com/"
+#define COPYRIGHT           "2008 MaNGOS foundation <http://getmangos.com/"
 
 #define DEFDBTYPE           "MySQL"
 #define DEFDBADDR           "localhost,mangos2,mangos2,mangos2"
@@ -45,8 +45,8 @@
 #endif
 
 // Compatible client build range
-#define MIN_CLIENT_BUILD    8606                            // client 2.4.3
-#define MAX_CLIENT_BUILD    8606                            // client 2.4.3
+#define MIN_CLIENT_BUILD    8606 // client version 2.4.3 build 8606
+#define MAX_CLIENT_BUILD    8606 // client version 2.4.3 build 8606
 
 // The path to data files
 #ifndef DATADIR

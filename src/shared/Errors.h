@@ -3,7 +3,7 @@
  *    \brief  Error helper functions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,11 +25,8 @@
 #include <assert.h>
 #include <stdio.h>
 
-/**
- *  \addtogroup DebuggingClasses
- *
- *  @{
- */
+#include <assert.h>
+#include <stdio.h>
 
 // TODO: handle errors better
 
@@ -41,7 +38,4 @@
 // This should always halt everything.  If you ever find yourself wanting to remove the assert (false), switch to WPWarning or WPError
 #define WPFatal(assertion, errmsg) if (! (assertion)) { LOG.outError ("%s:%i FATAL ERROR:\n  %s\n", __FILE__, __LINE__, (char *)errmsg); assert (#assertion &&0); THREADS.closeCurrentThread (); }
 
-/**
- *  @}
- */
 #endif // __ERRORS_H__

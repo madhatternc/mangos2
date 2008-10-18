@@ -4,7 +4,7 @@
  *
  * Copyright (C) 1998,1999 by Andrew Zabolotny <zap@homelink.ru>
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@ bool Vector::Insert (int n, Some Item)
 {
     if (n <= count)
     {
-        SetLength (count + 1);                              // Increments 'count' as a side-effect.
+        SetLength (count + 1); // Increments 'count' as a side-effect.
         uint movebytes = (count - n - 1) * sizeof (Some);
         if (movebytes)
             memmove (&root [n + 1], &root [n], movebytes);
@@ -181,10 +181,10 @@ int Vector::FindSortedKey (ConstSome Key, int Mode) const
 
     switch (Mode & CSV_FIND_MODE_MASK)
     {
-        case CSV_FIND_NEAREST_SMALLER:
-            return cmp < 0 ? m : m - 1;
-        case CSV_FIND_NEAREST_LARGER:
-            return cmp >= 0 ? m : m + 1;
+    case CSV_FIND_NEAREST_SMALLER:
+        return cmp < 0 ? m : m - 1;
+    case CSV_FIND_NEAREST_LARGER:
+        return cmp >= 0 ? m : m + 1;
     }
 
     return -1;
@@ -220,7 +220,7 @@ int Vector::InsertSorted (Some Item, int *oEqual, int Mode)
 
 void Vector::QuickSort (int Left, int Right, int Mode)
 {
-    recurse:
+recurse:
     int i = Left, j = Right;
     int x = (Left + Right) / 2;
     do

@@ -3,7 +3,7 @@
  *    \brief  MySQL database interface
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,12 +25,6 @@
 #include "Database.h"
 
 /**
- *  \addtogroup DatabaseClasses
- *
- *  @{
- */
-
-/**
  * A variant of the Database interface running on top of MySQL.
  * Database address format is as follows:
  *
@@ -42,28 +36,25 @@
  */
 class DatabaseMySQL : public Database
 {
-    protected:
-        char *Host;
-        int Port;
-        char *User;
-        char *Password;
-        char *Database;
+protected:
+    char *Host;
+    int Port;
+    char *User;
+    char *Password;
+    char *Database;
 
-        virtual ~DatabaseMySQL ();
+    virtual ~DatabaseMySQL ();
 
-        virtual DatabaseError Open (const char *dbAddress);
+    virtual DatabaseError Open (const char *dbAddress);
 
-        /**
-         * Create a Database Executor object, suitable for issuing
-         * SQL requests and then working with the results.
-         * @return
-         *    A new object or NULL if we're out of resources.
-         */
-        virtual DatabaseExecutor *CreateExecutor ();
-    public:
+    /**
+     * Create a Database Executor object, suitable for issuing
+     * SQL requests and then working with the results.
+     * @return
+     *    A new object or NULL if we're out of resources.
+     */
+    virtual DatabaseExecutor *CreateExecutor ();
+public:
 };
 
-/**
- *  @}
- */
-#endif                                                      // __DATABASE_MYSQL_H__
+#endif // __DATABASE_MYSQL_H__

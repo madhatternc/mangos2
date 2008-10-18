@@ -3,7 +3,7 @@
  *    \brief  System-dependent functions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,4 +33,5 @@ void SleepMs (int ms);
  * Get number of milliseconds passed since doesn't matter when.
  */
 uint32 GetMilliseconds ();
+
 #endif // __SYSTEM_FUN_H__

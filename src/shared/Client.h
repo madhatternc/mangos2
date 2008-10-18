@@ -3,7 +3,7 @@
  *    \brief  Network Client abstraction
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,57 +25,35 @@
 #include "Base.h"
 #include "Sockets.h"
 
-/**
- *  \addtogroup NetworkClasses
- *
- *  @{
- */
-
 class Server;
 
 /**
- *  \class Client
- *  \brief Abstraction class for any client connection of a network server.
- *
- *  \details
- *  This is an abstraction class for any client connection of a network Server.
- *  It holds the client connection socket, and receives notifications about
- *  incoming events.
+ * This is an abstraction class for any client connection of a network Server.
+ * It holds the client connection socket, and receives notifications about
+ * incoming events.
  */
 class Client : public Base
 {
-    protected:
-        friend class Server;
+protected:
+    friend class Server;
 
-        /**
-         *  \brief The client socket
-         */
-        Socket *socket;
+    /// The client socket
+    Socket *socket;
 
-        /**
-         *  \brief Private destructor -- use DecRef () instead
-         */
-        virtual ~Client ();
+    /// Private destructor -- use DecRef () instead
+    virtual ~Client ();
 
-    public:
-        /**
-         *  \brief Create the client object listening to this socket
-         */
-        Client (Socket *sock); //tolua_hide abstract class can't be allociated
+public:
+    /// Create the client object listening to this socket
+    Client (Socket *sock); //tolua_hide abstract class can't be allociated
 
-        /**
-         *  \brief Called when any event happens with the socket.
-         *
-         *  \details
-         *  Called when any event (one of those requested by socket->InterestedEvents())
-         *  happens with the socket.
-         *
-         *  \arg \c mask Event mask (a combination of PF_XXX flags)
-         */
-        virtual void SocketEvent (uint mask) = 0;
+    /**
+     * Called when any event (one of those requested by socket->InterestedEvents())
+     * happens with the socket.
+     * @arg mask
+     *   Event mask (a combination of PF_XXX flags)
+     */
+    virtual void SocketEvent (uint mask) = 0;
 };
 
-/**
- *  @}
- */
 #endif // __CLIENT_H__

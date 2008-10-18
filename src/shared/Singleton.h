@@ -3,7 +3,7 @@
  *    \brief  The Singleton class
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,47 +24,38 @@
 
 #include "Errors.h"
 
-/**
- *  \addtogroup FoundationClasses
- *
- *  @{
- */
-
 /// Should be placed in the appropriate .cpp file somewhere
 #define InitializeSingleton( type ) \
-    template < > type * Singleton < type > :: mSingleton = 0
+  template < > type * Singleton < type > :: mSingleton = 0
 
 /// To be used as a replacement for InitializeSingleton( )
 ///  Creates a file-scoped Singleton object, to be retrieved with getSingleton
 #define createFileSingleton( type ) \
-    InitializeSingleton( type ); \
-    type the##type
+  InitializeSingleton( type ); \
+  type the##type
 
 template < class type > class Singleton
 {
-    protected:
-        /// Singleton pointer, must be set to 0 prior to creating the object
-        static type *mSingleton;
+protected:
+    /// Singleton pointer, must be set to 0 prior to creating the object
+    static type *mSingleton;
 
-    public:
-        /// Constructor
-        Singleton ()
-        {
-            /// If you hit this assert, this singleton already exists -- you can't create another one!
-            WPAssert (mSingleton == 0);
-            mSingleton = (type *) this;
-        }
-        /// Destructor
-        ~Singleton () { }
+public:
+    /// Constructor
+    Singleton ()
+    {
+        /// If you hit this assert, this singleton already exists -- you can't create another one!
+        WPAssert (mSingleton == 0);
+        mSingleton = (type *) this;
+    }
+    /// Destructor
+    ~Singleton () { }
 
-        /// Retrieve the singleton object, if you hit this assert this singleton object doesn't exist yet
-        static type &getSingleton () { WPAssert (mSingleton); return *mSingleton; }
+    /// Retrieve the singleton object, if you hit this assert this singleton object doesn't exist yet
+    static type &getSingleton () { WPAssert (mSingleton); return *mSingleton; }
 
-        /// Retrieve a pointer to the singleton object
-        static type *getSingletonPtr () { return mSingleton; }
+    /// Retrieve a pointer to the singleton object
+    static type *getSingletonPtr () { return mSingleton; }
 };
 
-/**
- *  @}
- */
 #endif // __SINGLETON_H__

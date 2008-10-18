@@ -3,7 +3,7 @@
  *    \brief  Network objects interface
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,16 +24,6 @@
 
 #include "BaseVector.h"
 #include "Log.h"
-
-/**
- *  \defgroup NetworkClasses Networking Classes
- */
-
-/**
- *  \addtogroup NetworkClasses
- *
- *  @{
- */
 
 // Handle the platform differences between socket implementations here
 #if PLATFORM == PLATFORM_WIN32
@@ -199,7 +189,7 @@ public:
     static Socket *Connect (int port, char *host, Log *iLogger);
 
     /// Get the name of an errorcode
-    static const char *ErrorString (uint32 code);
+    static char *ErrorString (uint32 code);
 
     /**
      * Receive some more data. Returns true if there's anything new
@@ -390,7 +380,4 @@ public:
     char *GetCStr ();
 };
 
-/**
- *  @}
- */
 #endif // __SOCKETS_H__

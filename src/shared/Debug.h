@@ -3,7 +3,7 @@
  *    \brief  Debugging helper functions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,16 +23,6 @@
 #define __DEBUG_H__
 
 #include "Console.h"
-
-/**
- *  \defgroup DebuggingClasses Debugging Classes
- */
-
-/**
- *  \addtogroup DebuggingClasses
- *
- *  @{
- */
 
 /**
  * All kind of asserts, as well as debug outputs must be activated ONLY IN DEBUG BUILDS.
@@ -71,7 +61,4 @@ void DebugDump(FILE *Out, const void *Data, unsigned Size, const void *Base = (c
 
 void printBytes(void *bytes, int l, char *name);
 
-/**
- *  @}
- */
 #endif // __DEBUG_H__

@@ -3,7 +3,7 @@
  *    \brief  MySQL database interface
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,65 +35,65 @@
  */
 class DatabaseMySQLExecutor : public DatabaseExecutor
 {
-    protected:
-        friend class DatabaseMySQL;
+protected:
+    friend class DatabaseMySQL;
 
-        MYSQL *Handle;
-        MYSQL_RES *Result;
-        MYSQL_ROW Row;
-        ulong *ResultLength;
+    MYSQL *Handle;
+    MYSQL_RES *Result;
+    MYSQL_ROW Row;
+    ulong *ResultLength;
 
-        DatabaseMySQLExecutor (Database *iParent, MYSQL *iHandle);
-        virtual ~DatabaseMySQLExecutor ();
+    DatabaseMySQLExecutor (Database *iParent, MYSQL *iHandle);
+    virtual ~DatabaseMySQLExecutor ();
 
-    public:
-        /// Check if the executor is still okay (connected to database etc)
-        virtual bool Ok ();
+public:
+    /// Check if the executor is still okay (connected to database etc)
+    virtual bool Ok ();
 
-        /// Free all the results of the previous query
-        virtual void Free ();
+    /// Free all the results of the previous query
+    virtual void Free ();
 
-        /// Execute a query and return success status
-        virtual DatabaseError Execute (const char *Query);
+    /// Execute a query and return success status
+    virtual DatabaseError Execute (const char *Query);
 
-        /// Get the number of fields in the result
-        virtual int NumFields ();
+    /// Get the number of fields in the result
+    virtual int NumFields ();
 
-        /// Get the number of rows in a result
-        virtual int NumRows ();
+    /// Get the number of rows in a result
+    virtual int NumRows ();
 
-        /**
-         * Process to next row of the result
-         * @return
-         *   bool if row is valid, false if end of data reached
-         */
-        virtual bool NextRow ();
+    /**
+     * Process to next row of the result
+     * @return
+     *   bool if row is valid, false if end of data reached
+     */
+    virtual bool NextRow ();
 
-        /**
-         * Get the i-th result in current row.
-         * Before calling this function you must call NextRow() at least once.
-         */
-        virtual const char *Get (uint i);
+    /**
+     * Get the i-th result in current row.
+     * Before calling this function you must call NextRow() at least once.
+     */
+    virtual const char *Get (uint i);
 
-        /**
-         * Get the length in bytes of i-th result in current row.
-         * Use if you store in database something like binary blobs.
-         */
-        virtual uint GetLength (uint i);
+    /**
+     * Get the length in bytes of i-th result in current row.
+     * Use if you store in database something like binary blobs.
+     */
+    virtual uint GetLength (uint i);
 
-        /**
-         * Get the value of the last modified auto-increment field of database.
-         */
-        virtual uint64 GetID ();
+    /**
+     * Get the value of the last modified auto-increment field of database.
+     */
+    virtual uint64 GetID ();
 
-        /**
-         * Return number of affected rows by the last query.
-         */
-        virtual uint GetAffectedRows ();
+    /**
+     * Return number of affected rows by the last query.
+     */
+    virtual uint GetAffectedRows ();
 };
 
 DatabaseMySQLExecutor::DatabaseMySQLExecutor (Database *iParent, MYSQL *iHandle)
-: DatabaseExecutor (iParent)
+    : DatabaseExecutor (iParent)
 {
     Handle = iHandle;
     Result = NULL;
@@ -149,7 +149,7 @@ DatabaseError DatabaseMySQLExecutor::Execute (const char *Query)
             query = short_query;
         }
         Parent->Logger->Out (LOG_IMPORTANT, "Error %d in query `%s': %s\n",
-            mysql_errno (Handle), query, mysql_error (Handle));
+                             mysql_errno (Handle), query, mysql_error (Handle));
     }
     switch (mysql_errno (Handle))
     {
@@ -210,15 +210,15 @@ const char *DatabaseMySQLExecutor::Get (uint i)
     if (!Result || !Row)
         return NULL;
 
-    #ifdef DEBUG
+#ifdef DEBUG
     // Non-effective for release builds, but helps catching bugs
     if (i >= mysql_num_fields (Result))
     {
         DEBUG_PRINTF ("Out of bounds result index %d (max: %d)!!!\n",
-            i, mysql_num_fields (Result));
+                  i, mysql_num_fields (Result));
         return NULL;
     }
-    #endif
+#endif
 
     return Row [i];
 }
@@ -279,7 +279,7 @@ DatabaseError DatabaseMySQL::Open (const char *DatabaseAddress)
                 return dbeBadArguments;
             }
         }
-        else
+                else
             next = strchr (cur, 0);
 
         params [i] = strnew (cur, next - cur);
@@ -319,11 +319,11 @@ DatabaseExecutor *DatabaseMySQL::CreateExecutor ()
 {
     MYSQL *handle = mysql_init (NULL);
     if (!mysql_real_connect (handle, Host, User, Password, Database,
-        Port, NULL, CLIENT_FOUND_ROWS))
+                 Port, NULL, CLIENT_FOUND_ROWS))
     {
         if (Logger)
             Logger->Out (LOG_IMPORTANT, "Error %d connecting to database: %s\n",
-                mysql_errno (handle), mysql_error (handle));
+                         mysql_errno (handle), mysql_error (handle));
         switch (mysql_errno (handle))
         {
             case ER_PASSWORD_NO_MATCH:

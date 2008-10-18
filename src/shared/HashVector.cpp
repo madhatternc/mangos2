@@ -4,7 +4,7 @@
  *
  * Copyright (C) 2005 by Andrew Zabolotny <zap@homelink.ru>
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,18 +51,18 @@ void HashVector::FreeItem (Some Item) const
 void HashVector::DeleteAll ()
 {
     if (!count)
-        return;
+    return;
 
     for (int i = 0; i < limit; i += HASHVECT_BUCKET_SIZE)
     {
-        Some *cur = root + i;
+    Some *cur = root + i;
         uintptr numel = uintptr (*cur);
-        if (IS_LARGE_BUCKET (numel))
-            lhbDestroy ((LargeHashBucket *)cur);
-        else
-            for (cur++; numel--; cur++)
-                FreeItem (*cur);
-        root [i] = 0;
+    if (IS_LARGE_BUCKET (numel))
+        lhbDestroy ((LargeHashBucket *)cur);
+    else
+        for (cur++; numel--; cur++)
+        FreeItem (*cur);
+    root [i] = 0;
     }
     // Mark hash vector as empty
     count = 0;
@@ -81,14 +81,14 @@ void HashVector::SetBuckets (int iBuckets)
     // When we create a Vector in its place, there can't be <{very much} in this place
     // because there lies either VMT or RTTI, and any of them cannot be so small
     for (int i = 0; i < limit; i += HASHVECT_BUCKET_SIZE)
-        root [i] = 0;
+    root [i] = 0;
 
     if (old_state.root)
     {
-        Iterator i = old_state.Begin ();
-        Some el;
-        while ((el = i.Next ()))
-            _Insert (el);
+    Iterator i = old_state.Begin ();
+    Some el;
+    while ((el = i.Next ()))
+        _Insert (el);
     }
 }
 
@@ -99,7 +99,7 @@ void HashVector::Insert (Some Item)
     // If we exceed this number, resize the hash vector
     // @@@do we also have to shrink the vector automatically as the items are removed?
     if (count >= (limit >> 1) * MemVsSpeed)
-        SetBuckets ((HashMask + 1) * 2);
+    SetBuckets ((HashMask + 1) * 2);
 
     _Insert (Item);
 }
@@ -113,27 +113,27 @@ void HashVector::_Insert (Some Item)
     // Number of elements in the tiny bucket
     uintptr numel = uintptr (*cur);
     if (IS_LARGE_BUCKET (numel))
-        lhbInsertSorted ((LargeHashBucket *)cur, Item);
+    lhbInsertSorted ((LargeHashBucket *)cur, Item);
     else
     {
-        if (numel < HASHVECT_BUCKET_SIZE - 1)
-        {
-            *cur = Some (++numel);
-            cur [numel] = Item;
-        }
-        else
-        {
-            // Transform a tiny bucket into a large bucket
-            Some old_data [HASHVECT_BUCKET_SIZE - 1];
-            memcpy (old_data, cur + 1, (HASHVECT_BUCKET_SIZE - 1) * sizeof (Some));
-            // Use placement allocator to create a Vector in the place of the tiny bucket
-            LargeHashBucket *lhb = (LargeHashBucket *) cur;
-            lhb->Init (HASHVECT_BUCKET_SIZE * 2);
-            // Now copy the data into the vector and sort it
-            for (uint i = 0; i < HASHVECT_BUCKET_SIZE - 1; i++)
-                lhbInsertSorted (lhb, old_data [i]);
-            lhbInsertSorted (lhb, Item);
-        }
+    if (numel < HASHVECT_BUCKET_SIZE - 1)
+    {
+        *cur = Some (++numel);
+        cur [numel] = Item;
+    }
+    else
+    {
+        // Transform a tiny bucket into a large bucket
+        Some old_data [HASHVECT_BUCKET_SIZE - 1];
+        memcpy (old_data, cur + 1, (HASHVECT_BUCKET_SIZE - 1) * sizeof (Some));
+        // Use placement allocator to create a Vector in the place of the tiny bucket
+        LargeHashBucket *lhb = (LargeHashBucket *) cur;
+        lhb->Init (HASHVECT_BUCKET_SIZE * 2);
+        // Now copy the data into the vector and sort it
+        for (uint i = 0; i < HASHVECT_BUCKET_SIZE - 1; i++)
+        lhbInsertSorted (lhb, old_data [i]);
+        lhbInsertSorted (lhb, Item);
+    }
     }
 }
 
@@ -147,13 +147,13 @@ Some HashVector::GetByKey (HashKey_t Key) const
     // Number of elements in the tiny bucket
     uintptr numel = uintptr (*cur);
     if (IS_LARGE_BUCKET (numel))
-        // Binary search in the large bucket
-        return lhbGetByKey ((LargeHashBucket *)cur, Key);
+    // Binary search in the large bucket
+    return lhbGetByKey ((LargeHashBucket *)cur, Key);
     else
-        // Linear search in the tiny bucket
-        for (cur++; numel--; cur++)
-            if (Compare (GetKey (*cur), Key) == 0)
-                return *cur;
+    // Linear search in the tiny bucket
+    for (cur++; numel--; cur++)
+        if (Compare (GetKey (*cur), Key) == 0)
+        return *cur;
     return NULL;
 }
 
@@ -167,15 +167,15 @@ HashVector::Iterator HashVector::FindKey (HashKey_t Key) const
     uintptr numel = uintptr (*cur);
     if (IS_LARGE_BUCKET (numel))
     {
-        delta = lhbFind ((LargeHashBucket *)cur, Key);
-        if (delta >= 0)
-            return Iterator (this, bucket, delta);
+    delta = lhbFind ((LargeHashBucket *)cur, Key);
+    if (delta >= 0)
+        return Iterator (this, bucket, delta);
     }
     else
-        // Linear search in the tiny bucket
-        for (delta = 0, cur++; numel--; cur++, delta++)
-            if (Compare (GetKey (*cur), Key) == 0)
-                return Iterator (this, bucket, delta);
+    // Linear search in the tiny bucket
+    for (delta = 0, cur++; numel--; cur++, delta++)
+        if (Compare (GetKey (*cur), Key) == 0)
+        return Iterator (this, bucket, delta);
     // Return an invalid iterator
     return Iterator (this, -HASHVECT_BUCKET_SIZE, 0);
 }
@@ -206,8 +206,8 @@ void HashVector::LargeHashBucket::Insert (uint Pos, Some Item)
     count++;
     if (count > limit)
     {
-        limit *= 2;
-        root = (Some *)realloc (root, limit * sizeof (Some));
+    limit *= 2;
+    root = (Some *)realloc (root, limit * sizeof (Some));
     }
     uint movebytes = (count - Pos - 1) * sizeof (Some);
     if (movebytes)
@@ -218,7 +218,7 @@ void HashVector::LargeHashBucket::Insert (uint Pos, Some Item)
 void HashVector::lhbDestroy (LargeHashBucket *lhb)
 {
     for (uint i = 0; i < lhb->count; i++)
-        FreeItem (lhb->root [i]);
+    FreeItem (lhb->root [i]);
     free (lhb->root);
 }
 

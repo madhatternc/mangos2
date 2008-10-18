@@ -3,7 +3,7 @@
  *    \brief  Logging functions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ void Log::Write (uint MsgType, const char *str)
     {
         const char *color =
             (MsgType & LOG_DEBUG) ? "\ax2" :
-        (MsgType & LOG_COMMON) ? "\ax3" : "\ax5";
+            (MsgType & LOG_COMMON) ? "\ax3" : "\ax5";
         CONSOLE.Out ("\aPU%s%s\aPO", color, str);
     }
 
@@ -139,14 +139,14 @@ uint Log::Logging (const char *iFlags)
         uint mask;
         switch (tolower (c))
         {
-            case 's':   mask = LOG_SCREEN; break;
-            case 'f':   mask = LOG_FILE; break;
-            case 'd':   mask = LOG_DEBUG; break;
-            case 'c':   mask = LOG_COMMON; break;
-            case 'i':   mask = LOG_IMPORTANT; break;
-            default:
-                Out (LOG_COMMON, "Bad logging flag `%c' requested\n", c);
-                continue;
+        case 's':   mask = LOG_SCREEN; break;
+        case 'f':   mask = LOG_FILE; break;
+        case 'd':   mask = LOG_DEBUG; break;
+        case 'c':   mask = LOG_COMMON; break;
+        case 'i':   mask = LOG_IMPORTANT; break;
+        default:
+            Out (LOG_COMMON, "Bad logging flag `%c' requested\n", c);
+            continue;
         }
         newmask |= mask;
         if (isupper (c))
@@ -161,12 +161,12 @@ void Log::GetLogging (char *oBuffer, size_t iBufferLen)
 {
     iBufferLen--;
 
-    #define PUSH(str) \
-        { \
-            int i = nstrcpy (oBuffer, iBufferLen, str); \
-            oBuffer += i; \
-            iBufferLen -= i; \
-        }
+#define PUSH(str) \
+    { \
+        int i = nstrcpy (oBuffer, iBufferLen, str); \
+        oBuffer += i; \
+        iBufferLen -= i; \
+    }
 
     bool first = true;
     if (LoggingFlags & LOG_SCREEN)

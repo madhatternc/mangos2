@@ -3,7 +3,7 @@
  *    \brief  Command line interpreter
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,13 +32,8 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd);
 
 static CommandDesc BuiltinCommands [] =
 {
-    {
-        "help", 1,
-        {
-            ARG_OSTR
-        }, CMDFUNC (cmdHelp),
-        "Help on all commands, or help on a specific command"
-    },
+    { "help", 1, { ARG_OSTR }, CMDFUNC (cmdHelp),
+      "Help on all commands, or help on a specific command" },
 };
 
 static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
@@ -49,7 +44,7 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
         bool ok = false;
         for (int cmdset = 0; cmdset < 2; cmdset++)
         {
-            CommandDesc *last_cmd;
+                CommandDesc *last_cmd;
             if (cmdset == 0)
             {
                 cmd = BuiltinCommands;
@@ -62,10 +57,10 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
             }
             for (; cmd < last_cmd; cmd++)
                 if (strcasecmp (Cmd, cmd->Name) == 0)
-            {
-                ok = true;
-                break;
-            }
+                {
+                    ok = true;
+                    break;
+                }
             if (ok)
                 break;
         }
@@ -73,13 +68,13 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
         {
             CONSOLE.Out ("\axcERROR: \axeUnknown command `%s'\n", Cmd);
             return 0;
-        }
+                }
 
         CONSOLE.Out ("\axa%s ", Cmd);
         int num_brackets = 0;
         for (int i = 0; i < cmd->NumArgs; i++)
         {
-            const char *arg_type, *bracket = "";
+            char *arg_type, *bracket = "";
             switch (cmd->Type [i] & ~ARG_OPT)
             {
                 case ARG_STR:
@@ -114,7 +109,7 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
     {
         for (int cmdset = 0; cmdset < 2; cmdset++)
         {
-            CommandDesc *cmd, *last_cmd;
+                CommandDesc *cmd, *last_cmd;
             if (cmdset == 0)
             {
                 cmd = BuiltinCommands;
@@ -148,12 +143,12 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
                     {
                         bool braces = !!(cmd->Type [0] & ARG_OPT);
                         CONSOLE.Out ("\axa%s \ax4%s\axf...\ax4%s\ax2%s%s\n",
-                            cmd->Name, braces ? "{" : "",
-                            braces ? "}" : "", fill, cmd->Description);
+                                    cmd->Name, braces ? "{" : "",
+                                    braces ? "}" : "", fill, cmd->Description);
                     }
                     else
                         CONSOLE.Out ("\axa%s\ax2%s%s\n",
-                            cmd->Name, fill, cmd->Description);
+                                    cmd->Name, fill, cmd->Description);
                 }
             }
         }
@@ -166,8 +161,8 @@ static int cmdHelp (BuiltinCmdInfo *CmdInfo, char *Cmd)
 }
 
 void CommandInterpreter (const char *ConfigFile, void *UserData,
-CommandDesc *Commands, int NumCommands,
-const char *Prompt)
+             CommandDesc *Commands, int NumCommands,
+             const char *Prompt)
 {
     static const char *spaces = " \t";
     FILE *cf = NULL;
@@ -186,7 +181,7 @@ const char *Prompt)
 
     for (;;)
     {
-        next_cmd:;
+next_cmd:;
         char line [512];
         if (cf)
         {
@@ -218,7 +213,7 @@ const char *Prompt)
         // First of all, extract the command (the first word)
         char *eow = cur + strcspn (cur, spaces);
         bool cmd_ok = false;
-        CommandDesc *cmd;
+                CommandDesc *cmd;
 
         int cmdset;
         for (cmdset = 0; cmdset < 2; cmdset++)
@@ -267,7 +262,7 @@ const char *Prompt)
         for (arg = 0; arg < cmd->NumArgs; arg++)
         {
             // Skip all whitespaces after end of the previous word
-            if (!found_eol)
+                        if (!found_eol)
                 eow++;
             cur = eow + strspn (eow, spaces);
             if (!*cur)
@@ -282,7 +277,7 @@ const char *Prompt)
             char *arg_str = cur;
             for (; *eow; eow++)
             {
-                // Inside quotes we handle most backslash sequences
+                                // Inside quotes we handle most backslash sequences
                 if (quote)
                 {
                     if (*eow == '\\')
@@ -290,24 +285,24 @@ const char *Prompt)
                         eow++;
                         switch (*eow)
                         {
-                            case 0:
-                                *cur++ = *eow--;
-                                break;
-                            case 'a':
-                                *cur++ = '\a';
-                                break;
-                            case 't':
-                                *cur++ = '\t';
-                                break;
-                            case 'r':
-                                *cur++ = '\r';
-                                break;
-                            case 'n':
-                                *cur++ = '\n';
-                                break;
-                            default:
-                                *cur++ = *eow;
-                                break;
+                        case 0:
+                            *cur++ = *eow--;
+                            break;
+                        case 'a':
+                            *cur++ = '\a';
+                            break;
+                        case 't':
+                            *cur++ = '\t';
+                            break;
+                        case 'r':
+                            *cur++ = '\r';
+                            break;
+                        case 'n':
+                            *cur++ = '\n';
+                            break;
+                        default:
+                            *cur++ = *eow;
+                            break;
                         }
                     }
                     else if (*eow == '"')
@@ -326,10 +321,10 @@ const char *Prompt)
             *eow = 0;
             switch (cmd->Type [arg] & ~ARG_OPT)
             {
-                case ARG_STR:
-                    args [arg] = arg_str;
-                    break;
-                case ARG_INT:
+            case ARG_STR:
+                args [arg] = arg_str;
+                break;
+            case ARG_INT:
                 {
                     char *endptr;
                     args [arg] = (void *)strtol (arg_str, &endptr, 0);
@@ -342,7 +337,7 @@ const char *Prompt)
                     }
                     break;
                 }
-                case ARG_BOOL:
+            case ARG_BOOL:
                 {
                     uintptr val;
                     if (!strcasecmp (arg_str, "yes") || !strcasecmp (arg_str, "on"))
@@ -364,8 +359,8 @@ const char *Prompt)
                     args [arg] = (void *)val;
                     break;
                 }
-                default:
-                    abort ();
+            default:
+                abort ();
             }
         }
 
@@ -378,8 +373,8 @@ const char *Prompt)
         for (; arg < cmd->NumArgs; arg++)
             if ((cmd->Type [arg] & ~ARG_OPT) == ARG_STR)
                 args [arg] = NULL;
-        else
-            args [arg] = (void *)NO_ARG;
+            else
+                args [arg] = (void *)NO_ARG;
 
         if (!found_eol && eow [1])
             CONSOLE.Out (
@@ -395,24 +390,24 @@ const char *Prompt)
         int rc;
         switch (cmd->NumArgs)
         {
-            case 0:
-                rc = cmd->Execute (arg0);
-                break;
-            case 1:
-                rc = cmd->Execute (arg0, args [0]);
-                break;
-            case 2:
-                rc = cmd->Execute (arg0, args [0], args [1]);
-                break;
-            case 3:
-                rc = cmd->Execute (arg0, args [0], args [1], args [2]);
-                break;
-            case 4:
-                rc = cmd->Execute (arg0, args [0], args [1], args [2], args [3]);
-                break;
-            default:
-                rc = 0;
-                break;
+        case 0:
+            rc = cmd->Execute (arg0);
+            break;
+        case 1:
+            rc = cmd->Execute (arg0, args [0]);
+            break;
+        case 2:
+            rc = cmd->Execute (arg0, args [0], args [1]);
+            break;
+        case 3:
+            rc = cmd->Execute (arg0, args [0], args [1], args [2]);
+            break;
+        case 4:
+            rc = cmd->Execute (arg0, args [0], args [1], args [2], args [3]);
+            break;
+        default:
+            rc = 0;
+            break;
         }
 
         if (rc)

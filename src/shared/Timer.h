@@ -3,7 +3,7 @@
  *    \brief  Simple timer class
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,50 +36,51 @@ class Timer
     uint16 Interval;
     uint16 Current;
 
-    public:
-        /**
-         * Initialize the timer so that it ticks with specified period.
-         * If interval is 0, timer is disabled.
-         */
-        Timer (uint16 interval)
-            { Interval = interval; Current = 0; }
+public:
+    /**
+     * Initialize the timer so that it ticks with specified period.
+     * If interval is 0, timer is disabled.
+     */
+    Timer (uint16 interval)
+    { Interval = interval; Current = 0; }
 
-        /// Check if timer is enabled
-        bool Enabled () const
-            { return Interval != 0; }
+    /// Check if timer is enabled
+    bool Enabled () const
+    { return Interval != 0; }
 
-        /// Disable timer: there's no way to enable it other than using SetInterval()
-        void Disable ()
-            { Interval = 0; }
+    /// Disable timer: there's no way to enable it other than using SetInterval()
+    void Disable ()
+    { Interval = 0; }
 
-        /**
-         * Change timer interval
-         */
-        void SetInterval (uint16 interval)
-            { Interval = interval; Current = 0; }
+    /**
+     * Change timer interval
+     */
+    void SetInterval (uint16 interval)
+    { Interval = interval; Current = 0; }
 
-        /**
-         * Tell the timer that a certain interval of time has passed.
-         * @arg delta
-         *   Delta time that have passed since last call to this function.
-         * @return
-         *   Number of timer pulses that have passed.
-         */
-        uint Tick (uint delta)
-        {
-            Current += delta;
-            if (!Interval || Current < Interval)
-                return 0;
-            div_t d = div (Current, Interval);
-            Current = d.rem;
-            return d.quot;
-        }
+    /**
+     * Tell the timer that a certain interval of time has passed.
+     * @arg delta
+     *   Delta time that have passed since last call to this function.
+     * @return
+     *   Number of timer pulses that have passed.
+     */
+    uint Tick (uint delta)
+    {
+        Current += delta;
+        if (!Interval || Current < Interval)
+            return 0;
+        div_t d = div (Current, Interval);
+        Current = d.rem;
+        return d.quot;
+    }
 
-        /**
-         * Reset the timer so that next event will happen
-         * after Interval ticks.
-         */
-        void Reset ()
-            { Current = 0; }
+    /**
+     * Reset the timer so that next event will happen
+     * after Interval ticks.
+     */
+    void Reset ()
+    { Current = 0; }
 };
+
 #endif // __TIMER_H__

@@ -3,7 +3,7 @@
  *    \brief  Network objects
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -135,12 +135,12 @@ Socket *Socket::Listen (int port, Log *iLogger)
     sockaddr_in inaddr;
     inaddr.sin_family = AF_INET;
     inaddr.sin_port = htons (port);
-    inaddr.sin_addr.s_addr = htonl (INADDR_ANY);            // Listen on any interface
+    inaddr.sin_addr.s_addr = htonl (INADDR_ANY); // Listen on any interface
     if (bind (sh, (struct sockaddr *)&inaddr, sizeof (inaddr)) == SOCKET_ERROR)
     {
         if (iLogger)
             iLogger->Out (LOG_IMPORTANT, "Cannot bind socket: %s\n", ErrorString (so_errno));
-        error:  so_close (sh);
+error:  so_close (sh);
         return NULL;
     }
 
@@ -181,7 +181,7 @@ Socket *Socket::Connect (int port, char *host, Log *iLogger)
     {
         if (iLogger)
             iLogger->Out (LOG_IMPORTANT, "Couldn't connect to %s:%d: %s\n",
-                host, port, ErrorString (so_errno));
+                          host, port, ErrorString (so_errno));
         so_close (sh);
         return NULL;
     }
@@ -226,7 +226,7 @@ bool Socket::ReceiveData ()
                 connected = false;
                 if (Logger)
                     Logger->Out (LOG_IMPORTANT, "Broken connection from %s\n",
-                        inet_ntoa (inaddr.sin_addr));
+                                 inet_ntoa (inaddr.sin_addr));
             }
 
             // No more data for now
@@ -239,17 +239,17 @@ bool Socket::ReceiveData ()
             connected = false;
             if (Logger)
                 Logger->Out (LOG_IMPORTANT, "Closing connection from %s\n",
-                    inet_ntoa (inaddr.sin_addr));
+                             inet_ntoa (inaddr.sin_addr));
             break;
         }
 
         DEBUG_BREAK_IF (len < 0);
 
-        #ifdef LOWLEVEL_DEBUG_PACKETS
+#ifdef LOWLEVEL_DEBUG_PACKETS
         CONSOLE.Out ("\r\aPU\axeReceived data:\n\ax6");
         DebugDump (stdout, (char*)recvb + dstofs, len);
         CONSOLE.Out ("\aPO");
-        #endif
+#endif
         recv_head = (recv_head + len) & RECVB_MASK;
         freespace -= len;
         dstofs = (dstofs + len) & RECVB_MASK;
@@ -319,11 +319,11 @@ void Socket::SendPending ()
             // Nothing to send
             break;
 
-        #ifdef LOWLEVEL_DEBUG_PACKETS
+#ifdef LOWLEVEL_DEBUG_PACKETS
         CONSOLE.Out ("\r\aPU\axeSending data:\n\ax6");
         DebugDump (stdout, (char*)data, datalen);
         CONSOLE.Out ("\aPO");
-        #endif
+#endif
         int len = send (handle, (char*)data, datalen, 0);
         if (len == SOCKET_ERROR)
         {
@@ -390,36 +390,36 @@ void Socket::SendData (const void *data, uint length)
     }
 }
 
-const char *Socket::ErrorString (uint32 code)
+char *Socket::ErrorString (uint32 code)
 {
     switch (code)
     {
-        case SOCKERR (FAULT):
-            return "Bad address";
-        case SOCKERR (INTR):
-            return "Interrupted function call";
-        case SOCKERR (MFILE):
-            return "Too many open files";
-        case SOCKERR (CONNRESET):
-            return "Connection reset by peer";
-        case SOCKERR (ACCES):
-            return "Permission denied";
-        case SOCKERR (WOULDBLOCK):
-            return "Resource temporarily unavailable";
-        case SOCKERR (INVAL):
-            return "Invalid argument";
-        case SOCKERR (CONNABORTED):
-            return "Software caused connection abort";
-        case SOCKERR (SHUTDOWN):
-            return "Cannot send after socket shutdown.";
-        case SOCKERR (ADDRINUSE):
-            return "Address already in use.";
-        #if PLATFORM != PLATFORM_WIN32
-        case SOCKERR (PIPE):
-            return "Broken pipe.";
-        #endif
-        case SOCKERR (TIMEDOUT):
-            return "Connection timed out.";
+    case SOCKERR (FAULT):
+        return "Bad address";
+    case SOCKERR (INTR):
+        return "Interrupted function call";
+    case SOCKERR (MFILE):
+        return "Too many open files";
+    case SOCKERR (CONNRESET):
+        return "Connection reset by peer";
+    case SOCKERR (ACCES):
+        return "Permission denied";
+    case SOCKERR (WOULDBLOCK):
+        return "Resource temporarily unavailable";
+    case SOCKERR (INVAL):
+        return "Invalid argument";
+    case SOCKERR (CONNABORTED):
+        return "Software caused connection abort";
+    case SOCKERR (SHUTDOWN):
+        return "Cannot send after socket shutdown.";
+    case SOCKERR (ADDRINUSE):
+        return "Address already in use.";
+#if PLATFORM != PLATFORM_WIN32
+    case SOCKERR (PIPE):
+        return "Broken pipe.";
+#endif
+    case SOCKERR (TIMEDOUT):
+        return "Connection timed out.";
     }
 
     return "UNKNOWN ERROR";

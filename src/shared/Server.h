@@ -3,7 +3,7 @@
  *    \brief  Network Server abstraction
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,12 +27,6 @@
 #include "Log.h"
 
 /**
- *  \addtogroup NetworkClasses
- *
- *  @{
- */
-
-/**
  * This is an abstract server that listens on some TCP port for incoming
  * connections and forks a new socket for every one. For every new connection
  * it creates a new Client object and then handles all the input/output
@@ -40,87 +34,84 @@
  */
 class Server : public Client
 {
-    protected:
-        /// The list of connected clients (Client *)
-        BaseVector Clients;
+protected:
+    /// The list of connected clients (Client *)
+    BaseVector Clients;
 
-        /// Port this server is listening on
-        int Port;
+    /// Port this server is listening on
+    int Port;
 
-        /// Max milliseconds between calls to Update ()
-        int StepTimeMs;
+    /// Max milliseconds between calls to Update ()
+    int StepTimeMs;
 
-        /// Is this server accepting connections?
-        bool Running;
+    /// Is this server accepting connections?
+    bool Running;
 
-        /// Has this server been instructed to stop?
-        bool Die;
+    /// Has this server been instructed to stop?
+    bool Die;
 
-        /// The thread object of the main server thread
-        Thread *MainThread;
+    /// The thread object of the main server thread
+    Thread *MainThread;
 
-        /// Main server loop: does all the dirty work
-        void MainLoop ();
+    /// Main server loop: does all the dirty work
+    void MainLoop ();
 
-        /// Callback function for the thread
-        static void KickMainLoop (void *arg);
+    /// Callback function for the thread
+    static void KickMainLoop (void *arg);
 
-        /// Called not less than once in StepTimeMs milliseconds
-        virtual void Update (uint32 DeltaMs) { (void)DeltaMs; }
+    /// Called not less than once in StepTimeMs milliseconds
+    virtual void Update (uint32 DeltaMs) { (void)DeltaMs; }
 
-        /// Wait on the listening and all client sockets for incoming events
-        void WaitSocketEvents ();
+    /// Wait on the listening and all client sockets for incoming events
+    void WaitSocketEvents ();
 
-        /// Delete given client by index
-        virtual void DeleteClient (uint iIndex);
+    /// Delete given client by index
+    virtual void DeleteClient (uint iIndex);
 
-    public:
-        /// Time when the tick started
+public:
+    /// Time when the tick started
         uint32 Tick;
 
-        /// The logger for this server
-        Log *Logger;
+    /// The logger for this server
+    Log *Logger;
 
-        /**
-         * Initialize the server.
-         * @arg port
-         *   Port number the server is listening to
-         * @arg steptime
+    /**
+     * Initialize the server.
+     * @arg port
+     *   Port number the server is listening to
+     * @arg steptime
          *   Maximum delta time between calls to Update()
-         * @arg iLogger
-         *   The logger to log socket events on
+     * @arg iLogger
+     *   The logger to log socket events on
          */
-        Server (uint iPort, uint iStepTime, Log *iLogger); //tolua_hide
-        /// Destructor
-        virtual ~Server (); //tolua_hide
+    Server (uint iPort, uint iStepTime, Log *iLogger); //tolua_hide
+    /// Destructor
+    virtual ~Server (); //tolua_hide
 
-        /// Start listening for inbound connections
-        virtual bool Start ();
+    /// Start listening for inbound connections
+    virtual bool Start ();
 
-        /// Stop accepting connections and disconnect all clients
-        virtual void Stop ();
+    /// Stop accepting connections and disconnect all clients
+    virtual void Stop ();
 
-        /// Check if server is running
-        bool IsRunning ()
-            { return Running; }
+    /// Check if server is running
+    bool IsRunning ()
+    { return Running; }
 
-        /// Add a client forked off the main socket (usually after accept())
-        void AddClient (Client *client)
-            { Clients.Push (client); }
+    /// Add a client forked off the main socket (usually after accept())
+    void AddClient (Client *client)
+    { Clients.Push (client); }
 
-        /**
-         * Called when any event (one of those requested by socket->InterestedEvents())
-         * happens with the socket.
-         * @arg mask
-         *   Event mask (a combination of PF_XXX flags)
-         */
-        virtual void SocketEvent (uint mask) = 0;
+    /**
+     * Called when any event (one of those requested by socket->InterestedEvents())
+     * happens with the socket.
+     * @arg mask
+     *   Event mask (a combination of PF_XXX flags)
+     */
+    virtual void SocketEvent (uint mask) = 0;
 
-        /// Set the logger used to log miscelaneous network events
-        void SetLogger (Log *iLogger);
+    /// Set the logger used to log miscelaneous network events
+    void SetLogger (Log *iLogger);
 };
 
-/**
- *  @}
- */
 #endif // __SERVER_H__

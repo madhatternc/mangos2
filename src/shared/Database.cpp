@@ -3,7 +3,7 @@
  * @brief General database interface
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -115,14 +115,14 @@ DatabaseExecutor *Database::GetExecutor ()
 
 void Database::PutExecutor (DatabaseExecutor *dbEx)
 {
-    #ifdef DEBUG
+#ifdef DEBUG
     if (dbEx->GetParent () != this)
     {
         DEBUG_PRINTF ("ERROR: Returning an DatabaseExecutor for the wrong Database!!!");
         dbEx->DecRef ();
         return;
     }
-    #endif
+#endif
 
     // We don't want dead executors :)
     if (dbEx->Ok ())
@@ -164,7 +164,7 @@ int32 DatabaseExecutor::GetI32 (uint i)
 {
     const char *s = Get (i);
     if (!s)
-        return 0;                                           // dunno what really we can return here :)
+        return 0; // dunno what really we can return here :)
     return strtol (s, NULL, 0);
 }
 
@@ -172,7 +172,7 @@ uint32 DatabaseExecutor::GetU32 (uint i)
 {
     const char *s = Get (i);
     if (!s)
-        return 0;                                           // dunno what really we can return here :)
+        return 0; // dunno what really we can return here :)
     return strtoul (s, NULL, 0);
 }
 
@@ -180,7 +180,7 @@ uint64 DatabaseExecutor::GetU64 (uint i)
 {
     const char *s = Get (i);
     if (!s)
-        return 0;                                           // dunno what really we can return here :)
+        return 0; // dunno what really we can return here :)
     return strtoull (s, NULL, 0);
 }
 
@@ -188,6 +188,6 @@ float DatabaseExecutor::GetFloat (uint i)
 {
     const char *s = Get (i);
     if (!s)
-        return 0;                                           // dunno what really we can return here :)
+        return 0; // dunno what really we can return here :)
     return strtod (s, NULL);
 }

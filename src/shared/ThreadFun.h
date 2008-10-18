@@ -4,7 +4,7 @@
  *
  * Copyright (C) 2005 by Andrew Zabolotny <zap@homelink.ru>
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,83 +26,54 @@
 #include "Base.h"
 
 /**
- *  \addtogroup FoundationClasses
- *
- *  @{
- */
-
-/**
- *  \class Thread
- *  \brief A thread.
- *
- *  \par
- *  A thread. Like all objects derived from the Base class a thread is closed
- *  by calling DecRef on it.
+ * A thread. Like all objects derived from the Base class a thread is closed
+ * by calling DecRef on it.
  */
 class Thread : public Base
 {
-    public:
-        /**
-         *  \enum ThreadPriority
-         *
-         *  Thread priorities
-         */
-        enum ThreadPriority
-        {
-            IDLE,
-            LOWER,
-            LOW,
-            NORMAL,
-            HIGH,
-            HIGHER,
-            REALTIME
-        };
+public:
+    /// Thread priorities
+    enum ThreadPriority
+    {
+        IDLE,
+        LOWER,
+        LOW,
+        NORMAL,
+        HIGH,
+        HIGHER,
+        REALTIME
+    };
 
-        /**
-         *  \brief Start a new thread. Return NULL on error.
-         *
-         *  The created thread starts in the given routine, receiving the
-         *  passed argument.
-         *
-         *  \return \c NULL returend on error.
-         */
-        static Thread *Start (void (*routine) (void *arg), void *arg);
+    /**
+     * Start a new thread. Return NULL on error.
+     * The created thread starts in the given routine, receiving the
+     * passed argument.
+     */
+    static Thread *Start (void (*routine) (void *arg), void *arg);
 
-        /**
-         *  \brief Set thread priority
-         */
-        virtual bool SetPriority (ThreadPriority prio) = 0;
+    /**
+     * Set thread priority
+     */
+    virtual bool SetPriority (ThreadPriority prio) = 0;
 };
 
 /**
- *  \class Mutex
- *  \brief This is a simple mutex.
+ * This is a simple mutex.
  */
 class Mutex : public Base
 {
-    public:
-        /**
-         * Create a new mutex object.
-         */
-        static Mutex *Create ();
+public:
+    /**
+     * Create a new mutex object.
+     */
+    static Mutex *Create ();
 
-        /**
-         *  \brief Lock mutex
-         */
-        virtual bool Lock () = 0;
-
-        /**
-         *  \brief Try to lock the mutex; return true on success
-         */
-        virtual bool TryLock () = 0;
-
-        /**
-         *  \brief Unblock the mutex
-         */
-        virtual void Unlock () = 0;
+    /// Lock mutex
+    virtual bool Lock () = 0;
+    /// Try to lock the mutex; return true on success
+    virtual bool TryLock () = 0;
+    /// Unblock the mutex
+    virtual void Unlock () = 0;
 };
 
-/**
- *  @}
- */
 #endif // __THREAD_FUN_H__

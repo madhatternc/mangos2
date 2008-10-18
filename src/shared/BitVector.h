@@ -3,7 +3,7 @@
  *    \brief  Defines functions for handling vectors containing bits
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,11 +26,6 @@
 #include "Common.h"
 #include "Debug.h"
 
-/**
- *  \addtogroup FoundationClasses
- *
- *  @{
- */
 //-------------------// Elementary bitfield operations //-------------------//
 
 static inline void BitSet (void *oData, uint iBitIndex)
@@ -46,7 +41,7 @@ static inline void BitReset (void *oData, uint32 iBitIndex)
 static inline bool BitGet (void *iData, uint iBitIndex)
 {
     return !!(((ulong *)iData) [iBitIndex / BITS_PER_LONG] &
-        (1 << (iBitIndex & (BITS_PER_LONG - 1))));
+            (1 << (iBitIndex & (BITS_PER_LONG - 1))));
 }
 
 static inline bool BitGetSet (void *ioData, uint32 iBitIndex)
@@ -59,187 +54,142 @@ static inline bool BitGetSet (void *ioData, uint32 iBitIndex)
 }
 
 /**
- *  \class BitVector
- *  \brief A vector that holds any number of bits.
- *
- *  \details
- *  A bit vector is a object that can hold any number of bits, and
- *  provides handy functions for setting/resetting, querying the bits
- *  and for dynamically resizing the array.
+ * A bit vector is a object that can hold any number of bits, and
+ * provides handy functions for setting/resetting, querying the bits
+ * and for dynamically resizing the array.
  */
 class BitVector
 {
-    /**
-     *  \brief The bit vector itself
-     */
+    /// The bit vector itself
     uint32 *data;
-
-    /**
-     *  \brief The length of the bit vector
-     */
+    /// The length of the bit vector
     uint length;
 
-    public:
-        /**
-         *  \brief Create an empty bit array
-         */
-        BitVector () : data (NULL), length (0) { }
+public:
+    /// Create an empty bit array
+    BitVector () : data (NULL), length (0) { }
+    /// Free the memory occupied by the vector
+    ~BitVector () { free (data); }
 
-        /**
-         *  \brief Free the memory occupied by the vector
-         */
-        ~BitVector () { free (data); }
+    /// Free the allocated memory
+    void Free ()
+    {
+        if (data)
+            free (data);
+        data = 0;
+        length = 0;
+    }
 
-        /**
-         *  \brief Free the allocated memory
-         */
-        void Free ()
-        {
-            if (data)
-                free (data);
-            data = 0;
-            length = 0;
-        }
+    /// Set vector length in bits
+    void SetLength (int BitLength)
+    {
+        length = BitLength;
+        uint length_uint = (BitLength + BITS_PER_INT - 1) / BITS_PER_INT;
+        data = (uint32 *)realloc (data, length_uint * sizeof (uint32));
+        memset (data, 0, length_uint * sizeof (uint32));
+    }
 
-        /**
-         *  \brief Set vector length in bits
-         */
-        void SetLength (int BitLength)
-        {
-            length = BitLength;
-            uint length_uint = (BitLength + BITS_PER_INT - 1) / BITS_PER_INT;
-            data = (uint32 *)realloc (data, length_uint * sizeof (uint32));
-            memset (data, 0, length_uint * sizeof (uint32));
-        }
+    /// Clear all the bits in the array
+    void Clear ()
+    {
+        uint length_uint = Blocks (BITS_PER_INT);
+        memset (data, 0, length_uint * sizeof (uint32));
+    }
 
-        /**
-         *  \brief Clear all the bits in the array
-         */
-        void Clear ()
-        {
-            uint length_uint = Blocks (BITS_PER_INT);
-            memset (data, 0, length_uint * sizeof (uint32));
-        }
+    /// Return array length in bits
+    inline uint Length ()
+    { return length; }
 
-        /**
-         *  \brief Return array length in bits
-         */
-        inline uint Length ()
-            { return length; }
+    /// Get the array data as a whole
+    inline const uint32 *GetData ()
+    { return data; }
 
-        /**
-         *  \brief Get the array data as a whole
-         */
-        inline const uint32 *GetData ()
-            { return data; }
+    /**
+     * Get array length in blocks of specified size
+     * @arg BlockSize
+     *   Block size in bits. Must be a power of two.
+     */
+    inline int Blocks (int BlockSize)
+    {
+        // Any decent compiler when inlining will replace div by shifts
+        return (length + (BlockSize - 1)) / BlockSize;
+    }
 
-        /**
-         *  \brief Get array length in blocks of specified size
-         *
-         *  \arc \c BlockSize Block size in bits. Must be a power of two.
-         */
-        inline int Blocks (int BlockSize)
-        {
-            // Any decent compiler when inlining will replace div by shifts
-            return (length + (BlockSize - 1)) / BlockSize;
-        }
+    /// Get bit state
+    inline bool Get (uint32 index) const
+    {
+        DEBUG_BREAK_IF (index >= length);
+        return BitGet (data, index);
+    }
 
-        /**
-         *  \brief Get bit state
-         */
-        inline bool Get (uint32 index) const
-        {
-            DEBUG_BREAK_IF (index >= length);
-            return BitGet (data, index);
-        }
+    /// Set a bit to 1
+    inline void Set (uint32 index)
+    {
+        DEBUG_BREAK_IF (index >= length);
+        BitSet (data, index);
+    }
 
-        /**
-         *  \brief Set a bit to 1
-         */
-        inline void Set (uint32 index)
-        {
-            DEBUG_BREAK_IF (index >= length);
-            BitSet (data, index);
-        }
+    /// Set a bit to 0
+    inline void Reset (uint32 index)
+    {
+        DEBUG_BREAK_IF (index >= length);
+        BitReset (data, index);
+    }
 
-        /**
-         *  \brief Set a bit to 0
-         */
-        inline void Reset (uint32 index)
-        {
-            DEBUG_BREAK_IF (index >= length);
-            BitReset (data, index);
-        }
+    /// Set a bit to 1 and return the previous state of the bit
+    inline bool GetSet (uint32 index)
+    {
+        DEBUG_BREAK_IF (index >= length);
+        return BitGetSet (data, index);
+    }
 
-        /**
-         *  \brief Set a bit to 1 and return the previous state of the bit
-         */
-        inline bool GetSet (uint32 index)
-        {
-            DEBUG_BREAK_IF (index >= length);
-            return BitGetSet (data, index);
-        }
+    /// Assignment operator
+    BitVector& operator = (const BitVector& mask)
+    {
+        SetLength (mask.length);
+        memcpy (data, mask.data, (mask.length + BITS_PER_INT - 1) / BITS_PER_INT);
+        return *this;
+    }
 
-        /**
-         *  \brief Assignment operator
-         */
-        BitVector& operator = (const BitVector& mask)
-        {
-            SetLength (mask.length);
-            memcpy (data, mask.data, (mask.length + BITS_PER_INT - 1) / BITS_PER_INT);
-            return *this;
-        }
+    /// this &= other
+    void operator &= (const BitVector& mask)
+    {
+        DEBUG_BREAK_IF (mask.length > length);
+        for (uint i = 0; i < length; i++)
+            data [i] &= mask.data [i];
+    }
 
-        /**
-         *  \brief this &= other
-         */
-        void operator &= (const BitVector& mask)
-        {
-            DEBUG_BREAK_IF (mask.length > length);
-            for (uint i = 0; i < length; i++)
-                data [i] &= mask.data [i];
-        }
+    /// this |= other
+    void operator |= (const BitVector& mask)
+    {
+        DEBUG_BREAK_IF (mask.length > length);
+        for (uint i = 0; i < length; i++)
+            data [i] |= mask.data [i];
+    }
 
-        /**
-         *  \brief this |= other
-         */
-        void operator |= (const BitVector& mask)
-        {
-            DEBUG_BREAK_IF (mask.length > length);
-            for (uint i = 0; i < length; i++)
-                data [i] |= mask.data [i];
-        }
+    /// something = this & other
+    BitVector operator & (const BitVector& mask) const
+    {
+        DEBUG_BREAK_IF (mask.length > length);
 
-        /**
-         *  \brief something = this & other
-         */
-        BitVector operator & (const BitVector& mask) const
-        {
-            DEBUG_BREAK_IF (mask.length > length);
+        BitVector newmask;
+        newmask = *this;
+        newmask &= mask;
 
-            BitVector newmask;
-            newmask = *this;
-            newmask &= mask;
+        return newmask;
+    }
 
-            return newmask;
-        }
+    /// something = this | other
+    BitVector operator | (const BitVector& mask) const
+    {
+        DEBUG_BREAK_IF (mask.length > length);
 
-        /**
-         *  \brief something = this | other
-         */
-        BitVector operator | (const BitVector& mask) const
-        {
-            DEBUG_BREAK_IF (mask.length > length);
+        BitVector newmask;
+        newmask = *this;
+        newmask |= mask;
 
-            BitVector newmask;
-            newmask = *this;
-            newmask |= mask;
-
-            return newmask;
-        }
+        return newmask;
+    }
 };
 
-/**
- *  @}
- */
 #endif // __BIT_VECTOR_H__

@@ -3,7 +3,7 @@
  *    \brief  Network Server abstraction
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include "SystemFun.h"
 
 Server::Server (uint iPort, uint iStepTime, Log *iLogger)
-: Client (NULL), Clients (16, 16), Running (false)
+    : Client (NULL), Clients (16, 16), Running (false)
 {
     Port = iPort;
     StepTimeMs = iStepTime;

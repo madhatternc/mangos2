@@ -3,7 +3,7 @@
  *    \brief  Non-system-specific console functions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -53,24 +53,22 @@ void Console::PushColor ()
 {
     uint8 fg, bg;
     GetTextColor (&fg, &bg);
-    if (ColorStackDepth < (int)ARRAY_LEN (ColorStack))
-    {
+    if (ColorStackDepth < (int)ARRAY_LEN (ColorStack)) {
         ColorStack [ColorStackDepth++] = fg;
         ColorStack [ColorStackDepth++] = bg;
     } else
-    fprintf (stderr, "\nWARNING: Text color stack overflow. This indicates a bug in your program\n");
+        fprintf (stderr, "\nWARNING: Text color stack overflow. This indicates a bug in your program\n");
 }
 
 void Console::PopColor ()
 {
     uint8 fg, bg;
-    if (ColorStackDepth > 0)
-    {
+    if (ColorStackDepth > 0) {
         bg = ColorStack [--ColorStackDepth];
         fg = ColorStack [--ColorStackDepth];
         SetTextColor (fg, bg);
     } else
-    fprintf (stderr, "\nWARNING: Text color stack underflow. This indicates a bug in your program\n");
+        fprintf (stderr, "\nWARNING: Text color stack underflow. This indicates a bug in your program\n");
 }
 
 /**
@@ -102,24 +100,19 @@ int Console::operator << (const char *string)
 {
     int rc = 0;
 
-    const char *span_start = string;
+        const char *span_start = string;
     const char *cur = span_start;
-    while (*cur)
-    {
-        if (*cur == '\a')
-        {
+    while (*cur) {
+        if (*cur == '\a') {
             // Spit out whatever we have in pocket
             rc += RawOutput (span_start, cur - span_start);
 
-            if ((cur [1] & 0xdf) == 'P')
-            {
+            if ((cur [1] & 0xdf) == 'P') {
                 if ((cur [2] & 0xdf) == 'U')
                     PushColor ();
                 else if ((cur [2] & 0xdf) == 'O')
                     PopColor ();
-            }
-            else
-            {
+            } else {
                 int bg = hex_digit ((unsigned char)cur [1]);
                 int fg = hex_digit ((unsigned char)cur [2]);
                 SetTextColor (fg, bg);
@@ -128,7 +121,7 @@ int Console::operator << (const char *string)
             cur += 3;
             span_start = cur;
         } else
-        cur++;
+            cur++;
     }
     rc += RawOutput (span_start, cur - span_start);
     return rc;
@@ -157,7 +150,7 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
 
     Buffer [length] = 0;
 
-    #define SCROLL_STEP 8
+#define SCROLL_STEP 8
     for (;;)
     {
         // Display the prompt and compute the screen left margin
@@ -167,21 +160,19 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
         int term_width;
         GetSize (&term_width, NULL);
 
-        redisplay:
+redisplay:
         // Find out how many characters we can display
         int str_width = term_width - prompt_w - 1;
         int lv = left_vis;
 
         // Leave space for the left "< " mark
-        if (left_vis)
-        {
+        if (left_vis) {
             str_width -= 2;
             lv += 2;
         }
         // Leave space for the right " >" mark
         int right_mark = 0;
-        if (lv + str_width < length)
-        {
+        if (lv + str_width < length) {
             str_width -= 2;
             right_mark = 1;
         }
@@ -189,15 +180,13 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
         if (lv + str_width > length)
             str_width = length - lv;
 
-        if (cursor < lv)
-        {
+        if (cursor < lv) {
             left_vis -= SCROLL_STEP;
             if (left_vis < 0)
                 left_vis = 0;
             goto redisplay;
         }
-        if (cursor > lv + str_width)
-        {
+        if (cursor > lv + str_width) {
             left_vis += SCROLL_STEP;
             if (left_vis > length)
                 left_vis = length;
@@ -207,13 +196,12 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
         char old_c = Buffer [lv + str_width];
         Buffer [lv + str_width] = 0;
         Out ("%s%s%s", lv ? "\aPU\aXF< \aPO" : "",
-            Buffer + lv, right_mark ? "\aPU\aXF >\aPO" : "");
+                Buffer + lv, right_mark ? "\aPU\aXF >\aPO" : "");
         Buffer [lv + str_width] = old_c;
 
         // Fill with spaces until EOL
         str_width = term_width - 1 - (prompt_w + (lv ? 2 : 0) + length - lv);
-        if (str_width > 0)
-        {
+        if (str_width > 0) {
             char *spaces = new char [str_width + 1];
             memset (spaces, ' ', str_width);
             spaces [str_width] = 0;
@@ -222,9 +210,8 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
         }
         // Now backspace until we stop at the cursor position
         str_width = term_width - 1 - (prompt_w + (lv ? 2 : 0) +
-            cursor - lv);
-        if (str_width > 0)
-        {
+                          cursor - lv);
+        if (str_width > 0) {
             char *backsp = new char [str_width + 1];
             memset (backsp, 8, str_width);
             backsp [str_width] = 0;
@@ -233,126 +220,119 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
         }
 
         int key = GetKey ();
-        switch (key)
-        {
-            case KEY_BACKSP:
-                if (cursor > 0)
-                {
-                    if (cursor <= length)
-                        memmove (Buffer + cursor - 1,
-                            Buffer + cursor,
-                            length - cursor + 1);
-                    cursor--; length--;
-                }
-                break;
-
-            case MASK_CTRL | KEY_BACKSP:
-            {
-                int old_cursor = cursor;
-                while ((cursor > 0) && isspace (Buffer [cursor - 1]))
-                    cursor--;
-                while ((cursor > 0) && !isspace (Buffer [cursor - 1]))
-                    cursor--;
-                if (old_cursor <= length)
-                    memmove (Buffer + cursor,
-                        Buffer + old_cursor,
-                        length - old_cursor + 1);
-                length -= old_cursor - cursor;
-                break;
+        switch (key) {
+        case KEY_BACKSP:
+            if (cursor > 0) {
+                if (cursor <= length)
+                    memmove (Buffer + cursor - 1,
+                         Buffer + cursor,
+                         length - cursor + 1);
+                cursor--; length--;
             }
+            break;
 
-            case KEY_DEL:
-                if (cursor < length)
-                {
-                    memmove (Buffer + cursor,
-                        Buffer + cursor + 1,
-                        length - cursor);
-                    length--;
-                }
+        case MASK_CTRL | KEY_BACKSP: {
+                        int old_cursor = cursor;
+            while ((cursor > 0) && isspace (Buffer [cursor - 1]))
+                cursor--;
+            while ((cursor > 0) && !isspace (Buffer [cursor - 1]))
+                cursor--;
+            if (old_cursor <= length)
+                memmove (Buffer + cursor,
+                     Buffer + old_cursor,
+                     length - old_cursor + 1);
+            length -= old_cursor - cursor;
+            break;
+        }
+
+        case KEY_DEL:
+            if (cursor < length) {
+                memmove (Buffer + cursor,
+                     Buffer + cursor + 1,
+                     length - cursor);
+                length--;
+            }
+            break;
+
+        case KEY_ENTER:
+            printf ("\n");
+            goto done;
+
+        case KEY_LEFT:
+            if (cursor > 0)
+                cursor--;
+            break;
+
+        case KEY_RIGHT:
+            if (cursor < length)
+                cursor++;
+            break;
+
+        case KEY_HOME:
+            cursor = 0;
+            break;
+
+        case KEY_END:
+            cursor = length;
+            break;
+
+        case MASK_CTRL | KEY_LEFT:
+            while ((cursor > 0) && isspace (Buffer [cursor - 1]))
+                cursor--;
+            while ((cursor > 0) && !isspace (Buffer [cursor - 1]))
+                cursor--;
+            break;
+
+        case MASK_CTRL | KEY_RIGHT:
+            while ((cursor < length) && !isspace (Buffer [cursor]))
+                cursor++;
+            while ((cursor < length) && isspace (Buffer [cursor]))
+                cursor++;
+            break;
+
+        case KEY_UP:
+            if (hist_pos > 0) {
+                hist_pos--;
+                goto load_hist;
+            }
+            break;
+
+        case KEY_DOWN:
+            if (hist_pos >= ReadlineHistoryLen)
                 break;
+            hist_pos++;
+        load_hist:
+            if (hist_pos >= ReadlineHistoryLen)
+                Buffer [length = 0] = 0;
+            else {
+                length = strlen (ReadlineHistory [hist_pos]);
+                if (length >= (int)BufferSize)
+                    length = BufferSize - 1;
+                memcpy (Buffer, ReadlineHistory [hist_pos], length);
+            }
+            Buffer [length] = 0;
+            cursor = length;
+            left_vis = 0;
+            break;
 
-            case KEY_ENTER:
-                printf ("\n");
-                goto done;
+        case KEY_ESC:
+            Buffer [left_vis = cursor = length = 0] = 0;
+            break;
 
-            case KEY_LEFT:
-                if (cursor > 0)
-                    cursor--;
-                break;
-
-            case KEY_RIGHT:
-                if (cursor < length)
-                    cursor++;
-                break;
-
-            case KEY_HOME:
-                cursor = 0;
-                break;
-
-            case KEY_END:
-                cursor = length;
-                break;
-
-            case MASK_CTRL | KEY_LEFT:
-                while ((cursor > 0) && isspace (Buffer [cursor - 1]))
-                    cursor--;
-                while ((cursor > 0) && !isspace (Buffer [cursor - 1]))
-                    cursor--;
-                break;
-
-            case MASK_CTRL | KEY_RIGHT:
-                while ((cursor < length) && !isspace (Buffer [cursor]))
-                    cursor++;
-                while ((cursor < length) && isspace (Buffer [cursor]))
-                    cursor++;
-                break;
-
-            case KEY_UP:
-                if (hist_pos > 0)
-                {
-                    hist_pos--;
-                    goto load_hist;
-                }
-                break;
-
-            case KEY_DOWN:
-                if (hist_pos >= ReadlineHistoryLen)
-                    break;
-                hist_pos++;
-                load_hist:
-                if (hist_pos >= ReadlineHistoryLen)
-                    Buffer [length = 0] = 0;
-                else
-                {
-                    length = strlen (ReadlineHistory [hist_pos]);
-                    if (length >= (int)BufferSize)
-                        length = BufferSize - 1;
-                    memcpy (Buffer, ReadlineHistory [hist_pos], length);
-                }
-                Buffer [length] = 0;
-                cursor = length;
-                left_vis = 0;
-                break;
-
-            case KEY_ESC:
-                Buffer [left_vis = cursor = length = 0] = 0;
-                break;
-
-            default:
-                if (key >= 32 && key < 256 && length < (int)BufferSize)
-                {
-                    if (cursor <= length)
-                        memmove (Buffer + cursor + 1,
-                            Buffer + cursor,
-                            length - cursor + 1);
-                    Buffer [cursor] = key;
-                    cursor++; length++;
-                }
-                break;
+        default:
+            if (key >= 32 && key < 256 && length < (int)BufferSize) {
+                if (cursor <= length)
+                    memmove (Buffer + cursor + 1,
+                         Buffer + cursor,
+                         length - cursor + 1);
+                Buffer [cursor] = key;
+                cursor++; length++;
+            }
+            break;
         }
     }
 
-    done:
+done:
     if (Buffer [0])
         ReadLineHistoryPush (Buffer);
 
@@ -362,15 +342,14 @@ int Console::ReadLine (const char *Prompt, char *Buffer, size_t BufferSize)
 void Console::ReadLineHistoryPush (const char *String)
 {
     // Push the entered string into the history buffer
-    if (ReadlineHistoryLen > (int)ARRAY_LEN (ReadlineHistory))
-    {
+    if (ReadlineHistoryLen > (int)ARRAY_LEN (ReadlineHistory)) {
         delete [] ReadlineHistory [0];
         memmove (ReadlineHistory, ReadlineHistory + 1,
-            (ARRAY_LEN (ReadlineHistory) - 1) * sizeof (char *));
+             (ARRAY_LEN (ReadlineHistory) - 1) * sizeof (char *));
     } else
-    ReadlineHistoryLen++;
+        ReadlineHistoryLen++;
 
-    size_t sl = strlen (String);
+        size_t sl = strlen (String);
     char *buff = new char [sl + 1];
     memcpy (buff, String, sl + 1);
     ReadlineHistory [ReadlineHistoryLen - 1] = buff;
@@ -384,31 +363,28 @@ void Console::ReadLineHistoryPush (const char *String)
 int main ()
 {
     Console &c = CONSOLE;
-    setlocale (LC_ALL, "");
-    #if 0
+        setlocale (LC_ALL, "");
+#if 0
     for (;;)
-        if (!c.KeyPressed ())
-    {
-        printf (".");
-        fflush (stdout);
-        SleepMs (100);
-    }
-    else
-    {
-        int key = c.GetKey ();
-        if (key == 'q')
-            break;
-        if (key != -1)
-            printf ("\nctrl: %d  alt: %d  shift: %d  key: %d\n",
-                (key & Console::MASK_CTRL) != 0, (key & Console::MASK_ALT) != 0,
-                (key & Console::MASK_SHIFT) != 0, key & Console::MASK_KEY);
-        else
-            printf ("\nUnkown key pressed\n");
-    }
-    #else
+        if (!c.KeyPressed ()) {
+            printf (".");
+            fflush (stdout);
+            SleepMs (100);
+        } else {
+            int key = c.GetKey ();
+            if (key == 'q')
+                break;
+                        if (key != -1)
+                printf ("\nctrl: %d  alt: %d  shift: %d  key: %d\n",
+                    (key & Console::MASK_CTRL) != 0, (key & Console::MASK_ALT) != 0,
+                    (key & Console::MASK_SHIFT) != 0, key & Console::MASK_KEY);
+            else
+                printf ("\nUnkown key pressed\n");
+                }
+#else
     char line [300];
     while (c.ReadLine ("\ax1C\ax3r\ax9o\axba\axfk\ax4>\ax7", line, sizeof (line)) != 0)
         printf ("Got [%s]\n", line);
-    #endif
+#endif
 }
 #endif

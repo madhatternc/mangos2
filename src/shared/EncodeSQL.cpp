@@ -3,7 +3,7 @@
  *    \brief  SQL binary data encoding and decoding
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 
 // This is the range of allowed characters for encoding binary data
 static const char *base64_chars =
-"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 /**
  * The resulting string will look like: blah-blah @Z@E. Single quotes are
@@ -99,8 +99,8 @@ size_t DecodeSQL (const char *iSqlStr, void *oData, size_t oDataSize)
     if (!oData)
         if (iSqlStr)
             return (strlen (iSqlStr) * 3) / 4;
-    else
-        return 0;
+        else
+            return 0;
 
     const uint8 *cur = (const uint8 *)iSqlStr;
     uint8 *out = (uint8 *)oData;
@@ -165,3 +165,53 @@ char *QuoteSQL (char *iString)
     *out = 0;
     return ret;
 }
+
+#if 0
+// for testing
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main ()
+{
+    uint8 s [1000];
+    char d [2001];
+    uint8 s2 [1000];
+
+    srand (0);
+
+    for (int i = 0; i < 100000; i++)
+    {
+        size_t rl = rand () % 1000;
+        for (int j = 0; j < rl; j++)
+            s [j] = rand ();
+
+        size_t el = EncodeSQL (&s, rl, NULL);
+        size_t el2 = EncodeSQL (&s, rl, &d);
+
+        if (el != el2)
+        {
+            printf ("%d: el (%d) != el2 (%d)\n", i, el, el2);
+            continue;
+        }
+
+        size_t rl2 = DecodeSQL (d, NULL, 0);
+        if (rl != rl2)
+        {
+            printf ("%d: rl (%d) != rl2 (%d)\n", i, rl, rl2);
+            continue;
+        }
+
+        size_t rl3 = DecodeSQL (d, &s2, sizeof (s2));
+        if (rl3 != rl)
+        {
+            printf ("%d: rl (%d) != rl3 (%d)\n", i, rl, rl3);
+            continue;
+        }
+
+        if (memcmp (s, s2, rl))
+            printf ("%d: s != s2 !!!\n", i);
+    }
+}
+
+#endif

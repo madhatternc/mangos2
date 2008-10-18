@@ -3,7 +3,7 @@
  *    \brief  Debugging helper functions
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,18 +37,18 @@ void DebugDump (FILE *Out, const void *Data, unsigned Size, const void *Base)
         for (i = 0; i < 16; i++)
             if (ofs + i < Size)
                 fprintf (Out, "%02x ", data [ofs + i]);
-        else
-            fprintf (Out, "   ");
+            else
+                fprintf (Out, "   ");
 
         fprintf (Out, "| ");
         for (i = 0; i < 16; i++)
             if (ofs + i < Size)
-        {
-            char c = data [ofs + i];
-            fprintf (Out, "%c", c > 31 ? c : '.');
-        }
-        else
-            fprintf (Out, " ");
+            {
+                char c = data [ofs + i];
+                fprintf (Out, "%c", c > 31 ? c : '.');
+            }
+            else
+                fprintf (Out, " ");
 
         ofs += 16;
         fprintf (Out, "\n");

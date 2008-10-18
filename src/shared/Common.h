@@ -3,7 +3,7 @@
  *    \brief  Base definitions and macros
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
- * Copyright (C) 2008 MaNGOS foundation <http://www.getmangos.com/>
+ * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,12 +43,13 @@
 
 #if defined (__WIN32__) || defined (WIN32) || defined (_WIN32)
 #  define PLATFORM      PLATFORM_WIN32
+// @@@ This is wrong, Windows runs on Alphas too :) and soon (maybe :-P) on x86_64
 #  define __i386__
-#  pragma warning(disable : 4996)                           // added to stop warnings
+#  pragma warning(disable : 4996) // added to stop warnings
 #elif defined (__WIN64__) || defined (WIN64) || defined (_WIN64)
 #  define PLATFORM      PLATFORM_WIN64
 #  define __x86_64__
-#  pragma warning(disable : 4996)                           // added to stop warnings
+#  pragma warning(disable : 4996) // added to stop warnings
 #elif defined (__APPLE_CC__)
 #  define PLATFORM      PLATFORM_APPLE
 #else
@@ -106,13 +107,13 @@
 +--------------------+-------+--------+
 */
 
-// VS.NET 2003 has long long, but earlier versions don't
+// VS.NET 2003 has long long, but eralier versions don't
 #if COMPILER == COMPILER_MICROSOFT && _MSC_VER < 1300
-typedef __int64 int64;
-typedef unsigned __int64 uint64;
+  typedef __int64 int64;
+  typedef unsigned __int64 uint64;
 #else
-typedef long long int64;
-typedef unsigned long long uint64;
+  typedef long long int64;
+  typedef unsigned long long uint64;
 #endif
 typedef int int32;
 typedef unsigned int uint32;
@@ -150,14 +151,12 @@ static inline const uint16 swap16 (const uint16 x)
     __asm ("xchgb %%al,%%ah" : "=a" (ret) : "a" (x));
     return ret;
 }
-
 static inline const uint32 swap32 (const uint32 x)
 {
     uint32 ret;
     __asm ("bswapl %%eax" : "=a" (ret) : "a" (x));
     return ret;
 }
-
 #if defined (CPU_x86)
 static inline const uint64 swap64 (const uint64 x)
 {
@@ -165,7 +164,6 @@ static inline const uint64 swap64 (const uint64 x)
     __asm ("bswapl %%eax\nbswapl %%edx\nxchgl %%eax,%%edx" : "=A" (ret) : "A" (x));
     return ret;
 }
-
 #else
 static inline const uint64 swap64 (const uint64 x)
 {
@@ -177,9 +175,8 @@ static inline const uint64 swap64 (const uint64 x)
 static inline void xchg32 (void *a, void *b)
 {
     __asm ("movl (%0),%%eax\nxchgl (%1),%%eax\nmovl %%eax,(%0)"
-        :: "r" (a), "r" (b) : "eax");
+           :: "r" (a), "r" (b) : "eax");
 }
-
 #else
 static inline const uint16 swap16 (const uint16 x)
 { return (x >> 8) | (x << 8); }
@@ -187,9 +184,9 @@ static inline const uint32 swap32 (const uint32 x)
 { return (x >> 24) | ((x >> 8) & 0xff00) | ((x << 8) & 0xff0000) | (x << 24); }
 static inline const uint64 swap64 (const uint64 x)
 { return ((x >> 56) /*& 0x00000000000000ffULL*/) | ((x >> 40) & 0x000000000000ff00ULL) |
-    ((x >> 24) & 0x0000000000ff0000ULL) | ((x >> 8 ) & 0x00000000ff000000ULL) |
-    ((x << 8 ) & 0x000000ff00000000ULL) | ((x << 24) & 0x0000ff0000000000ULL) |
-    ((x << 40) & 0x00ff000000000000ULL) | ((x << 56) /*& 0xff00000000000000ULL*/); }
+         ((x >> 24) & 0x0000000000ff0000ULL) | ((x >> 8 ) & 0x00000000ff000000ULL) |
+         ((x << 8 ) & 0x000000ff00000000ULL) | ((x << 24) & 0x0000ff0000000000ULL) |
+     ((x << 40) & 0x00ff000000000000ULL) | ((x << 56) /*& 0xff00000000000000ULL*/); }
 static inline void xchg32 (void *a, void *b)
 {
     uint32 tmp = *(uint32 *)a;
@@ -290,4 +287,5 @@ static inline float GET_BEF32 (void *x)
 template <typename T>
 static T Square (T a)
 { return a * a; }
+
 #endif // __COMMON_H__

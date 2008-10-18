@@ -5,9 +5,9 @@ have at least something with which MaNGOS2 will at least run.
 
 The idea is to have four separate databases:
 * character: one for character data storage,
-* data: one for basic world data,
 * realmlist: one for authentication and realm data storage,
-* worldserver: and one for world state storage.
+* worlddata: one for basic world data,
+* worldstate: and one for world state storage.
 
 However, for simple configurations they can be merged into one, as the table
 names do not clash.

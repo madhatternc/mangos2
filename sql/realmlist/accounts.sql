@@ -1,8 +1,8 @@
 -- MySQL dump 10.11
 --
--- Host: localhost    Database: mangos2-realm
+-- Host: localhost    Database: mangos2-realmlist
 -- ------------------------------------------------------
--- Server version   5.0.45-Debian_1ubuntu3-log
+-- Server version	5.0.51a-3ubuntu5.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -20,6 +20,8 @@
 --
 
 DROP TABLE IF EXISTS `accounts`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
 CREATE TABLE `accounts` (
   `login` varchar(32) NOT NULL default '',
   `password` varchar(32) NOT NULL default '',
@@ -34,7 +36,8 @@ CREATE TABLE `accounts` (
   `data1` mediumtext NOT NULL,
   `data2` mediumtext NOT NULL,
   PRIMARY KEY  (`login`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Storage for basic authentication data, and account settings.';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Dumping data for table `accounts`
@@ -42,13 +45,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
-INSERT INTO `accounts` VALUES
-('DEVEL','test',4,'','','test@getmangos.com','2007-11-28 18:34:41','2005-05-13 22:00:00',0,'','',''),
-('GM','test',3,'','','test@getmangos.com','2007-11-28 18:34:41','2005-05-13 22:00:00',0,'','',''),
-('SEER','test',2,'','','test@getmangos.com','2007-11-28 18:34:41','2005-05-13 22:00:00',0,'','',''),
-('COUNCELOR','test',1,'','','test@getmangos.com','2007-11-28 18:34:41','2005-05-13 22:00:00',0,'','',''),
-('PLAYER','test',0,'','','test@getmangos.com','2007-11-28 18:34:41','2005-05-13 22:00:00',0,'','',''),
-('TEST','test',0,'','','test@getmangos.com','2007-11-28 18:34:41','2005-05-13 22:00:00',0,'','','');
+INSERT INTO `accounts` VALUES ('DEVEL','test',4,'','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'','',''),('GM','test',3,'','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'','',''),('SEER','test',2,'','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'','',''),('COUNCELOR','test',1,'','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'','',''),('PLAYER','test',0,'','','','0000-00-00 00:00:00','0000-00-00 00:00:00',0,'','','');
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2007-11-28 18:50:55
+-- Dump completed on 2008-10-18 13:43:10

@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
@@ -147,7 +147,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
@@ -223,7 +223,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
@@ -298,7 +298,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"

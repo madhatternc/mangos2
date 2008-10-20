@@ -4,7 +4,7 @@
 #define _WIN_CONFIG_H
 /****************************/
 
-# include <winsock2.h>
+#include <winsock2.h>
 
 /* Enable this to include additional debugging code in executable */
 #undef DEBUG

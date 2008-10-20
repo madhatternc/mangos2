@@ -53,7 +53,7 @@
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -133,6 +133,7 @@
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -208,7 +209,7 @@
 				MinimalRebuild="false"
 				RuntimeLibrary="2"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="true"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -283,6 +284,7 @@
 				MinimalRebuild="false"
 				RuntimeLibrary="2"
 				WarningLevel="3"
+				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -621,6 +623,10 @@
 		</File>
 		<File
 			RelativePath="..\..\src\worldserver\Main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\mangos2-worldserver.cd"
 			>
 		</File>
 		<File

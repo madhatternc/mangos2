@@ -248,7 +248,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
 				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
@@ -335,7 +335,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
 				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"

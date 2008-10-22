@@ -57,7 +57,7 @@
  *
  */
 
-#include <openssl/opensslconf.h>
+#include "opensslconf.h"
 #include <openssl/bn.h>
 
 /* 

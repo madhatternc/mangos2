@@ -27,6 +27,10 @@
 #ifndef _mysql_h
 #define _mysql_h
 
+#ifdef _AIX           /* large-file support will break without this */
+#include <standards.h>
+#endif
+
 #ifdef __CYGWIN__     /* CYGWIN implements a UNIX API */
 #undef WIN
 #undef _WIN
@@ -78,13 +82,7 @@ extern char *mysql_unix_port;
 #define CLIENT_NET_WRITE_TIMEOUT	365*24*3600	/* Timeout on write */
 
 #ifdef __NETWARE__
-// Only GCC 4.1.0 and later support #pragma pack(push,8) syntax 
-#if defined( __GNUC__ ) && (GCC_MAJOR < 4 || GCC_MAJOR == 4 && GCC_MINOR < 1) 
-#pragma pack(8) 
-#else 
-#pragma pack(push,8) 
-#endif 
-
+#pragma pack(push, 8)		/* 8 byte alignment */
 #endif
 
 #define IS_PRI_KEY(n)	((n) & PRI_KEY_FLAG)
@@ -552,16 +550,6 @@ unsigned long STDCALL mysql_real_escape_string(MYSQL *mysql,
 					       char *to,const char *from,
 					       unsigned long length);
 void		STDCALL mysql_debug(const char *debug);
-char *		STDCALL mysql_odbc_escape_string(MYSQL *mysql,
-						 char *to,
-						 unsigned long to_length,
-						 const char *from,
-						 unsigned long from_length,
-						 void *param,
-						 char *
-						 (*extend_buffer)
-						 (void *, char *to,
-						  unsigned long *length));
 void 		STDCALL myodbc_remove_escape(MYSQL *mysql,char *name);
 unsigned int	STDCALL mysql_thread_safe(void);
 my_bool		STDCALL mysql_embedded(void);
@@ -860,14 +848,7 @@ int		STDCALL mysql_drop_db(MYSQL *mysql, const char *DB);
                                         0, arg, length, 1, stmt)
 
 #ifdef __NETWARE__
-
-// Only GCC 4.1.0 and later support #pragma pack(pop) syntax
-#if defined( __GNUC__ ) && (GCC_MAJOR < 4 || GCC_MAJOR == 4 && GCC_MINOR < 1)
-#pragma pack()
-#else
-#pragma pack(pop)
-#endif 
-
+#pragma pack(pop)		/* restore alignment */
 #endif
 
 #ifdef	__cplusplus

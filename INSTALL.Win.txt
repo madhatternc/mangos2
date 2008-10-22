@@ -27,6 +27,8 @@ successfully:
   this backend for storing all data.
 * OpenSSL development package (headers) are required, because we are using
   them for authenticating the game client.
+* Python 2.5: currently we recommend to have an installation of Python 2.5.2
+  available in the default location on C:\Python25.
 
 If you do not have all these dependencies installed, you may download a huge
 dependency package from the MaNGOS2 website.

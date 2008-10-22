@@ -5,6 +5,7 @@
 	Name="mangos2-worldserver"
 	ProjectGUID="{579755EA-88ED-4A9A-8708-F77AC38366F1}"
 	RootNamespace="MaNGOS2"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -70,7 +71,7 @@
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				Version="0.5.0.2"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -153,7 +154,7 @@
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				Version="0.5.0.2"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				AssemblyDebug="1"
@@ -232,7 +233,7 @@
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				Version="0.5.0.2"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
@@ -310,7 +311,7 @@
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				Version="0.5.0.2"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"

@@ -5,6 +5,7 @@
 	Name="libmangos2"
 	ProjectGUID="{1F24453D-727E-4858-B23D-98D7825EAB0F}"
 	RootNamespace="MaNGOS2"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -303,10 +304,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\config.win.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\shared\Console.h"
 				>
 			</File>
@@ -474,6 +471,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\shared\UTF8Fun.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Vector.cpp"
 				>
 			</File>
 			<File

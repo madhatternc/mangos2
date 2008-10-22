@@ -43,7 +43,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../;../../dep/inc/;../../dep/inc/mysql/;../../dep/inc/openssl/;../../src/shared/"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../;../../dep/inc/;../../dep/inc/mysql/;../../dep/inc/openssl/;../../src/shared/"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
 				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -169,7 +169,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../;../../dep/inc/;../../dep/inc/mysql/;../../dep/inc/openssl/;../../src/shared/"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -232,7 +232,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../;../../dep/inc/;../../dep/inc/mysql/;../../dep/inc/openssl/;../../src/shared/"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
 				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"

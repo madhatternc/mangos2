@@ -5,7 +5,6 @@
 	Name="mangos2-realmlist"
 	ProjectGUID="{881A1F15-7F46-474D-92CF-61740B87B8C3}"
 	RootNamespace="MaNGOS"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -20,8 +19,8 @@
 	<Configurations>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -77,6 +76,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
+				Version="0.5.0.2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				RandomizedBaseAddress="1"
@@ -106,8 +106,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -164,6 +164,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
+				Version="0.5.0.2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				RandomizedBaseAddress="1"
@@ -194,8 +195,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -252,6 +253,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
+				Version="0.5.0.2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -282,8 +284,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
@@ -341,6 +343,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
+				Version="0.5.0.2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -377,70 +380,96 @@
 		/>
 	</References>
 	<Files>
-		<File
-			RelativePath="..\..\src\realmlist\AccountMgr.cpp"
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{db7f19cb-9721-4531-997a-e0ae2a43ae9e}"
 			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\AccountMgr.h"
+			<File
+				RelativePath="..\..\src\realmlist\AccountMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\bigint.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmClient.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmListSrv.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmProto.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\SrpRealm.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{91eafd95-a73f-4ad9-9ada-98b4a5f24ba4}"
 			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\bigint.c"
+			<File
+				RelativePath="..\..\src\realmlist\AccountMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\bigint.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\Main.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmClient.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmListSrv.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\RealmProto.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\SrpRealm.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resources"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
+			UniqueIdentifier="{ea4cbb7c-0249-4ed2-9512-31b4f571e6cb}"
 			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\bigint.h"
-			>
-		</File>
-		<File
-			RelativePath=".\ClassDiagram1.cd"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\Main.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmClient.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmClient.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmListSrv.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmListSrv.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmMgr.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmMgr.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmProto.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\RealmProto.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\SrpRealm.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\realmlist\SrpRealm.h"
-			>
-		</File>
+			<File
+				RelativePath="..\mangosd.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\realmlist\realmlist.rc"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

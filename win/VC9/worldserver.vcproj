@@ -5,8 +5,6 @@
 	Name="mangos2-worldserver"
 	ProjectGUID="{579755EA-88ED-4A9A-8708-F77AC38366F1}"
 	RootNamespace="MaNGOS2"
-	Keyword="ManagedCProj"
-	TargetFrameworkVersion="131072"
 	>
 	<Platforms>
 		<Platform
@@ -21,8 +19,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			ManagedExtensions="0"
@@ -70,7 +68,8 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
-				LinkIncremental="2"
+				Version="0.5.0.2"
+				LinkIncremental="0"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -102,8 +101,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			ManagedExtensions="0"
@@ -152,7 +151,8 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
-				LinkIncremental="2"
+				Version="0.5.0.2"
+				LinkIncremental="0"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -185,8 +185,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			ManagedExtensions="0"
@@ -229,7 +229,8 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
-				LinkIncremental="1"
+				Version="0.5.0.2"
+				LinkIncremental="0"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -260,8 +261,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
-			IntermediateDirectory=".\$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			ManagedExtensions="0"
@@ -305,7 +306,8 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
-				LinkIncremental="1"
+				Version="0.5.0.2"
+				LinkIncremental="0"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateManifest="false"
 				GenerateDebugInformation="true"
@@ -340,8 +342,256 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Chat Commands"
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{1e1b3212-5fbb-44a3-afb5-c5fc34052383}"
 			>
+			<File
+				RelativePath="..\..\src\worldserver\AreaTrigger.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\AuraHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Character.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\CharacterHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ChatHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Combat.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\DatabaseInterface.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GameObject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Gossip.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GossipHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Group.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GroupHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Item.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ItemHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\MiscHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\MovementHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\MsgHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\NPCHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Object.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ObjectMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ObjectVector.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Opcodes.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Parser.inc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Path.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\PetHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ProtocolVectors.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ProtoPacket.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Quadtree.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\QueryHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Quest.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\QuestHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\QuestMgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\resource.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\SkillHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Spell.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\SpellHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\SrpWorld.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Stats.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\TaxiHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\TradeHandler.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Unit.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\UpdateFields.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\World.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\WorldServer.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4f4731ae-a0e3-4890-9655-92caaa92701c}"
+			>
+			<File
+				RelativePath="..\..\src\worldserver\Affect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\AuctionHouse.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\AuraHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Character.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\CharacterHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ChatHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Combat.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\DatabaseInterface.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GameClient.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GameClient.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GameObject.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GossipHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Group.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GroupHandler.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Item.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ItemHandler.cpp"
+				>
+			</File>
 			<File
 				RelativePath="..\..\src\worldserver\Level0.cpp"
 				>
@@ -358,132 +608,8 @@
 				RelativePath="..\..\src\worldserver\Level3.cpp"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="Object"
-			>
 			<File
-				RelativePath="..\..\src\worldserver\Character.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Character.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GameObject.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GameObject.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Item.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Item.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Object.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Object.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ObjectMgr.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ObjectMgr.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Unit.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Unit.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="World/Handlers"
-			>
-			<File
-				RelativePath="..\..\src\worldserver\AreaTrigger.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\AuraHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\AuraHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\CharacterHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\CharacterHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ChatHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ChatHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Combat.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Combat.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Gossip.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GossipHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GossipHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Group.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Group.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GroupHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GroupHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ItemHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ItemHandler.h"
+				RelativePath="..\..\src\worldserver\Main.cpp"
 				>
 			</File>
 			<File
@@ -491,19 +617,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\MiscHandler.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\MovementHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\MovementHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\MsgHandler.h"
 				>
 			</File>
 			<File
@@ -511,11 +625,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\NPCHandler.h"
+				RelativePath="..\..\src\worldserver\Object.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\Path.h"
+				RelativePath="..\..\src\worldserver\ObjectMgr.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ObjectVector.cpp"
 				>
 			</File>
 			<File
@@ -523,7 +641,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\PetHandler.h"
+				RelativePath="..\..\src\worldserver\ProtocolVectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ProtoPacket.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Quadtree.cpp"
 				>
 			</File>
 			<File
@@ -531,19 +657,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\QueryHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Quest.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\QuestHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\QuestHandler.h"
 				>
 			</File>
 			<File
@@ -551,19 +665,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\QuestMgr.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\SkillHandler.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\SkillHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Spell.h"
+				RelativePath="..\..\src\worldserver\Spell.cpp"
 				>
 			</File>
 			<File
@@ -571,11 +677,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\SpellHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Stats.h"
+				RelativePath="..\..\src\worldserver\SrpWorld.cpp"
 				>
 			</File>
 			<File
@@ -583,122 +685,32 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\TaxiHandler.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\TradeHandler.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\TradeHandler.h"
+				RelativePath="..\..\src\worldserver\Unit.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\World.h"
+				RelativePath="..\..\src\worldserver\WorldServer.cpp"
 				>
 			</File>
 		</Filter>
 		<Filter
-			Name="Database"
+			Name="Resources"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
+			UniqueIdentifier="{6022455a-c2ec-4703-a736-be1aaff8f8ff}"
 			>
 			<File
-				RelativePath="..\..\src\worldserver\DatabaseInterface.cpp"
+				RelativePath="..\mangosd.ico"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\DatabaseInterface.h"
+				RelativePath="..\..\src\worldserver\worldserver.rc"
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath="..\..\src\worldserver\Affect.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\AuctionHouse.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\GameClient.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\GameClient.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Main.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\mangos2-worldserver.cd"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\ObjectVector.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\ObjectVector.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Opcodes.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Parser.inc"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\ProtocolVectors.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\ProtocolVectors.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\ProtoPacket.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\ProtoPacket.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Quadtree.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Quadtree.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\Spell.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\SrpWorld.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\SrpWorld.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\UpdateFields.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\WorldServer.cpp"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\worldserver\WorldServer.h"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

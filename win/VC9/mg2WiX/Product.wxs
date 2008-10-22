@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="b1186980-ff0f-4970-81df-7b5889076154" Name="mg2WiX" Language="1033" Version="1.0.0.0" Manufacturer="mg2WiX" UpgradeCode="7bc6d122-e119-4308-9d06-f1375b346109">
+	<Product Id="b1186980-ff0f-4970-81df-7b5889076154" Name="mangos2" Language="1033" Version="0.5.0.2" Manufacturer="GetMangos.com" UpgradeCode="7bc6d122-e119-4308-9d06-f1375b346109">
 		<Package InstallerVersion="200" Compressed="yes" />
 
-		<Media Id="1" Cabinet="mg2WiX.cab" EmbedCab="yes" />
+		<Media Id="1" Cabinet="mangos2.cab" EmbedCab="yes" />
 
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLLOCATION" Name="mg2WiX">
+				<Directory Id="INSTALLLOCATION" Name="mangos2">
 					<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
 					<!-- <Component Id="ProductComponent" Guid="be2036f6-14f2-46f3-b803-f416cf0d104f"> -->
 						<!-- TODO: Insert files, registry keys, and other resources here. -->
@@ -16,7 +16,7 @@
 			</Directory>
 		</Directory>
 
-		<Feature Id="ProductFeature" Title="mg2WiX" Level="1">
+		<Feature Id="ProductFeature" Title="mangos2" Level="1">
 			<!-- TODO: Remove the comments around this ComponentRef element and the Component above in order to add resources to this installer. -->
 			<!-- <ComponentRef Id="ProductComponent" /> -->
 		</Feature>

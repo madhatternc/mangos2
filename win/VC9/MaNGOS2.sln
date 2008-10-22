@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tolua++", "toluapp.vcproj",
 		{10083E8F-1732-4870-BB74-10AB310B0FE3} = {10083E8F-1732-4870-BB74-10AB310B0FE3}
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "installer", "installer.vdproj", "{2B4EE6B7-4C48-428C-88CF-D962830C9733}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -69,6 +71,10 @@ Global
 		{71891C1A-E328-4258-AC3F-6F9698C6D8B4}.Release|Win32.ActiveCfg = Release|Win32
 		{71891C1A-E328-4258-AC3F-6F9698C6D8B4}.Release|Win32.Build.0 = Release|Win32
 		{71891C1A-E328-4258-AC3F-6F9698C6D8B4}.Release|x64.ActiveCfg = Release|Win32
+		{2B4EE6B7-4C48-428C-88CF-D962830C9733}.Debug|Win32.ActiveCfg = Debug
+		{2B4EE6B7-4C48-428C-88CF-D962830C9733}.Debug|x64.ActiveCfg = Debug
+		{2B4EE6B7-4C48-428C-88CF-D962830C9733}.Release|Win32.ActiveCfg = Release
+		{2B4EE6B7-4C48-428C-88CF-D962830C9733}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,6 +19,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#if defined(_WIN32) || defined(_WIN64)
+# include <winsock2.h>
+#endif
+
 #include <mysql.h>
 #include <mysqld_error.h>
 #include <errmsg.h>

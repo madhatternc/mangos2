@@ -77,7 +77,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
-				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 			/>
@@ -163,7 +163,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
-				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="17"
@@ -249,7 +249,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
-				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
@@ -336,7 +336,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
-				AdditionalLibraryDirectories="&quot;..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;.\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\libmangos2___$(PlatformName)_$(ConfigurationName)&quot;"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"

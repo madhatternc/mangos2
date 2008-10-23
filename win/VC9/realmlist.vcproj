@@ -453,6 +453,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\realmlist\RealmProto.inc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\realmlist\SrpRealm.cpp"
 				>
 			</File>

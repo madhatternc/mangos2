@@ -107,7 +107,7 @@ void GameClient::SocketEvent (uint mask)
         {
             switch (opcode)
             {
-#include "Parser.inc"
+#include "Opcodes.inc"
                 default:
                     LOG.Out (LOG_DEBUG, "Unhandled opcode %s\n", GetPacketName (opcode));
                     socket->Skip (pktlen - sizeof (header));

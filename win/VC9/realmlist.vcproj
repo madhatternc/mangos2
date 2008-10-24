@@ -31,6 +31,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -103,6 +105,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -118,6 +122,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -192,6 +198,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -207,8 +215,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating realm list server opcode handlers."
-				CommandLine="..\..\win\beforerealm.bat"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -281,6 +289,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -296,8 +306,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating realm list server opcode handlers."
-				CommandLine="..\..\win\beforerealm.bat"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -372,6 +382,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>

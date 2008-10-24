@@ -29,8 +29,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating world server opcode handlers."
-				CommandLine="..\..\win\beforeworld.bat"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -47,7 +47,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -98,6 +98,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -111,8 +113,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating world server opcode handlers."
-				CommandLine="..\..\win\beforeworld.bat"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -130,7 +132,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
 				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="0"
@@ -182,6 +184,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -195,6 +199,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -210,7 +216,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				RuntimeLibrary="2"
@@ -259,6 +265,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -272,6 +280,8 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
+				Description="Generating opcode handlers..."
+				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -288,7 +298,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
 				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				MinimalRebuild="false"
 				RuntimeLibrary="2"
@@ -338,6 +348,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
+				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -350,51 +362,15 @@
 			UniqueIdentifier="{1e1b3212-5fbb-44a3-afb5-c5fc34052383}"
 			>
 			<File
-				RelativePath="..\..\src\worldserver\AreaTrigger.h"
+				RelativePath="..\..\src\worldserver\Affect.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\AuraHandler.h"
+				RelativePath="..\..\src\worldserver\AuctionHouse.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\Character.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\CharacterHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ChatHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Combat.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\DatabaseInterface.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GameObject.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Gossip.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GossipHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Group.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GroupHandler.h"
+				RelativePath="..\..\src\worldserver\GameClient.h"
 				>
 			</File>
 			<File
@@ -402,31 +378,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\ItemHandler.h"
+				RelativePath="..\..\src\worldserver\Luawrapper.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\MiscHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\MovementHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\MsgHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\NPCHandler.h"
+				RelativePath="..\..\src\worldserver\Mail.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\src\worldserver\Object.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ObjectMgr.h"
 				>
 			</File>
 			<File
@@ -438,15 +398,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\Parser.inc"
+				RelativePath="..\..\src\worldserver\Opcodes.inc"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\Path.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\PetHandler.h"
+				RelativePath="..\..\src\worldserver\Player.h"
 				>
 			</File>
 			<File
@@ -454,59 +410,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\ProtoPacket.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\Quadtree.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\QueryHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Quest.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\QuestHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\QuestMgr.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\resource.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\SkillHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Spell.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\SpellHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\SrpWorld.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Stats.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\TaxiHandler.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\TradeHandler.h"
 				>
 			</File>
 			<File
@@ -515,10 +423,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\worldserver\UpdateFields.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\World.h"
 				>
 			</File>
 			<File
@@ -532,35 +436,11 @@
 			UniqueIdentifier="{4f4731ae-a0e3-4890-9655-92caaa92701c}"
 			>
 			<File
-				RelativePath="..\..\src\worldserver\Affect.cpp"
+				RelativePath="..\..\src\worldserver\AccountData.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\AuctionHouse.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\AuraHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Character.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\CharacterHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ChatHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Combat.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\DatabaseInterface.cpp"
+				RelativePath="..\..\src\worldserver\Characters.cpp"
 				>
 			</File>
 			<File
@@ -568,47 +448,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\GameClient.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GameObject.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GossipHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Group.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GroupHandler.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\Item.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\ItemHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Level0.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Level1.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Level2.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Level3.cpp"
+				RelativePath="..\..\src\worldserver\Luawrapper.cpp"
 				>
 			</File>
 			<File
@@ -616,23 +460,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\MiscHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\MovementHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\NPCHandler.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\Object.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ObjectMgr.cpp"
 				>
 			</File>
 			<File
@@ -640,7 +468,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\PetHandler.cpp"
+				RelativePath="..\..\src\worldserver\Opcodes.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Player.cpp"
 				>
 			</File>
 			<File
@@ -648,47 +480,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\worldserver\ProtoPacket.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\Quadtree.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\QueryHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\QuestHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\QuestMgr.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\SkillHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Spell.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\SpellHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\SrpWorld.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\TaxiHandler.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\TradeHandler.cpp"
 				>
 			</File>
 			<File

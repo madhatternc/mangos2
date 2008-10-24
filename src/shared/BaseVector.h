@@ -29,7 +29,7 @@
  * BaseVector is a subclass of Vector that holds any number of pointers
  * to Base objects. Every inserted object gets its reference counter
  * incremented, and after removing a object from the vector it is
- * the caller's responsability to decrement the reference counter
+ * the caller's responsibility to decrement the reference counter
  * after the object is no longer used.
  */
 class BaseVector : public Vector

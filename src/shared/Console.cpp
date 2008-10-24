@@ -379,7 +379,7 @@ int main ()
                     (key & Console::MASK_CTRL) != 0, (key & Console::MASK_ALT) != 0,
                     (key & Console::MASK_SHIFT) != 0, key & Console::MASK_KEY);
             else
-                printf ("\nUnkown key pressed\n");
+                printf ("\nUnknown key pressed\n");
                 }
 #else
     char line [300];

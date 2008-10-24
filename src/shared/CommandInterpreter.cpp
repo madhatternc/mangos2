@@ -256,7 +256,7 @@ next_cmd:;
 
         void *args [MAX_COMMAND_ARGS];
 
-        // Okey, now we have to parse all the arguments
+        // Now we have to parse all the arguments
         int arg;
         bool found_eol = (*eow == 0);
         for (arg = 0; arg < cmd->NumArgs; arg++)

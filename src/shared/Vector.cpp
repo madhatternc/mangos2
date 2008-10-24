@@ -1,6 +1,6 @@
 /**
  *     \file  src/shared/Vector.cpp
- *    \brief  Vector clas
+ *    \brief  Vector class
  *
  * Copyright (C) 1998,1999 by Andrew Zabolotny <zap@homelink.ru>
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>

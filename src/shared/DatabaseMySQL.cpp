@@ -34,8 +34,8 @@
 /**
  * This is the interface to a object that can execute SQL queries.
  * The object changes its state while executing the query, so you
- * can't execute several queries in parralel with it: create several
- * such objects if you need parralel queries.
+ * can't execute several queries in parallel with it: create several
+ * such objects if you need parallel queries.
  */
 class DatabaseMySQLExecutor : public DatabaseExecutor
 {
@@ -51,7 +51,7 @@ protected:
     virtual ~DatabaseMySQLExecutor ();
 
 public:
-    /// Check if the executor is still okay (connected to database etc)
+    /// Check if the executor is still working (connected to database etc)
     virtual bool Ok ();
 
     /// Free all the results of the previous query

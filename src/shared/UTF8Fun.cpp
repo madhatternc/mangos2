@@ -1,6 +1,6 @@
 /**
  *     \file  src/shared/UTF8Fun.cpp
- *    \brief  Miscelkaneous functions for handling C strings
+ *    \brief  Miscellaneous functions for handling C strings
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
  * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>

@@ -104,7 +104,7 @@ Socket *Socket::Accept ()
         return NULL;
     if (inaddr_len != sizeof (sockaddr_in))
     {
-        // Hmm.... what was that?! IPX?
+        // TODO: what was that?! IPX?
         so_close (sh);
         return NULL;
     }

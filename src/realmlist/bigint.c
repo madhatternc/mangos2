@@ -29,7 +29,7 @@
  * In addition, the following conditions apply:
  *
  * 1. Any software that incorporates the SRP authentication technology
- *    is requested to display the following acknowlegment:
+ *    is requested to display the following acknowledgment:
  *    "This product uses the 'Secure Remote Password' cryptographic
  *     authentication system developed by Tom Wu (tjw@CS.Stanford.EDU)."
  *

@@ -271,7 +271,7 @@ int main (int argc, char **argv)
         { "ver",       0, {}, CMDFUNC (cmdVersion),
           "Display server and expected client version" },
         { "realms",    0, {}, CMDFUNC (cmdRealmList),
-          "Print the realmlist" },
+          "Print the realm list" },
         { "log",       1, { ARG_OSTR }, CMDFUNC (cmdLog),
           "Set/display logging options for Realm List server" },
         { "rdb",       2, { ARG_STR, ARG_STR }, CMDFUNC (cmdRealmDb),

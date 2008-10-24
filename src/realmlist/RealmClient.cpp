@@ -157,7 +157,7 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
 
 void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
 {
-    Server->Logger->Out (LOG_DEBUG, "Recieved LOGON_PROOF\n");
+    Server->Logger->Out (LOG_DEBUG, "Received LOGON_PROOF\n");
 
     Proof (inpkt.A);
 

@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="mangos2-realmlist"
 	ProjectGUID="{881A1F15-7F46-474D-92CF-61740B87B8C3}"
-	RootNamespace="MaNGOS"
+	RootNamespace="MaNGOS2"
 	TargetFrameworkVersion="0"
 	>
 	<Platforms>

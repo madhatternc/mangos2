@@ -76,4 +76,8 @@ liblua_a_SOURCES = \
 
 EXTRA_DIST = \
     lua.c \
-    luac.c
+    luac.c \
+    lua.aps \
+    lua.ico \
+    lua.rc \
+    resource.h

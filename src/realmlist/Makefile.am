@@ -68,7 +68,10 @@ clean-local:
 EXTRA_DIST = \
 	RealmProto.inc \
 	RealmProto.rules \
-	realmlist.conf.dist
+	realmlist.conf.dist \
+	realmlist.aps \
+	realmlist.rc \
+	resource.h
 
 ## Custom rules for generated sources
 RealmClient.o RealmProto.o: RealmProto.h RealmProto.inc

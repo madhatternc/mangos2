@@ -76,9 +76,12 @@ clean-local:
 EXTRA_DIST = \
 	Opcodes.inc \
 	Protocol.rules \
-	worldsrv.lua \
+	worldserver.lua \
 	worldserver.pkg \
-	worldserver.conf.dist
+	worldserver.conf.dist \
+	resource.h \
+	worldserver.aps \
+	worldserver.rc
 
 ## Link realm list daemon against the shared library
 mangos2_worldserver_LDADD = -lmangos2 -ltolua -llua -llualib

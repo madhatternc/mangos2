@@ -26,11 +26,14 @@ EXTRA_DIST = \
 EXTRA_DIST += \
     win/beforerealm.bat \
     win/beforeworld.bat \
-    win/config.win.h
+    win/config.win.h \
+    win/mangosd.ico
 
 EXTRA_DIST += \
     win/VC9/MaNGOS2.sln \
-    win/VC9/lua.vcproj \
+    win/VC9/liblua.vcproj \
+    win/VC9/libtoluapp.vcproj \
+    win/VC9/toluapp.vcproj \
     win/VC9/libmangos2.vcproj \
     win/VC9/realmlist.vcproj \
     win/VC9/worldserver.vcproj

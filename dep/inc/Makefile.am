@@ -20,28 +20,38 @@
 ## Additional files to include when running 'make dist'
 #  MySQL header files for Win32 builds
 EXTRA_DIST = \
-    mysql/config-netware.h \
-    mysql/config-os2.h \
     mysql/config-win.h \
+    mysql/decimal.h \
     mysql/errmsg.h \
-    mysql/libmysqld.def \
+    mysql/keycache.h \
     mysql/Libmysql.def \
     mysql/m_ctype.h \
     mysql/m_string.h \
     mysql/my_alloc.h \
+    mysql/my_attribute.h \
     mysql/my_dbug.h \
+    mysql/my_dir.h \
     mysql/my_getopt.h \
     mysql/my_global.h \
     mysql/my_list.h \
+    mysql/my_net.h \
+    mysql/my_no_pthread.h \
     mysql/my_pthread.h \
     mysql/mysql_com.h \
+    mysql/mysqld_ername.h \
     mysql/mysqld_error.h \
     mysql/mysql_embed.h \
     mysql/mysql.h \
     mysql/mysql_time.h \
     mysql/mysql_version.h \
     mysql/my_sys.h \
+    mysql/my_xml.h \
     mysql/raid.h \
+    mysql/sql_common.h \
+    mysql/sql_state.h \
+    mysql/sslopt-case.h \
+    mysql/sslopt-longopts.h \
+    mysql/sslopt-vars.h \
     mysql/typelib.h
 
 #  OpenSSL header files for Win32 builds

@@ -20,20 +20,29 @@
 ## Additional files to include when running 'make dist'
 #  OpenSSL debug libraries for Win32 builds.
 EXTRA_DIST = \
-    Debug/Win32/libeay32.dll \
-    Debug/Win32/libeay32.lib
+	Debug/Win32/libeay32.dll \
+	Debug/Win32/libeay32.lib \
+	Debug/x64/libeay32.dll \
+	Debug/x64/libeay32.lib
 
 # MySQL debug libraries for Win32 builds.
 EXTRA_DIST += \
-    Debug/Win32/libmySQL.dll \
-    Debug/Win32/libmySQL.lib
+	Debug/Win32/libmySQL.dll \
+	Debug/Win32/libmySQL.lib \
+	Debug/x64/libmySQL.dll \
+	Debug/x64/libmysql.lib
 
 # OpenSSL release libraries for Win32 builds.
 EXTRA_DIST += \
-    Release/Win32/libeay32.dll \
-    Release/Win32/libeay32.lib
+	Release/Win32/libeay32.dll \
+	Release/Win32/libeay32.lib \
+	Release/x64/libeay32.dll \
+	Release/x64/libeay32.lib
 
 # MySQL release libraries for Win32 builds.
 EXTRA_DIST += \
-    Release/Win32/libmySQL.dll \
-    Release/Win32/libmySQL.lib
+	Release/Win32/libmySQL.dll \
+	Release/Win32/libmySQL.lib \
+	Release/x64/libmySQL.dll \
+	Release/x64/libmysql.lib
+

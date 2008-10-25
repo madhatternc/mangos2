@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBTOLUAPP_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -65,7 +65,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="liblua.lib"
-				AdditionalLibraryDirectories="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -110,7 +110,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
-				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_WINDOWS;_USRDLL;LIBTOLUAPP_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
+				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -130,7 +130,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="liblua.lib"
-				AdditionalLibraryDirectories="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -176,7 +176,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBTOLUAPP_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -195,7 +195,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="liblua.lib"
-				AdditionalLibraryDirectories="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -242,7 +242,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
-				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_WINDOWS;_USRDLL;LIBTOLUAPP_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -261,7 +261,7 @@
 			<Tool
 				Name="VCLibrarianTool"
 				AdditionalDependencies="liblua.lib"
-				AdditionalLibraryDirectories="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"

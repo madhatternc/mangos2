@@ -3,9 +3,10 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="libmangos2"
-	ProjectGUID="{1F24453D-727E-4858-B23D-98D7825EAB0F}"
-	RootNamespace="MaNGOS2"
-	TargetFrameworkVersion="0"
+	ProjectGUID="{889310F5-A2B9-44F3-9F87-382ACDC5EFD6}"
+	RootNamespace="libmangos2"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -24,7 +25,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -44,14 +45,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H;DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -88,7 +88,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -108,13 +108,12 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
-				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H;DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -151,7 +150,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -170,14 +169,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -214,7 +213,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="4"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -233,13 +232,12 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\;$(SolutionDir)..\..\dep\inc\mysql\;$(SolutionDir)..\..\dep\inc\openssl\;$(SolutionDir)..\..\src\shared\"
-				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -275,9 +273,111 @@
 	</References>
 	<Files>
 		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File
+				RelativePath="..\..\src\shared\Base.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\BaseVector.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Client.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\CommandInterpreter.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Console.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\win\ConsoleSysDep.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Database.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\DatabaseMySQL.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Debug.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\EncodeSQL.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\getopt.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\getopt1.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\HashVector.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Log.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\MemoryLeaks.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Server.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Sockets.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\StringFun.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\StrVec.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\win\ThreadFun.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\win\TimeFun.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\UTF8Fun.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\Vector.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\shared\win\WaitSockets.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{53fe5667-2b03-48fa-8f6b-44aa5efccaa2}"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
 				RelativePath="..\..\src\shared\Base.h"
@@ -381,111 +481,9 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{a84aa33d-ddfe-4589-bedd-15eb7b98672c}"
-			>
-			<File
-				RelativePath="..\..\src\shared\Base.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\BaseVector.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Client.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\CommandInterpreter.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Console.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\win\ConsoleSysDep.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Database.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\DatabaseMySQL.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Debug.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\EncodeSQL.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\getopt.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\getopt1.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\HashVector.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Log.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\MemoryLeaks.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Server.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Sockets.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\StringFun.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\StrVec.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\win\ThreadFun.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\win\TimeFun.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\UTF8Fun.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\Vector.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\shared\win\WaitSockets.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resources"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
-			UniqueIdentifier="{a5ec41cc-4212-4b63-9edf-39144d4b2279}"
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>
 	</Files>

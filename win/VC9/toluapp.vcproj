@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="shift_jis"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="tolua++"
-	ProjectGUID="{A4EF13DE-EFD1-44C3-AEA7-8EAA1010F0CE}"
-	RootNamespace="MaNGOS2"
-	TargetFrameworkVersion="0"
+	Name="toluapp"
+	ProjectGUID="{E5D523A6-757F-4FD5-B5C0-AB93EBD46EA1}"
+	RootNamespace="toluapp"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -24,6 +25,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -43,15 +45,14 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\dep\src\lua;$(SolutionDir)..\..\dep\src\tolua++\include"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
-				MinimalRebuild="false"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="4"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -64,17 +65,12 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtoluapp.lib liblua.lib MSVCPRTD.LIB msvcrtd.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="liblua.lib libtoluapp.lib"
 				Version="1.0.92.0"
-				LinkIncremental="0"
+				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="$(OutDir)/tolua++.pdb"
 				SubSystem="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -105,6 +101,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -123,10 +120,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\dep\src\lua;$(SolutionDir)..\..\dep\src\tolua++\include"
-				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
+				Optimization="0"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
+				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_CONSOLE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				WarningLevel="3"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -139,12 +140,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtoluapp.lib liblua.lib MSVCPRTD.LIB msvcrtd.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="liblua.lib libtoluapp.lib"
 				Version="1.0.92.0"
-				LinkIncremental="0"
+				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -174,6 +173,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -192,12 +192,16 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\dep\src\lua;$(SolutionDir)..\..\dep\src\tolua++\include"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
+				MinimalRebuild="false"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -211,18 +215,14 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtoluapp.lib liblua.lib MSVCPRT.LIB msvcrt.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="liblua.lib libtoluapp.lib"
 				Version="1.0.92.0"
-				LinkIncremental="0"
+				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -253,6 +253,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -271,9 +272,15 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\dep\src\lua;$(SolutionDir)..\..\dep\src\tolua++\include"
-				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib&quot;"
+				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_CONSOLE"
+				MinimalRebuild="false"
+				BasicRuntimeChecks="0"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				WarningLevel="3"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -286,12 +293,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libtoluapp.lib liblua.lib MSVCPRT.LIB msvcrt.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="liblua.lib libtoluapp.lib"
 				Version="1.0.92.0"
-				LinkIncremental="0"
+				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -321,7 +326,7 @@
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
@@ -348,8 +353,8 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Resources"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 		</Filter>

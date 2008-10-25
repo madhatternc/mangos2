@@ -2,6 +2,8 @@
 // Microsoft Visual C++ generated include file.
 // Used by worldserver.rc
 
+#define IDI_WORLDSERVER			100
+
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

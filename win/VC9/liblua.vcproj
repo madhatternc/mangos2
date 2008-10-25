@@ -3,9 +3,10 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="liblua"
-	ProjectGUID="{10083E8F-1732-4870-BB74-10AB310B0FE3}"
-	RootNamespace="MaNGOS2"
-	TargetFrameworkVersion="0"
+	ProjectGUID="{6C1A1B9E-EBB9-4C53-86E8-80BD741097FB}"
+	RootNamespace="liblua"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -24,7 +25,6 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -44,15 +44,14 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;LUA_BUILD_AS_DLL"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBLUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;LUA_BUILD_AS_DLL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -66,6 +65,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				Version="5.1.4.0"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -95,7 +98,6 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -111,17 +113,18 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\"
-				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;LUA_BUILD_AS_DLL"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_WINDOWS;_USRDLL;LIBLUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;LUA_BUILD_AS_DLL"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -136,6 +139,10 @@
 			<Tool
 				Name="VCLinkerTool"
 				Version="5.1.4.0"
+				LinkIncremental="2"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -165,7 +172,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -184,14 +191,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_HAS_ITERATOR_DEBUGGING=0;LUA_BUILD_AS_DLL"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBLUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;LUA_BUILD_AS_DLL"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -206,6 +213,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				Version="5.1.4.0"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -235,7 +248,7 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="1"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -251,16 +264,18 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
+				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\inc\"
-				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_HAS_ITERATOR_DEBUGGING=0;LUA_BUILD_AS_DLL"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_WINDOWS;_USRDLL;LIBLUA_EXPORTS;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;LUA_BUILD_AS_DLL"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -275,6 +290,12 @@
 			<Tool
 				Name="VCLinkerTool"
 				Version="5.1.4.0"
+				LinkIncremental="1"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="17"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -303,107 +324,9 @@
 	</References>
 	<Files>
 		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{c3496701-1f5e-41ad-abd2-59a6ad287e52}"
-			>
-			<File
-				RelativePath="..\..\dep\src\lua\lapi.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lauxlib.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lcode.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\ldebug.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\ldo.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lfunc.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lgc.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\llex.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\llimits.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lmem.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lobject.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lopcodes.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lparser.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lstate.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lstring.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\ltable.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\ltm.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lua.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\luaconf.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lualib.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lundump.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lvm.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lzio.h"
-				>
-			</File>
-		</Filter>
-		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4f85635f-e994-4226-bb3d-b29260d984c5}"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
 				RelativePath="..\..\dep\src\lua\lapi.c"
@@ -523,6 +446,122 @@
 			</File>
 			<File
 				RelativePath="..\..\dep\src\lua\print.c"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
+			<File
+				RelativePath="..\..\dep\src\lua\lapi.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lauxlib.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lcode.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\ldebug.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\ldo.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lfunc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lgc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\llex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\llimits.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lmem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lobject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lopcodes.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lparser.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lstate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lstring.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\ltable.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\ltm.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lua.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\luaconf.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lualib.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lundump.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lvm.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lzio.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\resource.h"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
+			>
+			<File
+				RelativePath="..\..\dep\src\lua\lua.ico"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lua.rc"
 				>
 			</File>
 		</Filter>

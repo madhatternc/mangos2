@@ -21,7 +21,6 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 #pragma code_page(1252)
 #endif //_WIN32
 
-#ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
@@ -29,9 +28,9 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
+IDI_WORLDSERVER         ICON                    "..\\..\\win\\mangosd.ico"
 
-IDI_WORLDSERVER       ICON         "..\..\win\mangosd.ico"
-
+#ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
 //
 // TEXTINCLUDE
@@ -72,7 +71,7 @@ VS_VERSION_INFO VERSIONINFO
  FILEFLAGS 0x0L
 #endif
  FILEOS 0x4L
- FILETYPE 0x0L
+ FILETYPE 0x1L
  FILESUBTYPE 0x0L
 BEGIN
     BLOCK "StringFileInfo"
@@ -81,13 +80,13 @@ BEGIN
         BEGIN
             VALUE "Comments", "This is an experimental version of MaNGOS. No support is available."
             VALUE "CompanyName", "MaNGOS foundation <http://getmangos.com/>"
-            VALUE "FileDescription", "worldser"
-            VALUE "FileVersion", "0, 5, 0, 2"
+            VALUE "FileDescription", "MaNGOS2 world server"
+            VALUE "FileVersion", "0.5.0.2"
             VALUE "InternalName", "worldser"
             VALUE "LegalCopyright", "Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>"
             VALUE "OriginalFilename", "worldser"
             VALUE "ProductName", "worldser"
-            VALUE "ProductVersion", "0, 5, 0, 2"
+            VALUE "ProductVersion", "0.5.0.2"
         END
     END
     BLOCK "VarFileInfo"

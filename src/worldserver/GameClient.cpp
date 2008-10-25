@@ -22,11 +22,11 @@
 #include <openssl/sha.h>
 extern "C"
 {
-    #include "lua.h"
-    #include "lauxlib.h"
+    #include <lua.h>
+    #include <lauxlib.h>
 }
 
-#include "tolua++.h"
+#include <tolua++.h>
 
 #include "GameClient.h"
 #include "WorldServer.h"

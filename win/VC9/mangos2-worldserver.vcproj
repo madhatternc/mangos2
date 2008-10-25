@@ -3,9 +3,10 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="mangos2-worldserver"
-	ProjectGUID="{579755EA-88ED-4A9A-8708-F77AC38366F1}"
-	RootNamespace="MaNGOS2"
-	TargetFrameworkVersion="0"
+	ProjectGUID="{C6C068CA-2CB2-4BE7-84D1-E234CC73F61E}"
+	RootNamespace="mangos2worldserver"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
 		<Platform
@@ -24,12 +25,10 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="0"
-			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating opcode handlers..."
+				Description="Generating opcode handlers ..."
 				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
@@ -47,14 +46,15 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H;DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				DebugInformationFormat="4"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -67,16 +67,13 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib libtoluapp.lib"
 				Version="0.5.0.2"
-				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				GenerateDebugInformation="true"
-				AssemblyDebug="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				SubSystem="1"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -98,8 +95,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
-				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -108,12 +103,10 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="0"
-			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating opcode handlers..."
+				Description="Generating opcode handlers ..."
 				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
@@ -127,19 +120,16 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
-				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG;HAVE_CONFIG_H"
-				MinimalRebuild="false"
-				BasicRuntimeChecks="0"
+				WholeProgramOptimization="false"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H;DEBUG"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -152,17 +142,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRTD.LIB msvcrtd.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib libtoluapp.lib"
 				Version="0.5.0.2"
-				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
-				GenerateDebugInformation="true"
-				AssemblyDebug="1"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="17"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -184,8 +167,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
-				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -194,12 +175,11 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="0"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating opcode handlers..."
+				Description="Generating opcode handlers ..."
 				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
@@ -216,12 +196,14 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
-				MinimalRebuild="false"
+				Optimization="2"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				RuntimeLibrary="2"
+				EnableFunctionLevelLinking="true"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -235,15 +217,15 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib libtoluapp.lib"
 				Version="0.5.0.2"
-				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				GenerateDebugInformation="true"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
+				SubSystem="1"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -265,8 +247,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
-				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -275,12 +255,11 @@
 			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
-			ManagedExtensions="0"
-			WholeProgramOptimization="0"
+			WholeProgramOptimization="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				Description="Generating opcode handlers..."
+				Description="Generating opcode handlers ..."
 				CommandLine="&quot;$(SolutionDir)..\..\win\beforeworld.bat&quot;"
 			/>
 			<Tool
@@ -294,17 +273,14 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				TargetEnvironment="3"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
-				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_CONSOLE_;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
-				MinimalRebuild="false"
+				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\inc\&quot;;&quot;$(SolutionDir)..\..\dep\inc\mysql\&quot;;&quot;$(SolutionDir)..\..\dep\inc\openssl\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\include\&quot;;&quot;$(SolutionDir)..\..\dep\src\tolua++\lib\&quot;;&quot;$(SolutionDir)..\..\src\shared\&quot;"
+				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				RuntimeLibrary="2"
-				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
-				DebugInformationFormat="3"
+				EnableFunctionLevelLinking="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -317,16 +293,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib Winmm.lib libmangos2.lib MSVCPRT.LIB msvcrt.lib"
-				OutputFile="$(OutDir)\$(ProjectName).exe"
+				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib libtoluapp.lib"
 				Version="0.5.0.2"
-				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
-				GenerateManifest="false"
-				GenerateDebugInformation="true"
-				RandomizedBaseAddress="1"
-				DataExecutionPrevention="0"
-				TargetMachine="17"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -348,8 +319,6 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				Description="Copying dependencies for Configuration: $(ConfigurationName) $(PlatformName)..."
-				CommandLine="copy &quot;$(SolutionDir)..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -357,9 +326,71 @@
 	</References>
 	<Files>
 		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
+			<File
+				RelativePath="..\..\src\worldserver\AccountData.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Characters.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\GameClient.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Item.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Luawrapper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Main.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Object.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ObjectVector.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Opcodes.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Player.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\ProtocolVectors.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Quadtree.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Unit.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\WorldServer.cpp"
+				>
+			</File>
+		</Filter>
+		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{1e1b3212-5fbb-44a3-afb5-c5fc34052383}"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
 				RelativePath="..\..\src\worldserver\Affect.h"
@@ -431,71 +462,9 @@
 			</File>
 		</Filter>
 		<Filter
-			Name="Source Files"
-			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4f4731ae-a0e3-4890-9655-92caaa92701c}"
-			>
-			<File
-				RelativePath="..\..\src\worldserver\AccountData.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Characters.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\GameClient.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Item.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Luawrapper.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Main.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Object.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ObjectVector.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Opcodes.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Player.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\ProtocolVectors.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Quadtree.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\Unit.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\worldserver\WorldServer.cpp"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resources"
-			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
-			UniqueIdentifier="{6022455a-c2ec-4703-a736-be1aaff8f8ff}"
+			Name="Resource Files"
+			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
+			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
 				RelativePath="..\mangosd.ico"

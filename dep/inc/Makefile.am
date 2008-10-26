@@ -128,6 +128,16 @@ EXTRA_DIST += \
     openssl/x509v3.h \
     openssl/x509_vfy.h
 
+#  SQLite header files for Win32 builds
+EXTRA_DIST += \
+    sqlite/sqlite3.h \
+    sqlite/sqlite3ext.h
+
+#  ZLib header files for Win32 builds
+EXTRA_DIST += \
+    zlib/zconf.h \
+    zlib/zlib.h
+
 # getopt header files for Win32 builds.
 EXTRA_DIST += \
     getopt.h

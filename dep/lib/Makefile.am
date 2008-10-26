@@ -18,31 +18,54 @@
 ## Sub-directories to parse
 
 ## Additional files to include when running 'make dist'
-#  OpenSSL debug libraries for Win32 builds.
+#  OpenSSL debug libraries for Win32/Win64 builds.
 EXTRA_DIST = \
 	Debug/Win32/libeay32.dll \
 	Debug/Win32/libeay32.lib \
 	Debug/x64/libeay32.dll \
 	Debug/x64/libeay32.lib
 
-# MySQL debug libraries for Win32 builds.
+# MySQL debug libraries for Win32/Win64 builds.
 EXTRA_DIST += \
 	Debug/Win32/libmySQL.dll \
 	Debug/Win32/libmySQL.lib \
 	Debug/x64/libmySQL.dll \
 	Debug/x64/libmysql.lib
 
-# OpenSSL release libraries for Win32 builds.
+# SQLite debug libraries for Win32/Win64 builds.
+EXTRA_DIST += \
+	Debug/Win32/libsqlite.lib \
+	Debug/x64/libsqlite.lib
+
+# ZLib debug libraries for Win32/Win64 builds.
+EXTRA_DIST += \
+	Debug/Win32/libzlib1.dll \
+	Debug/Win32/libzlib1.ilk \
+	Debug/Win32/libzlib1.pdb \
+	Debug/x64/libzlib1.dll \
+	Debug/x64/libzlib1.ilk \
+	Debug/x64/libzlib1.pdb
+
+# OpenSSL release libraries for Win32/Win64 builds.
 EXTRA_DIST += \
 	Release/Win32/libeay32.dll \
 	Release/Win32/libeay32.lib \
 	Release/x64/libeay32.dll \
 	Release/x64/libeay32.lib
 
-# MySQL release libraries for Win32 builds.
+# MySQL release libraries for Win32/Win64 builds.
 EXTRA_DIST += \
 	Release/Win32/libmySQL.dll \
 	Release/Win32/libmySQL.lib \
 	Release/x64/libmySQL.dll \
 	Release/x64/libmysql.lib
 
+# SQLite release libraries for Win32/Win64 builds.
+EXTRA_DIST += \
+	Release/Win32/libsqlite.lib \
+	Release/x64/libsqlite.lib
+
+# ZLib release libraries for Win32/Win64 builds.
+EXTRA_DIST += \
+	Release/Win32/libzlib1.dll \
+	Release/x64/libzlib1.dll

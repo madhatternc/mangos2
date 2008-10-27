@@ -4,8 +4,8 @@ skeleton on which everybody can grow his own meat. However, the goal is to
 have at least something with which MaNGOS2 will at least run.
 
 The idea is to have four separate databases:
+* authserver: one for authentication and realm data storage,
 * character: one for character data storage,
-* realmlist: one for authentication and realm data storage,
 * worlddata: one for basic world data,
 * worldstate: and one for world state storage.
 

@@ -1,5 +1,5 @@
 /**
- *     \file  src/realmlist/SrpRealm.h
+ *     \file  src/authserver/SrpRealm.h
  *    \brief  Provides basic calculations for SRP based client authentication.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>

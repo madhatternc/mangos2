@@ -45,8 +45,8 @@
 #endif
 
 // Compatible client build range
-#define MIN_CLIENT_BUILD    8606 // client version 2.4.3 build 8606
-#define MAX_CLIENT_BUILD    8606 // client version 2.4.3 build 8606
+#define MIN_CLIENT_BUILD    9056 // client version 3.0.2 build 9056
+#define MAX_CLIENT_BUILD    9056 // client version 3.0.2 build 9056
 
 // The path to data files
 #ifndef DATADIR
@@ -58,13 +58,14 @@
 #define DBC_DATA_FILES      DATADIR"dbc-data"
 #define EXPORT_FILES        DATADIR"exports"
 #define IMPORT_FILES        DATADIR"imports"
+#define STANDARD_MAPS       DATADIR"maps"
 
 // The path to config files
 #ifndef SYSCONFDIR
 #  define SYSCONFDIR        ""
 #endif
 
-#define RL_CONFIG_FILE      SYSCONFDIR"realmlist.conf"
+#define RL_CONFIG_FILE      SYSCONFDIR"authserver.conf"
 #define WS_CONFIG_FILE      SYSCONFDIR"worldserver.conf"
 #define VC_CONFIG_FILE      SYSCONFDIR"voicechat.conf"
 #endif // __VERSION_H__

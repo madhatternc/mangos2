@@ -1,5 +1,5 @@
 /**
- *     \file  src/realmlist/RealmListSrv.h
+ *     \file  src/authserver/RealmListSrv.h
  *    \brief  Provides a basic realm list server class.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>

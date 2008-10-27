@@ -1,6 +1,6 @@
 -- MySQL dump 10.11
 --
--- Host: localhost    Database: mangos2-realmlist
+-- Host: localhost    Database: mangos2-authserver
 -- ------------------------------------------------------
 -- Server version	5.0.67-0ubuntu6
 

@@ -16,7 +16,7 @@
 ## Process this file with automake to produce Makefile.in
 
 ## Change installation location
-pkgdatadir = $(datadir)/$(PACKAGE_NAME)/sql/realmlist/
+pkgdatadir = $(datadir)/$(PACKAGE_NAME)/sql/authserver/
 
 ## Files to be installed
 #  Install basic SQL files to datadir

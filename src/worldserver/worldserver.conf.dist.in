@@ -6,7 +6,7 @@
 # Database to connect to: type address:port,user,password,database
 wdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-worlddata
 # Realm Server database
-rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realmlist
+rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-authserver
 
 # Enable/disable world server requests logging to a file
 log SFDCI

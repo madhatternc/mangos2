@@ -1,5 +1,5 @@
 /**
- *     \file  src/realmlist/bigint.c
+ *     \file  src/authserver/bigint.c
  *    \brief  Big Integer handling
  *
  * Copyright (c) 1997-2004  The Stanford SRP Authentication Project

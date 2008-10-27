@@ -1,6 +1,6 @@
 /*
 ** Lua binding: worldserver
-** Generated automatically by tolua++-1.0.5 on Fri Oct 17 16:35:02 2008.
+** Generated automatically by tolua++-1.0.5 on Sun Oct 26 01:13:32 2008.
 */
 
 #ifndef __cplusplus

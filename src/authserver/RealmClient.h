@@ -1,5 +1,5 @@
 /**
- *     \file  src/realmlist/RealmClient.h
+ *     \file  src/authserver/RealmClient.h
  *    \brief  Receives all messages related to authentication and ream list serving.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>

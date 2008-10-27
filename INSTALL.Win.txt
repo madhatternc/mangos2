@@ -85,7 +85,7 @@ generated directory structure:
 * bin
   * Debug
     * Win32
-      - mangos2-realmlist
+      - mangos2-authserver
       - mangos2-worldserver
       - realmserver.conf
       - worldserver.conf

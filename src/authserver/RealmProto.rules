@@ -1,4 +1,5 @@
-# Realm protocol opcodes 2.4.3
+--- #YAML:1.0
+# Authenticaton and realm list protocol opcodes client 3.0.2 build 9056
 # This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
 -
     name: header_start

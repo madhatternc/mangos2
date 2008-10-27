@@ -1,5 +1,5 @@
 /**
- *     \file  src/realmlist/RealmListSrv.cpp
+ *     \file  src/authserver/RealmListSrv.cpp
  *    \brief  Provides a basic realm list server class.
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>

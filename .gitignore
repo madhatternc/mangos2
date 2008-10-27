@@ -2,8 +2,6 @@ FILES
 INSTALL
 build-log.txt
 
-*.pyc
-*.user
 *.[oa]
 *.lo
 *.loT

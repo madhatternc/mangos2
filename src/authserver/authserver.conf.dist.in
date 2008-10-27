@@ -1,10 +1,10 @@
-# RealmList server configuration file
+# Authentication and Realm List server configuration file
 # This is rather an automatically executed script, it contains normal commands
 # that can be invoked on server command-line (you can get a short description
 # on commands and their arguments by using the 'help' command).
 
 # MySQL database used for logins: type address:port,user,password,database
-rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-realmlist
+rdb MySQL 127.0.0.1:3306,mangos2,mangos2,mangos2-authserver
 # Enable/disable logging of all events to a file
 log SFDCI
 

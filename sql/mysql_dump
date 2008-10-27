@@ -5,14 +5,14 @@ mysqldump \
     -umangos2 \
     -hlocalhost \
     -pmangos2 -Q \
-    --add-drop-table mangos2-realmlist realms > realmlist/realms.sql
+    --add-drop-table mangos2-authserver realms > authserver/realms.sql
 
 # Dump structure and data for accounts
 mysqldump \
     -umangos2 \
     -hlocalhost \
     -pmangos2 -Q \
-    --add-drop-table mangos2-realmlist accounts > realmlist/accounts.sql
+    --add-drop-table mangos2-authserver accounts > authserver/accounts.sql
 
 # Dump structure for character per account count
 mysqldump \
@@ -20,7 +20,7 @@ mysqldump \
     -hlocalhost \
     -pmangos2 -Q \
     --add-drop-table \
-    --no-data mangos2-realmlist accountchars > realmlist/accountchars.sql
+    --no-data mangos2-authserver accountchars > authserver/accountchars.sql
 
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table mangos2-worlddata access_levels > worlddata/access_levels.sql
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-worlddata characters > worlddata/characters.sql

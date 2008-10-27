@@ -16,7 +16,7 @@
 
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = shared tools realmlist worldserver
+SUBDIRS = shared tools authserver worldserver
 
 AM_MAKEFLAGS = --no-print-directory
 

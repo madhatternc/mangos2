@@ -485,7 +485,7 @@ WARN_LOGFILE           = @top_srcdir@/doc/doxygen.log
 
 INPUT                  = @top_srcdir@/src/shared/ \
                          @top_srcdir@/src/shared/posix/ \
-                         @top_srcdir@/src/realmlist/ \
+                         @top_srcdir@/src/authserver/ \
                          @top_srcdir@/src/worldserver/
 
 # This tag can be used to specify the character encoding of the source files that

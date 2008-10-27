@@ -20,8 +20,8 @@
 AM_CPPFLAGS = $(MYSQL_INCLUDES) -I$(srcdir)/../shared -I$(srcdir) -DSYSCONFDIR=\"$(sysconfdir)/\"
 
 ## Build realm list daemon as standalone program
-bin_PROGRAMS = mangos2-realmlist
-mangos2_realmlist_SOURCES = \
+bin_PROGRAMS = mangos2-authserver
+mangos2_authserver_SOURCES = \
 	Main.cpp \
 	RealmClient.cpp \
 	RealmClient.h \
@@ -39,15 +39,15 @@ mangos2_realmlist_SOURCES = \
 	bigint.h
 
 ## Link realm list daemon against the shared library
-mangos2_realmlist_LDADD = -lmangos2
-mangos2_realmlist_LDFLAGS = \
+mangos2_authserver_LDADD = -lmangos2
+mangos2_authserver_LDFLAGS = \
 	-L$(srcdir) \
 	-L../shared/ \
 	$(MYSQL_LIBS) $(ZLIB) $(COMPATLIB) $(SSLLIB) $(TERMLIB)
 
 ## Configuration file installation
 sysconf_DATA = \
-	realmlist.conf.dist
+	authserver.conf.dist
 
 install-data-hook:
 	@list='$(sysconf_DATA)'; for p in $$list; do \
@@ -68,9 +68,8 @@ clean-local:
 EXTRA_DIST = \
 	RealmProto.inc \
 	RealmProto.rules \
-	realmlist.conf.dist \
-	realmlist.aps \
-	realmlist.rc \
+	authserver.conf.dist \
+	authserver.rc \
 	resource.h
 
 ## Custom rules for generated sources

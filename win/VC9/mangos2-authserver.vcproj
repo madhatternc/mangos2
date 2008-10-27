@@ -29,7 +29,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -180,7 +180,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -260,7 +260,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -332,39 +332,39 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\src\realmlist\AccountMgr.cpp"
+				RelativePath="..\..\src\authserver\AccountMgr.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\bigint.c"
+				RelativePath="..\..\src\authserver\bigint.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\Main.cpp"
+				RelativePath="..\..\src\authserver\Main.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmClient.cpp"
+				RelativePath="..\..\src\authserver\RealmClient.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmListSrv.cpp"
+				RelativePath="..\..\src\authserver\RealmListSrv.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmMgr.cpp"
+				RelativePath="..\..\src\authserver\RealmMgr.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmProto.cpp"
+				RelativePath="..\..\src\authserver\RealmProto.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmProto.inc"
+				RelativePath="..\..\src\authserver\RealmProto.inc"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\SrpRealm.cpp"
+				RelativePath="..\..\src\authserver\SrpRealm.cpp"
 				>
 			</File>
 		</Filter>
@@ -374,35 +374,35 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\src\realmlist\AccountMgr.h"
+				RelativePath="..\..\src\authserver\AccountMgr.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\bigint.h"
+				RelativePath="..\..\src\authserver\bigint.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmClient.h"
+				RelativePath="..\..\src\authserver\RealmClient.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmListSrv.h"
+				RelativePath="..\..\src\authserver\RealmListSrv.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmMgr.h"
+				RelativePath="..\..\src\authserver\RealmMgr.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\RealmProto.h"
+				RelativePath="..\..\src\authserver\RealmProto.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\resource.h"
+				RelativePath="..\..\src\authserver\resource.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\SrpRealm.h"
+				RelativePath="..\..\src\authserver\SrpRealm.h"
 				>
 			</File>
 		</Filter>
@@ -416,7 +416,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\realmlist\realmlist.rc"
+				RelativePath="..\..\src\authserver\authserver.rc"
 				>
 			</File>
 		</Filter>

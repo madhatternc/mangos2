@@ -1,5 +1,5 @@
 --- #YAML:1.0
-# World of Warcraft protocol opcodes 1.3.0
+# World server protocol opcodes client 3.0.2 build 9056
 # This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
 -
     name: header_start

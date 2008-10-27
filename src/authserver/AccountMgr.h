@@ -1,6 +1,6 @@
 /**
- *     \file  src/realmlist/RealmMgr.cpp
- *    \brief  Realm Manager
+ *     \file  src/authserver/AccountMgr.h
+ *    \brief  Account Manager
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
  * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
@@ -18,8 +18,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifndef __ACCOUNT_MGR_H__
+#define __ACCOUNT_MGR_H__
 
-#include "RealmMgr.h"
 #include "Database.h"
 #include "Log.h"
 #include "version.h"
+#include "RealmListSrv.h"
+#endif // __ACCOUNT_MGR_H__

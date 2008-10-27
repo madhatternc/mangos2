@@ -184,11 +184,11 @@ AC_CONFIG_FILES([Makefile
          doc/Doxyfile
          doc/Makefile
          sql/Makefile
-         sql/realmlist/Makefile
+         sql/authserver/Makefile
          sql/worlddata/Makefile
          src/Makefile
-         src/realmlist/Makefile
-         src/realmlist/realmlist.conf.dist
+         src/authserver/Makefile
+         src/authserver/authserver.conf.dist
          src/shared/Makefile
          src/shared/lua/Makefile
          src/shared/lua/lib/Makefile

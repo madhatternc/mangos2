@@ -1,8 +1,8 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by realmlist.rc
+// Used by authserver.rc
 
-#define IDI_REALMLIST			100
+#define IDI_AUTHSERVER			100
 
 // Next default values for new objects
 // 

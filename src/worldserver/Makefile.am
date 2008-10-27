@@ -80,7 +80,6 @@ EXTRA_DIST = \
 	worldserver.pkg \
 	worldserver.conf.dist \
 	resource.h \
-	worldserver.aps \
 	worldserver.rc
 
 ## Link realm list daemon against the shared library

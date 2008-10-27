@@ -1,6 +1,6 @@
 /**
- *     \file  src/realmlist/Main.cpp
- *    \brief  Realm list server
+ *     \file  src/authserver/Main.cpp
+ *    \brief  Authentication and Realm list server
  *
  * Copyright (C) 2005 Team OpenWoW <http://openwow.quamquam.org/>
  * Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
@@ -42,7 +42,7 @@ struct ServerOptions
         DbType = strnew (DEFDBTYPE);
         DbAddr = strnew (DEFDBADDR);
         Running = false;
-        rs = new RealmListSrv (3724, new Log ("realmlist.log"));
+        rs = new RealmListSrv (3724, new Log ("authserver.log"));
         db = NULL;
     }
 
@@ -113,7 +113,7 @@ struct ServerOptions
 static void display_version ()
 {
     CONSOLE.Out (
-        "\ax9RealmList Server\ax2, version \axf%s\ax2\n"
+        "\ax9Authentication and Realm List Server\ax2, version \axf%s\ax2\n"
         "Copyright \axf(C) \ax2%s\ax2\n",
         VERSION, COPYRIGHT);
 
@@ -198,7 +198,7 @@ static int cmdLog (ServerOptions *srvopt, char *LogOpt)
     {
         char buff [100];
         Logger.GetLogging (buff, sizeof (buff));
-        CONSOLE.Out ("\ax3RealmList server logging: \axa%s\ax2\n", buff);
+        CONSOLE.Out ("\ax3Realm List server logging: \axa%s\ax2\n", buff);
     }
     return 0;
 }

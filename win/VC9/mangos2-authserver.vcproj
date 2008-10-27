@@ -29,7 +29,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -180,7 +180,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -260,7 +260,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="&quot;$(SolutionDir)..\..\win\beforerealm.bat&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\realmlist\RealmProto.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"

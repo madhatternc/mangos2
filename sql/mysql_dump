@@ -32,3 +32,9 @@ mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-worlddata inventory > worlddata/inventory.sql
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-worlddata char_spells > worlddata/char_spells.sql
 mysqldump -umangos2 -hlocalhost -pmangos2 -Q --add-drop-table --no-data mangos2-worlddata mail > worlddata/mail.sql
+
+# Replace VALUES ( by VALUES\n(
+find ./ -name '*.sql' -type f -exec perl -pi -e 's/VALUES \(/VALUES\n\(/g' {} \; -print
+
+# Replace huge insert by multi-line inserts
+find ./ -name '*.sql' -type f -exec perl -pi -e 's/\),\(/\),\n\(/g' {} \; -print

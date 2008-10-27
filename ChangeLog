@@ -8,7 +8,7 @@
     Updated tolua++ to 1.0.92. We now use tolua++ from dep instead of the old
     version from src/tools/tolua/.
 
-    Updated client login for client 2.4.3 build 8606.
+    Updated client login for client 3.0.2 build 9056.
 
     Added account and realm management to authentication and realm list
     server.

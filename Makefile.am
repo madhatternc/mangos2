@@ -24,8 +24,6 @@ EXTRA_DIST = \
     TODO
 
 EXTRA_DIST += \
-    win/beforerealm.bat \
-    win/beforeworld.bat \
     win/config.win.h \
     win/mangosd.ico
 

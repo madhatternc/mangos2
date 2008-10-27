@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: mangos2-worlddata
 -- ------------------------------------------------------
--- Server version	5.0.51a-3ubuntu5.1
+-- Server version	5.0.67-0ubuntu6
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,23 +24,23 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `characters` (
   `guid` int(10) unsigned NOT NULL default '0',
-  `login` varchar(32) NOT NULL default '',
-  `data` mediumtext NOT NULL,
-  `name` varchar(24) NOT NULL default '',
+  `login` varchar(32) collate utf8_unicode_ci NOT NULL,
+  `data` mediumtext collate utf8_unicode_ci NOT NULL,
+  `name` varchar(24) collate utf8_unicode_ci NOT NULL,
   `positionX` float NOT NULL default '0',
   `positionY` float NOT NULL default '0',
   `positionZ` float NOT NULL default '0',
   `orientation` float NOT NULL default '0',
   `mapId` int(10) unsigned NOT NULL default '0',
   `zoneId` int(10) unsigned NOT NULL default '0',
-  `taxiMask` varchar(43) NOT NULL default '',
-  `tutorialMask` varchar(43) NOT NULL default '',
-  `actions` mediumtext NOT NULL,
-  `data0` mediumtext NOT NULL,
-  `data1` mediumtext NOT NULL,
+  `taxiMask` varchar(43) collate utf8_unicode_ci NOT NULL,
+  `tutorialMask` varchar(43) collate utf8_unicode_ci NOT NULL,
+  `actions` mediumtext collate utf8_unicode_ci NOT NULL,
+  `data0` mediumtext collate utf8_unicode_ci NOT NULL,
+  `data1` mediumtext collate utf8_unicode_ci NOT NULL,
   PRIMARY KEY  (`guid`),
   UNIQUE KEY `idxname` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Storage for account characters.';
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +52,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2008-10-18 13:43:10
+-- Dump completed on 2008-10-23 22:12:43

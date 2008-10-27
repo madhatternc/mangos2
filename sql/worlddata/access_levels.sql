@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: mangos2-worlddata
 -- ------------------------------------------------------
--- Server version	5.0.51a-3ubuntu5.1
+-- Server version	5.0.67-0ubuntu6
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,10 +24,10 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `access_levels` (
   `level` tinyint(3) unsigned NOT NULL default '0',
-  `name` varchar(32) NOT NULL default '',
+  `name` varchar(32) collate utf8_unicode_ci NOT NULL,
   `flags` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`level`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Access levels for accounts.';
 SET character_set_client = @saved_cs_client;
 
 --
@@ -36,7 +36,12 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `access_levels` WRITE;
 /*!40000 ALTER TABLE `access_levels` DISABLE KEYS */;
-INSERT INTO `access_levels` VALUES (3,'GameMaster',0),(2,'Seer',0),(1,'Councelor',0),(0,'Player',0),(4,'Developer',4294967295);
+INSERT INTO `access_levels` VALUES
+(0,'Player',0),
+(1,'Councelor',0),
+(2,'Seer',0),
+(3,'GameMaster',0),
+(4,'Developer',4294967295);
 /*!40000 ALTER TABLE `access_levels` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2008-10-18 13:43:10
+-- Dump completed on 2008-10-23 22:12:43

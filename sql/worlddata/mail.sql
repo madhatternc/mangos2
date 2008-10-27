@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: mangos2-worlddata
 -- ------------------------------------------------------
--- Server version	5.0.51a-3ubuntu5.1
+-- Server version	5.0.67-0ubuntu6
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,15 +26,15 @@ CREATE TABLE `mail` (
   `mailId` int(10) unsigned NOT NULL default '0',
   `sender` int(10) unsigned NOT NULL default '0',
   `recipient` int(10) unsigned NOT NULL default '0',
-  `subject` tinytext,
-  `body` mediumtext,
+  `subject` tinytext collate utf8_unicode_ci,
+  `body` mediumtext collate utf8_unicode_ci,
   `item` int(10) unsigned NOT NULL default '0',
   `time` int(10) unsigned NOT NULL default '0',
   `money` int(10) unsigned NOT NULL default '0',
   `COD` int(10) unsigned NOT NULL default '0',
   `checked` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`mailId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Storage for character mails.';
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -46,4 +46,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2008-10-18 13:43:10
+-- Dump completed on 2008-10-23 22:12:44

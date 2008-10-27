@@ -42,9 +42,13 @@ EXTRA_DIST += \
 	Debug/Win32/libzlib1.dll \
 	Debug/Win32/libzlib1.ilk \
 	Debug/Win32/libzlib1.pdb \
+	Debug/Win32/libzlib1.exp \
+	Debug/Win32/libzlib1.lib \
 	Debug/x64/libzlib1.dll \
 	Debug/x64/libzlib1.ilk \
-	Debug/x64/libzlib1.pdb
+	Debug/x64/libzlib1.pdb \
+	Debug/x64/libzlib1.exp \
+	Debug/x64/libzlib1.lib
 
 # OpenSSL release libraries for Win32/Win64 builds.
 EXTRA_DIST += \
@@ -68,4 +72,8 @@ EXTRA_DIST += \
 # ZLib release libraries for Win32/Win64 builds.
 EXTRA_DIST += \
 	Release/Win32/libzlib1.dll \
-	Release/x64/libzlib1.dll
+	Release/Win32/libzlib1.exp \
+	Release/Win32/libzlib1.lib \
+	Release/x64/libzlib1.dll \
+	Release/x64/libzlib1.exp \
+	Release/x64/libzlib1.lib

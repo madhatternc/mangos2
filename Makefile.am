@@ -30,12 +30,12 @@ EXTRA_DIST += \
     win/mangosd.ico
 
 EXTRA_DIST += \
-    win/VC9/MaNGOS2.sln \
+    win/VC9/mangos2.sln \
     win/VC9/liblua.vcproj \
     win/VC9/libtoluapp.vcproj \
     win/VC9/toluapp.vcproj \
     win/VC9/libmangos2.vcproj \
-    win/VC9/realmlist.vcproj \
-    win/VC9/worldserver.vcproj
+    win/VC9/mangos2-authserver.vcproj \
+    win/VC9/mangos2-worldserver.vcproj
 
 AM_MAKEFLAGS = --no-print-directory

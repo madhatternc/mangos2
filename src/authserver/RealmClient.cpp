@@ -68,15 +68,6 @@ static char *str4 (uint8 *x)
     return str4;
 }
 
-void RealmClient::FailChallenge (RealmErrors err, const char *errstr)
-{
-    SMSG_LOGON_CHALLENGE_t *outpkt = SMSG_LOGON_CHALLENGE_t::Create ();
-    outpkt->ErrorCode = err;
-    Send (outpkt);
-    Server->Logger->Out (LOG_DEBUG, "Sent LOGON_CHALLENGE with code '%s'\n", errstr);
-    return;
-}
-
 void RealmClient::FailLogin (RealmErrors err, const char *errstr)
 {
     SMSG_LOGON_PROOF_t *outpkt = SMSG_LOGON_PROOF_t::Create ();
@@ -90,8 +81,6 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
 {
     Server->Logger->Out (LOG_DEBUG, "Received LOGON_CHALLENGE\n");
 
-    printf ("Error Start Byte: %d\n", inpkt.ErrorCode);
-    printf ("Packet size: %d\n", inpkt.Length);
     printf ("Username: %s\n", inpkt.UserName);
     printf ("Game ID: %s\n", str4 (inpkt.GameID));
     printf ("Client Version: %d.%d.%d\n", inpkt.ClientVersion [0],
@@ -100,16 +89,16 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
     printf ("Architecture: %s\n", str4 (inpkt.Arch));
     printf ("Platform: %s\n", str4 (inpkt.OS));
     printf ("Language: %s\n", str4 (inpkt.Lang));
-    printf ("Client time zone: GMT%c%d\n",
-            inpkt.TimeZone >= 0 ? '+' : '-', inpkt.TimeZone / 60);
+    printf ("Error Start Byte: %d\n", inpkt.ErrorCode);
     printf ("Client internal IP address: %s\n",
         inet_ntoa (*(struct in_addr *)&inpkt.ClientIP));
-    printf ("Username: %s\n", inpkt.UserName);
+    printf ("Client time zone: GMT%c%d\n",
+            inpkt.TimeZone >= 0 ? '+' : '-', inpkt.TimeZone / 60);
 
     if ((inpkt.ClientBuild < MIN_CLIENT_BUILD) ||
         (inpkt.ClientBuild > MAX_CLIENT_BUILD))
     {
-        FailChallenge (CE_BAD_VERSION, "wrong version");
+        FailLogin (CE_BAD_VERSION, "wrong version");
         return;
     }
 
@@ -134,15 +123,14 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
     switch (rc)
     {
         case 1:   // general failure
-            FailChallenge (CE_CANNOT_LOGIN, "could not log in");
+            FailLogin (CE_CANNOT_LOGIN, "could not log in");
             return;
         case 2:   // bad username
-            FailChallenge (CE_BAD_CREDENTIALS, "no such account");
+            FailLogin (CE_BAD_CREDENTIALS, "no such account");
             return;
     }
 
     // got username & pass, let's start SRP
-    Server->Logger->Out (LOG_DEBUG, "Challenge calculation with username %s and password %s\n", inpkt.UserName, passwd);
     Challenge (inpkt.UserName, passwd);
     delete [] passwd;
 
@@ -157,7 +145,7 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
 
 void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
 {
-    Server->Logger->Out (LOG_DEBUG, "Received LOGON_PROOF\n");
+    Server->Logger->Out (LOG_DEBUG, "Recieved LOGON_PROOF\n");
 
     Proof (inpkt.A);
 

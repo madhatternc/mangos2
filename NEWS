@@ -15,10 +15,9 @@ Discussion mailing list:
 http://groups.google.com/group/mangos-core
 
 Version 0.5.0.02
-* MaNGOS2 has received a lot of love, especially for the authentication and
-  realm list server. It now is feature complete, and supports full account and
-  realm management, and allows client connections from World of Warcraft client
-  version 3.0.2 build 9056 in any client language.
+* MaNGOS2 has received a lot of love, and allows client connections from World
+  of Warcraft client version 1.2.1 build 4150 up to client version 1.4.0 build
+  4341 in any client language.
 
 Version 0.5.0.01
 * Initial release of MaNGOS2, now following the principles of Agile Software

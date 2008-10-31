@@ -1,18 +1,3 @@
-2008-10-13  Daniel  <theluda@getmangos.com>
-
-    Updated configure to use m4 macros for detection of MySQL, PostgreSQL,
-    and SQLite.
-
-    Updated LUA to 5.1.4. We now use lua from dep/ instead of src/shared/lua.
-
-    Updated tolua++ to 1.0.92. We now use tolua++ from dep instead of the old
-    version from src/tools/tolua/.
-
-    Updated client login for client 3.0.2 build 9056.
-
-    Added account and realm management to authentication and realm list
-    server.
-
 2008-09-22  Daniel  <theluda@getmangos.com>
 
     Extraction of SVN revision is gone. Need the same for GIT now.

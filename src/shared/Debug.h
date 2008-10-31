@@ -59,6 +59,6 @@ static inline void DEBUG_PRINTF (...) {}
 // Neat for debugging
 void DebugDump(FILE *Out, const void *Data, unsigned Size, const void *Base = (const void *)-1);
 
-void printBytes(void *bytes, int l, char *name);
+void printBytes(void *bytes, int l, const char *name);
 
 #endif // __DEBUG_H__

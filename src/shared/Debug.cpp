@@ -56,7 +56,7 @@ void DebugDump (FILE *Out, const void *Data, unsigned Size, const void *Base)
     fflush (Out);
 }
 
-void printBytes(void *bytes, int l, char *name)
+void printBytes(void *bytes, int l, const char *name)
 {
     if (bytes == NULL)
         return;

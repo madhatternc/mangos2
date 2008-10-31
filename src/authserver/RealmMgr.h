@@ -24,5 +24,5 @@
 #include "Client.h"
 #include "SrpRealm.h"
 #include "StringFun.h"
-#include "RealmProto.h"
+#include "Opcodes.h"
 #endif // __REALM_MGR_H__

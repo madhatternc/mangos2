@@ -27,8 +27,8 @@ mangos2_authserver_SOURCES = \
 	RealmClient.h \
 	RealmListSrv.cpp \
 	RealmListSrv.h \
-	RealmProto.cpp \
-	RealmProto.h \
+	Opcodes.cpp \
+	Opcodes.h \
 	AccountMgr.cpp \
 	AccountMgr.h \
 	RealmMgr.cpp \
@@ -66,26 +66,26 @@ clean-local:
 ## Additional files to include when running 'make dist'
 #  Add rules files for generating realm packets
 EXTRA_DIST = \
-	RealmProto.inc \
-	RealmProto.rules \
+	Opcodesinc \
+	Protocol.rules \
 	authserver.conf.dist \
 	authserver.rc \
 	resource.h
 
 ## Custom rules for generated sources
-RealmClient.o RealmProto.o: RealmProto.h RealmProto.inc
+RealmClient.o Opcodes.o: Opcodes.h Opcodes.inc
 
 if USE_CODEGEN
 
-RealmProto.h: RealmProto.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
+Opcodes.h: Protocol.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
 	@echo "Generating " $@
 	@PYTHONPATH@ $(srcdir)/../tools/gencode/gencode.py -t cxx -f $@ -w header $<
 
-RealmProto.inc: RealmProto.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
+Opcodes.inc: Protocol.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
 	@echo "Generating " $@
 	@PYTHONPATH@ $(srcdir)/../tools/gencode/gencode.py -t cxx -f $@ -w parser $<
 
-RealmProto.cpp: RealmProto.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
+Opcodes.cpp: Protocol.rules $(srcdir)/../tools/gencode/gencode.py $(srcdir)/../tools/gencode/gencxx.py
 	@echo "Generating " $@
 	@PYTHONPATH@ $(srcdir)/../tools/gencode/gencode.py -t cxx -f $@ -w code $<
 

@@ -25,7 +25,7 @@
 #include "Client.h"
 #include "SrpRealm.h"
 #include "StringFun.h"
-#include "RealmProto.h"
+#include "Opcodes.h"
 
 class RealmListSrv;
 

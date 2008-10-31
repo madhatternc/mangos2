@@ -29,7 +29,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -180,7 +180,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -260,7 +260,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\RealmProto.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\RealmProto.rules&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\authserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\authserver\Protocol.rules&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -356,11 +356,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\authserver\RealmProto.cpp"
+				RelativePath="..\..\src\authserver\Opcodes.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\authserver\RealmProto.inc"
+				RelativePath="..\..\src\authserver\Opcodes.inc"
 				>
 			</File>
 			<File
@@ -394,7 +394,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\authserver\RealmProto.h"
+				RelativePath="..\..\src\authserver\Opcodes.h"
 				>
 			</File>
 			<File
@@ -412,11 +412,19 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
-				RelativePath="..\mangosd.ico"
+				RelativePath="..\..\src\authserver\authserver.rc"
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\authserver\authserver.rc"
+				RelativePath="..\mangosd.ico"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Protocol definition"
+			>
+			<File
+				RelativePath="..\..\src\authserver\Protocol.rules"
 				>
 			</File>
 		</Filter>

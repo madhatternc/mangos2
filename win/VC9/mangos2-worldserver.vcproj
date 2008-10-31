@@ -29,7 +29,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -107,7 +107,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -180,7 +180,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -260,7 +260,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -472,6 +472,30 @@
 			</File>
 			<File
 				RelativePath="..\..\src\worldserver\worldserver.rc"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="Protocol definition"
+			>
+			<File
+				RelativePath="..\..\src\worldserver\Protocol-3.0.rules"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\Protocol.rules"
+				>
+			</File>
+		</Filter>
+		<Filter
+			Name="LUA bindings"
+			>
+			<File
+				RelativePath="..\..\src\worldserver\worldserver.lua"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\worldserver\worldserver.pkg"
 				>
 			</File>
 		</Filter>

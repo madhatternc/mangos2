@@ -43,7 +43,7 @@ void RealmClient::SocketEvent (uint mask)
 
         switch (opcode)
         {
-#include "RealmProto.inc"
+#include "Opcodes.inc"
             default:
                 Server->Logger->Out (LOG_COMMON, "\axcWARNING: \ax6Unknown packet type: 0x%02X\n", opcode);
         };

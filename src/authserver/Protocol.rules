@@ -1,5 +1,5 @@
 --- #YAML:1.0
-# Authenticaton and realm list protocol opcodes client 3.0.2 build 9056
+# Authenticaton and realm list protocol opcodes client 1.2.1 build 4150 to client 1.4.0 build 4341
 # This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
 -
     name: header_start
@@ -33,7 +33,7 @@
     name: code_start
     type: c++code
     code: |
-        #include "Opcodes.h"
+        #include "RealmProto.h"
 
 
 -
@@ -60,109 +60,70 @@
     code: |
         CONSOLE.TextOutput ("\axeWARNING: \ax6Unhandled packet %(name)s\n");
 
-###############################################################################
-#                              Realm List errors                              #
-###############################################################################
+# The list of realm server errors
 -
     name: CE_SUCCESS
     type: const
     value: 0
     enum: RealmErrors
-    info: Authentication successful.
 -
-    name: CE_FAILURE
+    name: CE_WRONG_BUILDNUMBER
     type: const
     value: 1
     enum: RealmErrors
-    info: Unable to connect.
+    info: DOES NOT WORK
 -
-    name: CE_UNKNOWN1
+    name: CE_SERVER_FULL
     type: const
     value: 2
     enum: RealmErrors
-    info: Unable to connect.
+    info: DOES NOT WORK
 -
     name: CE_ACCOUNT_CLOSED
     type: const
     value: 3
     enum: RealmErrors
-    info: This <game> account has been closed and is no longer available for use. Please go to <site>/banned.html for further information.
+    info: "This account has been closed and is no longer in service"
 -
     name: CE_BAD_CREDENTIALS
     type: const
     value: 4
     enum: RealmErrors
-    info: The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information.
+    info: "The information you have entered is not valid"
 -
     name: CE_BAD_CREDENTIALS_DUP
     type: const
     value: 5
     enum: RealmErrors
-    info: The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information.
+    info: Client shows same error message as with CE_BAD_CREDENTIALS
 -
     name: CE_ALREADY_LOGGED_IN
     type: const
     value: 6
     enum: RealmErrors
-    info: This account is already logged into <game>. Please check the spelling and try again.
+    info: "This account is already logged in"
 -
     name: CE_PREPAID_TIME_EXPIRED
     type: const
     value: 7
     enum: RealmErrors
-    info: You have used up your prepaid time for this account. Please purchase more to continue playing.
+    info: "You have used up your prepaid time for this account"
 -
     name: CE_CANNOT_LOGIN
     type: const
     value: 8
     enum: RealmErrors
-    info: Could not log in to <game> at this time. Please try again later.
+    info: "Could not log in at this time"
 -
     name: CE_BAD_VERSION
     type: const
     value: 9
     enum: RealmErrors
-    info: Unable to validate game version. This may be caused by file corruption or interference of another program. Please visit <site> for more information and possible solutions to this issue.
--
-    name: CE_UPDATE_CLIENT
-    type: const
-    value: 10
-    enum: RealmErrors
-    info: Downloading.
--
-    name: CE_UNKNOWN3
-    type: const
-    value: 11
-    enum: RealmErrors
-    info: Unable to connect.
--
-    name: CE_ACCOUNT_FROZEN
-    type: const
-    value: 12
-    enum: RealmErrors
-    info: This <game> account has been temporarily suspended. Please go to <site>/banned.html for further information.
--
-    name: CE_UNKNOWN4
-    type: const
-    value: 13
-    enum: RealmErrors
-    info: Unable to connect.
--
-    name: CE_UNKNOWN5
-    type: const
-    value: 14
-    enum: RealmErrors
-    info: Connected.
--
-    name: CE_PARENTAL_CONTROL
-    type: const
-    value: 15
-    enum: RealmErrors
-    info: Access to this account has been blocked by parental controls. Your settings may be changed in your account preferences at <site>.
+    info: "Unable to validate game version"
 
-###############################################################################
-#                                Packet opcodes                               #
-###############################################################################
+##########################################################################################
+###                                     Packet opcodes                                 ###
+##########################################################################################
 
 -
     name: CMSG_LOGON_CHALLENGE
@@ -173,10 +134,9 @@
     structure:
       - ErrorCode:
             type: uint8
-            info: The error code contains a random value, and can be ignored
       - Length:
             type: uint16
-            info: Size of the packet, excluding error code and opcode
+            info: 0x0026
       - GameID:
             type: uint8
             array: 4
@@ -184,10 +144,10 @@
       - ClientVersion:
             type: uint8
             array: 3
-            info: like 2, 2, 0 or 2, 2, 3 or 2, 3, 0 etc.
+            info: like 1, 2, 4 or 1, 3, 0 etc
       - ClientBuild:
             type: uint16
-            info: like 7272, 7359, 7561, etc.
+            info: like 4150, 4284 etc
       - Arch:
             type: uint8
             array: 4
@@ -202,15 +162,12 @@
             info: "BGne" (enGB backwards)
       - TimeZone:
             type: uint32
-            info: 60 (in my case GMT+1)
+            info: 180 (in my case GMT+3)
       - ClientIP:
-            type: uint8
-            array: 4
+            type: uint32
             info: User's real IP address in network byte order
       - UserName:
             type: pstring
-            ltype: uint8
-            info: Account name in uppersized letters. Not zero-terminated
 
 -
     name: SMSG_LOGON_CHALLENGE
@@ -220,39 +177,32 @@
     structure:
       - ErrorCode:
             type: uint8
-            init: CE_SUCCESS
-      - if ErrorCode == CE_SUCCESS:
-            - unknown1:
-                  type: uint8
-                  const: 0x00
-                  info: Unknown, alway 0x00
-            - BR:
-                  type: uint8
-                  array: 32
-            - g_len:
-                  type: uint8
-                  const: 1
-            - g:
-                  type: uint8
-                  const: 7
-            - N_len:
-                  type: uint8
-                  const: 32
-            - N:
-                  type: uint8
-                  array: 32
-            - Salt:
-                  type: uint8
-                  array: 32
-            - unknown2:
-                  type: uint8
-                  array: 16
-                  const: 0
-                  info: SetRand(16*8)
-            - unknown3:
-                  type: uint8
-                  const: 0x00
-                  info: Unknown, always 0x00 (added in client version 1.12.0, build 5595)
+            const: CE_SUCCESS
+      - unknown2:
+            type: uint8
+            const: 0
+      - BR:
+            type: uint8
+            array: 32
+      - g_len:
+            type: uint8
+            const: 1
+      - g:
+            type: uint8
+            const: 7
+      - N_len:
+            type: uint8
+            const: 32
+      - N:
+            type: uint8
+            array: 32
+      - Salt:
+            type: uint8
+            array: 32
+      - unknown3:
+            type: uint8
+            array: 16
+            const: 0
 
 -
     name: CMSG_LOGON_PROOF
@@ -299,10 +249,9 @@
     structure:
       - ErrorCode:
             type: uint8
-            info: The error code contains a random value, and can be ignored
       - Length:
             type: uint16
-            info: Size of the packet, excluding error code and opcode
+            info: 0x0026
       - GameID:
             type: uint8
             array: 4
@@ -310,10 +259,10 @@
       - ClientVersion:
             type: uint8
             array: 3
-            info: like 2, 2, 0 or 2, 2, 3 or 2, 3, 0 etc.
+            info: like 1, 2, 4 or 1, 3, 0 etc
       - ClientBuild:
             type: uint16
-            info: like 7272, 7359, 7561, etc.
+            info: like 4150, 4284 etc
       - Arch:
             type: uint8
             array: 4
@@ -328,33 +277,19 @@
             info: "BGne" (enGB backwards)
       - TimeZone:
             type: uint32
-            info: 60 (in my case GMT+1)
+            info: 180 (in my case GMT+3)
       - ClientIP:
-            type: uint8
-            array: 4
+            type: uint32
             info: User's real IP address in network byte order
       - UserName:
             type: pstring
-            ltype: uint8
-            info: Account name in uppersized letters. Not zero-terminated
 
 -
     name: CMSG_RECONNECT_PROOF
     opcode: 0x03
     type: packet
     direction: in
-    structure:
-          - A:
-                type: uint8
-                array: 32
-          - M1:
-                type: uint8
-                array: 20
-          - CRC:
-                type: uint8
-                array: 20
-          - NumKeys:
-                type: uint8
+
 -
     name: CMSG_REALMLIST
     opcode: 0x10
@@ -383,57 +318,25 @@
             counter: NumRealms
             structure:
               - Type:
-                    type: uint8
-                    info: 0 = Normal, 1 = PvP, 4 = Normal, 6 = RP, 8 = RP-PvP
-              - Locked:
-                    type: uint8
-                    info: 0 = unlocked, 1 = locked
+                    type: uint32
               - Color:
                     type: uint8
-                    info: 0 = yellow, 1 = red. Bigger number undefined.
               - Name:
                     type: string
               - Address:
                     type: string
-                    info: format = IP:port
               - Population:
                     type: float
-                    info: ranging from -1.6 (low) to +1.6 (high)
               - NumChars:
                     type: uint8
-                    info: the number of characters the account has on the realm
               - Language:
                     type: uint8
-                    info: 1 = english, 2 = german, 3 = french
-              - RealmSeparator:
+              - unknown:
                     type: uint8
                     const: 1
-                    info: this value is a random value, as it seems. No purpose yet detected.
-      - RealmListEnd:
-            type: uint16
-            const: 15
--
-    name: SMSG_UPDATE_INITIATE
-    opcode: 0x30
-    type: packet
-    direction: out
--
-    name: SMSG_UPDATE_TRANSFER
-    opcode: 0x31
-    type: packet
-    direction: out
--
-    name: CMSG_UPDATE_ACCEPT
-    opcode: 0x32
-    type: packet
-    direction: in
--
-    name: CMSG_UPDATE_RESUME
-    opcode: 0x33
-    type: packet
-    direction: in
--
-    name: CMSG_UPDATE_CANCEL
-    opcode: 0x34
-    type: packet
-    direction: in
+      - unknown1:
+            type: uint8
+            const: 0
+      - unknown2:
+            type: uint8
+            const: 2

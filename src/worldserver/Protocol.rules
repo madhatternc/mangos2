@@ -1,5 +1,5 @@
 --- #YAML:1.0
-# World server protocol opcodes client 3.0.2 build 9056
+# Authenticaton and realm list protocol opcodes client 1.2.1 build 4150 to client 1.4.0 build 4341
 # This is a YAML File: http://yaml4r.sourceforge.net/cookbook/
 -
     name: header_start

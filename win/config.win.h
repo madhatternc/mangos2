@@ -180,13 +180,13 @@
 #define PACKAGE_NAME "mangos2"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "mangos2 0.5.0.02"
+#define PACKAGE_STRING "mangos2 0.6.0.01"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "mangos2"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "0.5.0.02"
+#define PACKAGE_VERSION "0.6.0.01"
 
 /* Define to the type of arg 1 for `select'. */
 #undef SELECT_TYPE_ARG1
@@ -204,7 +204,7 @@
 /* #define TIME_WITH_SYS_TIME 1 */
 
 /* Version number of package */
-#define VERSION "0.5.0.02"
+#define VERSION "0.6.0.01"
 
 /* Define to empty if `const' does not conform to ANSI C. */
 #undef const

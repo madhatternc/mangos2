@@ -20,10 +20,10 @@
 ## Prelude, basic settings for Autoconf
 #  Autoconf version:   Autoconf 2.60 or newer
 #  PACKAGE:            mangos2
-#  VERSION:            0.5.0.02
+#  VERSION:            0.6.0.01
 #  BUG-REPORT-ADDRESS: http://mangos.lighthouseapp.com/
 AC_PREREQ(2.61)
-AC_INIT( [mangos2], [0.5.0.02], [http://mangos.lighthouseapp.com/])
+AC_INIT( [mangos2], [0.6.0.01], [http://mangos.lighthouseapp.com/])
 AC_DEFINE([PACKAGE_URL],["http://getmangos.com/wiki/"],[project url])
 AC_CONFIG_SRCDIR([src/shared/Base.cpp])
 

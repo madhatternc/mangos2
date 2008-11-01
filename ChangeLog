@@ -1,14 +1,13 @@
-2008-10-13  Daniel  <theluda@getmangos.com>
+2008-11-01  Daniel  <theluda@getmangos.com>
 
-    Updated LUA to 5.1.4. We now use lua from dep/ instead of src/shared/lua.
-
-    Updated tolua++ to 1.0.92. We now use tolua++ from dep instead of the old
-    version from src/tools/tolua/.
-
-    Updated client login for client 3.0.2 build 9056.
-
-    Added account and realm management to authentication and realm list
-    server.
+    * src/shared/lua, src/shared/lua/lib: Removed in favour of LUA 5.1.4
+      from dep/src/lua/.
+    * src/shared/Makefile.am: Removed lua from SUBDIRS.
+    * src/tools/tolua/: Removed in favour of tolua++ from dep/src/tolua++/.
+    * src/tools/Makefile.am: Removed tolua from SUBDIRS.
+    * configure.ac: Removed old lua and tolua++ Makefiles from output.
+    * src/worldserver/Makefile.am: Link to dep/src/lua/ for LUA 5.1.4,
+      and to dep/src/tolua++/lib/ for tolua++ 1.0.92.
 
 2008-09-22  Daniel  <theluda@getmangos.com>
 

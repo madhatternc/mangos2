@@ -190,14 +190,9 @@ AC_CONFIG_FILES([Makefile
          src/authserver/Makefile
          src/authserver/authserver.conf.dist
          src/shared/Makefile
-         src/shared/lua/Makefile
-         src/shared/lua/lib/Makefile
          src/tools/Makefile
          src/tools/gencode/Makefile
          src/tools/gencode/yaml/Makefile
-         src/tools/tolua/Makefile
-         src/tools/tolua/lib/Makefile
-         src/tools/tolua/bin/Makefile
          src/worldserver/Makefile
          src/worldserver/worldserver.conf.dist
          src/worldserver/todo/Makefile])

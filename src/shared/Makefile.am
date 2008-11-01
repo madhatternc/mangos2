@@ -16,9 +16,6 @@
 
 ## Process this file with automake to produce Makefile.in
 
-## Sub directories to parse
-SUBDIRS = lua
-
 ## CPP flags for includes, defines, etc.
 AM_CPPFLAGS = $(MYSQL_INCLUDES) -I$(srcdir) -DLIBMANGOS2_VERSION="\"@PACKAGE_VERSION@\""
 

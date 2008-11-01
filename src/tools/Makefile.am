@@ -15,7 +15,7 @@
 
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = gencode tolua
+SUBDIRS = gencode
 
 EXTRA_DIST = \
     dbc_convert.py \

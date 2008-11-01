@@ -20,7 +20,7 @@
 SUBDIRS = todo
 
 ## CPP flags for includes, defines, etc.
-AM_CPPFLAGS = $(MYSQL_INCLUDES)-I$(srcdir) -I$(srcdir)/../shared -I$(srcdir)/../shared/lua -I$(srcdir)/../tools/tolua/include -DSYSCONFDIR=\"$(sysconfdir)/\"
+AM_CPPFLAGS = $(MYSQL_INCLUDES)-I$(srcdir) -I$(srcdir)/../shared -I$(srcdir)/../../dep/src/lua -I$(srcdir)/../../dep/src/tolua++/include -DSYSCONFDIR=\"$(sysconfdir)/\"
 
 ## Build world daemon as standalone program
 bin_PROGRAMS = mangos2-worldserver
@@ -83,19 +83,18 @@ EXTRA_DIST = \
 	worldserver.rc
 
 ## Link realm list daemon against the shared library
-mangos2_worldserver_LDADD = -lmangos2 -ltolua -llua -llualib
+mangos2_worldserver_LDADD = -lmangos2 -ltolua -llua
 mangos2_worldserver_LDFLAGS = \
 	-L../shared/ \
-	-L../tools/tolua/lib/ \
-	-L../shared/lua/ \
-	-L../shared/lua/lib/ \
+	-L../../dep/src/tolua++/lib/ \
+	-L../../dep/src/lua/ \
 	$(MYSQL_LIBS) $(ZLIB) $(COMPATLIB) $(SSLLIB) $(TERMLIB)
 
 GameClient.o: Opcodes.inc
 
 Luawrapper.cpp: Opcodes.h worldserver.pkg
 	@echo "Generating LUA wrapper"
-	$(srcdir)/../tools/tolua/bin/tolua -1 -L worldserver.lua -o Luawrapper.cpp worldserver.pkg
+	$(srcdir)/../../dep/src/tolua++/bin/tolua -1 -L worldserver.lua -o Luawrapper.cpp worldserver.pkg
 
 if USE_CODEGEN
 

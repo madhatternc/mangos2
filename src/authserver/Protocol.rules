@@ -60,70 +60,109 @@
     code: |
         CONSOLE.TextOutput ("\axeWARNING: \ax6Unhandled packet %(name)s\n");
 
-# The list of realm server errors
+########################################################################
+#                          Realm List errors                           #
+########################################################################
 -
-    name: CE_SUCCESS
+    name: ASE_SUCCESS
     type: const
     value: 0
-    enum: RealmErrors
+    enum: AuthServerResults
+    info: Authentication successful.
 -
-    name: CE_WRONG_BUILDNUMBER
+    name: ASE_FAILURE
     type: const
     value: 1
-    enum: RealmErrors
-    info: DOES NOT WORK
+    enum: AuthServerResults
+    info: Unable to connect.
 -
-    name: CE_SERVER_FULL
+    name: ASE_UNKNOWN1
     type: const
     value: 2
-    enum: RealmErrors
-    info: DOES NOT WORK
+    enum: AuthServerResults
+    info: Unable to connect.
 -
-    name: CE_ACCOUNT_CLOSED
+    name: ASE_ACCOUNT_CLOSED
     type: const
     value: 3
-    enum: RealmErrors
-    info: "This account has been closed and is no longer in service"
+    enum: AuthServerResults
+    info: This <game> account has been closed and is no longer available for use. Please go to <site>/banned.html for further information.
 -
-    name: CE_BAD_CREDENTIALS
+    name: ASE_BAD_CREDENTIALS
     type: const
     value: 4
-    enum: RealmErrors
-    info: "The information you have entered is not valid"
+    enum: AuthServerResults
+    info: The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information.
 -
-    name: CE_BAD_CREDENTIALS_DUP
+    name: ASE_BAD_CREDENTIALS_DUP
     type: const
     value: 5
-    enum: RealmErrors
-    info: Client shows same error message as with CE_BAD_CREDENTIALS
+    enum: AuthServerResults
+    info: The information you have entered is not valid. Please check the spelling of the account name and password. If you need help in retrieving a lost or stolen password, see <site> for more information.
 -
-    name: CE_ALREADY_LOGGED_IN
+    name: ASE_ALREADY_LOGGED_IN
     type: const
     value: 6
-    enum: RealmErrors
-    info: "This account is already logged in"
+    enum: AuthServerResults
+    info: This account is already logged into <game>. Please check the spelling and try again.
 -
-    name: CE_PREPAID_TIME_EXPIRED
+    name: ASE_PREPAID_TIME_EXPIRED
     type: const
     value: 7
-    enum: RealmErrors
-    info: "You have used up your prepaid time for this account"
+    enum: AuthServerResults
+    info: You have used up your prepaid time for this account. Please purchase more to continue playing.
 -
-    name: CE_CANNOT_LOGIN
+    name: ASE_CANNOT_LOGIN
     type: const
     value: 8
-    enum: RealmErrors
-    info: "Could not log in at this time"
+    enum: AuthServerResults
+    info: Could not log in to <game> at this time. Please try again later.
 -
-    name: CE_BAD_VERSION
+    name: ASE_BAD_VERSION
     type: const
     value: 9
-    enum: RealmErrors
-    info: "Unable to validate game version"
+    enum: AuthServerResults
+    info: Unable to validate game version. This may be caused by file corruption or interference of another program. Please visit <site> for more information and possible solutions to this issue.
+-
+    name: ASE_UPDATE_CLIENT
+    type: const
+    value: 10
+    enum: AuthServerResults
+    info: Downloading.
+-
+    name: ASE_UNKNOWN3
+    type: const
+    value: 11
+    enum: AuthServerResults
+    info: Unable to connect.
+-
+    name: ASE_ACCOUNT_FROZEN
+    type: const
+    value: 12
+    enum: AuthServerResults
+    info: This <game> account has been temporarily suspended. Please go to <site>/banned.html for further information.
+-
+    name: ASE_UNKNOWN4
+    type: const
+    value: 13
+    enum: AuthServerResults
+    info: Unable to connect.
+-
+    name: ASE_UNKNOWN5
+    type: const
+    value: 14
+    enum: AuthServerResults
+    info: Connected.
+-
+    name: ASE_PARENTAL_CONTROL
+    type: const
+    value: 15
+    enum: AuthServerResults
+    info: Access to this account has been blocked by parental controls. Your settings may be changed in your account preferences at <site>.
 
-##########################################################################################
-###                                     Packet opcodes                                 ###
-##########################################################################################
+########################################################################
+#                            Packet opcodes                            #
+########################################################################
 
 -
     name: CMSG_LOGON_CHALLENGE
@@ -177,7 +216,7 @@
     structure:
       - ErrorCode:
             type: uint8
-            const: CE_SUCCESS
+            const: ASE_SUCCESS
       - unknown2:
             type: uint8
             const: 0
@@ -231,8 +270,8 @@
     structure:
       - ErrorCode:
             type: uint8
-            init: CE_SUCCESS
-      - if ErrorCode == CE_SUCCESS:
+            init: ASE_SUCCESS
+      - if ErrorCode == ASE_SUCCESS:
           - M2:
                 type: uint8
                 array: 20

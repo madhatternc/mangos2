@@ -42,7 +42,7 @@ protected:
     void Send (NetworkPacket *outpkt)
     { socket->SendData (outpkt); outpkt->DecRef (); }
 
-    void FailLogin (RealmErrors err, const char *errstr);
+    void FailLogin (AuthServerResults err, const char *errstr);
 
     void HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt);
     void HandleReconnectChallenge (CMSG_RECONNECT_CHALLENGE_t &inpkt)

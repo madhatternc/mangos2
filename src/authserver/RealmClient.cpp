@@ -68,7 +68,7 @@ static char *str4 (uint8 *x)
     return str4;
 }
 
-void RealmClient::FailLogin (RealmErrors err, const char *errstr)
+void RealmClient::FailLogin (AuthServerResults err, const char *errstr)
 {
     SMSG_LOGON_PROOF_t *outpkt = SMSG_LOGON_PROOF_t::Create ();
     outpkt->ErrorCode = err;
@@ -98,7 +98,7 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
     if ((inpkt.ClientBuild < MIN_CLIENT_BUILD) ||
         (inpkt.ClientBuild > MAX_CLIENT_BUILD))
     {
-        FailLogin (CE_BAD_VERSION, "wrong version");
+        FailLogin (ASE_BAD_VERSION, "wrong version");
         return;
     }
 
@@ -123,10 +123,10 @@ void RealmClient::HandleLogonChallenge (CMSG_LOGON_CHALLENGE_t &inpkt)
     switch (rc)
     {
         case 1:   // general failure
-            FailLogin (CE_CANNOT_LOGIN, "could not log in");
+            FailLogin (ASE_CANNOT_LOGIN, "could not log in");
             return;
         case 2:   // bad username
-            FailLogin (CE_BAD_CREDENTIALS, "no such account");
+            FailLogin (ASE_BAD_CREDENTIALS, "no such account");
             return;
     }
 
@@ -157,14 +157,14 @@ void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
     // if they differ, wrong pass
     if (memcmp (inpkt.M1, M1, 20))
     {
-        FailLogin (CE_BAD_CREDENTIALS, "bad password");
+        FailLogin (ASE_BAD_CREDENTIALS, "bad password");
         return;
     }
 
     DatabaseExecutor *dbex = Server->db->GetExecutor ();
     if (!dbex)
     {
-        FailLogin (CE_CANNOT_LOGIN, "could not log in");
+        FailLogin (ASE_CANNOT_LOGIN, "could not log in");
         return;
     }
 
@@ -174,7 +174,7 @@ void RealmClient::HandleLogonProof (CMSG_LOGON_PROOF_t &inpkt)
                         socket->GetIP (), sshash, UserName) != dbeOk)
     {
         Server->db->PutExecutor (dbex);
-        FailLogin (CE_CANNOT_LOGIN, "could not log in");
+        FailLogin (ASE_CANNOT_LOGIN, "could not log in");
         return;
     }
 

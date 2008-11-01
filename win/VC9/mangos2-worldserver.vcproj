@@ -479,10 +479,6 @@
 			Name="Protocol definition"
 			>
 			<File
-				RelativePath="..\..\src\worldserver\Protocol-3.0.rules"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\worldserver\Protocol.rules"
 				>
 			</File>

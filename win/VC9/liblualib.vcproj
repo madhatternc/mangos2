@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9,00"
 	Name="liblualib"
-	ProjectGUID="{}"
+	ProjectGUID="{0A2E59A5-4140-427A-881B-71D76BD9F568}"
 	RootNamespace="liblualib"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
@@ -286,7 +286,7 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{}"
+			UniqueIdentifier="{92760A68-7F6E-4592-BA51-5CCBA69490FB}"
 			>
 			<File
 				RelativePath="..\..\dep\src\lua\lauxlib.c"
@@ -332,7 +332,7 @@
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{}"
+			UniqueIdentifier="{C269E035-6CFA-43ab-AD99-63CF9DC9CC1B}"
 			>
 			<File
 				RelativePath="..\..\dep\src\lua\lauxlib.h"
@@ -342,7 +342,7 @@
 		<Filter
 			Name="Resource Files"
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
-			UniqueIdentifier="{}"
+			UniqueIdentifier="{C89DD1F7-B216-4fe7-B094-B38372453202}"
 			>
 		</Filter>
 	</Files>

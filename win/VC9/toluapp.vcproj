@@ -65,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblua.lib libtoluapp.lib"
+				AdditionalDependencies="liblua.lib liblualib.lib libtoluapp.lib"
 				Version="1.0.92.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
@@ -140,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblua.lib libtoluapp.lib"
+				AdditionalDependencies="liblua.lib liblualib.lib libtoluapp.lib"
 				Version="1.0.92.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
@@ -215,7 +215,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblua.lib libtoluapp.lib"
+				AdditionalDependencies="liblua.lib liblualib.lib libtoluapp.lib"
 				Version="1.0.92.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
@@ -293,7 +293,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="liblua.lib libtoluapp.lib"
+				AdditionalDependencies="liblua.lib liblualib.lib libtoluapp.lib"
 				Version="1.0.92.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"

@@ -17,7 +17,7 @@ http://groups.google.com/group/mangos-core
 Version 0.6.0.01
 * The authentication and realm list server has been rewritten. It now is feature
   complete, and supports full account and realm management, and allows client
-  connections from World of Warcraft client version 3.0.2 build 9056 in any
+  connections from World of Warcraft client version 3.0.3 build 9183 in any
   client language.
 * The authentication and realm list server now features full account management.
   This includes support for complete account data including address, payment

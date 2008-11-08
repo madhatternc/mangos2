@@ -29,6 +29,16 @@ Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>
   This product includes software developed by Tom Wu and Eugene
   Jhong for the SRP Distribution (http://srp.stanford.edu/).
 
+## About this branch ##
+
+The 0.6.0-development branch of our Git repository is an unsupported branch,
+in which we update MaNGOS2 to support the World of Warcraft client 3.0.3,
+build 9183.
+
+Be aware that this repository may contain unusable code, that the software
+you can compile may crash your system, or even worse. We are not responsible
+for any errors resulting from running this code on your systems.
+
 ## Welcome to MaNGOS2 ##
 
 MaNGOS2 is a free, Open Source implementation of a game server compatible with

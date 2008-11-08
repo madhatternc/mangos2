@@ -46,7 +46,7 @@
 
 // Compatible client build range
 #define MIN_CLIENT_BUILD    9056 // client version 3.0.2 build 9056
-#define MAX_CLIENT_BUILD    9056 // client version 3.0.2 build 9056
+#define MAX_CLIENT_BUILD    9183 // client version 3.0.3 build 9183
 
 // The path to data files
 #ifndef DATADIR

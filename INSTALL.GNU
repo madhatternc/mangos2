@@ -15,8 +15,9 @@ MaNGOS2 uses the standard autoconf configure, thus all autoconf options
 apply. In common we will assume that you do have a working C++ compiler on
 your systems. If not, [GCC](http://gcc.gnu.org/) is your friend.
 
-In case you have checked out MaNGOS2 from the SubVersion repository,
-please run the following command to create a working build environment:
+In case you have checked out MaNGOS2 from our development repository on
+[github.com](git://github.com/TheLuda/mangos2.git) please run the following
+command to create a working build environment:
 
     $ autoreconf --install --force
 
@@ -74,8 +75,8 @@ Figure it out yourself. If we would know in advance what problems you would
 encounter, we would fix it in advance, or put a warning message in configure
 at least.
 
-Until this development branch will be merged into the trunk of our
-SubVersion repository, no support will be provided.
+Until the 0.6.0-development branch will be merged into the master branch of
+our Git repository, no support will be provided.
 
 Thank you for understanding.
 

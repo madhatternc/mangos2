@@ -83,7 +83,7 @@ EXTRA_DIST = \
 	worldserver.rc
 
 ## Link realm list daemon against the shared library
-mangos2_worldserver_LDADD = -lmangos2 -ltolua -llua
+mangos2_worldserver_LDADD = -lmangos2 -ltolua -llua -llualib
 mangos2_worldserver_LDFLAGS = \
 	-L../shared/ \
 	-L../../dep/src/tolua++/lib/ \

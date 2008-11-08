@@ -30,6 +30,7 @@ EXTRA_DIST += \
 EXTRA_DIST += \
     win/VC9/mangos2.sln \
     win/VC9/liblua.vcproj \
+    win/VC9/liblualib.vcproj \
     win/VC9/libtoluapp.vcproj \
     win/VC9/toluapp.vcproj \
     win/VC9/libmangos2.vcproj \

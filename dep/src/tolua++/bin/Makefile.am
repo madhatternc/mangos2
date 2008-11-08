@@ -19,7 +19,7 @@ AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/../include -I$(srcdir)/../../lua
 
 noinst_PROGRAMS = tolua
 
-tolua_LDADD = -lm -ltolua -llua
+tolua_LDADD = -lm -ltolua -llua -llualib
 tolua_LDFLAGS = \
     -L../lib/ \
     -L../../lua/

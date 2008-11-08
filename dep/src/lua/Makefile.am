@@ -17,17 +17,13 @@
 
 AM_CPPFLAGS = -I$(srcdir)/../../include -I$(srcdir)/../../include/zlib -DUSE_DLOPEN=1 -DUSE_DEGREES -DUSE_TMPNAME=0 -DLUA_USE_POSIX
 
-noinst_LIBRARIES = liblua.a
+noinst_LIBRARIES = liblua.a liblualib.a
 
 liblua_a_SOURCES = \
     lapi.c \
     lapi.h \
-    lauxlib.c \
-    lauxlib.h \
-    lbaselib.c \
     lcode.c \
     lcode.h \
-    ldblib.c \
     ldebug.c \
     ldebug.h \
     ldo.c \
@@ -37,42 +33,47 @@ liblua_a_SOURCES = \
     lfunc.h \
     lgc.c \
     lgc.h \
-    linit.c \
-    liolib.c \
     llex.c \
     llex.h \
     llimits.h \
-    lmathlib.c \
     lmem.c \
     lmem.h \
-    loadlib.c \
     lobject.c \
     lobject.h \
     lopcodes.c \
     lopcodes.h \
-    loslib.c \
     lparser.c \
     lparser.h \
     lstate.c \
     lstate.h \
     lstring.c \
     lstring.h \
-    lstrlib.c \
     ltable.c \
     ltable.h \
-    ltablib.c \
     ltm.c \
     ltm.h \
-    lua.h \
     luaconf.h \
+    lua.h \
     lualib.h \
     lundump.c \
     lundump.h \
     lvm.c \
     lvm.h \
     lzio.c \
-    lzio.h \
-    print.c
+    lzio.h
+
+liblualib_a_SOURCES = \
+    lauxlib.c \
+    lauxlib.h \
+    lbaselib.c \
+    ldblib.c \
+    linit.c \
+    liolib.c \
+    lmathlib.c \
+    loadlib.c \
+    loslib.c \
+    lstrlib.c \
+    ltablib.c
 
 EXTRA_DIST = \
     lua.c \
@@ -80,4 +81,5 @@ EXTRA_DIST = \
     lua.aps \
     lua.ico \
     lua.rc \
+    print.c \
     resource.h

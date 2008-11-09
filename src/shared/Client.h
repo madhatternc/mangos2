@@ -45,7 +45,7 @@ protected:
 
 public:
     /// Create the client object listening to this socket
-    Client (Socket *sock); //tolua_hide abstract class can't be allociated
+    Client (Socket *sock); // tolua_hide abstract class can't be allociated
 
     /**
      * Called when any event (one of those requested by socket->InterestedEvents())

@@ -94,7 +94,7 @@ public:
     /// Game features (see GF_XXX flags)
     uint GameFeatures;
     /// Global Lua interpreter state
-    lua_State *Lua; //tolua_hide
+    lua_State *Lua; // tolua_hide
 
     /**
      * World server constructor
@@ -203,6 +203,6 @@ public:
 extern WorldServer *World; // tolua_hide
 
 /// Easy access to logger
-#define LOG     (*World->Logger) //tolua_hide
+#define LOG     (*World->Logger) // tolua_hide
 
 #endif // __WORLD_SERVER_H__

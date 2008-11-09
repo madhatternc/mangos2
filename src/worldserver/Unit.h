@@ -124,7 +124,7 @@ protected:
     UnitDeathState DeathState;
 
     /// The list of affections on this unit
-    DECLARE_VECTOR (AffectVector, Affect *,) Affects; //tolua_hide
+    DECLARE_VECTOR (AffectVector, Affect *,) Affects; // tolua_hide
 
     // The spell that unit is currently casting
     Spell *CurrentSpell;
@@ -296,12 +296,12 @@ public:
     /// Set the aura
     void SetAura (Affect *iAff)
     { Aura = iAff; }
-    bool SetAffectDuration (uint32 iSpellId, Unit *iCaster, uint32 iDuration); //tolua_hide
+    bool SetAffectDuration (uint32 iSpellId, Unit *iCaster, uint32 iDuration); // tolua_hide
 
     /// Start spell casting
-    void CastSpell (Spell *iSpell); //tolua_hide
+    void CastSpell (Spell *iSpell); // tolua_hide
     /// Interrupt current casting, if any
-    void InterruptSpell (); //tolua_hide
+    void InterruptSpell (); // tolua_hide
 
     /**
      * Use it to Check if a Unit is in front of this one
@@ -310,7 +310,7 @@ public:
      * @arg iDistance
      *   Return false if target is farther than this.
      */
-    bool IsInFront (Unit *iTarget, float iDistance); //tolua_hide
+    bool IsInFront (Unit *iTarget, float iDistance); // tolua_hide
 };
 
 #endif // __UNIT_H__

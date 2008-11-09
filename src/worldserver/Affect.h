@@ -231,7 +231,7 @@ public:
     uint64 CasterGUID;
 
     /// Affect modifiers list
-    DECLARE_VECTOR (ModifierVector, Modifier *,) Modifiers; //tolua_hide fixme subclasses make problems
+    DECLARE_VECTOR (ModifierVector, Modifier *,) Modifiers; // tolua_hide fixme subclasses make problems
 
     /// Unit slot for this aura
     uint8 AuraSlot;

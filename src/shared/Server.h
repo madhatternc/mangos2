@@ -84,9 +84,9 @@ public:
      * @arg iLogger
      *   The logger to log socket events on
          */
-    Server (uint iPort, uint iStepTime, Log *iLogger); //tolua_hide
+    Server (uint iPort, uint iStepTime, Log *iLogger); // tolua_hide
     /// Destructor
-    virtual ~Server (); //tolua_hide
+    virtual ~Server (); // tolua_hide
 
     /// Start listening for inbound connections
     virtual bool Start ();

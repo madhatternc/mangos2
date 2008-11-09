@@ -62,7 +62,7 @@ class Database : public Base
 {
 protected:
     /// Utility class: vector of unsorted DatabaseExecutor's
-    //tolua_begin_hide
+    // tolua_begin_hide
     class ExecutorPool : public BaseVector
     {
     public:
@@ -70,7 +70,7 @@ protected:
         DatabaseExecutor *Get (int iIndex)
         { return (DatabaseExecutor *)Vector::Get (iIndex); }
     } Executors;
-    //tolua_end_hide
+    // tolua_end_hide
     Mutex *ExecutorsMutex;
 
     Database ();
@@ -151,8 +151,8 @@ protected:
 
 public:
     /// Initialize the database executor skeleton
-    DatabaseExecutor (Database *iParent) //tolua_hide
-    { Parent = iParent; } //tolua_hide
+    DatabaseExecutor (Database *iParent) // tolua_hide
+    { Parent = iParent; } // tolua_hide
 
     Database *GetParent ()
     { return Parent; }
@@ -177,7 +177,7 @@ public:
      * Same but allows printf-like string formatting.
      * The resulting query length must not exceed 4k
      */
-    DatabaseError ExecuteF (const char *QueryF, ...); //tolua_hide
+    DatabaseError ExecuteF (const char *QueryF, ...); // tolua_hide
 
     /// Get the number of fields in the result
     virtual int NumFields () = 0;

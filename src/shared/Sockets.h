@@ -70,7 +70,7 @@ protected:
 
 public:
     /// The data associated with this packet
-    uint8 *data;  //tolua_hide temporary fix
+    uint8 *data;  // tolua_hide temporary fix
     /// The length of the associated data
     uint length;
 

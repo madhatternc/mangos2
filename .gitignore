@@ -48,7 +48,6 @@ config.h
 callgrind.out.*
 
 dep/src/tolua++/bin/tolua
-src/realmlist/mangos2-realmlist
-src/shared/svn_revision.h
+src/authserver/mangos2-authserver
 src/tools/tolua/bin/tolua
 src/worldserver/mangos2-worldserver

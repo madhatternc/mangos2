@@ -6,6 +6,7 @@ function extract_code(fn,s)
     end
     s= "\n" .. s .. "\n" -- add blank lines as sentinels
     local _,e,c,t = strfind(s, "\n([^\n]-)SCRIPT_([%w_]*)[^\n]*\n")
+    --print("Found "..e..":"..c..":"..t..":")
     while e do
         t = strlower(t)
         if t == "bind_begin" then

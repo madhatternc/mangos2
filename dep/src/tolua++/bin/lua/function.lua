@@ -168,7 +168,7 @@ function classFunction:supcode (local_constructor)
  local out = string.find(self.mod, "tolua_outside")
  -- call function
  if class and self.name=='delete' then
-  output('  delete self;')
+  build_destructor_class(self)
  elseif class and self.name == 'operator&[]' then
   if flags['1'] then -- for compatibility with tolua5 ?
     output('  self->operator[](',self.args[1].name,'-1) = ',self.args[2].name,';')

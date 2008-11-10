@@ -72,6 +72,7 @@ function _Container (self)
  self.usertypes = {}
  self.enums = {tolua_n=0}
  self.lnames = {}
+ self.policy = "public" -- default policy is public
  return self
 end
 
@@ -541,10 +542,13 @@ function classContainer:doparse (s)
 
  -- try define
  do
-  local b,e,name = strfind(s,"^%s*#define%s%s*([^%s]*)[^\n]*\n%s*")
+  local b,e,name,some = strfind(s,"^%s*#define%s%s*([^%s]*)([^\n]*)\n%s*")
   if b then
    _curr_code = strsub(s,b,e)
-   Define(name)
+   local _,test = strfind(some, "%s*[^%s]*")
+   if test ~= 0 then
+     Define(name)
+   end
    return strsub(s,e+1)
   end
  end
@@ -579,6 +583,17 @@ function classContainer:doparse (s)
   end
  end
 
+ -- try policy
+ do
+   for _,k in ipairs({"public", "private", "protected"}) do
+     local b,e = strfind(s,"^%s*"..k.."%:%s*")
+     if b then
+       self.policy = k
+       return strsub(s,e+1)
+     end
+   end
+ end
+
  -- try operator
  do
   local b,e,decl,kind,arg,const = strfind(s,"^%s*([_%w][_%w%s%*&:<>,]-%s+operator)%s*([^%s][^%s]*)%s*(%b())%s*(c?o?n?s?t?)%s*;%s*")
@@ -597,6 +612,9 @@ function classContainer:doparse (s)
     end
   end
   if b then
+   if self.policy ~= "public" then
+     return strsub(s,e+1)
+   end
    _curr_code = strsub(s,b,e)
    Operator(decl,kind,arg,const)
    return strsub(s,e+1)
@@ -621,7 +639,11 @@ function classContainer:doparse (s)
             self.flags.pure_virtual = true
         end
     end
+   if self.policy ~= "public" then
+     return strsub(s,e+1)
+   end
    _curr_code = strsub(s,b,e)
+   --print("FUNC"..decl)
    Function(decl,arg,const)
    return strsub(s,e+1)
   end
@@ -636,6 +658,10 @@ function classContainer:doparse (s)
    b,e,decl,arg,const = strfind(s,"^%s*([_%w])%s*(%b())%s*(c?o?n?s?t?).-%b{}%s*;?%s*")
   end
   if b then
+   --print("INLINE:"..decl)
+   if self.policy ~= "public" then
+     return strsub(s,e+1)
+   end
    _curr_code = strsub(s,b,e)
    Function(decl,arg,const)
    return strsub(s,e+1)
@@ -673,6 +699,9 @@ function classContainer:doparse (s)
             else
                 base = {}
             end
+            if self.policy ~= "public" then
+              return strsub(s,e+1)
+            end
             _curr_code = strsub(s,b,e)
             Class(name,base,body)
             return strsub(s,e+1)
@@ -693,6 +722,9 @@ function classContainer:doparse (s)
  do
   local b,e,decl = strfind(s,"^%s*([_%w][_@%s%w%d%*&:<>,]*[_%w%d])%s*;%s*")
   if b then
+   if self.policy ~= "public" then
+     return strsub(s,e+1)
+   end
    _curr_code = strsub(s,b,e)
 
     local list = split_c_tokens(decl, ",")
@@ -715,6 +747,9 @@ function classContainer:doparse (s)
  do
   local b,e,decl = strfind(s,"^%s*([_%w]?[_%s%w%d]-char%s+[_@%w%d]*%s*%[%s*%S+%s*%])%s*;%s*")
   if b then
+   if self.policy ~= "public" then
+     return strsub(s,e+1)
+   end
    _curr_code = strsub(s,b,e)
    Variable(decl)
    return strsub(s,e+1)
@@ -725,16 +760,28 @@ function classContainer:doparse (s)
  do
   local b,e,decl = strfind(s,"^%s*([_%w][][_@%s%w%d%*&:]*[]_%w%d])%s*;%s*")
   if b then
+   if self.policy ~= "public" then
+     return strsub(s,e+1)
+   end
    _curr_code = strsub(s,b,e)
    Array(decl)
    return strsub(s,e+1)
   end
  end
 
+ do
+  local x = hook_custom_parse(self, s)
+  if x ~= nil then
+	return x
+  end
+ end
+
  -- no matching
  if gsub(s,"%s%s*","") ~= "" then
   _curr_code = s
-  error("#parse error")
+  local pos
+  _, pos = strfind(s,"\n")
+  error("#parse error:\n"..string.sub(s, 1, pos+40))
  else
   return ""
  end

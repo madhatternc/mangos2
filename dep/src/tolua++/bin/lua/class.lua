@@ -207,7 +207,7 @@ function Class (n,p,b)
             c.base = mbase
         end
     else
-        c = _Class(_Container{name=n, base=mbase, extra_bases=p})
+        c = _Class(_Container{name=n, base=mbase, extra_bases=p, policy="public"})
 
         local ft = getnamespace(c.parent)..c.original_name
         append_global_type(ft, c)

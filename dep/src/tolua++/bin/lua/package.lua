@@ -70,11 +70,13 @@ function classPackage:preprocess ()
  -- perform global substitution
 
  self.code = gsub(self.code,"(//[^\n]*)","")     -- eliminate C++ comments
- self.code = gsub(self.code,"/%*","\1")
- self.code = gsub(self.code,"%*/","\2")
- self.code = gsub(self.code,"%b\1\2","")
- self.code = gsub(self.code,"\1","/%*")
- self.code = gsub(self.code,"\2","%*/")
+ -- self.code = gsub(self.code,"/%*","\1")
+ -- self.code = gsub(self.code,"%*/","\2")
+ -- self.code = gsub(self.code,"%b\1\2","")
+ -- self.code = gsub(self.code,"\1","/%*")
+ -- self.code = gsub(self.code,"\2","%*/")
+ self.code = gsub(self.code, "/%*.-%*/", "")
+ self.code = gsub(self.code, "#if 0.-#endif", "") -- remove macro excluded code
  self.code = gsub(self.code,"%s*@%s*","@") -- eliminate spaces beside @
  self.code = gsub(self.code,"%s?inline(%s)","%1") -- eliminate 'inline' keyword
  --self.code = gsub(self.code,"%s?extern(%s)","%1") -- eliminate 'extern' keyword
@@ -111,10 +113,10 @@ function classPackage:preamble ()
  output('** Generated automatically by '..TOLUA_VERSION..' on '..date()..'.\n')
  output('*/\n\n')
 
-    output('#ifndef __cplusplus\n')
-    output('#include "stdlib.h"\n')
-    output('#endif\n')
-    output('#include "string.h"\n\n')
+ output('#ifndef __cplusplus\n')
+ output('#include "stdlib.h"\n')
+ output('#endif\n')
+ output('#include "string.h"\n\n')
  output('#include "tolua++.h"\n\n')
 
  if not flags.h then
@@ -129,20 +131,15 @@ function classPackage:preamble ()
   i = i+1
  end
 
-    if self:requirecollection(_collect) then
-        output('\n')
-        output('/* function to release collected object via destructor */')
-        output('#ifdef __cplusplus\n')
-        for i,v in pairs(_collect) do
-         output('\nstatic int '..v..' (lua_State* tolua_S)')
-            output('{')
-            output(' '..i..'* self = ('..i..'*) tolua_tousertype(tolua_S,1,0);')
-            output('    delete self;')
-            output('    return 0;')
-            output('}')
-        end
-        output('#endif\n\n')
-    end
+ if self:requirecollection(_collect) then
+   output('\n')
+   output('/* function to release collected object via destructor */')
+   output('#ifdef __cplusplus\n')
+   for i,v in pairs(_collect) do
+     build_collect_hook(self,i,v)
+   end
+   output('#endif\n\n')
+ end
 
  output('\n')
  output('/* function to register type */')
@@ -210,7 +207,11 @@ end
 -- Parse C header file with tolua directives
 -- *** Thanks to Ariel Manzur for fixing bugs in nested directives ***
 function extract_code(fn,s)
-    local code = '\n$#include "'..fn..'"\n'
+	if fn ~= "" then
+	  local code = '\n$#include "'..fn..'"\n'
+	else
+	  local code = "\n"
+	end
     s= "\n" .. s .. "\n" -- add blank lines as sentinels
     local _,e,c,t = strfind(s, "\n([^\n]-)[Tt][Oo][Ll][Uu][Aa]_([^%s]*)[^\n]*\n")
     while e do
@@ -221,7 +222,12 @@ function extract_code(fn,s)
              tolua_error("Unbalanced 'tolua_begin' directive in header file")
             end
         end
-        code = code .. c .. "\n"
+        c = c.."\n"
+		local x = string.find(c, "\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[hH][iI][Dd][eE][^\n]*\n")
+		--print("Found hide"..x)
+		c = string.gsub(c, "\n[^\n]*[Tt][Oo][Ll][Uu][Aa]_[hH][iI][Dd][eE][^\n]*\n", "\n");
+		c = string.gsub(c, "#define[^%(\n]*%(.-\n", "\n")
+		code = code .. c
      _,e,c,t = strfind(s, "\n([^\n]-)[Tt][Oo][Ll][Uu][Aa]_([^%s]*)[^\n]*\n",e)
     end
     return code

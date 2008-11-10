@@ -177,6 +177,8 @@ end
 -- also strips whitespace
 function split_c_tokens(s, pat)
 
+	-- debug.traceback()
+
     s = string.gsub(s, "^%s*", "")
     s = string.gsub(s, "%s*$", "")
 
@@ -351,4 +353,25 @@ end
 function parser_hook(s)
 
     return nil
+end
+
+-- builds a collector function call
+-- the default version simply calls the destructor
+-- takes a object of the var the destructor should be build
+function build_collect_hook(cls, i, v)
+   output('\nstatic int '..v..' (lua_State* tolua_S)')
+   output('{')
+   output(' '..i..'* self = ('..i..'*) tolua_tousertype(tolua_S,1,0);')
+   output('	delete self;')
+   output('	return 0;')
+   output('}')
+end
+
+-- outputs a destructor for a class
+function build_destructor_class(obj)
+   output('  delete self;')
+end
+
+function hook_custom_parse(obj, s)
+  return nil
 end

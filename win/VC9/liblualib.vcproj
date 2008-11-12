@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\lib\&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -64,7 +64,6 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="liblua.lib"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
@@ -109,7 +108,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\lib\&quot;"
 				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -129,7 +128,6 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="liblua.lib"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
@@ -175,7 +173,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\lib\&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -194,7 +192,6 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="liblua.lib"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool
@@ -241,7 +238,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
+				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\&quot;;&quot;$(SolutionDir)..\..\dep\src\lua\lib\&quot;"
 				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -260,7 +257,6 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="liblua.lib"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;"
 			/>
 			<Tool

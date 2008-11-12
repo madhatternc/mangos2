@@ -64,7 +64,6 @@ liblua_a_SOURCES = \
     lzio.h
 
 EXTRA_DIST = \
-    lua.aps \
     lua.ico \
     lua.rc \
     resource.h

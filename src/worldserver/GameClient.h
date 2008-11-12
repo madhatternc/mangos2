@@ -91,7 +91,7 @@ protected:
     { cr_prev = saved_cr_prev; cr_idx = saved_cr_idx; }
 
     /// Fail authenthification and return given return code to client
-    void GameClient::FailAuth (uint32 iCode);
+    void FailAuth (uint32 iCode);
 
     void HandleAuthSession (CMSG_AUTH_SESSION_t &inpkt);
     void HandlePing (CMSG_PING_t &inpkt);

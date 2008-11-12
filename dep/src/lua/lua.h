@@ -90,11 +90,23 @@ typedef LUA_NUMBER lua_Number;
 #endif
 
 
-/* mark for all API functions */
-#ifndef LUA_API
-#define LUA_API     extern
+/*
+@@ LUA_API is a mark for all core API functions.
+@@ LUALIB_API is a mark for all standard library functions.
+** CHANGE them if you need to define those functions in some special way.
+** For instance, if you want to create one Windows DLL with the core and
+** the libraries, you may want to use the following definition (define
+** LUA_BUILD_AS_DLL to get it).
+*/
+#if defined(LUA_BUILD_AS_DLL)
+  #if defined(LUA_CORE) || defined(LUA_LIB)
+    #define LUA_API __declspec(dllexport)
+  #else
+    #define LUA_API __declspec(dllimport)
+  #endif
+#else
+  #define LUA_API		extern
 #endif
-
 
 /*
 ** state manipulation

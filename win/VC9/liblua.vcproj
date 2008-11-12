@@ -64,7 +64,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				Version="5.1.4.0"
+				Version="5.0.3.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
@@ -139,7 +139,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				Version="5.1.4.0"
+				Version="5.0.3.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
@@ -214,7 +214,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				Version="5.1.4.0"
+				Version="5.0.3.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="false"
@@ -292,7 +292,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				Version="5.1.4.0"
+				Version="5.0.3.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="false"
@@ -480,14 +480,6 @@
 			</File>
 			<File
 				RelativePath="..\..\dep\src\lua\lua.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\luaconf.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lualib.h"
 				>
 			</File>
 			<File

@@ -83,7 +83,7 @@ max = math.max
 min = math.min
 mod = math.mod
 PI = math.pi
---??? pow = math.pow
+--??? pow = math.pow  
 rad = math.rad
 random = math.random
 randomseed = math.randomseed
@@ -190,3 +190,4 @@ function write (...)
   end
   return f:write(unpack(arg))
 end
+

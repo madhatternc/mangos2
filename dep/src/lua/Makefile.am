@@ -14,10 +14,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Process this file with automake to produce Makefile.in
+SUBDIRS = lib
 
-AM_CPPFLAGS = -I$(srcdir)/../../include -I$(srcdir)/../../include/zlib -DUSE_DLOPEN=1 -DUSE_DEGREES -DUSE_TMPNAME=0 -DLUA_USE_POSIX
+AM_CPPFLAGS = -I$(srcdir)/ -DUSE_DLOPEN=1 -DUSE_DEGREES -DUSE_TMPNAME=0 -DLUA_USE_POSIX
 
-noinst_LIBRARIES = liblua.a liblualib.a
+noinst_LIBRARIES = liblua.a
 
 liblua_a_SOURCES = \
     lapi.c \
@@ -62,24 +63,8 @@ liblua_a_SOURCES = \
     lzio.c \
     lzio.h
 
-liblualib_a_SOURCES = \
-    lauxlib.c \
-    lauxlib.h \
-    lbaselib.c \
-    ldblib.c \
-    linit.c \
-    liolib.c \
-    lmathlib.c \
-    loadlib.c \
-    loslib.c \
-    lstrlib.c \
-    ltablib.c
-
 EXTRA_DIST = \
-    lua.c \
-    luac.c \
     lua.aps \
     lua.ico \
     lua.rc \
-    print.c \
     resource.h

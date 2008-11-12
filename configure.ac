@@ -178,6 +178,7 @@ AC_CONFIG_FILES([Makefile
          dep/lib/Makefile
          dep/src/Makefile
          dep/src/lua/Makefile
+         dep/src/lua/lib/Makefile
          dep/src/tolua++/Makefile
          dep/src/tolua++/lib/Makefile
          dep/src/tolua++/bin/Makefile

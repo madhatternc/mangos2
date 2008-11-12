@@ -20,7 +20,7 @@
 SUBDIRS = todo
 
 ## CPP flags for includes, defines, etc.
-AM_CPPFLAGS = $(MYSQL_INCLUDES)-I$(srcdir) -I$(srcdir)/../shared -I$(srcdir)/../../dep/src/lua -I$(srcdir)/../../dep/src/tolua++/include -DSYSCONFDIR=\"$(sysconfdir)/\"
+AM_CPPFLAGS = $(MYSQL_INCLUDES)-I$(srcdir) -I$(srcdir)/../shared -I$(srcdir)/../../dep/src/lua -I$(srcdir)/../../dep/src/lua/lib -I$(srcdir)/../../dep/src/tolua++/include -DSYSCONFDIR=\"$(sysconfdir)/\"
 
 ## Build world daemon as standalone program
 bin_PROGRAMS = mangos2-worldserver
@@ -88,6 +88,7 @@ mangos2_worldserver_LDFLAGS = \
 	-L../shared/ \
 	-L../../dep/src/tolua++/lib/ \
 	-L../../dep/src/lua/ \
+	-L../../dep/src/lua/lib/ \
 	$(MYSQL_LIBS) $(ZLIB) $(COMPATLIB) $(SSLLIB) $(TERMLIB)
 
 GameClient.o: Opcodes.inc

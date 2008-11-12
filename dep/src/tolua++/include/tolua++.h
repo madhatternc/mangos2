@@ -20,37 +20,27 @@
 #define TOLUA_API extern
 #endif
 
-#define TOLUA_VERSION "tolua++-1.0.92"
+#define TOLUA_VERSION "tolua++-1.0.5"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#define tolua_pushcppstring(x,y)    tolua_pushstring(x,y.c_str())
-#define tolua_iscppstring   tolua_isstring
-
-#define tolua_iscppstringarray tolua_isstringarray
-#define tolua_pushfieldcppstring(L,lo,idx,s) tolua_pushfieldstring(L, lo, idx, s.c_str())
-
-#define TEMPLATE_BIND(p)
-#define TOLUA_TEMPLATE_BIND(p)
-#define TOLUA_PROTECTED_DESTRUCTOR
-#define TOLUA_PROPERTY_TYPE(p)
-
-typedef int lua_Object;
+#define tolua_tocppstring	tolua_tostring
+#define tolua_pushcppstring(x,y)	tolua_pushstring(x,y.c_str())
+#define tolua_iscppstring	tolua_isstring
 
 #include "lua.h"
 #include "lauxlib.h"
 
 struct tolua_Error
 {
-    int index;
-    int array;
-    const char* type;
+	int index;
+	int array;
+	const char* type;
 };
 typedef struct tolua_Error tolua_Error;
 
-#define TOLUA_NOPEER    LUA_REGISTRYINDEX /* for lua 5.1 */
 
 TOLUA_API const char* tolua_typename (lua_State* L, int lo);
 TOLUA_API void tolua_error (lua_State* L, char* msg, tolua_Error* err);
@@ -91,11 +81,11 @@ TOLUA_API void tolua_module (lua_State* L, char* name, int hasvar);
 TOLUA_API void tolua_class (lua_State* L, char* name, char* base);
 TOLUA_API void tolua_cclass (lua_State* L, char* lname, char* name, char* base, lua_CFunction col);
 TOLUA_API void tolua_function (lua_State* L, char* name, lua_CFunction func);
+TOLUA_API void tolua_set_call_event(lua_State* L, lua_CFunction func, char* type);
 TOLUA_API void tolua_constant (lua_State* L, char* name, double value);
 TOLUA_API void tolua_variable (lua_State* L, char* name, lua_CFunction get, lua_CFunction set);
 TOLUA_API void tolua_array (lua_State* L,char* name, lua_CFunction get, lua_CFunction set);
 
-/* TOLUA_API void tolua_set_call_event(lua_State* L, lua_CFunction func, char* type); */
 /* TOLUA_API void tolua_addbase(lua_State* L, char* name, char* base); */
 
 TOLUA_API void tolua_pushvalue (lua_State* L, int lo);
@@ -126,29 +116,7 @@ TOLUA_API void* tolua_tofieldusertype (lua_State* L, int lo, int index, void* de
 TOLUA_API int tolua_tofieldvalue (lua_State* L, int lo, int index, int def);
 TOLUA_API int tolua_getfieldboolean (lua_State* L, int lo, int index, int def);
 
-TOLUA_API void tolua_dobuffer(lua_State* L, char* B, unsigned int size, const char* name);
-
-TOLUA_API int class_gc_event (lua_State* L);
-
-#ifdef __cplusplus
-static inline const char* tolua_tocppstring (lua_State* L, int narg, const char* def) {
-
-    const char* s = tolua_tostring(L, narg, def);
-    return s?s:"";
-};
-
-static inline const char* tolua_tofieldcppstring (lua_State* L, int lo, int index, const char* def) {
-
-    const char* s = tolua_tofieldstring(L, lo, index, def);
-    return s?s:"";
-};
-
-#else
-#define tolua_tocppstring tolua_tostring
-#define tolua_tofieldcppstring tolua_tofieldstring
-#endif
-
-TOLUA_API int tolua_fast_isa(lua_State *L, int mt_indexa, int mt_indexb, int super_index);
+TOLUA_API int tolua_fast_isa(lua_State *L, int mt_indexa, int mt_indexb);
 
 #ifdef __cplusplus
 }

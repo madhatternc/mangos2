@@ -25,7 +25,7 @@ function classFeature:decltype ()
 end
 
 -- register feature
-function classFeature:register (pre)
+function classFeature:register ()
 end
 
 -- translate verbatim
@@ -37,7 +37,7 @@ function classFeature:isvariable ()
  return false
 end
 
--- check if it requires collection
+-- checi if it requires collection
 function classFeature:requirecollection (t)
  return false
 end
@@ -55,35 +55,13 @@ function classFeature:buildnames ()
   self.lname = clean_template(self.lname)
  end
  if not self.is_parameter then
-     self.name = getonlynamespace() .. self.name
+	 self.name = getonlynamespace() .. self.name
  end
-
- local parent = classContainer.curr
- if parent then
-    self.access = parent.curr_member_access
- else
- end
-end
-
-function classFeature:check_public_access()
-
-    if self.access and self.access ~= 0 then
-        return false
-    end
-
-    local parent = classContainer.curr
-    while parent do
-        if parent.access and parent.access ~= 0 then
-            return false
-        end
-        parent = parent.prox
-    end
-    return true
 end
 
 function clean_template(t)
 
-    return string.gsub(t, "[<>:, %*]", "_")
+	return string.gsub(t, "[<>:, %*]", "_")
 end
 
 -- check if feature is inside a container definition
@@ -121,7 +99,8 @@ function classFeature:cfuncname (n)
   n = self.parent:cfuncname(n)
  end
 
-  n = string.gsub(n..'_'.. (self.lname or self.name), "[<>:, \.%*&]", "_")
+  n = string.gsub(n..'_'.. (self.lname or self.name), "[<>:, \.%*]", "_")
 
   return n
 end
+

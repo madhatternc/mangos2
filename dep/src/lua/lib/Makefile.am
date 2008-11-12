@@ -15,14 +15,18 @@
 
 ## Process this file with automake to produce Makefile.in
 
-AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/../include -I$(srcdir)/../../lua -I$(srcdir)/../../lua/lib
+AM_CPPFLAGS = -I$(srcdir)/../ -DUSE_DLOPEN=1 -DUSE_DEGREES -DUSE_TMPNAME=0 -DLUA_USE_POSIX
 
-noinst_LIBRARIES = libtolua.a
+noinst_LIBRARIES = liblualib.a
 
-libtolua_a_SOURCES = \
-    tolua_event.c \
-    tolua_event.h \
-    tolua_is.c \
-    tolua_map.c \
-    tolua_push.c \
-    tolua_to.c
+liblualib_a_SOURCES = \
+    lauxlib.c \
+    lauxlib.h \
+    lbaselib.c \
+    ldblib.c \
+    liolib.c \
+    lmathlib.c \
+    loadlib.c \
+    lstrlib.c \
+    ltablib.c \
+    lualib.h

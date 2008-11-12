@@ -44,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -109,7 +109,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
 				PreprocessorDefinitions="WIN32;WIN64;_DEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;DEBUG"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -175,7 +175,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -241,7 +241,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\"
+				AdditionalIncludeDirectories="$(SolutionDir)..\;$(SolutionDir)..\..\dep\src\lua\lib\"
 				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_WINDOWS;_LIB;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -289,43 +289,35 @@
 			UniqueIdentifier="{92760A68-7F6E-4592-BA51-5CCBA69490FB}"
 			>
 			<File
-				RelativePath="..\..\dep\src\lua\lauxlib.c"
+				RelativePath="..\..\dep\src\lua\lib\lauxlib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\lbaselib.c"
+				RelativePath="..\..\dep\src\lua\lib\lbaselib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\ldblib.c"
+				RelativePath="..\..\dep\src\lua\lib\ldblib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\linit.c"
+				RelativePath="..\..\dep\src\lua\lib\liolib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\liolib.c"
+				RelativePath="..\..\dep\src\lua\lib\lmathlib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\lmathlib.c"
+				RelativePath="..\..\dep\src\lua\lib\loadlib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\loadlib.c"
+				RelativePath="..\..\dep\src\lua\lib\lstrlib.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\dep\src\lua\loslib.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\lstrlib.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\dep\src\lua\ltablib.c"
+				RelativePath="..\..\dep\src\lua\lib\ltablib.c"
 				>
 			</File>
 		</Filter>
@@ -335,7 +327,11 @@
 			UniqueIdentifier="{C269E035-6CFA-43ab-AD99-63CF9DC9CC1B}"
 			>
 			<File
-				RelativePath="..\..\dep\src\lua\lauxlib.h"
+				RelativePath="..\..\dep\src\lua\lib\lauxlib.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\dep\src\lua\lib\lualib.h"
 				>
 			</File>
 		</Filter>

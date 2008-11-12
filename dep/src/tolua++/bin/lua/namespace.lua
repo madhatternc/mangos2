@@ -49,3 +49,4 @@ function Namespace (n,b)
  c:parse(strsub(b,2,strlen(b)-1)) -- eliminate braces
  pop()
 end
+

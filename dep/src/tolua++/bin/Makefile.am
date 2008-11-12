@@ -15,14 +15,15 @@
 
 ## Process this file with automake to produce Makefile.in
 
-AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/../include -I$(srcdir)/../../lua
+AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/../include -I$(srcdir)/../../lua -I$(srcdir)/../../lua/lib
 
 noinst_PROGRAMS = tolua
 
 tolua_LDADD = -lm -ltolua -llua -llualib
 tolua_LDFLAGS = \
     -L../lib/ \
-    -L../../lua/
+    -L../../lua/ \
+    -L../../lua/lib/
 
 tolua_SOURCES = \
     tolua.c \

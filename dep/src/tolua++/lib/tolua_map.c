@@ -203,18 +203,18 @@ static int tolua_bnd_cast (lua_State* L)
 */
 
 	void* v;
-	if (lua_getmetatable(L, 1)) {
-		/* lua_pop(L, 1); */
-		v = tolua_tousertype(L,1,NULL);
-	} else {
+	const char* s;
+	if (lua_islightuserdata(L, 1)) {
 		v = tolua_touserdata(L, 1, NULL);
+	} else {
+		v = tolua_tousertype(L, 1, 0);
 	};
 
-	const char* s = tolua_tostring(L,2,NULL);
+	s = tolua_tostring(L,2,NULL);
 	if (v && s)
-	 tolua_pushusertype(L,v,s);
+		tolua_pushusertype(L,v,s);
 	else
-	 lua_pushnil(L);
+		lua_pushnil(L);
 	return 1;
 }
 

@@ -21,8 +21,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -70,7 +70,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib"
 				Version="0.5.0.2"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -95,12 +95,14 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -145,7 +147,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib"
 				Version="0.5.0.2"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -167,12 +169,14 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -220,7 +224,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib"
 				Version="0.5.0.2"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -247,12 +251,14 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -296,7 +302,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib"
 				Version="0.5.0.2"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 			/>
@@ -320,6 +326,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>
@@ -344,6 +352,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\authserver\Opcodes.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\authserver\Opcodes.inc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\authserver\RealmClient.cpp"
 				>
 			</File>
@@ -353,14 +369,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\authserver\RealmMgr.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\authserver\Opcodes.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\authserver\Opcodes.inc"
 				>
 			</File>
 			<File
@@ -382,6 +390,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\authserver\Opcodes.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\authserver\RealmClient.h"
 				>
 			</File>
@@ -391,10 +403,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\authserver\RealmMgr.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\authserver\Opcodes.h"
 				>
 			</File>
 			<File

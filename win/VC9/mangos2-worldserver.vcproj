@@ -21,15 +21,15 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 				ExcludedFromBuild="true"
 			/>
 			<Tool
@@ -71,7 +71,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib liblualib.lib libtoluapp.lib libzlib1.lib"
 				Version="0.5.0.2"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -96,19 +96,21 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 				ExcludedFromBuild="true"
 			/>
 			<Tool
@@ -147,7 +149,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib liblualib.lib libtoluapp.lib libzlib1.lib"
 				Version="0.5.0.2"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -169,12 +171,14 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -182,7 +186,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 				ExcludedFromBuild="true"
 			/>
 			<Tool
@@ -223,7 +227,7 @@
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib libtoluapp.lib libzlib1.lib"
 				Version="0.5.0.2"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -250,12 +254,14 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(PlatformName)\$(ConfigurationName)"
-			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(PlatformName)_$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)\$(PlatformName)"
+			IntermediateDirectory="$(SolutionDir)$(ProjectName)__$(ConfigurationName)_$(PlatformName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -263,7 +269,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Generating opcode handlers and LUA bindings ..."
-				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
+				CommandLine="C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.cpp&quot; -w code &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.h&quot; -w header &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;C:\Python25\python &quot;$(SolutionDir)..\..\src\tools\gencode\gencode.py&quot; -t cxx -f &quot;$(SolutionDir)..\..\src\worldserver\Opcodes.inc&quot; -w parser &quot;$(SolutionDir)..\..\src\worldserver\Protocol.rules&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)..\..\src\worldserver\&quot;&#x0D;&#x0A;&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\toluapp&quot; -1 -L &quot;$(SolutionDir)..\..\src\worldserver\worldserver.lua&quot; -o &quot;$(SolutionDir)..\..\src\worldserver\Luawrapper.cpp&quot; &quot;$(SolutionDir)..\..\src\worldserver\worldserver.pkg&quot;&#x0D;&#x0A;cd &quot;$(SolutionDir)&quot;&#x0D;&#x0A;"
 				ExcludedFromBuild="true"
 			/>
 			<Tool
@@ -299,7 +305,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="wsock32.lib libeay32.lib libmySQL.lib libmangos2.lib liblua.lib libtoluapp.lib libzlib1.lib"
 				Version="0.5.0.2"
-				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(PlatformName)\$(ConfigurationName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 			/>
@@ -323,6 +329,8 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>

@@ -62,8 +62,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,5,0,2
- PRODUCTVERSION 0,5,0,2
+ FILEVERSION 0,6,0,1
+ PRODUCTVERSION 0,6,0,1
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -81,12 +81,12 @@ BEGIN
             VALUE "Comments", "This is an experimental version of MaNGOS. No support is available."
             VALUE "CompanyName", "MaNGOS foundation <http://getmangos.com/>"
             VALUE "FileDescription", "MaNGOS2 authentication and realm list server"
-            VALUE "FileVersion", "0.5.0.2"
+            VALUE "FileVersion", "0.6.0.1"
             VALUE "InternalName", "realmlis"
             VALUE "LegalCopyright", "Copyright (C) 2008 MaNGOS foundation <http://getmangos.com/>"
             VALUE "OriginalFilename", "realmlis"
             VALUE "ProductName", "realmlis"
-            VALUE "ProductVersion", "0.5.0.2"
+            VALUE "ProductVersion", "0.6.0.1"
         END
     END
     BLOCK "VarFileInfo"

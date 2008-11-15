@@ -54,8 +54,8 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
-				DebugInformationFormat="4"
+				WarningLevel="2"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -97,7 +97,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
-				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;&#x0D;&#x0A;copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.manifest&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -134,6 +134,8 @@
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
+				WarningLevel="2"
+				DebugInformationFormat="3"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -150,6 +152,7 @@
 				Version="0.5.0.2"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="&quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)&quot;;&quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)&quot;"
+				GenerateDebugInformation="true"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -172,7 +175,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
-				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;&#x0D;&#x0A;copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.manifest&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -210,7 +213,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="2"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -255,7 +258,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
-				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;&#x0D;&#x0A;copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.manifest&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 		<Configuration
@@ -291,6 +294,7 @@
 				PreprocessorDefinitions="WIN32;WIN64;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;HAVE_CONFIG_H"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
+				WarningLevel="2"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -330,7 +334,7 @@
 			<Tool
 				Name="VCPostBuildEventTool"
 				Description="Copying project dependencies to &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot; ..."
-				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
+				CommandLine="copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.dll&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;&#x0D;&#x0A;copy &quot;$(SolutionDir)\..\..\dep\lib\$(ConfigurationName)\$(PlatformName)\*.manifest&quot; &quot;$(SolutionDir)$(ConfigurationName)\$(PlatformName)\&quot;"
 			/>
 		</Configuration>
 	</Configurations>

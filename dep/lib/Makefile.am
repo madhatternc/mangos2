@@ -27,25 +27,25 @@ EXTRA_DIST = \
 
 # MySQL debug libraries for Win32/Win64 builds.
 EXTRA_DIST += \
-	Debug/Win32/libmySQL.dll \
-	Debug/Win32/libmySQL.lib \
-	Debug/x64/libmySQL.dll \
+	Debug/Win32/libmysql.dll \
+	Debug/Win32/libmysql.exp \
+	Debug/Win32/libmysql.lib \
+	Debug/x64/libmysql.dll \
+	Debug/x64/libmysql.exp \
 	Debug/x64/libmysql.lib
 
 # SQLite debug libraries for Win32/Win64 builds.
 EXTRA_DIST += \
-	Debug/Win32/libsqlite.lib \
-	Debug/x64/libsqlite.lib
+	Debug/Win32/libsqlite3.lib \
+	Debug/x64/libsqlite3.lib
 
 # ZLib debug libraries for Win32/Win64 builds.
 EXTRA_DIST += \
 	Debug/Win32/libzlib1.dll \
-	Debug/Win32/libzlib1.ilk \
 	Debug/Win32/libzlib1.pdb \
 	Debug/Win32/libzlib1.exp \
 	Debug/Win32/libzlib1.lib \
 	Debug/x64/libzlib1.dll \
-	Debug/x64/libzlib1.ilk \
 	Debug/x64/libzlib1.pdb \
 	Debug/x64/libzlib1.exp \
 	Debug/x64/libzlib1.lib
@@ -59,15 +59,17 @@ EXTRA_DIST += \
 
 # MySQL release libraries for Win32/Win64 builds.
 EXTRA_DIST += \
-	Release/Win32/libmySQL.dll \
-	Release/Win32/libmySQL.lib \
-	Release/x64/libmySQL.dll \
+	Release/Win32/libmysql.dll \
+	Release/Win32/libmysql.exp \
+	Release/Win32/libmysql.lib \
+	Release/x64/libmysql.dll \
+	Release/x64/libmysql.exp \
 	Release/x64/libmysql.lib
 
 # SQLite release libraries for Win32/Win64 builds.
 EXTRA_DIST += \
-	Release/Win32/libsqlite.lib \
-	Release/x64/libsqlite.lib
+	Release/Win32/libsqlite3.lib \
+	Release/x64/libsqlite3.lib
 
 # ZLib release libraries for Win32/Win64 builds.
 EXTRA_DIST += \

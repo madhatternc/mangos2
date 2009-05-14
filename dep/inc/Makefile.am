@@ -24,7 +24,7 @@ EXTRA_DIST = \
     mysql/decimal.h \
     mysql/errmsg.h \
     mysql/keycache.h \
-    mysql/libmysql.def
+    mysql/libmysql.def \
     mysql/m_ctype.h \
     mysql/m_string.h \
     mysql/my_alloc.h \

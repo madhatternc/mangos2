@@ -14,9 +14,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ## Process this file with automake to produce Makefile.in
+
+## Sub-directories to parse
 SUBDIRS = yaml
 
 EXTRA_DIST = \
-    gencode.py \
-    gencxx.py \
-    generator.py
+	gencode.py \
+	gencxx.py \
+	generator.py

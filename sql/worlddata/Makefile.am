@@ -21,27 +21,27 @@ pkgdatadir = $(datadir)/$(PACKAGE_NAME)/sql/worldserver/
 ## Files to be installed
 #  Install basic SQL files to datadir
 pkgdata_DATA = \
-    access_levels.sql \
-    char_spells.sql \
-    characters.sql \
-    guid_pool.sql \
-    inventory.sql \
-    items.sql \
-    mail.sql \
-    protochar.sql \
-    protoitem.sql \
-    quest_status.sql
+	access_levels.sql \
+	char_spells.sql \
+	characters.sql \
+	guid_pool.sql \
+	inventory.sql \
+	items.sql \
+	mail.sql \
+	protochar.sql \
+	protoitem.sql \
+	quest_status.sql
 
 ## Additional files to include when running 'make dist'
 #  SQL files for MaNGOS2 databases
 EXTRA_DIST = \
-    access_levels.sql \
-    char_spells.sql \
-    characters.sql \
-    guid_pool.sql \
-    inventory.sql \
-    items.sql \
-    mail.sql \
-    protochar.sql \
-    protoitem.sql \
-    quest_status.sql
+	access_levels.sql \
+	char_spells.sql \
+	characters.sql \
+	guid_pool.sql \
+	inventory.sql \
+	items.sql \
+	mail.sql \
+	protochar.sql \
+	protoitem.sql \
+	quest_status.sql

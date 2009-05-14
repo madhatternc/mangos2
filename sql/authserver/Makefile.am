@@ -21,13 +21,13 @@ pkgdatadir = $(datadir)/$(PACKAGE_NAME)/sql/authserver/
 ## Files to be installed
 #  Install basic SQL files to datadir
 pkgdata_DATA = \
-    accountchars.sql \
-    accounts.sql \
-    realms.sql
+	accountchars.sql \
+	accounts.sql \
+	realms.sql
 
 ## Additional files to include when running 'make dist'
 #  SQL files for MaNGOS2 databases
 EXTRA_DIST = \
-    accountchars.sql \
-    accounts.sql \
-    realms.sql
+	accountchars.sql \
+	accounts.sql \
+	realms.sql

@@ -20,13 +20,13 @@ AM_CPPFLAGS = -I$(srcdir)/../ -DUSE_DLOPEN=1 -DUSE_DEGREES -DUSE_TMPNAME=0 -DLUA
 noinst_LIBRARIES = liblualib.a
 
 liblualib_a_SOURCES = \
-    lauxlib.c \
-    lauxlib.h \
-    lbaselib.c \
-    ldblib.c \
-    liolib.c \
-    lmathlib.c \
-    loadlib.c \
-    lstrlib.c \
-    ltablib.c \
-    lualib.h
+	lauxlib.c \
+	lauxlib.h \
+	lbaselib.c \
+	ldblib.c \
+	liolib.c \
+	lmathlib.c \
+	loadlib.c \
+	lstrlib.c \
+	ltablib.c \
+	lualib.h

@@ -5,12 +5,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -61,10 +61,10 @@ sysconf_DATA = \
 
 install-data-hook:
 	@list='$(sysconf_DATA)'; for p in $$list; do \
-      dest=`echo $$p | sed -e s/.dist//`; \
+	  dest=`echo $$p | sed -e s/.dist//`; \
 	  if test -f $(DESTDIR)$(sysconfdir)/$$dest; then \
-        echo "$@ will not overwrite existing $(DESTDIR)$(sysconfdir)/$$dest"; \
-      else \
+	    echo "$@ will not overwrite existing $(DESTDIR)$(sysconfdir)/$$dest"; \
+	  else \
 	    echo " $(INSTALL_DATA) $$p $(DESTDIR)$(sysconfdir)/$$dest"; \
 	    $(INSTALL_DATA) $$p $(DESTDIR)$(sysconfdir)/$$dest; \
 	  fi; \

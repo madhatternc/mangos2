@@ -21,5 +21,5 @@ SUBDIRS = lua tolua++
 ## Additional files to include when running 'make dist'
 #  getopt files for Win32 builds.
 EXTRA_DIST = \
-    getopt.c \
-    getopt1.c
+	getopt.c \
+	getopt1.c

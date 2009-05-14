@@ -15,10 +15,11 @@
 
 ## Process this file with automake to produce Makefile.in
 
+## Sub-directories to parse
 SUBDIRS = gencode
 
 EXTRA_DIST = \
-    dbc_convert.py \
-    mysql_dump \
-    mysql_import \
-    mysql_info
+	dbc_convert.py \
+	mysql_dump \
+	mysql_import \
+	mysql_info

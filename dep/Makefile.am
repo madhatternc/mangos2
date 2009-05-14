@@ -17,6 +17,3 @@
 
 ## Sub-directories to parse
 SUBDIRS = inc lib src
-
-## Additional files to include when running 'make dist'
-#  Nothing yet.

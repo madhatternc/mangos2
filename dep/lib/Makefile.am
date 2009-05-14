@@ -15,8 +15,6 @@
 
 ## Process this file with automake to produce Makefile.in
 
-## Sub-directories to parse
-
 ## Additional files to include when running 'make dist'
 #  OpenSSL debug libraries for Win32/Win64 builds.
 EXTRA_DIST = \

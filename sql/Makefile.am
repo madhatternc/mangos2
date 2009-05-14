@@ -18,4 +18,4 @@
 SUBDIRS = authserver worlddata
 
 EXTRA_DIST = \
-    README
+	README

@@ -26,79 +26,79 @@ lib_LTLIBRARIES = libmangos2.la
 
 #  Source files which make up libmangos2
 libmangos2_la_SOURCES = \
-    Base.cpp \
-    Base.h \
-    BaseVector.cpp \
-    BaseVector.h \
-    BitVector.h \
-    Client.cpp \
-    Client.h \
-    CommandInterpreter.cpp \
-    CommandInterpreter.h \
-    Common.h \
-    Console.cpp \
-    Console.h \
-    Database.cpp \
-    Database.h \
-    DatabaseMySQL.cpp \
-    DatabaseMySQL.h \
-    Debug.cpp \
-    Debug.h \
-    EncodeSQL.cpp \
-    Errors.h \
-    HashVector.cpp \
-    HashVector.h \
-    Log.cpp \
-    Log.h \
-    MemoryLeaks.cpp \
-    MemoryLeaks.h \
-    Server.cpp \
-    Server.h \
-    Singleton.h \
-    Sockets.cpp \
-    Sockets.h \
-    StringFun.cpp \
-    StringFun.h \
-    StrVec.cpp \
-    StrVec.h \
-    SystemFun.h \
-    ThreadFun.h \
-    Timer.h \
-    UTF8Fun.cpp \
-    Vector.cpp \
-    Vector.h \
-    version.h \
-    posix/ConsoleSysDep.cpp \
-    posix/ThreadFun.cpp \
-    posix/TimeFun.cpp \
-    posix/WaitSockets.cpp
+	Base.cpp \
+	Base.h \
+	BaseVector.cpp \
+	BaseVector.h \
+	BitVector.h \
+	Client.cpp \
+	Client.h \
+	CommandInterpreter.cpp \
+	CommandInterpreter.h \
+	Common.h \
+	Console.cpp \
+	Console.h \
+	Database.cpp \
+	Database.h \
+	DatabaseMySQL.cpp \
+	DatabaseMySQL.h \
+	Debug.cpp \
+	Debug.h \
+	EncodeSQL.cpp \
+	Errors.h \
+	HashVector.cpp \
+	HashVector.h \
+	Log.cpp \
+	Log.h \
+	MemoryLeaks.cpp \
+	MemoryLeaks.h \
+	Server.cpp \
+	Server.h \
+	Singleton.h \
+	Sockets.cpp \
+	Sockets.h \
+	StringFun.cpp \
+	StringFun.h \
+	StrVec.cpp \
+	StrVec.h \
+	SystemFun.h \
+	ThreadFun.h \
+	Timer.h \
+	UTF8Fun.cpp \
+	Vector.cpp \
+	Vector.h \
+	version.h \
+	posix/ConsoleSysDep.cpp \
+	posix/ThreadFun.cpp \
+	posix/TimeFun.cpp \
+	posix/WaitSockets.cpp
 
 # Header files to installed for reusing libmangos2
 libmangos2_la_HEADERS = \
-    Base.h \
-    BaseVector.h \
-    BitVector.h \
-    Client.h \
-    CommandInterpreter.h \
-    Common.h \
-    Console.h \
-    Database.h \
-    DatabaseMySQL.h \
-    Debug.h \
-    Errors.h \
-    HashVector.h \
-    Log.h \
-    MemoryLeaks.h \
-    Server.h \
-    Singleton.h \
-    Sockets.h \
-    StringFun.h \
-    StrVec.h \
-    SystemFun.h \
-    ThreadFun.h \
-    Timer.h \
-    Vector.h \
-    version.h
+	Base.h \
+	BaseVector.h \
+	BitVector.h \
+	Client.h \
+	CommandInterpreter.h \
+	Common.h \
+	Console.h \
+	Database.h \
+	DatabaseMySQL.h \
+	Debug.h \
+	Errors.h \
+	HashVector.h \
+	Log.h \
+	MemoryLeaks.h \
+	Server.h \
+	Singleton.h \
+	Sockets.h \
+	StringFun.h \
+	StrVec.h \
+	SystemFun.h \
+	ThreadFun.h \
+	Timer.h \
+	Vector.h \
+	version.h
 
 #  And the headers go to ...
 #  header target version is set manual, since header version
@@ -115,7 +115,7 @@ libmangos2_la_LIBADD = $(MYSQL_LIBS)
 ## Additional files to include when running 'make dist'
 #  Add win32 sources.
 EXTRA_DIST = \
-    win/ConsoleSysDep.cpp \
-    win/ThreadFun.cpp \
-    win/TimeFun.cpp \
-    win/WaitSockets.cpp
+	win/ConsoleSysDep.cpp \
+	win/ThreadFun.cpp \
+	win/TimeFun.cpp \
+	win/WaitSockets.cpp

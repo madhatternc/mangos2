@@ -15,15 +15,15 @@
 ## Process this file with automake to produce Makefile.in
 
 EXTRA_DIST = \
-    LICENSE \
-    __init__.py \
-    dump.py \
-    implicit.py \
-    inline.py \
-    klass.py \
-    load.py \
-    ordered_dict.py \
-    redump.py \
-    stream.py \
-    timestamp.py \
-    ypath.py
+	LICENSE \
+	__init__.py \
+	dump.py \
+	implicit.py \
+	inline.py \
+	klass.py \
+	load.py \
+	ordered_dict.py \
+	redump.py \
+	stream.py \
+	timestamp.py \
+	ypath.py

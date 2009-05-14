@@ -17,6 +17,6 @@
 ## Process this file with automake to produce Makefile.in
 
 EXTRA_DIST = \
-    Doxyfile.in \
-    YAML.txt \
-    RealmServerOpcodes.odt
+	Doxyfile.in \
+	YAML.txt \
+	RealmServerOpcodes.odt

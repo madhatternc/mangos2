@@ -19,22 +19,22 @@
 SUBDIRS = dep doc sql src
 
 EXTRA_DIST = \
-    INSTALL.GNU \
-    INSTALL.Win.txt \
-    TODO
+	INSTALL.GNU \
+	INSTALL.Win.txt \
+	TODO
 
 EXTRA_DIST += \
-    win/config.win.h \
-    win/mangosd.ico
+	win/config.win.h \
+	win/mangosd.ico
 
 EXTRA_DIST += \
-    win/VC9/mangos2.sln \
-    win/VC9/liblua.vcproj \
-    win/VC9/liblualib.vcproj \
-    win/VC9/libtoluapp.vcproj \
-    win/VC9/toluapp.vcproj \
-    win/VC9/libmangos2.vcproj \
-    win/VC9/mangos2-authserver.vcproj \
-    win/VC9/mangos2-worldserver.vcproj
+	win/VC9/mangos2.sln \
+	win/VC9/liblua.vcproj \
+	win/VC9/liblualib.vcproj \
+	win/VC9/libtoluapp.vcproj \
+	win/VC9/toluapp.vcproj \
+	win/VC9/libmangos2.vcproj \
+	win/VC9/mangos2-authserver.vcproj \
+	win/VC9/mangos2-worldserver.vcproj
 
 AM_MAKEFLAGS = --no-print-directory
